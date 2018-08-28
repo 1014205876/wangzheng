@@ -16,7 +16,7 @@
 import wepy from 'wepy';
 import tip from '../util/tip';
 export default class Guanlian extends wepy.page {
-  config = {  };
+  config = {};
   data = {
     theuid: ''
   };
@@ -55,7 +55,7 @@ export default class Guanlian extends wepy.page {
           url: 'welcome?theuid=' + theuid
         });
       } else {
-        if (theuid&&theuid!='undefined') {
+        if (theuid && theuid != 'undefined') {
           wepy.reLaunch({
             url: 'guanlian?theuid=' + theuid
           });
