@@ -25,7 +25,7 @@
         $(function(){
             var myChart = echarts.init(document.getElementById('chart'));
             myChart.showLoading();
-            $.get('HK.json', function (geoJson) {
+            $.get('data/HK.json', function (geoJson) {
                 myChart.hideLoading();
                 echarts.registerMap('HK', geoJson);
                 myChart.setOption(option = {
