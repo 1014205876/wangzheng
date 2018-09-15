@@ -4,50 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
-    <title>ECharts</title>
-    <!--<link rel="stylesheet" type="text/css" href="css/main.css"/>-->
-    <script src='../js/jquery-1.9.1.min.js'></script>
-    <script src='../js/echarts.min.js'></script>
-    <script src="map/anhui.js"></script>
-    <script src="map/aomen.js"></script>
-    <script src="map/beijing.js"></script>
-    <script src="map/china.js"></script>
-    <script src="map/chongqing.js"></script>
-    <script src="map/fujian.js"></script>
-    <script src="map/gansu.js"></script>
-    <script src="map/guangdong.js"></script>
-    <script src="map/guangxi.js"></script>
-    <script src="map/guizhou.js"></script>
-    <script src="map/hainan.js"></script>
-    <script src="map/hebei.js"></script>
-    <script src="map/heilongjiang.js"></script>
-    <script src="map/henan.js"></script>
-    <script src="map/hubei.js"></script>
-    <script src="map/hunan.js"></script>
-    <script src="map/jiangsu.js"></script>
-    <script src="map/jiangxi.js"></script>
-    <script src="map/jilin.js"></script>
-    <script src="map/liaoning.js"></script>
-    <script src="map/neimenggu.js"></script>
-    <script src="map/ningxia.js"></script>
-    <script src="map/qinghai.js"></script>
-    <script src="map/shandong.js"></script>
-    <script src="map/shanghai.js"></script>
-    <script src="map/shanxi.js"></script>
-    <script src="map/shanxi1.js"></script>
-    <script src="map/sichuan.js"></script>
-    <script src="map/taiwan.js"></script>
-    <script src="map/tianjin.js"></script>
-    <script src="map/world.js"></script>
-    <script src="map/xianggang.js"></script>
-    <script src="map/xinjiang.js"></script>
-    <script src="map/xizang.js"></script>
-    <script src="map/yunnan.js"></script>
-    <script src="map/zhejiang.js"></script>
+    <title>中国地图</title>
+    <!-- 引入jq -->
+    <script src='js/jquery-1.9.1.min.js'></script>
+    <!-- 引入echarts -->
+    <script src='js/echarts.min.js'></script>
+    <!-- 引入地图js -->
+    <script src="mapjs/china-contour.js"></script>
+    <script src="mapjs/anhui.js"></script>
+    <script src="mapjs/aomen.js"></script>
+    <script src="mapjs/beijing.js"></script>
+    <script src="mapjs/china.js"></script>
+    <script src="mapjs/chongqing.js"></script>
+    <script src="mapjs/fujian.js"></script>
+    <script src="mapjs/gansu.js"></script>
+    <script src="mapjs/guangdong.js"></script>
+    <script src="mapjs/guangxi.js"></script>
+    <script src="mapjs/guizhou.js"></script>
+    <script src="mapjs/hainan.js"></script>
+    <script src="mapjs/hebei.js"></script>
+    <script src="mapjs/heilongjiang.js"></script>
+    <script src="mapjs/henan.js"></script>
+    <script src="mapjs/hubei.js"></script>
+    <script src="mapjs/hunan.js"></script>
+    <script src="mapjs/jiangsu.js"></script>
+    <script src="mapjs/jiangxi.js"></script>
+    <script src="mapjs/jilin.js"></script>
+    <script src="mapjs/liaoning.js"></script>
+    <script src="mapjs/neimenggu.js"></script>
+    <script src="mapjs/ningxia.js"></script>
+    <script src="mapjs/qinghai.js"></script>
+    <script src="mapjs/shandong.js"></script>
+    <script src="mapjs/shanghai.js"></script>
+    <script src="mapjs/shanxi.js"></script>
+    <script src="mapjs/shanxi1.js"></script>
+    <script src="mapjs/sichuan.js"></script>
+    <script src="mapjs/taiwan.js"></script>
+    <script src="mapjs/tianjin.js"></script>
+    <script src="mapjs/world.js"></script>
+    <script src="mapjs/xianggang.js"></script>
+    <script src="mapjs/xinjiang.js"></script>
+    <script src="mapjs/xizang.js"></script>
+    <script src="mapjs/yunnan.js"></script>
+    <script src="mapjs/zhejiang.js"></script>
     <style>
         #china-map {
-            width: 1000px;
-            height: 1000px;
+            width: 100%;
+            height: 600px;
             margin: auto;
         }
     </style>
@@ -72,7 +75,7 @@
                 data: ['订单量']
             },
 
-            visualMap: {//颜色的设置  dataRange
+            visualmap: {//颜色的设置  dataRange
                 x: 'left',
                 y: 'center',
                 splitList: [
@@ -84,9 +87,9 @@
                     { start: 5, end: 5, label: '5（自定义特殊颜色）', color: 'black' },
                     { end: 10 }
                 ],
-                //            min: 0,
-                //            max: 2500,
-                //            calculable : true,//颜色呈条状
+                min: 0,
+                max: 1500,
+                calculable: true,//颜色呈条状
                 text: ['高', '低'],// 文本，默认为数值文本
                 color: ['#E0022B', '#E09107', '#A3E00B']
             },
@@ -133,12 +136,12 @@
                         { name: '天津', value: Math.round(Math.random() * 2000) },
                         { name: '上海', value: Math.round(Math.random() * 2000) },
                         { name: '重庆', value: Math.round(Math.random() * 2000) },
-                        { name: '河北', value: 0 },
+                        { name: '河北', value: Math.round(Math.random() * 2000) },
                         { name: '河南', value: Math.round(Math.random() * 2000) },
-                        { name: '云南', value: 5 },
-                        { name: '辽宁', value: 305 },
+                        { name: '云南', value: Math.round(Math.random() * 2000) },
+                        { name: '辽宁', value: Math.round(Math.random() * 2000) },
                         { name: '黑龙江', value: Math.round(Math.random() * 2000) },
-                        { name: '湖南', value: 200 },
+                        { name: '湖南', value: Math.round(Math.random() * 2000) },
                         { name: '安徽', value: Math.round(Math.random() * 2000) },
                         { name: '山东', value: Math.round(Math.random() * 2000) },
                         { name: '新疆', value: Math.round(Math.random() * 2000) },
@@ -162,23 +165,29 @@
                         { name: '海南', value: Math.round(Math.random() * 2000) },
                         { name: '台湾', value: Math.round(Math.random() * 2000) },
                         { name: '香港', value: Math.round(Math.random() * 2000) },
-                        { name: '澳门', value: Math.round(Math.random() * 2000) }
+                        { name: '澳门', value: Math.round(Math.random() * 2000) },
+                        { name: '南海诸岛', value: Math.round(Math.random() * 2000) }
                     ]
                 }
             ]
         };
         //设置点击事件  
         myChart.on('click', function (params) {
-            option.series[0].mapType = params.name
-            option.title.text = params.name
+            option.title.text = params.name//换标题
+            option.series[0].mapType = params.name//换地图
+            option.series[0].data = [
+                { name: '密云区', value: Math.round(Math.random() * 2000) },
+                { name: '昌平区', value: Math.round(Math.random() * 2000) },
+                { name: '延庆区', value: Math.round(Math.random() * 2000) },
+                { name: '顺义区', value: Math.round(Math.random() * 2000) },
+                { name: '香港', value: Math.round(Math.random() * 2000) },
+                { name: '澳门', value: Math.round(Math.random() * 2000) }
+            ]//换数据
             myChart.setOption(option);
+            console.log(params);
         });
 
         myChart.setOption(option);
-        // myChart.on('mouseover', function (params) {
-        //     var dataIndex = params.dataIndex;
-        //     console.log(params);
-        // });
     </script>
 </body>
 
