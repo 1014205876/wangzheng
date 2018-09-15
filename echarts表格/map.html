@@ -14,15 +14,10 @@
 
 <body>
     <div id="chart" class='charts'></div>
-    <script src='../js/jquery-3.2.1.min.js'></script>
+    <script src='../js/jquery-1.9.1.min.js'></script>
+    <script src='../js/echarts.min.js'></script>
     <script>
-        $(function(){
-            $('body').show()
-        })
-    </script>
-    <script src='echarts.common.min.js'></script>
-    <script>
-        $(function(){
+        $(function () {
             var myChart = echarts.init(document.getElementById('chart'));
             myChart.showLoading();
             $.get('data/HK.json', function (geoJson) {
@@ -115,7 +110,6 @@
             });
         })
     </script>
-
 
 </body>
 
