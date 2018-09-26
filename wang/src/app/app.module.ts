@@ -7,10 +7,12 @@ import { Head } from './head/head';
 import { Backc } from './background';
 import { Consol } from './console';
 import { Child } from './child';
+import { AddComponent } from './component/add/add.component';
+import { HeadComponent } from './pages/head/head.component';
 
 @NgModule({
   declarations: [
-    AppComponent,Head,Backc,Child
+    AppComponent,Head,Backc,Child, AddComponent, HeadComponent
   ],
   imports: [
     BrowserModule, FormsModule
