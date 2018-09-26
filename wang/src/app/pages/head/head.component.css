@@ -1,0 +1,11 @@
+ul{
+    display:flex;
+}
+ul li{
+    flex:1;
+    background:red;
+    list-style:none;
+}
+ul li a{
+    font-szie:30px;
+}

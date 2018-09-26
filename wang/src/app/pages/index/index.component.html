@@ -1,0 +1,16 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <div>
+        <input type="text" [(ngModel)]='userName' placeholder='请输入用户名'>
+    </div>
+    <div>
+        <input type="password" [(ngModel)]='passWord' placeholder='请输入密码'>
+    </div>
+    <div>
+        <label>
+            记住我
+            <input type="checkbox" [(ngModel)]='remember'>
+        </label>
+    </div>
+    <button (click)='login()'>登录</button>
+</div>

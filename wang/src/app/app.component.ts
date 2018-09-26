@@ -17,10 +17,10 @@ export class AppComponent implements OnInit {
     this.title = 'wang';
     this.show = true;
     this.logger.debug('你好')
-    this.message='来自父组件'
+    this.message = '来自父组件'
     console.log(this)
   }
-  jieshou(msg:string){
-this.msg=msg
+  jieshou(msg: string) {
+    this.msg = msg
   }
 }
