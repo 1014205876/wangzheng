@@ -16,10 +16,10 @@ import { Pages04Component } from './pages/pages04/pages04.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/pages1', pathMatch: 'full' },
-  { path: 'pages2', component: IndexComponent },
-  { path: 'pages3', component: Pages02Component },
-  { path: 'pages4', component: Pages03Component },
-  { path: 'pages1', component: Pages04Component },
+  { path: 'pages4', component: IndexComponent },
+  { path: 'pages1', component: Pages02Component },
+  { path: 'pages2', component: Pages03Component },
+  { path: 'pages3', component: Pages04Component },
 ];
 @NgModule({
   declarations: [

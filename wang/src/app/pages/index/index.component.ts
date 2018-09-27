@@ -13,21 +13,25 @@ const routes: Routes = [
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
-  private userName: string;
-  private passWord: string;
-  private remember: boolean;
+  //声明变量的类型
+  private loginData:any;
+  // private userName: string;
+  // private passWord: string;
+  // private remember: boolean;
   constructor(
     private router: Router,
   ) { }
   ngOnInit() {
-    this.userName = '';
-    this.passWord = '';
-    this.remember = false;
+    this.loginData={
+      userName:'123',
+      passWord:'123',
+      remember:false,
+    }
   }
   login() {
-    if (this.userName == '123') {
+    if (this.loginData.userName == '123') {
       console.log('用户名正确');
-      if (this.passWord == '123') {
+      if (this.loginData.passWord == '123') {
         console.log('密码正确');
         this.router.navigate(['/pages2']);
       } else {

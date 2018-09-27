@@ -1,0 +1,17 @@
+.animate{
+    width:100%;
+    transition: width 2s;
+    -webkit-transition: width 2s; /* Safari */
+}
+.animate.tran {
+    width:100px;
+}
+ul{
+    display:flex;
+    justify-content:space-around;
+}
+ul li{
+    list-style:none;
+    background:blue;
+    color:white;
+}

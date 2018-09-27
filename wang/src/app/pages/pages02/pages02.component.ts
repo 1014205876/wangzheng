@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Pages02Component implements OnInit {
 
+  private list: object;
+  private show: boolean;
   constructor() { }
 
   ngOnInit() {
+    this.show = true;
+    this.list = [
+      1, 2, 3, 4, 5, 6, 7
+    ]
   }
-
 }
