@@ -16,7 +16,7 @@
 	</div>
   <!-- 贷款平台 -->
   <ul class="daikuan">
-    <li v-for='item in daikuan' :key='item.id'>
+    <li v-for='item in daikuan' :key='item.id' v-on:click='toApply(item)'>
       <div class="top">
         <img :src="item.logo" alt="" class="logo">
         <div class="name">{{item.name}}</div>
@@ -42,7 +42,7 @@
     </li>
   </ul>
   <!-- 底部导航 -->
-  <nav-footr :active="'0'"></nav-footr>
+  <!-- <nav-footr :active="'0'"></nav-footr> -->
 </div>
 </template>
 
@@ -68,7 +68,7 @@ export default {
           minRate: 1.25,
           maxRate: 1.5,
           introduction:
-            "产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍"
+            "产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍"
         },
         {
           logo: "static/img/index.png",
@@ -80,7 +80,7 @@ export default {
           minRate: 1.25,
           maxRate: 1.5,
           introduction:
-            "产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍"
+            "产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍"
         },
         {
           logo: "static/img/index.png",
@@ -92,7 +92,7 @@ export default {
           minRate: 1.25,
           maxRate: 1.5,
           introduction:
-            "产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍"
+            "产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍"
         }
       ]
     };
@@ -100,7 +100,12 @@ export default {
   components: {
     navFootr: Navfootr
   },
-  methods: {},
+  methods: {
+    toApply(item){
+       this.$router.push({path:"/apply",query:{name:item.name,minQuota:item.minQuota,maxQuota:item.maxQuota}});
+      //  this.$router.push({path: 'xxx', query: {aaa: 1}})
+    }
+  },
   mounted() {
     var mySwiper01 = new Swiper("#swiper01", {
       pagination: {
@@ -115,14 +120,72 @@ export default {
       },
       loop: true
     });
-  }
+  },
 };
 </script>
 <style lang="less" scoped>
 .index {
-  padding-bottom:1rem;
+  padding-bottom: 1rem;
   .banner {
     background: red;
+    a {
+      display: block;
+      width: 100%;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .daikuan {
+    background: #f2f2f2;
+    padding: 10px;
+    li {
+      background: #fff;
+      margin-top: 10px;
+      .top {
+        display: flex;
+          align-items:center;
+        justify-content: space-around;
+        padding: 5px 0px;
+        .logo {
+          width: 0.2rem;
+          height: 0.2rem;
+        }
+        button{
+          background:red;
+          color:#fff;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          padding:3px;
+        }
+      }
+      .main {
+        border-top: 3px solid #f2f2f2;
+        border-bottom: 3px solid #f2f2f2;
+        padding:5px 0px;
+        div {
+          display: flex;
+          justify-content: space-around;
+          padding:5px 0px;
+          .quota{
+            font-size:0.3rem;
+            font-weight:600;
+            color:red;
+          }
+        }
+      }
+      .bottom {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
+    }
+    li:first-child {
+      margin-top: 0;
+    }
   }
 }
 </style>

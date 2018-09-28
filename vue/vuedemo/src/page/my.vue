@@ -1,8 +1,7 @@
 <template>
   <div class="my">
     我的页面
-    
-  <nav-footr :active='"2"'></nav-footr>
+  <!-- <nav-footr :active='"2"'></nav-footr> -->
   </div>
 </template>
 
@@ -18,6 +17,8 @@ export default {
   },
   components: {
     navFootr:Navfootr
+  },
+  methods: {
   },
 }
 </script>
