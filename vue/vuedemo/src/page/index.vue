@@ -7,7 +7,7 @@
 			<div class="swiper-wrapper">
 				<div class="swiper-slide" v-for="list in 3" :key='list.id'>
 					<a href="###">
-						<img src="static/img/videoimg.png" alt="" />
+						<img src="/static/img/videoimg.png" alt="" />
 					</a>
 				</div>
 			</div>
@@ -59,7 +59,7 @@ export default {
     return {
       daikuan: [
         {
-          logo: "static/img/index.png",
+          logo: "/static/img/index.png",
           name: "征信贷",
           minQuota: 10,
           maxQuota: 50,
@@ -71,7 +71,7 @@ export default {
             "产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍"
         },
         {
-          logo: "static/img/index.png",
+          logo: "/static/img/index.png",
           name: "企业信用卡",
           minQuota: 20,
           maxQuota: 100,
@@ -83,7 +83,7 @@ export default {
             "产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍"
         },
         {
-          logo: "static/img/index.png",
+          logo: "/static/img/index.png",
           name: "房抵债",
           minQuota: 20,
           maxQuota: 50,

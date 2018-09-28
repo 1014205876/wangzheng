@@ -11,7 +11,7 @@
        <ul class="order">
          <li v-for='list in list' :key=list.id>
            <div class="tips">
-              您在{{list.name}}公司的的贷款【订单号{{list.order}}】的第【{{list.nowTimes}}/{{list.allTimes}}】期还有{{list.days}}天就要划扣了
+              您在{{list.name}}公司的的贷款【订单号{{list.orderNum}}】的第【{{list.nowTimes}}/{{list.allTimes}}】期还有{{list.days}}天就要划扣了
            </div>
            <span></span>
            <div class="time">
@@ -198,9 +198,9 @@ export default {
         -webkit-box-orient: vertical;
           }
           span {
-            width: 0.15rem;
-            height: 0.15rem;
-            border-radius: 0.15rem;
+            width: 0.14rem;
+            height: 0.14rem;
+            border-radius: 0.14rem;
             border: 0.02rem solid #333;
             background: red;
           }
