@@ -2,13 +2,21 @@
   <div class="shenqing">
     <back></back>
     日历页面
-    <Calendar v-on:choseDay="clickDay" v-on:changeMonth="changeDate"></Calendar>
+    <button onclick="document.getElementById('date').click()">{{date?date:'请选择日期'}}</button>
+    <input type="date" id='date' v-model='date'>
+    <!-- <input type="date" id='date' v-model='date' style='display:block;width:0;height:0;padding:0;margin:0'> -->
+    <button v-on:click='alert'>弹窗</button>
+    <input type="text" v-model='remind'>
+    <alert v-on:choice='choice' ref="alert" v-bind:remind="remind"></alert>
+    <!-- <Calendar v-on:choseDay="clickDay" v-on:changeMonth="changeDate"></Calendar> -->
   </div>
 </template>
 
 <script>
 // 引入返回组件
 import Back from "@/components/back";
+// 引入弹窗组件
+import Alert from "@/components/alert";
 // 引入jq
 import $ from "jquery";
 // 引入日历组件
@@ -16,28 +24,58 @@ import Calendar from "vue-calendar-component";
 export default {
   name: "Shenqing",
   data() {
-    return {};
+    return {
+      date: "",
+      remind:'弹窗提醒',
+    };
   },
   components: {
     back: Back,
-    Calendar
+    Calendar,
+    alert: Alert
   },
   methods: {
-    back() {
-      this.$router.go(-1);
+    choice(choice) {
+      if (choice == "no") {
+        this.remind=`选择${choice}`
+      } else {
+        this.remind=`选择是${choice}`
+      }
+      this.$refs.alert.alertclose()
     },
-    clickDay(data) {
-      console.log(data); //选中某天
-    },
-    changeDate(data) {
-      console.log(data); //左右点击切换月份
-    },
-    clickToday(data) {
-      console.log(data); //跳到了本月
+    alert(){
+      this.$refs.alert.alertshow();
     }
+  },
+  mounted(){
+    $(".shenqing").css("min-height", $(window).height());
+  },
+  beforeRouteLeave(to, from, next) {
+    next(confirm('确认离开么？'));
   }
 };
 </script>
 
 <style lang="less" scoped>
+.shenqing {
+  -moz-box-sizing: border-box; /*Firefox3.5+*/
+  -webkit-box-sizing: border-box; /*Safari3.2+*/
+  -o-box-sizing: border-box; /*Opera9.6*/
+  -ms-box-sizing: border-box; /*IE8*/
+  font-size:0.3rem;
+  button {
+    display: block;
+    width: 70%;
+    padding: 5px;
+    margin: 0.5rem auto;
+    border-radius: 0.05rem;
+  }
+  input {
+    display: block;
+    width: 70%;
+    padding: 5px;
+    margin: 0.5rem auto;
+    border-radius: 0.05rem;
+  }
+}
 </style>

@@ -156,6 +156,10 @@ export default {
 .news {
   padding-bottom: 1rem;
   background: #f2f2f2;
+  -moz-box-sizing: border-box; /*Firefox3.5+*/
+  -webkit-box-sizing: border-box; /*Safari3.2+*/
+  -o-box-sizing: border-box; /*Opera9.6*/
+  -ms-box-sizing: border-box; /*IE8*/
   .nav {
     background: #fff;
     display: flex;
@@ -191,17 +195,17 @@ export default {
           justify-content: space-between;
           .tips {
             width: 50%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
           }
           span {
-            width: 0.14rem;
-            height: 0.14rem;
-            border-radius: 0.14rem;
-            border: 0.02rem solid #333;
+            width: 8px;
+            height: 8px;
+            border-radius: 8px;
+            border: 1px solid #333;
             background: red;
           }
         }

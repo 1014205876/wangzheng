@@ -2,7 +2,7 @@
   <div class="my">
     我的页面
     <br/>
-    <input type="file" accept="image/*" style='display' id='file'>
+    <input type="file" accept="image/*;" style='display' id='file'>
     <button onclick="document.getElementById('file').click()">上传</button>
     <br/>
     <input type="file" accept="image/*" capture="camera" style='display' id='camera'>

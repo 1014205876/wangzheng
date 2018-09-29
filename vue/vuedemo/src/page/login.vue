@@ -1,10 +1,10 @@
 <template>
   <div class="login">
     <div>
-      <input type="text" v-model='tel'>
+      <input type="text" v-model='tel' placeholder='输入手机号'>
     </div>
     <div>
-      <input type="text" v-model='code'>
+      <input type="text" v-model='code' placeholder='输入验证码'>
       <button v-if='setInt'>{{countDown}}秒后可重发</button>
       <button v-else v-on:click='send'>发送手机验证码</button>
     </div>
@@ -66,11 +66,16 @@ export default {
 .login {
   text-align: center;
   input {
+    width:70%;
+    padding:5px 0;
     border: 1px solid #333;
     margin: 10px;
   }
   button {
+    width:70%;
+    border-radius:0.05rem;
     padding: 5px;
+    margin:0.1rem;
   }
 }
 </style>

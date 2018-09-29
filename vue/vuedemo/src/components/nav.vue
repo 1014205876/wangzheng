@@ -62,9 +62,9 @@ export default {
     a {
       display: block;
       .remind {
-        width: 0.2rem;
-        height: 0.2rem;
-        border-radius: 0.2rem;
+        width: 10px;
+        height: 10px;
+        border-radius: 10px;
         background: red;
         position: absolute;
         top: 0rem;
