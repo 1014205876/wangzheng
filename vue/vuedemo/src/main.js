@@ -15,6 +15,9 @@ import '../static/js/rem750.js'//750rem
 // 引入滚动选择器
 import picker from 'vue-3d-picker';
 Vue.component(picker.name, picker);
+// 引入echarts
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts 
 
 Vue.config.productionTip = false
 /* eslint-disable no-new */

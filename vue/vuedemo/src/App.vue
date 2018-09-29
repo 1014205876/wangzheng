@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-          <transition :name="run" mode="out-in"> 
-            <router-view/>
-          </transition>
+    <transition :name="run" mode="out-in"> 
+      <router-view/>
+    </transition>
   </div>
 </template>
 
