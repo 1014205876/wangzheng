@@ -36,7 +36,7 @@ export default {
           img: "/static/img/index.png",
           imgact: "/static/img/indexactive.png",
           page: "我的",
-          remind: true
+          remind: false
         }
       ]
     };

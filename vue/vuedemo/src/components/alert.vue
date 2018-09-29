@@ -1,5 +1,5 @@
 <template>
-  <div class="mengban" v-show='show'>
+  <div class="mengban" v-bind:class='{show:show}'>
       <div class="alert">
         <div class="main">{{remind}}</div>
         <div class="btn">
@@ -44,6 +44,9 @@ export default {
   bottom: 0;
   margin: auto;
   background: rgba(0, 0, 0, 0.5);
+	transition:all 0.2s;
+  -webkit-transition:all 0.2s; /* Safari */
+  transform:scale3d(0,0,0);
   .alert {
     width: 4.5rem;
     height: 2rem;
@@ -80,5 +83,8 @@ export default {
       }
     }
   }
+}
+.show{
+  transform:scale3d(1,1,1);
 }
 </style>

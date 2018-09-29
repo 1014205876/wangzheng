@@ -1,8 +1,5 @@
 <template>
   <div class="apply">
-  <h2 v-on:click='back'>返回</h2>
-   申请页面
-   <button v-on:click='shenqing'>立即申请</button>
   </div>
 </template>
 
@@ -12,14 +9,9 @@ export default {
   data() {
     return {};
   },
-  methods: {
-    back() {
-      this.$router.go(-1);
-    },
-    shenqing(){
-      this.$router.push("/shenqing");
-    }
-  }
+  methods: {},
+  created() {},
+  mounted() {}
 };
 </script>
 

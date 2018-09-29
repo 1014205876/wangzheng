@@ -12,6 +12,7 @@
          <li v-for='list in list' :key=list.id>
            <div class="tips">
               您在{{list.name}}公司的的贷款【订单号{{list.orderNum}}】的第【{{list.nowTimes}}/{{list.allTimes}}】期还有{{list.days}}天就要划扣了
+              您在{{list.name}}公司的的贷款【订单号{{list.orderNum}}】的第【{{list.nowTimes}}/{{list.allTimes}}】期还有{{list.days}}天就要划扣了
            </div>
            <span></span>
            <div class="time">
@@ -21,6 +22,11 @@
        </ul>
      </li>
    </ul>
+   <div class="btn-group" role="group" aria-label="...">    
+       <button type="button" class="btn btn-default">Left</button>    
+         <button type="button" class="btn btn-default">Middle</button>    
+     <button type="button" class="btn btn-default">Right</button>
+         </div>
   </div>
 </template>
 

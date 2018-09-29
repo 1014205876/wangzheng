@@ -35,7 +35,7 @@ export default {
       this.$router.push("/shenqing");
     }
   },
-  mounted(){
+  created(){
     this.name=this.$route.query.name
     this.minQuota=this.$route.query.minQuota
     this.maxQuota=this.$route.query.maxQuota

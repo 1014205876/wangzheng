@@ -9,6 +9,11 @@
     <input type="text" v-model='remind'>
     <alert v-on:choice='choice' ref="alert" v-bind:remind="remind"></alert>
     <!-- <Calendar v-on:choseDay="clickDay" v-on:changeMonth="changeDate"></Calendar> -->
+    <button v-on:click='picker'>滚动弹窗{{result1}}-{{result2}}</button>
+    <picker v-model="visible" :data-items="items" @change="onValuesChange">
+      <!-- <div class="top-content" slot="top-content">Top of the content.</div>
+      <div class="bottom-content" slot="bottom-content">Bottom of the content.</div> -->
+    </picker>
   </div>
 </template>
 
@@ -26,7 +31,40 @@ export default {
   data() {
     return {
       date: "",
-      remind:'弹窗提醒',
+      remind: "弹窗提醒",
+      visible: false,
+      result1:'',
+      result2:'',
+      items: [
+        {
+          values: [
+            "2000",
+            "2001",
+            "2002",
+            "2003",
+            "2004",
+            "2005",
+            "2006",
+            "2007"
+          ]
+        },
+        {
+          values: [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"
+          ]
+        }
+      ]
     };
   },
   components: {
@@ -37,21 +75,28 @@ export default {
   methods: {
     choice(choice) {
       if (choice == "no") {
-        this.remind=`选择${choice}`
+        this.remind = `选择${choice}`;
       } else {
-        this.remind=`选择是${choice}`
+        this.remind = `选择是${choice}`;
       }
-      this.$refs.alert.alertclose()
+      this.$refs.alert.alertclose();
     },
-    alert(){
+    alert() {
       this.$refs.alert.alertshow();
+    },
+    picker(){
+      this.visible=true;
+    },
+    onValuesChange(result1, result2) {
+      this.result1=result1;
+      this.result2=result2;
     }
   },
-  mounted(){
+  mounted() {
     $(".shenqing").css("min-height", $(window).height());
   },
   beforeRouteLeave(to, from, next) {
-    next(confirm('确认离开么？'));
+    next(confirm("确认离开么？"));
   }
 };
 </script>
@@ -62,7 +107,7 @@ export default {
   -webkit-box-sizing: border-box; /*Safari3.2+*/
   -o-box-sizing: border-box; /*Opera9.6*/
   -ms-box-sizing: border-box; /*IE8*/
-  font-size:0.3rem;
+  font-size: 0.3rem;
   button {
     display: block;
     width: 70%;
