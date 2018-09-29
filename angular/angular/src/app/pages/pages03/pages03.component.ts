@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Pages03Component implements OnInit {
 
+  private msg: string;
   constructor() { }
 
   ngOnInit() {
   }
-
+  jieshou(msg: string) {
+    this.msg = msg
+  }
 }

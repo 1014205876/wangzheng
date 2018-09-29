@@ -38,7 +38,6 @@ export default {
         that.countDown = 60;
         let time01 = setInterval(function() {
           that.countDown = that.countDown - 1;
-          console.log(that.countDown);
           if (that.countDown <= 0) {
             clearInterval(time01);
             that.setInt = false;
