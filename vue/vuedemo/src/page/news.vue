@@ -23,6 +23,7 @@
      </li>
    </ul>
    <div id="myChart" :style="{width: '300px', height: '300px'}"></div>
+   <button v-on:click='toform' style='display:block;width:70%;margin:0 auto;padding:0.15rem 0'>创建表单</button>
   </div>
 </template>
 
@@ -161,6 +162,9 @@ export default {
         yAxis: {},
         series: [{ name: "销量", type: "bar", data: [5, 20, 36, 10, 10, 20] }]
       });
+    },
+    toform() {
+      this.$router.push({ path: "/form", query: {} });
     }
   },
   mounted() {

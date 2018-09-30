@@ -1,17 +1,19 @@
 <template>
-  <div class="apply">
+  <div class="form">
+    
   </div>
 </template>
 
 <script>
 export default {
-  name: "Apply",
+  name: "Form",
   data() {
-    return {};
+    return {
+
+    };
   },
-  methods: {},
-  created() {},
-  mounted() {}
+  methods: {
+  }
 };
 </script>
 

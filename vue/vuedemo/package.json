@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "echarts": "^4.2.0-rc.1",
+    "element-ui": "^2.4.7",
     "jquery": "^3.3.1",
     "lib-flexible": "^0.3.2",
     "px2rem-loader": "^0.1.9",
@@ -18,13 +19,15 @@
     "vue": "^2.5.2",
     "vue-3d-picker": "^2.1.0",
     "vue-calendar-component": "^2.7.4",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-wechat-title": "^2.0.5"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-loader": "^7.1.1",
+    "babel-plugin-component": "^1.1.1",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-plugin-transform-vue-jsx": "^3.5.0",

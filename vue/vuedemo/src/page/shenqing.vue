@@ -33,8 +33,8 @@ export default {
       date: "",
       remind: "弹窗提醒",
       visible: false,
-      result1:'',
-      result2:'',
+      result1: "",
+      result2: "",
       items: [
         {
           values: [
@@ -84,19 +84,23 @@ export default {
     alert() {
       this.$refs.alert.alertshow();
     },
-    picker(){
-      this.visible=true;
+    picker() {
+      this.visible = true;
     },
     onValuesChange(result1, result2) {
-      this.result1=result1;
-      this.result2=result2;
+      this.result1 = result1;
+      this.result2 = result2;
     }
   },
   mounted() {
     $(".shenqing").css("min-height", $(window).height());
   },
   beforeRouteLeave(to, from, next) {
-    next(confirm("确认离开么？"));
+    if (this.date) {
+      next();
+    } else {
+      next(confirm("确认离开么？"));
+    }
   }
 };
 </script>

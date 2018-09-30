@@ -1,10 +1,15 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+// 引入vue
 import Vue from 'vue'
+// 引入app.vue
 import App from './App'
+//引入路由
 import router from './router'
-// 引入rem
-// import 'lib-flexible/flexible'//540rem
+
+//引入element
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+
 //引入css文件
 import '../static/css/reset.css'
 import '../static/css/transition.css'
@@ -18,9 +23,11 @@ Vue.component(picker.name, picker);
 // 引入echarts
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts 
+//引入修改页面title
+import VueWechatTitle from 'vue-wechat-title'
+Vue.use(VueWechatTitle)
 
 Vue.config.productionTip = false
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,

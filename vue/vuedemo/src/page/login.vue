@@ -57,7 +57,9 @@ export default {
     register() {
       console.log("注册");
     }
-  }
+  },
+
+  
 };
 </script>
 
