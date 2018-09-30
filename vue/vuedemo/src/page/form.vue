@@ -106,7 +106,7 @@ export default {
           value: "",
           readOnly: false,
           required: true
-        },
+        }
       ]
     };
   },
@@ -125,25 +125,15 @@ export default {
     },
     submit() {
       let that = this;
-      for (let i = 0; i < that.form.length; i++) {
-        if (that.form[i].required) {
-          if (that.form[i].value || that.form[i].optionValue) {
-          }else{
-            console.log(`第${i}项没填`);
-
-          }
-        }
-      }
-      // this.forEach(that);
+      this.forEach(that);
       console.log(this.form);
     },
     forEach(that) {
       for (let i = 0; i < that.form.length; i++) {
         if (that.form[i].required) {
-          if (that.form[i].value && that.form[i].optionValue) {
+          if (that.form[i].value || that.form[i].optionValue) {
           } else {
-            return;
-            alert(`第${i}项没填`);
+            console.log(`第${i}项没填`);
           }
         }
       }
