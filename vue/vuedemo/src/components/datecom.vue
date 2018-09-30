@@ -1,7 +1,6 @@
 <template>
   <div class="datecom">
     <label>
-
     <div class="name">{{list.name}}</div>
     <input type="date" v-model='list.value' :disabled='list.readOnly'>
     </label>
