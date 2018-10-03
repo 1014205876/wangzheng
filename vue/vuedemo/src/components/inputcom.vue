@@ -12,16 +12,9 @@ export default {
   name: "Inputcom",
   data() {
     return {
-      // value: ""
     };
   },
-  props: ["list", "index"],
-  watch: {
-    // value() {
-    //   let that = this;
-    //   that.$emit("data", { value: that.value, index: that.index });
-    // }
-  },
+  props: ["list"],
   methods: {}
 };
 </script>

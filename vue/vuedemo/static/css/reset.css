@@ -27,19 +27,6 @@ img{
 	display: block;
 	vertical-align: middle;
 }
-button, select,input,textarea,option,optgroup{
-    font-family: inherit;
-    font-size: 100%;
-	outline: none;
-	/*把默认样式去掉*/
-	appearance:none;
-	-webkit-appearance:none;
-	-o-appearance:none;
-	-moz-appearance:none;
-	border-radius:0;
-	/*把默认样式去掉 end*/
-    margin: 0px;
-}
 
 .clearfix:after{
   content: "020"; 

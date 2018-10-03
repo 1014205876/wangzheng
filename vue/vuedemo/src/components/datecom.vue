@@ -1,8 +1,8 @@
 <template>
   <div class="datecom">
     <label>
-    <div class="name">{{list.name}}</div>
-    <input type="date" v-model='list.value' :disabled='list.readOnly'>
+      <div class="name">{{list.name}}</div>
+      <input type="date" v-model='list.value' :disabled='list.readOnly'>
     </label>
   </div>
 </template>
@@ -11,17 +11,9 @@
 export default {
   name: "Datecom",
   data() {
-    return {
-      // value: ""
-    };
+    return {};
   },
-  props: ["list", "index"],
-  watch: {
-    // value() {
-    //   let that = this;
-    //   that.$emit("data", { value: that.value, index: that.index });
-    // }
-  },
+  props: ["list"],
   methods: {}
 };
 </script>
