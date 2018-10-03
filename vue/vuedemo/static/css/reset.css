@@ -1,78 +1,36 @@
 @charset "utf-8";
-
-/*css reset start*/
 *{
-	padding:0;
-	margin:0;
-	list-style:none;
-	border:0;
+padding:0;
+margin:0;
+list-style:none;
+border:0;
 }
 html{
-	font-size: 100px;
+font-size: 100px;
 }
 body{
-	font-family: "Microsoft YaHei","微软雅黑",Helvetica,"黑体",'SimSun',Arial,Tahoma;
-	color: #000;
-	font-size:0.14rem;/*实际相当于14px*/
+font-family: "Microsoft YaHei","微软雅黑",Helvetica,"黑体",'SimSun',Arial,Tahoma;
+color: #000;
 }
 a,a:visited{
-	color: #000;
-	display: inline-block;
-	text-decoration: none;
+color: #000;
+text-decoration: none;
 }
 a:hover{
-   text-decoration: none;
+text-decoration: none;
 }
 img{
-	display: block;
-	vertical-align: middle;
+display: block;
 }
 
 .clearfix:after{
-  content: "020"; 
-  display: block; 
-  height: 0; 
-  clear: both; 
-  visibility: hidden;  
-  }
-
+content: "";
+display: block;
+height: 0;
+clear: both;
+visibility: hidden;
+}
 .clearfix {
-  /* 触发 hasLayout */ 
-  zoom: 1; 
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* 触发 hasLayout */
+zoom: 1;
+}

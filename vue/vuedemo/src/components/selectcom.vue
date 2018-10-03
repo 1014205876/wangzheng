@@ -26,7 +26,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   .select {
     //用div的样式代替select的样式
     width: 200px;
@@ -36,7 +35,6 @@ export default {
     box-shadow: 0 0 5px #ccc;
     position: relative;
   }
-
   select {
     //清除select的边框样式
     border: none;
@@ -53,13 +51,12 @@ export default {
     //通过padding-left的值让文字居中
     padding-left: 60px;
   }
-
   //使用伪类给select添加自己想用的图标
   .select:after {
     content: "";
     width: 14px;
     height: 8px;
-    background: url(/static/img/back.png) no-repeat center;
+    background:#000 url(/static/img/back.png) no-repeat center;
     //通过定位将图标放在合适的位置
     position: absolute;
     right: 20px;
@@ -67,14 +64,5 @@ export default {
     //给自定义的图标实现点击下来功能
     pointer-events: none;
   }
-
-  // select {
-  //   width: 50%;
-  //   background: yellow;
-  //   color: #000;
-  //   option {
-  //     text-align: center;
-  //   }
-  // }
 }
 </style>

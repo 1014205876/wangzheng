@@ -117,7 +117,7 @@ export default {
           required: false
         },
         {
-          fieldType: "FormField06",
+          fieldType: "FormField09",
           name: "表单名字09",
           type: "check",
           check: ["选项1", "选项2", "选项3"],
@@ -126,7 +126,7 @@ export default {
           required: true
         },
         {
-          fieldType: "FormField07",
+          fieldType: "FormField10",
           name: "表单名字10",
           type: "check",
           check: ["选项1", "选项2", "选项3"],
@@ -135,7 +135,7 @@ export default {
           required: true
         },
         {
-          fieldType: "FormField08",
+          fieldType: "FormField11",
           name: "表单名字11",
           type: "check",
           check: ["选项1", "选项2", "选项3"],
@@ -144,7 +144,7 @@ export default {
           required: false
         },
         {
-          fieldType: "FormField09",
+          fieldType: "FormField12",
           name: "表单名字12",
           type: "date",
           value: "2018-09-07",
@@ -152,7 +152,7 @@ export default {
           required: true
         },
         {
-          fieldType: "FormField10",
+          fieldType: "FormField13",
           name: "表单名字13",
           type: "date",
           value: "",
@@ -160,7 +160,7 @@ export default {
           required: true
         },
         {
-          fieldType: "FormField11",
+          fieldType: "FormField14",
           name: "表单名字14",
           type: "date",
           value: "",
@@ -199,7 +199,7 @@ export default {
 .form {
   ul {
     li {
-      line-height: 0.6rem;
+      line-height: 0.8rem;
       font-size: 0.3rem;
     }
   }
