@@ -10,6 +10,10 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+// 引入vux
+// import { Actionsheet } from 'vux'
+// Vue.component('actionsheet', Actionsheet)
+
 //引入css文件
 import '../static/css/reset.css'
 import '../static/css/transition.css'
@@ -31,6 +35,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  render: h => h(App),
   components: { App },
   template: '<App/>'
 })

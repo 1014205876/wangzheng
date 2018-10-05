@@ -183,6 +183,7 @@ export default {
           if (
             that.form[i].value ||
             that.form[i].optionValue ||
+            that.form[i].radioValue ||
             (that.form[i].checkValue && that.form[i].checkValue.length > 0)
           ) {
           } else {

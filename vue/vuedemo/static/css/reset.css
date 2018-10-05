@@ -11,6 +11,7 @@ font-size: 100px;
 body{
 font-family: "Microsoft YaHei","微软雅黑",Helvetica,"黑体",'SimSun',Arial,Tahoma;
 color: #000;
+font-size:0.24rem;
 }
 a,a:visited{
 color: #000;

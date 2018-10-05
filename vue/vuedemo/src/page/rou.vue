@@ -1,10 +1,10 @@
 <template>
   <div class="rou">
-          <transition :name="run" mode="out-in">
-            <router-view/>
-          </transition>
-  <!-- 底部导航 -->
-  <nav-footr :active="'0'"></nav-footr>
+    <transition :name="run" mode="out-in">
+      <router-view />
+    </transition>
+    <!-- 底部导航 -->
+    <nav-footr :active="'0'"></nav-footr>
   </div>
 </template>
 
@@ -13,12 +13,11 @@
 import $ from "jquery";
 // 引入导航组件
 import Navfootr from "@/components/Nav";
-
 export default {
   name: "Rou",
   data() {
     return {
-      run:'left',
+      run: "left"
     };
   },
   components: {
@@ -33,12 +32,11 @@ export default {
       }
     }
   },
-  mounted(){
-    $('.rou').css('min-height',$(window).height())
+  mounted() {
+    $(".rou").css("min-height", $(window).height());
   }
 };
 </script>
 
 <style lang="less" scoped>
-
 </style>
