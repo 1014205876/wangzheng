@@ -31,7 +31,6 @@
       <div>1</div>
       <div>1</div>
       <div>1</div>
-      <div>1</div>
     </div>
     <div class="left">
       左动画  
