@@ -4,7 +4,7 @@
       <router-view />
     </transition>
     <!-- 底部导航 -->
-    <nav-footr :active="'0'"></nav-footr>
+    <nav-footr></nav-footr>
   </div>
 </template>
 
@@ -33,7 +33,7 @@ export default {
     }
   },
   mounted() {
-    $(".rou").css("min-height", $(window).height());
+    $(".rou").css("height", $(window).height());
   }
 };
 </script>

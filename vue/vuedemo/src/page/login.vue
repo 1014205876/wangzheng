@@ -49,7 +49,7 @@ export default {
     },
     signIn() {
       if ((this.code == 123)) {
-        this.$router.push("/rou");
+        this.$router.push("/rou/index");
       } else {
         alert("验证码错误");
       }

@@ -5,7 +5,7 @@
         <div class='remind' v-if="list.remind"></div>
         <img :src="list.img" alt="">
         <img class='active' :src="list.imgact" alt="">
-        <div class='page' :class='{red:list.active}'>{{list.page}}</div>
+        <div class='page' :class='{red:list.remind}'>{{list.page}}</div>
       </router-link>
     </li>
   </ul>
@@ -56,6 +56,7 @@ export default {
   background: #fff;
   border-top: 1px solid #000;
   display: flex;
+  z-index:10;
   li {
     flex: 1;
     position: relative;
