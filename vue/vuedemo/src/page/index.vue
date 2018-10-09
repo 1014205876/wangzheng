@@ -141,7 +141,7 @@ export default {
           maxRate: 1.5,
           introduction:
             "产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍产品介绍"
-        },
+        }
       ]
     };
   },
@@ -149,8 +149,15 @@ export default {
     navFootr: Navfootr
   },
   methods: {
-    toApply(item){
-       this.$router.push({path:"/apply",query:{name:item.name,minQuota:item.minQuota,maxQuota:item.maxQuota}});
+    toApply(item) {
+      this.$router.push({
+        path: "/apply",
+        query: {
+          name: item.name,
+          minQuota: item.minQuota,
+          maxQuota: item.maxQuota
+        }
+      });
       //  this.$router.push({path: 'xxx', query: {aaa: 1}})
     }
   },
@@ -168,7 +175,7 @@ export default {
       },
       loop: true
     });
-  },
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -192,34 +199,34 @@ export default {
       margin-top: 10px;
       .top {
         display: flex;
-          align-items:center;
+        align-items: center;
         justify-content: space-around;
         padding: 5px 0px;
         .logo {
           width: 0.2rem;
           height: 0.2rem;
         }
-        button{
-          background:red;
-          color:#fff;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          padding:3px;
+        button {
+          background: red;
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 3px;
         }
       }
       .main {
         border-top: 3px solid #f2f2f2;
         border-bottom: 3px solid #f2f2f2;
-        padding:5px 0px;
+        padding: 5px 0px;
         div {
           display: flex;
           justify-content: space-around;
-          padding:5px 0px;
-          .quota{
-            font-size:0.3rem;
-            font-weight:600;
-            color:red;
+          padding: 5px 0px;
+          .quota {
+            font-size: 0.3rem;
+            font-weight: 600;
+            color: red;
           }
         }
       }

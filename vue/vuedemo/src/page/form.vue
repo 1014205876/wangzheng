@@ -204,7 +204,6 @@ export default {
       font-size: 0.3rem;
     }
   }
-
   .submit {
     display: block;
     width: 70%;

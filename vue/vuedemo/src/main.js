@@ -26,12 +26,20 @@ import picker from 'vue-3d-picker';
 Vue.component(picker.name, picker);
 // 引入echarts
 import echarts from 'echarts'
-Vue.prototype.$echarts = echarts 
+Vue.prototype.$echarts = echarts
 //引入修改页面title
 import VueWechatTitle from 'vue-wechat-title'
 Vue.use(VueWechatTitle)
 
 Vue.config.productionTip = false
+
+router.beforeEach((to, from, next) => {//路由切换之前完成
+  if (to.meta.title) {//修改页面title
+    document.title = to.meta.title;
+  }
+  next()
+})
+
 new Vue({
   el: '#app',
   router,

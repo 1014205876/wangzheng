@@ -1,5 +1,6 @@
 <template>
   <div class="shenqing">
+    <button @click='back'>回去</button>
     <back></back>
     日历页面
     <button onclick="document.getElementById('date').click()">{{date?date:'请选择日期'}}</button>
@@ -73,6 +74,10 @@ export default {
     alert: Alert
   },
   methods: {
+    back(){
+      
+      this.$router.push("/apply");
+    },
     choice(choice) {
       if (choice == "no") {
         this.remind = `选择${choice}`;
@@ -99,7 +104,9 @@ export default {
     if (this.date) {
       next();
     } else {
-      next(confirm("确认离开么？"));
+      // next(confirm("确认离开么？"));
+      
+      next();
     }
   }
 };
