@@ -92,7 +92,6 @@ export default new Router({
       component: Shenqing,
       meta: {
         index: 11,
-        title: '申请'
       },
     },
     {

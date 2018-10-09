@@ -74,8 +74,7 @@ export default {
     alert: Alert
   },
   methods: {
-    back(){
-      
+    back() {
       this.$router.push("/apply");
     },
     choice(choice) {
@@ -97,6 +96,9 @@ export default {
       this.result2 = result2;
     }
   },
+  created() {
+    document.getElementById("titleId").innerHTML = "要设置的标题";
+  },
   mounted() {
     $(".shenqing").css("min-height", $(window).height());
   },
@@ -104,9 +106,7 @@ export default {
     if (this.date) {
       next();
     } else {
-      // next(confirm("确认离开么？"));
-      
-      next();
+      next(confirm("确认离开么？"));
     }
   }
 };
