@@ -18,6 +18,7 @@ const Rou = resolve => require(['@/page/rou'], resolve);
 const Apply = resolve => require(['@/page/apply'], resolve);
 const Shenqing = resolve => require(['@/page/shenqing'], resolve);
 const Form = resolve => require(['@/page/form'], resolve);
+const history = resolve => require(['@/page/history'], resolve);
 // 引入次级页面路由
 const Index = resolve => require(['@/page/index'], resolve);
 const News = resolve => require(['@/page/news'], resolve);
@@ -101,7 +102,15 @@ export default new Router({
         index: 12,
         title: '动态表单'
       },
-    }
+    },
+    {
+      path: '/history',
+      component: history,
+      meta: {
+        index: 13,
+        title: '历史记录'
+      },
+    },
   ],
   
 })

@@ -22,7 +22,8 @@
        </ul>
      </li>
    </ul>
-   <div id="myChart" :style="{width: '300px', height: '300px'}"></div>
+   <div id="myChart" class='mychart'></div>
+   
    <button v-on:click='toform' style='display:block;width:70%;margin:0 auto;padding:0.15rem 0'>创建表单</button>
   </div>
 </template>
@@ -141,6 +142,7 @@ export default {
       $(".news .main>li")
         .eq(index)
         .addClass("active");
+      // myChart.setOption(option[index]);
     },
     infoJq() {
       $(".news .nav li")
@@ -155,16 +157,63 @@ export default {
       // 基于准备好的dom，初始化echarts实例
       let myChart = this.$echarts.init(document.getElementById("myChart"));
       // 绘制图表
-      myChart.setOption({
-        title: { text: "在Vue中使用echarts" },
-        tooltip: {},
-        xAxis: { data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"] },
-        yAxis: {},
-        series: [{ name: "销量", type: "bar", data: [5, 20, 36, 10, 10, 20] }]
+      let option = [
+        {
+          xAxis: [
+            {
+              data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+            }
+          ],
+          yAxis: {},
+          series: [
+            {
+              name: "销量",
+              type: "bar",
+              data: [5, 15, 10, 20, 10, 10, 20]
+            },
+            {
+              name: "销量",
+              type: "line",
+              data: [5, 15, 10, 20, 10, 10, 20]
+            },
+          ]
+        },
+        {
+          xAxis: [
+            {
+              data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+            }
+          ],
+          yAxis: {},
+          series: [
+            {
+              name: "销量",
+              type: "bar",
+              data: [5, 20, 36, 30, 10, 10, 20]
+            }
+          ]
+        },
+        {
+          xAxis: [
+            {
+              data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+            }
+          ],
+          yAxis: [],
+          series: [
+            {
+              data: [10, 52, 200, 334, 390, 330, 220]
+            }
+          ]
+        }
+      ];
+      myChart.setOption(option[0]);
+      $(".news .nav li").click(function() {
+        myChart.setOption(option[$(this).index()]);
       });
     },
     toform() {
-      this.$router.push({ path: "/form", query: {} });
+      this.$router.push({ path: "/form" });
     }
   },
   mounted() {
@@ -236,6 +285,11 @@ export default {
     > .active {
       display: block;
     }
+  }
+  .mychart {
+    width: 7rem;
+    height: 6rem;
+    margin: 0 auto;
   }
 }
 </style>
