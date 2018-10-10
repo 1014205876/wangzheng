@@ -1,0 +1,2 @@
+ng-click	点击事件
+ng-show	显示隐藏

@@ -1,0 +1,25 @@
+1. git init
+
+
+2. git remote add origin http://gitlab.XXX.com/XXX/XXX.git 增加远程仓库
+
+
+3. git clone http://gitlab.XXX.com/XXX/XXX.git 克隆远程仓库到本地
+
+
+4. git pull origin develop 从develop 分支拉取代码
+
+
+5. 更改代码
+
+
+6. git add .,git commit -m ''
+
+
+7. 新建本地develop分支，并在这个分支 git push origin develop
+
+作者：eenhago
+链接：https://www.jianshu.com/p/75f0005a3a7
+8
+來源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
