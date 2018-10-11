@@ -9,8 +9,9 @@
         申请额度{{minQuota}}-{{maxQuota}}万
       </div>
       <span style='font-size:1rem;color:red'>
-        <numroll :value="5985.28" :time='2'></numroll>
+        <numroll :value="number" :time='time'></numroll>
       </span>
+      <button v-on:click='reload'>刷新</button>
       <el-button v-on:click='tohistory'>历史记录</el-button>
       <button v-on:click='shenqing'>立即申请</button>
       <ul class='xiala'>
@@ -77,7 +78,7 @@ export default {
   data() {
     return {
       number: 10000,
-      tweenedNumber: 0,
+      time: 2,
       name: "公司名",
       minQuota: "最小",
       maxQuota: "最大",
@@ -195,6 +196,9 @@ export default {
     back() {
       this.$router.go(-1);
     },
+    reload(){
+      this.$refs.alert.alertclose();
+    },
     tohistory() {
       this.$router.push("/history");
     },
@@ -247,6 +251,9 @@ export default {
     // $(".apply .banimate").css("height", $(window).height());
   },
   created() {
+    this.$http.get('/api/goods').then((data) =>{
+      this.items = data.body.data
+    })
     this.name = this.$route.query.name;
     this.minQuota = this.$route.query.minQuota;
     this.maxQuota = this.$route.query.maxQuota;

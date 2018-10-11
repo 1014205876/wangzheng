@@ -10,3 +10,5 @@ npm install less less-loader --save
 npm install swiper --save-dev
 引入jq
 npm install jquery --save-dev
+引入echarts
+npm install echarts --save-dev

@@ -19,6 +19,7 @@
     "vue": "^2.5.2",
     "vue-3d-picker": "^2.1.0",
     "vue-calendar-component": "^2.7.4",
+    "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
     "vue-wechat-title": "^2.0.5",
     "vux": "^2.9.2"
