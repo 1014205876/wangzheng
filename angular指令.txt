@@ -1,2 +1,2 @@
-ng-click	点击事件
-ng-show	显示隐藏
+ng-click	鐐瑰嚮浜嬩欢
+ng-show	鏄剧ず闅愯棌

@@ -1,25 +1,25 @@
 1. git init
 
 
-2. git remote add origin http://gitlab.XXX.com/XXX/XXX.git Ôö¼ÓÔ¶³Ì²Ö¿â
+2. git remote add origin http://gitlab.XXX.com/XXX/XXX.git å¢åŠ è¿œç¨‹ä»“åº“
 
 
-3. git clone http://gitlab.XXX.com/XXX/XXX.git ¿ËÂ¡Ô¶³Ì²Ö¿âµ½±¾µØ
+3. git clone http://gitlab.XXX.com/XXX/XXX.git å…‹éš†è¿œç¨‹ä»“åº“åˆ°æœ¬åœ°
 
 
-4. git pull origin develop ´Ódevelop ·ÖÖ§À­È¡´úÂë
+4. git pull origin develop ä»develop åˆ†æ”¯æ‹‰å–ä»£ç 
 
 
-5. ¸ü¸Ä´úÂë
+5. æ›´æ”¹ä»£ç 
 
 
 6. git add .,git commit -m ''
 
 
-7. ĞÂ½¨±¾µØdevelop·ÖÖ§£¬²¢ÔÚÕâ¸ö·ÖÖ§ git push origin develop
+7. æ–°å»ºæœ¬åœ°developåˆ†æ”¯ï¼Œå¹¶åœ¨è¿™ä¸ªåˆ†æ”¯ git push origin develop
 
-×÷Õß£ºeenhago
-Á´½Ó£ºhttps://www.jianshu.com/p/75f0005a3a7
+ä½œè€…ï¼šeenhago
+é“¾æ¥ï¼šhttps://www.jianshu.com/p/75f0005a3a7
 8
-íÔ´£º¼òÊé
-¼òÊéÖø×÷È¨¹é×÷ÕßËùÓĞ£¬ÈÎºÎĞÎÊ½µÄ×ªÔØ¶¼ÇëÁªÏµ×÷Õß»ñµÃÊÚÈ¨²¢×¢Ã÷³ö´¦¡£
+ä¾†æºï¼šç®€ä¹¦
+ç®€ä¹¦è‘—ä½œæƒå½’ä½œè€…æ‰€æœ‰ï¼Œä»»ä½•å½¢å¼çš„è½¬è½½éƒ½è¯·è”ç³»ä½œè€…è·å¾—æˆæƒå¹¶æ³¨æ˜å‡ºå¤„ã€‚
