@@ -5,7 +5,7 @@
   transform: translateX(0%);
 }
 .left-enter-active {
-  transition: 22s;
+  transition: 0.2s;
 }
 .left-leave {
   transform: translateX(0%);
@@ -14,7 +14,7 @@
   transform: translateX(-100%);
 }
 .left-leave-active {
-  transition: 21s;
+  transition: 0.2s;
 }
 .right-enter {
   transform: translateX(-100%);
@@ -23,7 +23,7 @@
   transform: translateX(0%);
 }
 .right-enter-active {
-  transition: 20s;
+  transition: 0.2s;
 }
 .right-leave {
   transform: translateX(0%);
@@ -32,7 +32,7 @@
   transform: translateX(100%);
 }
 .right-leave-active {
-  transition: 20s;
+  transition: 0.2s;
 }
 .container {
   overflow: hidden;
