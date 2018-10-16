@@ -251,8 +251,8 @@ export default {
     // $(".apply .banimate").css("height", $(window).height());
   },
   created() {
-    this.$http.get('/api/goods').then((data) =>{
-      this.items = data.body.data
+    this.$http.get('http://192.168.111.216:7100/v1/flow/process').then((data) =>{
+     console.log(date)
     })
     this.name = this.$route.query.name;
     this.minQuota = this.$route.query.minQuota;
