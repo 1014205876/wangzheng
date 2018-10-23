@@ -8,11 +8,11 @@ const routes: Routes = [
   { path: 'pages2', component: Pages02Component },
 ];
 @Component({
-  selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class IndexComponent implements OnInit {
+export class LoginComponent implements OnInit {
   //声明变量的类型
   private loginData:any;
   // private userName: string;

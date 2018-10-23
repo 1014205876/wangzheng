@@ -8,9 +8,9 @@ import { Nav02Component } from './nav02/nav02.component';
 import { Nav03Component } from './nav03/nav03.component';
 
 const routes: Routes = [
-  { path: 'pages1/nav01', component: Nav01Component },
-  { path: 'pages1/nav02', component: Nav02Component },
-  { path: 'pages1/nav03', component: Nav03Component },
+  // { path: 'pages1/nav01', component: Nav01Component },
+  // { path: 'pages1/nav02', component: Nav02Component },
+  // { path: 'pages1/nav03', component: Nav03Component },
 ];
 @NgModule({
   declarations: [

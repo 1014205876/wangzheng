@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pages02.component.css']
 })
 export class Pages02Component implements OnInit {
-
   heroes = [
     { name: '导航1', url: '/pages1/nav01' },
     { name: '导航2', url: '/pages1/nav02' },
