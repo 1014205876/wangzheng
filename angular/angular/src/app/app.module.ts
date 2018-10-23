@@ -13,11 +13,21 @@ import { IndexComponent } from './pages/index/index.component';
 import { Pages02Component } from './pages/pages02/pages02.component';
 import { Pages03Component } from './pages/pages03/pages03.component';
 import { Pages04Component } from './pages/pages04/pages04.component';
+import { Nav01Component } from './pages/pages02/nav01/nav01.component';
+import { Nav02Component } from './pages/pages02/nav02/nav02.component';
+import { Nav03Component } from './pages/pages02/nav03/nav03.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/pages1', pathMatch: 'full' },
   { path: 'pages4', component: IndexComponent },
-  { path: 'pages1', component: Pages02Component },
+  {
+    path: 'pages1', component: Pages02Component,
+    children: [
+      { path: 'nav01', component: Nav01Component },
+      { path: 'nav02', component: Nav02Component },
+      { path: 'nav03', component: Nav03Component },
+    ],
+  },
   { path: 'pages2', component: Pages03Component },
   { path: 'pages3', component: Pages04Component },
 ];
@@ -31,7 +41,11 @@ const routes: Routes = [
     IndexComponent,
     Pages02Component,
     Pages03Component,
-    Pages04Component
+    Pages04Component,
+    
+    Nav01Component,
+    Nav02Component,
+    Nav03Component
   ],
   imports: [
     BrowserModule,
