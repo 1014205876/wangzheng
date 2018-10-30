@@ -19,6 +19,7 @@ const Apply = resolve => require(['@/page/apply'], resolve);
 const Shenqing = resolve => require(['@/page/shenqing'], resolve);
 const Form = resolve => require(['@/page/form'], resolve);
 const history = resolve => require(['@/page/history'], resolve);
+const formjson = resolve => require(['@/page/formjson'], resolve);
 // 引入次级页面路由
 const Index = resolve => require(['@/page/index'], resolve);
 const News = resolve => require(['@/page/news'], resolve);
@@ -101,6 +102,14 @@ export default new Router({
       meta: {
         index: 12,
         title: '动态表单'
+      },
+    },
+    {
+      path: '/formjson',
+      component: formjson,
+      meta: {
+        index: 12,
+        title: '生成动态表单'
       },
     },
     {

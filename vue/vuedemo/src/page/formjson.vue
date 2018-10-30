@@ -1,12 +1,12 @@
 <template>
-  <div class="form">
+  <div class="formjson">
     
   </div>
 </template>
 
 <script>
 export default {
-  name: "Form",
+  name: "FormJson",
   data() {
     return {
       
