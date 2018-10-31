@@ -31,7 +31,7 @@ export default {
   methods: {
     send() {
       let that = this;
-      let re = /^1[0-9]{10}$/;//验证手机号的正则表达式
+      let re = /^1[0-9]{10}$/; //验证手机号的正则表达式
       if (re.test(that.tel)) {
         that.setInt = true;
         clearInterval(time01);
@@ -48,7 +48,9 @@ export default {
       }
     },
     signIn() {
-      if ((this.code == 123)) {
+      if (this.code == 123) {
+        localStorage.setItem("indexUrlwangzheng", !this.remember); //记住是否需要自动登录
+        sessionStorage.setItem("logingwangzheng", true); //记住本次已经登录
         this.$router.push("/rou/index");
       } else {
         alert("验证码错误");
@@ -57,9 +59,7 @@ export default {
     register() {
       console.log("注册");
     }
-  },
-
-  
+  }
 };
 </script>
 
@@ -67,16 +67,16 @@ export default {
 .login {
   text-align: center;
   input {
-    width:70%;
-    padding:5px 0;
+    width: 70%;
+    padding: 5px 0;
     border: 1px solid #333;
     margin: 10px;
   }
   button {
-    width:70%;
-    border-radius:0.05rem;
+    width: 70%;
+    border-radius: 0.05rem;
     padding: 5px;
-    margin:0.1rem;
+    margin: 0.1rem;
   }
 }
 </style>

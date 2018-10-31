@@ -40,6 +40,7 @@ export default new Router({
       component: Login,
       meta: {
         index: 1,
+        auth: false,
         title: '登录'
       },
     },
@@ -60,6 +61,7 @@ export default new Router({
           component: Index,
           meta: {
             index: 3,
+            auth: true,
             title: '首页'
           },
         },
@@ -68,6 +70,7 @@ export default new Router({
           component: News,
           meta: {
             index: 4,
+            auth: true,
             title: '新闻'
           },
         },
@@ -76,6 +79,7 @@ export default new Router({
           component: My,
           meta: {
             index: 5,
+            auth: true,
             title: '我的'
           },
         },
@@ -86,6 +90,7 @@ export default new Router({
       component: Apply,
       meta: {
         index: 10,
+        auth: true,
         title: '申请'
       },
     },
@@ -93,6 +98,7 @@ export default new Router({
       path: '/shenqing',
       component: Shenqing,
       meta: {
+        auth: true,
         index: 11,
       },
     },
@@ -101,6 +107,7 @@ export default new Router({
       component: Form,
       meta: {
         index: 12,
+        auth: true,
         title: '动态表单'
       },
     },
@@ -109,6 +116,7 @@ export default new Router({
       component: formjson,
       meta: {
         index: 12,
+        auth: true,
         title: '生成动态表单'
       },
     },
@@ -117,6 +125,7 @@ export default new Router({
       component: history,
       meta: {
         index: 13,
+        auth: true,
         title: '历史记录'
       },
     },

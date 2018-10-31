@@ -175,6 +175,7 @@ export default {
       let that = this;
       this.forEach(that);
       console.log(this.form);
+      this.$router.push("/formjson");
     },
     forEach(that) {
       // console.log(that.form[10].checkValue.length)

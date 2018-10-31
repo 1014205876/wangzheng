@@ -14,7 +14,17 @@
 export default {
   name: "Radiocom",
   data() {
-    return {};
+    return {
+      //  list: {
+      //     fieldType: "FormField07",
+      //     name: "表单名字07",
+      //     type: "radio",
+      //     radio: ["选项1", "选项2", "选项3"],
+      //     radioValue: "",
+      //     readOnly: false,
+      //     required: true
+      //   },
+    };
   },
   props: ["list"],
   methods: {}

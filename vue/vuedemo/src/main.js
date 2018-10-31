@@ -35,12 +35,32 @@ Vue.use(VueWechatTitle)
 
 Vue.config.productionTip = false
 
-router.beforeEach((to, from, next) => {//路由切换之前完成
+router.beforeEach((to, from, next) => {//路由跳转之前执行
   if (to.meta.title) {//修改页面title
     document.title = to.meta.title;
   }
-  next()
-})
+  let logingwangzheng = sessionStorage.getItem('logingwangzheng');
+  let indexUrlwangzheng = localStorage.getItem('indexUrlwangzheng');
+  if (logingwangzheng != null) {
+    console.log('本次登陆过')
+    next()
+  } else {
+    console.log('本次未登陆过')
+    if (to.matched.some(m => m.meta.auth)) {
+      console.log('需要判定登录')
+      if (indexUrlwangzheng == 'false') {
+        console.log('记住登录状态，不需要跳转')
+        next()
+      } else {
+        console.log('未记住登录状态，需要跳转')
+        next({ path: '/login' })
+      }
+    } else {
+      console.log('不需要判定登录')
+      next()
+    }
+  }
+});
 
 new Vue({
   el: '#app',

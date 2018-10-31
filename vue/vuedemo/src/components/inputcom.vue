@@ -21,18 +21,17 @@ export default {
 
 <style lang="less" scoped>
 .inputcom {
-  label{
-    
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  input {
-    display: block;
-    width: 50%;
-    background: red;
-    color:#fff;
-    text-align:center;
-  }
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    input {
+      display: block;
+      width: 50%;
+      background: red;
+      color: #fff;
+      text-align: center;
+    }
   }
 }
 </style>
