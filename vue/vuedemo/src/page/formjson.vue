@@ -71,6 +71,18 @@
         </label>
       </li>
       <li v-if='form.needdefault'>
+        <div v-if='form.type=="text"'>
+          输入框默认值<input type="text" v-model='form.inputvalue'><br>
+          输入框placeholder<input type="text" v-model='form.placeholder'>
+        </div>
+        <div v-if='form.type=="date"'>
+          时间框默认值<input type="date" v-model='form.datevalue'><br>
+        </div>
+        <div v-if='form.type=="textarea"'>
+          多行文本框默认值
+          <textarea v-model='form.textareavalue'></textarea><br>
+          输入框placeholder<textarea v-model='form.placeholder'></textarea>
+        </div>
         <div v-if='form.type=="radio"'>
           单选框默认值
           <label v-for='list in form.options' :key='list.id'>
@@ -92,17 +104,6 @@
           <select v-if='form.type=="select"' v-model='form.selectvalue'>
             <option v-for='list in form.options' :value="list.value" :key='list.id'>{{list.name}}</option>
           </select>
-        </div>
-        <div v-if='form.type=="text"'>
-          输入框默认值<input type="text" v-model='form.inputvalue'><br>
-          输入框placeholder<input type="text" v-model='form.placeholder'>
-        </div>
-        <div v-if='form.type=="textarea"'>
-          多行文本框默认值<input type="text" v-model='form.textareavalue'><br>
-          输入框placeholder<input type="text" v-model='form.placeholder'>
-        </div>
-        <div v-if='form.type=="date"'>
-          输入框默认值<input type="date" v-model='form.datevalue'><br>
         </div>
       </li>
       <!-- <li>
@@ -153,7 +154,8 @@ export default {
         type: "",
         needdefault: false, //是否需要默认值
         inputvalue: "", //输入框默认值
-        inputvalue: "", //多行文本框默认值
+        datevalue: "", //时间框默认值
+        textareavalue: "", //多行文本框默认值
         placeholder: "", //输入框placeholder
         radiovalue: "", //单选框默认值
         selectvalue: "", //下拉框默认值
@@ -162,10 +164,12 @@ export default {
         options: [
           {
             name: "选项一",
+            type: "",
             value: "01"
           },
           {
             name: "选项二",
+            type: "",
             value: "02"
           }
         ]
@@ -322,81 +326,62 @@ export default {
     shengcheng() {
       let that = this;
       let json = {};
-      readOnly: false,
-        //     type: "dropdown",
-        //     required: true,
-        //     layout: null,
-        //     optionType: null,
-        //     hasEmptyValue: true,
-        //     name: "客户评级",
-        //     overrideId: true,
-        //     options: [
-        //       {
-        //         name: "一级",
-        //         type: "clientRating",
-        //         value: "firstRank"
-        //       },
-        //       {
-        //         name: "二级",
-        //         type: "clientRating",
-        //         value: "secondRank"
-        //       },
-        //       {
-        //         name: "三级",
-        //         type: "clientRating",
-        //         value: "thirdRank"
-        //       },
-        //       {
-        //         name: "四级",
-        //         type: "clientRating",
-        //         value: "forthRank"
-        //       },
-        //       {
-        //         name: "五级",
-        //         type: "clientRating",
-        //         value: "fifthRank"
-        //       }
-        //     ],
-        //     id: "ratingResult",
-        //     placeholder: null,
-        //     optionsExpression: "${clientRating}",
-        //     fieldType: "OptionFormField",
-        //     value: "secondRank"
-        (json["id"] = that.form.id);
+      json["id"] = that.form.id;
       json["name"] = that.form.name;
       json["fieldType"] = that.form.fieldType;
       json["required"] = that.form.required;
       json["readOnly"] = that.form.readOnly;
       json["type"] = that.form.type;
-      if (that.form.needdefault) {
-        if (that.type == "radio") {
-          json["value"] = that.radiovalue;
-          // radiovalue: "", //单选框默认值
-          // selectvalue: "", //下拉框默认值
-          // checkvalue: [], //多选框默认值
-        }
-        if (that.type == "radio") {
-        }
-        if (that.type == "radio") {
-        }
-        if (that.type == "radio") {
-        }
-        if (that.type == "radio") {
-        }
-        if (that.type == "radio") {
-        }
-        if (that.type == "radio") {
-        }
-      } else {
-        json["value"] = "";
+      if (
+        that.form.type == "radio" ||
+        that.form.type == "select" ||
+        that.form.type == "checkbox"
+      ) {
+        json["options"] = that.form.options;
       }
-      json["type"] = that.form.type;
-      json["type"] = that.form.type;
-      json["type"] = that.form.type;
-      json["type"] = that.form.type;
-      json["type"] = that.form.type;
-      json["type"] = that.form.type;
-      console.log(that.form);
+      if (that.form.type == "input") {
+        if (that.form.needdefault) {
+          json["value"] = that.form.inputvalue;
+        } else {
+          json["value"] = "";
+        }
+      }
+      if (that.form.type == "date") {
+        if (that.form.needdefault) {
+          json["value"] = that.form.datevalue;
+        } else {
+          json["value"] = "";
+        }
+      }
+      if (that.form.type == "textarea") {
+        if (that.form.needdefault) {
+          json["value"] = that.form.textareavalue;//多行文本框默认值
+        } else {
+          json["value"] = "";
+        }
+      }
+      if (that.form.type == "radio") {
+        if (that.form.needdefault) {
+          json["value"] = that.form.radiovalue;//单选框默认值
+        } else {
+          json["value"] = "";
+        }
+      }
+      if (that.form.type == "select") {
+        if (that.form.needdefault) {
+          json["value"] = that.form.selectvalue; //下拉框默认值
+        } else {
+          json["value"] = "";
+        }
+      }
+      if (that.form.type == "checkbox") {
+        if (that.form.needdefault) {
+          json["value"] = that.form.checkvalue; //多选框默认值
+        } else {
+          json["value"] = [];
+        }
+      }
+      console.log(json);
     }
   }
 };
