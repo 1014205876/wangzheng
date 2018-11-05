@@ -20,6 +20,8 @@ const Shenqing = resolve => require(['@/page/shenqing'], resolve);
 const Form = resolve => require(['@/page/form'], resolve);
 const history = resolve => require(['@/page/history'], resolve);
 const formjson = resolve => require(['@/page/formjson'], resolve);
+const drag = resolve => require(['@/page/drag'], resolve);
+const tree = resolve => require(['@/page/tree'], resolve);
 // 引入次级页面路由
 const Index = resolve => require(['@/page/index'], resolve);
 const News = resolve => require(['@/page/news'], resolve);
@@ -127,6 +129,24 @@ export default new Router({
         index: 13,
         auth: true,
         title: '历史记录'
+      },
+    },
+    {
+      path: '/drag',
+      component: drag,
+      meta: {
+        index: 14,
+        auth: true,
+        title: '拖拽页面'
+      },
+    },
+    {
+      path: '/tree',
+      component: tree,
+      meta: {
+        index: 15,
+        auth: true,
+        title: '模板页面'
       },
     },
   ],

@@ -1,6 +1,7 @@
 <template>
   <div class="my">
     我的页面
+    <button @click='todrag'>拖拽页面</button>
     <br/>
     <input type="file" accept="image/*;" style='display' id='file'>
     <button onclick="document.getElementById('file').click()">上传</button>
@@ -65,14 +66,20 @@ export default {
     navFootr: Navfootr,
     Picker
   },
-  methods: {}
+  methods: {
+    todrag() {
+      this.$router.push({
+        path: "/drag"
+      });
+    }
+  }
 };
 </script>
 
 <style scoped>
-button{
-  display:block;
-  padding:0.2rem;
-  margin:0.2rem;
+button {
+  display: block;
+  padding: 0.2rem;
+  margin: 0.2rem;
 }
 </style>
