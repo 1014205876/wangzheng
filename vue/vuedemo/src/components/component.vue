@@ -1,111 +1,200 @@
 <template>
   <div>
-    <div class="component" @mouseover.self='mouseover' @mouseout.self='mouseout' @mouseup.self='add'>
-      <div class="box" @mouseover='mouseover' @mouseout='mouseout' @mouseup='add'>
+    <div class="component" @mouseover.self='mouseover' @mouseout.self='mouseout' @mouseup.self='add' @click.self='setup(form,$event)'>
+      <div class="box" @mouseover='mouseover' @mouseout='mouseout' @mouseup='add' @click='setup(form,$event)'>
+        <button class="btn" v-if='form.type!="component"'>设置</button>
         <button class="btn" @mousedown='move(form.type,$event,form);fatherremove()'>移动</button>
+        <!-- <button class="btn" @click='fathercopy()'>复制</button> -->
         <button class="btn" @click='chakan'>查看</button>
         <button class="btn" @click='fatherremove'>删除</button>
         <div style='clear:both'></div>
       </div>
       <div style='clear:both'></div>
-      <div class='place' v-show='form.show&&mouse&&placeindex==0' @mouseover.self='mouseover' @mouseout.self='mouseout' @mouseup.self='add'>生成位置</div>
-      <div class='main' v-if='form.type=="component"'>
-        <div class='com' v-for='(list,index) in form.list' :key='list.id'>
-          <components :form='list' :index='index' :mouse='mouse' :type='type' :data='data' :placeindex='placeindex' @index='remove' @look='look' @typechange='move'></components>
-          <div class='place' v-show='form.show&&mouse&&placeindex==index-0+1' @mouseover.self='mouseover' @mouseout.self='mouseout' @mouseup.self='add'>生成位置</div>
+      <div class='place' v-if='form.type=="component"' v-show='form.show&&mouse&&placeindex==0' @mouseover.self='mouseover'
+        @mouseout.self='mouseout' @mouseup.self='add'>生成位置</div>
+      <div class='main' v-if='form.type=="component"' @mouseover.self='mouseover' @mouseout.self='mouseout'
+        @mouseup.self='add' @click.self='setup(form,$event)'>
+        <div class='com' v-for='(list,index) in form.list' :key='list.id' @mouseover.self='mouseover' @mouseout.self='mouseout'
+          @mouseup.self='add'>
+          <components :form='list' :index='index' :mouse='mouse' :type='type' :data='data' :placeindex='placeindex'
+            @index='remove' @copy='copy' @look='look' @typechange='move' @setup='setup' @mouseout.self='mouseout'
+            @mouseup.self='add'></components>
+          <div class='place' v-show='form.show&&mouse&&placeindex==index-0+1' @mouseover.self='mouseover'
+            @mouseout.self='mouseout' @mouseup.self='add'>生成位置</div>
+
+          <!-- <components v-if='list.type=="component"' :form='list' :index='index' :mouse='mouse' :type='type' :data='data' :placeindex='placeindex'
+          @index='remove' @look='look' @typechange='move' @setup='setup'
+           @mouseout.self='mouseout' @mouseup.self='add'></components>
+          <div v-if='list.type=="component"' class='place' v-show='form.show&&mouse&&placeindex==index-0+1' @mouseover.self='mouseover' @mouseout.self='mouseout' @mouseup.self='add'>生成位置</div>
+          <input v-if='list.type=="input"' type="text"> -->
+
         </div>
       </div>
-      <input v-if='form.type=="input"' type="text">
+      <div v-if='form.type=="input"' @click='setup(form,$event)'>
+        <div class='form'>
+          <input type="text" v-model='form.form.key' :disabled='true'>唯一key值
+        </div>
+        <input v-if='form.type=="input"' type="text" :placeholder='form.form.placeholder' v-model='form.form.value'
+          @click.self='setup(form,$event)'>
+      </div>
+      <div v-if='form.type=="radio"' @click='setup(form,$event)'>
+        <div class='form'>
+          <input type="text" v-model='form.form.key' :disabled='true'>唯一key值
+        </div>
+        <div class='form' v-for='item in form.form.options' :key='item.id'>
+          <label>
+            <input type='radio' :value='item.value' v-model='form.form.value'>{{item.name}}
+            <div class="after"></div>
+          </label>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-// 引入jq
-import $ from "jquery";
-export default {
-  name: "components",
-  props: ["form", "index", "mouse", "type", "data",'placeindex'],
-  data() {
-    return {};
-  },
+  // 引入jq
+  import $ from "jquery";
+  export default {
+    name: "components",
+    props: ["form", "index", "mouse", "type", "data", "placeindex"],
+    data() {
+      return {};
+    },
 
-  methods: {
-    move(type, e, list) {
-      console.log("移动事件");
-      console.log(list);
-      this.$emit("typechange", type, e, list);
-    },
-    chakan() {
-      this.$emit("look", this.index);
-    },
-    fatherremove() {
-      this.$emit("index", this.index);
-      console.log("删除");
-    },
-    remove(index) {
-      console.log(this.form);
-      this.form.list.splice(index, 1);
-    },
-    look(index) {
-      console.log(this.form);
-      console.log(index);
-    },
-    mouseover(e) {
-      this.form.show = true;
-// console.log('开始打印')
-//         // console.log(e.layerX)
-//         console.log(e.offsetX)
-//         // console.log(e.layerY)
-//         console.log(e.offsetY)
-// console.log('结束打印')
-    },
-    mouseout() {
-      this.form.show = false;
-    },
-    add() {
-      if (this.mouse) {
-        console.log(this.data);
-        console.log(this.type);
-        console.log(this.form.list);
-        if (this.form.list) {
-          // this.form.list.push(this.data);
-        this.form.list.splice(this.placeindex,0,this.data);
+    methods: {
+      setup(list, e) {
+        console.log(e.path[0])
+        $(e.path[e.path.length - 7])
+          .find(".component")
+          .removeClass("active");
+        if (list.form) {
+          $(e.path[0])
+            .closest(".component")
+            .addClass("active");
+          this.$emit("setup", list, e);
+        }
+      },
+      move(type, e, list) {
+        this.$emit("typechange", type, e, list);
+      },
+      fathercopy() {
+        var form = {
+          list: [],
+          name: '',
+          show: false,
+          type: '',
+        };
+        form['list'] = this.form.list;
+        form['name'] = this.form.name;
+        form['show'] = this.form.show;
+        form['type'] = this.form.type;
+        this.$emit("copy", form, this.index);
+      },
+      copy(list, index) {
+        this.form.list.splice(index, 0, list);
+      },
+      chakan() {
+        this.$emit("look", this.index);
+      },
+      fatherremove() {
+        this.$emit("index", this.index);
+      },
+      remove(index) {
+        this.form.list.splice(index, 1);
+      },
+      look(index) {
+        console.log(this.form);
+        console.log(index);
+      },
+      mouseover(e) {
+        this.form.show = true;
+      },
+      mouseout() {
+        this.form.show = false;
+      },
+      add() {
+        if (this.mouse) {
+          if (this.form.list) {
+            this.form.list.splice(this.placeindex, 0, this.data);
+          }
         }
       }
+    },
+    created() {
+      console.log(this.form)
     }
-  },
-  created() {
-    console.log(this.data);
-  }
-};
+  };
 </script>
 
 <style lang="less" scoped>
-.component {
-  margin: 20px 0px;
-  padding-bottom:20px;
-  border: 1px solid #000;
-  border-radius: 5px;
+  .component {
+    margin: 20px 0px 20px;
+    padding: 0px 20px;
+    border: 1px solid #000;
+    border-radius: 5px;
 
-  .box {
-    float: right;
+    .place {
+      margin: 10px;
+    }
 
-    .btn {
-      float: left;
-      padding: 5px;
-      margin: 2px;
-      background: skyblue;
-      color: #fff;
+    .box {
+      float: right;
+
+      .btn {
+        cursor: pointer;
+        float: left;
+        padding: 5px;
+        margin: 2px;
+        background: skyblue;
+        color: #fff;
+      }
+    }
+
+    input {
+      background-color: violet;
+      display: block;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      .after {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+
+      .after:before {
+        content: "";
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+        border: 1px solid red;
+      }
+
+      input {
+        display: none;
+      }
+
+      input:checked+.after:before {
+        background: red;
+      }
+
+      input:disabled+.after:before {
+        background: blue;
+      }
+
+      input:disabled:checked+.after:before {
+        background: green;
+      }
     }
   }
 
-  .main {
-    margin: 10px;
+  .component.active {
+    border: 2px dashed yellow;
+    background: thistle;
   }
-
-  input {
-    background: red;
-  }
-}
 </style>
