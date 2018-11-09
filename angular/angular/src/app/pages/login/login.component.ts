@@ -20,8 +20,11 @@ export class LoginComponent implements OnInit {
   // private remember: boolean;
   constructor(
     private router: Router,
-  ) { }
+  ) {
+    console.log('constructor')
+  }
   ngOnInit() {
+    console.log('ngOnInit')
     this.loginData={
       userName:'123',
       passWord:'123',
@@ -29,6 +32,7 @@ export class LoginComponent implements OnInit {
     }
   }
   login() {
+    console.log('login')
     if (this.loginData.userName == '123') {
       console.log('用户名正确');
       if (this.loginData.passWord == '123') {

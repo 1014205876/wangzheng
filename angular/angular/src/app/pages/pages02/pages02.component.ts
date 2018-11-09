@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Pages02Component implements OnInit {
   heroes = [
-    { name: '导航1', url: '/pages1/nav01' },
-    { name: '导航2', url: '/pages1/nav02' },
-    { name: '导航3', url: '/pages1/nav03' },
+    { name: '导航1', url: '/pages2/nav01' },
+    { name: '导航2', url: '/pages2/nav02' },
+    { name: '导航3', url: '/pages2/nav03' },
   ];
   private list: object;
   private show: boolean;

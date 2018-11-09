@@ -17,6 +17,8 @@ import { Nav01Component } from './pages/pages02/nav01/nav01.component';
 import { Nav02Component } from './pages/pages02/nav02/nav02.component';
 import { Nav03Component } from './pages/pages02/nav03/nav03.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ChangedateComponent } from './component/changedate/changedate.component';
+import { LessComponent } from './component/less/less.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -47,7 +49,9 @@ const routes: Routes = [
     Nav01Component,
     Nav02Component,
     Nav03Component,
-    LoginComponent
+    LoginComponent,
+    ChangedateComponent,
+    LessComponent,
   ],
   imports: [
     BrowserModule,

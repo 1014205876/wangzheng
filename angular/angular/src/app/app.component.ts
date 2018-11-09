@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     this.message = '来自父组件'
     console.log(this)
   }
-  jieshou(msg: string) {
+  jieshou(msg) {
     this.msg = msg
   }
 }
