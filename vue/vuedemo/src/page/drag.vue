@@ -3,6 +3,7 @@
     <!-- <button @click='totree'>模板页面</button> -->
     <div class="left">
       组件选择
+      <button class='candrag' @mousedown='mousedown("component",$event,false,"6,6")'>6,6布局框</button>
       <button class='candrag' @mousedown='mousedown("component",$event,false)'>布局框</button>
       <button class='candrag' @mousedown='mousedown("input",$event,false)'>输入框</button>
       <button class='candrag' @mousedown='mousedown("radio",$event,false)'>单选框</button>
@@ -15,7 +16,7 @@
       <div class="main" @mouseover.self='mouseover' @mouseout.self='mouseout' @mouseup.self='add'>
         <div class='com' v-for='(list,index) in form' :key='list.id' :style='{width:(list.width/12*100+"%")}'
           @mouseover.self='mouseover' @mouseout.self='mouseout' @mouseup.self='add'>
-          <components :form='list' :index='index' :mouse='mouse' :type='type' :data='data' :placeindex='placeindex'
+          <components :form='list' :index='index' :mouse='mouse' :data='data' :placeindex='placeindex'
             @changemouse='mouseup' @index='remove' @look='look' @copy='copy' @typechange='mousedown' @setup='setup'
             @mouseout.self='mouseout' @mouseup.self='add'></components>
           <div class='place' v-show='show&&mouse&&placeindex==index-0+1' @mouseover.self='mouseover' @mouseout.self='mouseout'
@@ -34,12 +35,12 @@
           required是否必填
           <label>
             是
-            <input type="radio" :value='true' v-model='right.form.required'>
+            <input type="radio" name='required' :value='true' v-model='right.form.required'>
             <div class="after"></div>
           </label>
           <label>
             否
-            <input type="radio" :value='false' v-model='right.form.required'>
+            <input type="radio" name='required' :value='false' v-model='right.form.required'>
             <div class="after"></div>
           </label>
         </div>
@@ -47,12 +48,12 @@
           readOnly是否只读
           <label>
             是
-            <input type="radio" :value='true' v-model='right.form.readOnly'>
+            <input type="radio" name='readOnly' :value='true' v-model='right.form.readOnly'>
             <div class="after"></div>
           </label>
           <label>
             否
-            <input type="radio" :value='false' v-model='right.form.readOnly'>
+            <input type="radio" name='readOnly' :value='false' v-model='right.form.readOnly'>
             <div class="after"></div>
           </label>
         </div>
@@ -191,8 +192,7 @@ export default {
       this.right.form.options.push(one);
     },
     removeli(index) {
-      // console.log("删除一组");
-      this.right.options.splice(index, 1);
+      this.right.form.options.splice(index, 1);
     },
     setup(list, e) {
       this.right = list;
@@ -212,7 +212,7 @@ export default {
       console.log(this.form);
       console.log(index);
     },
-    mousedown(type, e, list) {
+    mousedown(type, e, list,flex) {
       let that = this;
       that.absolute.top = e.clientY - 10 + "px";
       that.absolute.left = e.clientX - 30 + "px";
@@ -299,6 +299,33 @@ export default {
                 }
               ]
             }
+          };
+        }
+        if (flex == "6,6") {
+          that.data = {
+            width: 12,
+            type: "component",
+            show: false,
+            name: "生成的组件",
+            list: [
+              {
+            width: 6,
+            type: "component",
+            show: false,
+            name: "生成的组件",
+            list: [
+              
+            ]
+          },{
+            width: 6,
+            type: "component",
+            show: false,
+            name: "生成的组件",
+            list: [
+              
+            ]
+          },
+            ]
           };
         }
       }
@@ -409,7 +436,7 @@ export default {
     .main {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
+      // align-items: center;
       justify-content: space-around;
 
       .com {
@@ -427,7 +454,17 @@ export default {
   }
 
   .right {
+    -moz-box-sizing: border-box;
+    /*Firefox3.5+*/
+    -webkit-box-sizing: border-box;
+    /*Safari3.2+*/
+    -o-box-sizing: border-box;
+    /*Opera9.6*/
+    -ms-box-sizing: border-box;
+    /*IE8*/
     width: 15%;
+      height: 100%;
+      border: 1px solid #000;
 
     input {
       background-color: violet;

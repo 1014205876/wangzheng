@@ -16,18 +16,11 @@
         @mouseup.self='add' @click.self='setup(form,$event)'>
         <div class='com' v-for='(list,index) in form.list' :key='list.id' @mouseover.self='mouseover' @mouseout.self='mouseout'
           @mouseup.self='add' :style='{width:(list.width/12*100+"%")}'>
-          <components :form='list' :index='index' :mouse='mouse' :type='type' :data='data' :placeindex='placeindex'
-            @index='remove' @copy='copy' @look='look' @typechange='move' @setup='setup' @mouseout.self='mouseout'
-            @mouseup.self='add'></components>
+          <components :form='list' :index='index' :mouse='mouse' :data='data' :placeindex='placeindex'
+            @index='remove' @copy='copy' @look='look' @typechange='move' @setup='setup'
+             @mouseout.self='mouseout' @mouseup.self='add'></components>
           <div class='place' v-show='form.show&&mouse&&placeindex==index-0+1' @mouseover.self='mouseover'
             @mouseout.self='mouseout' @mouseup.self='add'>生成位置</div>
-
-          <!-- <components v-if='list.type=="component"' :form='list' :index='index' :mouse='mouse' :type='type' :data='data' :placeindex='placeindex'
-          @index='remove' @look='look' @typechange='move' @setup='setup'
-           @mouseout.self='mouseout' @mouseup.self='add'></components>
-          <div v-if='list.type=="component"' class='place' v-show='form.show&&mouse&&placeindex==index-0+1' @mouseover.self='mouseover' @mouseout.self='mouseout' @mouseup.self='add'>生成位置</div>
-          <input v-if='list.type=="input"' type="text"> -->
-
         </div>
       </div>
       <div v-if='form.type=="input"' @click='setup(form,$event)'>
@@ -68,7 +61,7 @@
 import $ from "jquery";
 export default {
   name: "components",
-  props: ["form", "index", "mouse", "type", "data", "placeindex"],
+  props: ["form", "index", "mouse", "data", "placeindex"],
   data() {
     return {};
   },
@@ -86,16 +79,6 @@ export default {
       this.$emit("typechange", type, e, list);
     },
     fathercopy() {
-      // let form = {
-      //   list: [],
-      //   name: '',
-      //   show: false,
-      //   type: '',
-      // };
-      // form['list'] = this.form.list;
-      // form['name'] = this.form.name;
-      // form['show'] = this.form.show;
-      // form['type'] = this.form.type;
       this.$emit("copy", this.form, this.index);
     },
     copy(list, index) {
@@ -135,7 +118,6 @@ export default {
     }
   },
   created() {
-    // console.log(this.form);
   }
 };
 </script>

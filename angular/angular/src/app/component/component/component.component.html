@@ -1,0 +1,49 @@
+<div class="component" (mouseover)='mouseover()' (mouseout)='mouseout()' (mouseup)='add($event)' (click)='setup({list:form,e:$event})'>
+  <div class="box">
+    <!-- <button class="btn" *ngIf='form.type!="component"'>设置</button> -->
+    <button class="btn" (mousedown)='move({type:form.type,e:$event,list:form});fatherremove()'>移动</button>
+    <!-- <button class="btn" (click)='fathercopy()'>复制</button> -->
+    <!-- <button class="btn" (click)='chakan()'>查看</button> -->
+    <button class="btn" (click)='fatherremove()'>删除</button>
+    <!-- <button class="btn">删除</button> -->
+    <div style='clear:both'></div>
+  </div>
+  <div style='clear:both'></div>
+  <div class='place' *ngIf='form.type=="component"&&form.show&&mouse&&placeindex==0'>生成位置</div>
+  <div class='main' *ngIf='form.type=="component"'>
+    <div class='com' *ngFor='let list of form.list;let index=index' [ngStyle]='{"width":(list.width/12*100+"%")}'>
+      <app-component [form]='list' [index]='index' [mouse]='mouse' [data]='data' [placeindex]='placeindex'
+        (mouseover)='stop($event)' (mouseout)='stop($event)' (mouseup)='stop($event)' (click)='stop($event)' (removeindex)='remove($event)'
+        (copy)='copy($event)' (look)='look($event)' (typechange)='move($event)' (fathermouseup)='mouseup($event)' (setup01)='setup($event)'></app-component>
+      <div class='place' *ngIf='form.show&&mouse&&placeindex==index-0+1'>生成位置</div>
+    </div>
+  </div>
+  <div *ngIf='form.type=="input"'>
+    <div class='form'>
+      <input type="text" [(ngModel)]='form.form.key' [disabled]='true'>唯一key值
+    </div>
+    <input *ngIf='form.type=="input"' type="text" [placeholder]='form.form.placeholder' [(ngModel)]='form.form.value'>
+  </div>
+  <div *ngIf='form.type=="radio"'>
+    <div class='form'>
+      <input type="text" [(ngModel)]='form.form.key' [disabled]='true'>唯一key值
+    </div>
+    <div class='form' *ngFor='let item of form.form.options;let index=index'>
+      <label class='radio'>
+        <input type='radio' [value]='item.value' [(ngModel)]='form.form.value'>{{item.name}}
+        <div class="after"></div>
+      </label>
+    </div>
+  </div>
+  <div *ngIf='form.type=="checkbox"'>
+    <div class='form'>
+      <input type="text" [(ngModel)]='form.form.key' [disabled]='true'>唯一key值
+    </div>
+    <div class='form' *ngFor='let item of form.form.options;let index=index'>
+      <label class='checkbox'>
+        <input type='checkbox' [value]='item.value' [(ngModel)]='form.form.value[index]'>{{item.name}}
+        <div class="after"></div>
+      </label>
+    </div>
+  </div>
+</div>

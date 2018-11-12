@@ -12,7 +12,7 @@ export class Pages03Component implements OnInit {
 
   ngOnInit() {
   }
-  jieshou(msg: string) {
+  jieshou(msg) {
     this.msg = msg
   }
 }
