@@ -75,21 +75,23 @@ export class IndexComponent implements OnInit {
     // }
   ]
   right = {
-    // form: {
-    //   options: []
-    // }
+    width: 12,
+    type: "component",
+    show: false,
+    form: {
+      options: []
+    }
   }
   constructor(
   ) {
     console.log('constructor')
   }
-  
+
   ngOnInit() {
     console.log('ngOnInit')
   }
   addli() {
     if (this.right.form) {
-
       let one = {
         name: "",
         type: "",

@@ -21,7 +21,7 @@
     <div class="right">
         表单定制<br>
         宽度(1-12)<input type="text" [(ngModel)]='right.width'>
-        <div *ngIf='right.form'>
+        <div *ngIf='right.type!="component"'>
             <div class='form'>
                 <input type="text" [(ngModel)]='right.form.key'>唯一key值
             </div>
