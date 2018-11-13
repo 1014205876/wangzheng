@@ -143,13 +143,11 @@ export default {
         //   list: [],
         //   show: false,
         //   type: "component",
-        //   name: "原始数组"
         // },
         // {
         //   list: [],
         //   show: false,
         //   type: "component",
-        //   name: "原始数组"
         // },
         // {
         //   list: [
@@ -157,30 +155,25 @@ export default {
         //       list: [],
         //       show: false,
         //       type: "component",
-        //       name: "原始数组"
         //     },
         //     {
         //       list: [],
         //       show: false,
         //       type: "component",
-        //       name: "原始数组"
         //     }
         //   ],
         //   show: false,
         //   type: "component",
-        //   name: "原始数组"
         // },
         // {
         //   list: [],
         //   show: false,
         //   type: "component",
-        //   name: "原始数组"
         // },
         // {
         //   list: [],
         //   show: false,
         //   type: "component",
-        //   name: "原始数组"
         // }
       ],
       right: {},
@@ -246,7 +239,6 @@ export default {
             width: 12,
             type: "component",
             show: false,
-            name: "生成的组件",
             list: []
           };
         }
@@ -326,20 +318,17 @@ export default {
             width: 12,
             type: "component",
             show: false,
-            name: "生成的组件",
             list: [
               {
                 width: 6,
                 type: "component",
                 show: false,
-                name: "生成的组件",
                 list: []
               },
               {
                 width: 6,
                 type: "component",
                 show: false,
-                name: "生成的组件",
                 list: []
               }
             ]
@@ -381,9 +370,9 @@ export default {
         $(e.path[e.path.length - 7])
           .find(".component")
           .removeClass("active");
-        // $(e.path[0])
-        //   .closest(".component")
-        //   .addClass("active");
+        $(e.path[0])
+          .closest(".component")
+          .addClass("active");
       }
     },
     generatejson() {
@@ -407,7 +396,11 @@ export default {
   min-height: 900px;
   display: flex;
   font-size: 16px;
-
+  /*设置文字不能被选中     以下为css样式*/
+  // -webkit-user-select: none;
+  // -moz-user-select: none;
+  // -ms-user-select: none;
+  // user-select: none;
   .left {
     -moz-box-sizing: border-box;
     /*Firefox3.5+*/
