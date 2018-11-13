@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="component" @mouseover.stop='mouseover' @mouseout.stop='mouseout' @mouseup.stop='add' @click.stop='setup(form,$event)'>
-      <div class="box">
+    <div class="component" @mouseover.self='mouseover' @mouseout.self='mouseout' @mouseup.self='add' @click.self='setup(form,$event)'>
+      <div class="box" @mouseover='mouseover' @mouseout='mouseout' @mouseup='add' @click='setup(form,$event)'>
         <button class="btn" v-if='form.type!="component"'>设置</button>
         <button class="btn" @mousedown='move(form.type,$event,form);fatherremove()'>移动</button>
         <!-- <button class="btn" @click='fathercopy()'>复制</button> -->
@@ -10,22 +10,27 @@
         <div style='clear:both'></div>
       </div>
       <div style='clear:both'></div>
-      <div class='place' v-if='form.type=="component"' v-show='form.show&&mouse&&placeindex==0'>生成位置</div>
-      <div class='main' v-if='form.type=="component"'>
-        <div class='com' v-for='(list,index) in form.list' :key='list.id' :style='{width:(list.width/12*100+"%")}'>
+      <div class='place' v-if='form.type=="component"' v-show='form.show&&mouse&&placeindex==0' @mouseover.self='mouseover'
+        @mouseout.self='mouseout' @mouseup.self='add'>生成位置</div>
+      <div class='main' v-if='form.type=="component"' @mouseover.self='mouseover' @mouseout.self='mouseout'
+        @mouseup.self='add' @click.self='setup(form,$event)'>
+        <div class='com' v-for='(list,index) in form.list' :key='list.id' @mouseover.self='mouseover' @mouseout.self='mouseout'
+          @mouseup.self='add' :style='{width:(list.width/12*100+"%")}'>
           <components :form='list' :index='index' :mouse='mouse' :data='data' :placeindex='placeindex'
-            @index='remove' @copy='copy' @look='look' @typechange='move' @setup='setup' @mouseup='mouseup'></components>
-          <div class='place' v-show='form.show&&mouse&&placeindex==index-0+1'>生成位置</div>
+            @index='remove' @copy='copy' @look='look' @typechange='move' @setup='setup'
+             @mouseout.self='mouseout' @mouseup.self='add'></components>
+          <div class='place' v-show='form.show&&mouse&&placeindex==index-0+1' @mouseover.self='mouseover'
+            @mouseout.self='mouseout' @mouseup.self='add'>生成位置</div>
         </div>
       </div>
-      <div v-if='form.type=="input"'>
+      <div v-if='form.type=="input"' @click='setup(form,$event)'>
         <div class='form'>
           <input type="text" v-model='form.form.key' :disabled='true'>唯一key值
         </div>
-        <input v-if='form.type=="input"' type="text" :placeholder='form.form.placeholder' v-model='form.form.value'>
-        <button @click='test(form.form.value,form.form.test)'>校验</button>
+        <input v-if='form.type=="input"' type="text" :placeholder='form.form.placeholder' v-model='form.form.value'
+          @click.self='setup(form,$event)'>
       </div>
-      <div v-if='form.type=="radio"'>
+      <div v-if='form.type=="radio"' @click='setup(form,$event)'>
         <div class='form'>
           <input type="text" v-model='form.form.key' :disabled='true'>唯一key值
         </div>
@@ -36,7 +41,7 @@
           </label>
         </div>
       </div>
-      <div v-if='form.type=="checkbox"'>
+      <div v-if='form.type=="checkbox"' @click='setup(form,$event)'>
         <div class='form'>
           <input type="text" v-model='form.form.key' :disabled='true'>唯一key值
         </div>
@@ -61,22 +66,6 @@ export default {
     return {};
   },
   methods: {
-    test(val, re) {
-      if (re) {
-        let res = new RegExp(re);
-        if (res.test(val)) {
-          console.log("校验成功");
-        } else {
-          console.log("校验失败");
-        }
-      } else {
-        console.log("无需校验");
-      }
-    },
-    stop(e) {
-      console.log("stop");
-      e.stopPropagation();
-    },
     setup(list, e) {
       $(e.path[e.path.length - 7])
         .find(".component")
@@ -114,9 +103,6 @@ export default {
     mouseout() {
       this.form.show = false;
     },
-    mouseup() {
-      this.$emit("mouseup");
-    },
     add(e) {
       if (this.mouse) {
         if (this.form.list) {
@@ -128,11 +114,11 @@ export default {
           //   .closest(".component")
           //   .addClass("active");
         }
-        this.mouseup();
       }
     }
   },
-  created() {}
+  created() {
+  }
 };
 </script>
 

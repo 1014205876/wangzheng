@@ -10,13 +10,17 @@
       <button class='candrag' @mousedown='mousedown("checkbox",$event,false)'>多选框</button>
       <button class='candrag' @click='generatejson'>生成json</button>
     </div>
-    <div class="component" @mouseover='mouseover' @mouseout='mouseout' @mouseup='add'>
-      <div class='place' v-show='show&&mouse&&placeindex==0'>生成位置</div>
-      <div class="main">
-        <div class='com' v-for='(list,index) in form' :key='list.id' :style='{width:(list.width/12*100+"%")}'>
-          <components :form='list' :index='index' :mouse='mouse' :data='data' :placeindex='placeindex' @index='remove'
-            @look='look' @copy='copy' @typechange='mousedown' @setup='setup' @mouseup='mouseup'></components>
-          <div class='place' v-show='show&&mouse&&placeindex==index-0+1'>生成位置</div>
+    <div class="component" @mouseover.self='mouseover' @mouseout.self='mouseout' @mouseup.self='add'>
+      <div class='place' v-show='show&&mouse&&placeindex==0' @mouseover.self='mouseover' @mouseout.self='mouseout'
+        @mouseup.self='add'>生成位置</div>
+      <div class="main" @mouseover.self='mouseover' @mouseout.self='mouseout' @mouseup.self='add'>
+        <div class='com' v-for='(list,index) in form' :key='list.id' :style='{width:(list.width/12*100+"%")}'
+          @mouseover.self='mouseover' @mouseout.self='mouseout' @mouseup.self='add'>
+          <components :form='list' :index='index' :mouse='mouse' :data='data' :placeindex='placeindex'
+            @changemouse='mouseup' @index='remove' @look='look' @copy='copy' @typechange='mousedown' @setup='setup'
+            @mouseout.self='mouseout' @mouseup.self='add'></components>
+          <div class='place' v-show='show&&mouse&&placeindex==index-0+1' @mouseover.self='mouseover' @mouseout.self='mouseout'
+            @mouseup.self='add'>生成位置</div>
         </div>
       </div>
     </div>
@@ -59,15 +63,6 @@
           </div>
           <div class='form'>
             <input type="text" v-model='right.form.placeholder'>提示语
-          </div>
-          <div class='form' style='display:block'>
-            校验方式
-            <label v-for='list in test' :key='list.id'>
-              <input type="radio" :value='list.value' v-model='right.form.test'>{{list.name}}
-              <div class="after"></div>
-            </label>
-            ^[A-Z]+$
-            <input type="text" v-model='right.form.test'>
           </div>
         </div>
         <div v-if='right.form.type=="radio"'>
@@ -183,21 +178,7 @@ export default {
         //   name: "原始数组"
         // }
       ],
-      right: {},
-      test: [
-        {
-          name: "无",
-          value: ""
-        },
-        {
-          name: "数字校验",
-          value: "^[0-9]*$"
-        },
-        {
-          name: "电话号码",
-          value: "^1[0-9]{10}$"
-        }
-      ]
+      right: {}
     };
   },
   methods: {
@@ -231,7 +212,7 @@ export default {
       console.log(this.form);
       console.log(index);
     },
-    mousedown(type, e, list, flex) {
+    mousedown(type, e, list,flex) {
       let that = this;
       that.absolute.top = e.clientY - 10 + "px";
       that.absolute.left = e.clientX - 30 + "px";
@@ -261,7 +242,6 @@ export default {
               // key: parseInt(new Date().getTime()).toString(36),
               readOnly: false, //只读
               required: true, //必填
-              test: "", //校验
               value: "",
               placeholder: ""
             }
@@ -329,19 +309,22 @@ export default {
             name: "生成的组件",
             list: [
               {
-                width: 6,
-                type: "component",
-                show: false,
-                name: "生成的组件",
-                list: []
-              },
-              {
-                width: 6,
-                type: "component",
-                show: false,
-                name: "生成的组件",
-                list: []
-              }
+            width: 6,
+            type: "component",
+            show: false,
+            name: "生成的组件",
+            list: [
+              
+            ]
+          },{
+            width: 6,
+            type: "component",
+            show: false,
+            name: "生成的组件",
+            list: [
+              
+            ]
+          },
             ]
           };
         }
@@ -388,13 +371,6 @@ export default {
     },
     generatejson() {
       console.log(this.form);
-      let form = [];
-      this.form.forEach(function(list, index) {
-        if (list.form) {
-          form.push(list.form);
-        }
-      });
-      console.log(form);
     }
   }
 };
@@ -487,8 +463,8 @@ export default {
     -ms-box-sizing: border-box;
     /*IE8*/
     width: 15%;
-    height: 100%;
-    border: 1px solid #000;
+      height: 100%;
+      border: 1px solid #000;
 
     input {
       background-color: violet;
@@ -498,42 +474,6 @@ export default {
 
     .form {
       display: flex;
-
-      label {
-        display: flex;
-        align-items: center;
-        // justify-content: space-around;
-
-        .after {
-          display: flex;
-          align-items: center;
-          justify-content: space-around;
-        }
-
-        .after:before {
-          content: "";
-          width: 20px;
-          height: 20px;
-          border-radius: 20px;
-          border: 1px solid red;
-        }
-
-        input {
-          display: none;
-        }
-
-        input:checked + .after:before {
-          background: red;
-        }
-
-        input:disabled + .after:before {
-          background: blue;
-        }
-
-        input:disabled:checked + .after:before {
-          background: green;
-        }
-      }
     }
 
     .ul {
