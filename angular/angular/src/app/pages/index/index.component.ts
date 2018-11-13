@@ -74,24 +74,34 @@ export class IndexComponent implements OnInit {
     //   list: []
     // }
   ]
-  right = {}
+  right = {
+    // form: {
+    //   options: []
+    // }
+  }
   constructor(
   ) {
     console.log('constructor')
   }
+  
   ngOnInit() {
     console.log('ngOnInit')
   }
   addli() {
-    let one = {
-      name: "",
-      type: "",
-      value: ""
-    };
-    this.right.form.options.push(one);
+    if (this.right.form) {
+
+      let one = {
+        name: "",
+        type: "",
+        value: ""
+      };
+      this.right.form.options.push(one);
+    }
   }
   removeli(index) {
-    this.right.form.options.splice(index, 1);
+    if (this.right.form) {
+      this.right.form.options.splice(index, 1);
+    }
   }
   setup(obj) {
     this.right = obj.list;
@@ -205,7 +215,7 @@ export class IndexComponent implements OnInit {
       //     show: false,
       //     name: "生成的组件",
       //     list: [
-            
+
       //     ]
       //   },{
       //     width: 6,
@@ -213,7 +223,7 @@ export class IndexComponent implements OnInit {
       //     show: false,
       //     name: "生成的组件",
       //     list: [
-            
+
       //     ]
       //   },
       //     ]
@@ -224,7 +234,7 @@ export class IndexComponent implements OnInit {
   mouseover() {
     this.show = true;
   }
-  stop(e){
+  stop(e) {
     e.stopPropagation()
   }
   mousemove(e) {

@@ -3,7 +3,7 @@
     <!-- <button @click='totree'>模板页面</button> -->
     <div class="left">
       组件选择
-      <button class='candrag' @mousedown='mousedown("component",$event,false,"6,6")'>6,6布局框</button>
+      <!-- <button class='candrag' @mousedown='mousedown("component",$event,false,"6,6")'>6,6布局框</button> -->
       <button class='candrag' @mousedown='mousedown("component",$event,false)'>布局框</button>
       <button class='candrag' @mousedown='mousedown("input",$event,false)'>输入框</button>
       <button class='candrag' @mousedown='mousedown("radio",$event,false)'>单选框</button>

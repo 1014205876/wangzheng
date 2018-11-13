@@ -9,13 +9,13 @@
     <div style='clear:both'></div>
   </div>
   <div style='clear:both'></div>
-  <div class='place' *ngIf='form.type=="component"&&form.show&&mouse&&placeindex==0'>生成位置</div>
+  <div class='place' *ngIf='form.type=="component"' [hidden]='!(form.show&&mouse&&placeindex==0)'>生成位置</div>
   <div class='main' *ngIf='form.type=="component"'>
     <div class='com' *ngFor='let list of form.list;let index=index' [ngStyle]='{"width":(list.width/12*100+"%")}'>
       <app-component [form]='list' [index]='index' [mouse]='mouse' [data]='data' [placeindex]='placeindex'
         (mouseover)='stop($event)' (mouseout)='stop($event)' (mouseup)='stop($event)' (click)='stop($event)' (removeindex)='remove($event)'
         (copy)='copy($event)' (look)='look($event)' (typechange)='move($event)' (fathermouseup)='mouseup($event)' (setup01)='setup($event)'></app-component>
-      <div class='place' *ngIf='form.show&&mouse&&placeindex==index-0+1'>生成位置</div>
+      <div class='place' [hidden]='!(form.show&&mouse&&placeindex==index-0+1)'>生成位置</div>
     </div>
   </div>
   <div *ngIf='form.type=="input"'>

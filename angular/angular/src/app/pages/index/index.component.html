@@ -7,15 +7,14 @@
         <button class='candrag' (click)='generatejson()'>生成json</button>
     </div>
     <div class="component" (mouseover)='mouseover()' (mouseout)='mouseout()' (mouseup)='add($event)'>
-        <div class='place' *ngIf='show&&mouse&&placeindex==0' (mouseover)='mouseover()' (mouseout)='mouseout()'
-            (mouseup)='add($event)'>生成位置</div>
+        <div class='place' [hidden]='!(show&&mouse&&placeindex==0)'>生成位置</div>
         <div class="main">
             <div class='com' *ngFor='let list of form;let index=index' [ngStyle]='{width:(list.width/12*100+"%")}'>
                 <app-component [form]='list' [index]='index' [mouse]='mouse' [data]='data' [placeindex]='placeindex'
                     (mouseover)='stop($event)' (mouseout)='stop($event)' (mouseup)='stop($event)' (changemouse)='mouseup($event)'
                     (removeindex)='remove($event)' (look)='look($event)' (copy)='copy($event)' (typechange)='mousedown($event)'
                     (setup01)='setup($event)' (fathermouseup)='mouseup($event)'></app-component>
-                <div class='place' *ngIf='show&&mouse&&placeindex==index-0+1'>生成位置</div>
+                <div class='place' [hidden]='!(show&&mouse&&placeindex==index-0+1)'>生成位置</div>
             </div>
         </div>
     </div>
