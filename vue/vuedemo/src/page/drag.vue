@@ -466,6 +466,7 @@ export default {
         -ms-box-sizing: border-box;
         /*IE8*/
         padding: 0 10px;
+        margin: 20px 0px 20px;
       }
     }
   }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, Routes } from '@angular/router';
 import * as $ from 'jquery';
 @Component({
   selector: 'app-index',
@@ -7,15 +6,15 @@ import * as $ from 'jquery';
   styleUrls: ['./index.component.less']
 })
 export class IndexComponent implements OnInit {
-  //声明变量的类型(data)
-  type = ""
-  mouse = false
-  show = false
+  // 声明变量的类型(data)
+  type = '';
+  mouse = false;
+  show = false;
   absolute = {
-    top: "0px",
-    left: "0px"
-  }
-  placeindex = 0
+    top: '0px',
+    left: '0px'
+  };
+  placeindex = 0;
   data = {};
   form = [
     // {
@@ -73,29 +72,29 @@ export class IndexComponent implements OnInit {
     //   name: "生成的组件",
     //   list: []
     // }
-  ]
+  ];
   right = {
     width: 12,
-    type: "component",
+    type: 'component',
     show: false,
     form: {
       options: []
     }
-  }
+  };
   constructor(
   ) {
-    console.log('constructor')
+    console.log('constructor');
   }
 
   ngOnInit() {
-    console.log('ngOnInit')
+    console.log('ngOnInit');
   }
   addli() {
     if (this.right.form) {
       let one = {
-        name: "",
-        type: "",
-        value: ""
+        name: '',
+        type: '',
+        value: ''
       };
       this.right.form.options.push(one);
     }
@@ -117,20 +116,20 @@ export class IndexComponent implements OnInit {
   }
   mousedown(obj) {
     let that = this;
-    that.absolute.top = obj.e.clientY - 10 + "px";
-    that.absolute.left = obj.e.clientX - 30 + "px";
+    that.absolute.top = obj.e.clientY - 10 + 'px';
+    that.absolute.left = obj.e.clientX - 30 + 'px';
     that.mouse = true;
     that.show = false;
     that.type = obj.type;
     if (obj.list) {
       that.data = obj.list;
     } else {
-      if (obj.type == "component") {
+      if (obj.type == 'component') {
         that.data = {
           width: 12,
-          type: "component",
+          type: 'component',
           show: false,
-          name: "生成的组件",
+          name: '生成的组件',
           list: []
         };
       }

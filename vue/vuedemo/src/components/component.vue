@@ -138,7 +138,6 @@ export default {
 
 <style lang="less" scoped>
 .component {
-  margin: 20px 0px 20px;
   padding: 0px 10px;
   border: 1px solid #000;
   border-radius: 5px;
@@ -173,6 +172,7 @@ export default {
       -ms-box-sizing: border-box;
       /*IE8*/
       padding: 0 10px;
+  margin: 20px 0px 20px;
     }
   }
   input {
