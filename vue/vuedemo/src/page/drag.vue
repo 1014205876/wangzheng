@@ -5,12 +5,16 @@
       组件选择
       <!-- <button class='candrag' @mousedown='mousedown("component",$event,false,"6,6")'>6,6布局框</button> -->
       <button class='candrag' @mousedown='mousedown("component",$event,false)'>布局框</button>
+      <button class='candrag' @mousedown='mousedown("title",$event,false)'>文本栏</button>
       <button class='candrag' @mousedown='mousedown("input",$event,false)'>输入框</button>
+      <button class='candrag' @mousedown='mousedown("number",$event,false)'>数字框</button>
+      <button class='candrag' @mousedown='mousedown("date",$event,false)'>日期框</button>
       <button class='candrag' @mousedown='mousedown("radio",$event,false)'>单选框</button>
       <button class='candrag' @mousedown='mousedown("checkbox",$event,false)'>多选框</button>
       <button class='candrag' @click='generatejson'>生成json</button>
     </div>
     <div class="component" @mouseover='mouseover' @mouseout='mouseout' @mouseup='add'>
+      操作布局
       <div class='place' v-show='show&&mouse&&placeindex==0'>生成位置</div>
       <div class="main">
         <div class='com' v-for='(list,index) in form' :key='list.id' :style='{width:(list.width/12*100+"%")}'>
@@ -20,57 +24,156 @@
         </div>
       </div>
     </div>
+    <div class='look'>
+      最终显示
+      <div class='components'>
+        <div v-for='(list,index) in form' :key='list.id' :style='{width:(list.width/12*100+"%")}'>
+          <comlook :form='list' :index='index' :mouse='mouse' :data='data' :placeindex='placeindex'></comlook>
+        </div>
+      </div>
+    </div>
     <div class="right">
       表单定制<br>
       宽度(1-12)<input type="text" v-model='right.width'>
       <div v-if='right.form'>
-        <div class='form'>
-          <input type="text" v-model='right.form.key' :disabled='true'>唯一key值
+        <div v-if='right.form.type!="title"'>
+          <div class='form blo'>
+            唯一key值
+            <input type="text" v-model='right.form.key' :disabled='true'>
+          </div>
+          <div class='form blo'>
+            是否必填
+            <label>
+              是
+              <input type="radio" name='required' :value='true' v-model='right.form.required'>
+              <div class="after"></div>
+            </label>
+            <label>
+              否
+              <input type="radio" name='required' :value='false' v-model='right.form.required'>
+              <div class="after"></div>
+            </label>
+          </div>
+          <div class='form blo'>
+            是否只读
+            <label>
+              是
+              <input type="radio" name='readOnly' :value='true' v-model='right.form.readOnly'>
+              <div class="after"></div>
+            </label>
+            <label>
+              否
+              <input type="radio" name='readOnly' :value='false' v-model='right.form.readOnly'>
+              <div class="after"></div>
+            </label></div>
         </div>
-        <div class='form'>
-          required是否必填
-          <label>
-            是
-            <input type="radio" name='required' :value='true' v-model='right.form.required'>
-            <div class="after"></div>
-          </label>
-          <label>
-            否
-            <input type="radio" name='required' :value='false' v-model='right.form.required'>
-            <div class="after"></div>
-          </label>
-        </div>
-        <div class='form'>
-          readOnly是否只读
-          <label>
-            是
-            <input type="radio" name='readOnly' :value='true' v-model='right.form.readOnly'>
-            <div class="after"></div>
-          </label>
-          <label>
-            否
-            <input type="radio" name='readOnly' :value='false' v-model='right.form.readOnly'>
-            <div class="after"></div>
-          </label>
+        <div v-if='right.form.type=="title"'>
+          <div class='form blo'>
+            内容
+            <textarea style='width:100%;height:40px;background:violet' v-model='right.form.value'></textarea>
+          </div>
+          <div class='form blo'>
+            字体像素
+            <input type="text" v-model='right.form.style["font-size"]'>
+          </div>
+          <div class='form blo'>
+            字体颜色
+            <input type="color" v-model='right.form.style.color'>
+            <input type="text" v-model='right.form.style.color'>
+          </div>
+          <div class='form blo'>
+            背景颜色
+            <input type="color" v-model='right.form.style["background-color"]'>
+            <input type="text" v-model='right.form.style["background-color"]'>
+          </div>
+          <div class='form'>
+            对齐方式
+            <label v-for='list in ["left","center","right"]' :key='list.id'>
+              <input type="radio" :value='list' v-model='right.form.style["text-align"]'>{{list.name}}
+              <div class="after"></div>
+            </label>
+          </div>
+          <div class='form'>
+            字体粗细
+            <label v-for='list in ["lighter","normal","bold","bolder"]' :key='list.id'>
+              <input type="radio" :value='list' v-model='right.form.style["font-weight"]'>{{list.name}}
+              <div class="after"></div>
+            </label>
+          </div>
         </div>
         <div v-if='right.form.type=="input"'>
-          <div class='form'>
-            <input type="text" v-model='right.form.value'>初始值
+          <div class='form blo'>
+            表单名字
+            <input type="text" v-model='right.form.name'>
           </div>
-          <div class='form'>
-            <input type="text" v-model='right.form.placeholder'>提示语
+          <div class='form blo'>
+            初始值
+            <input type="text" v-model='right.form.value'>
           </div>
-          <div class='form' style='display:block'>
+          <div class='form blo'>
+            提示语
+            <input type="text" v-model='right.form.placeholder'>
+          </div>
+          <div class='form blo'>
             校验方式
             <label v-for='list in test' :key='list.id'>
               <input type="radio" :value='list.value' v-model='right.form.test'>{{list.name}}
               <div class="after"></div>
-            </label>
-            ^[A-Z]+$
+            </label><br>
+            ^[A-Z]+$<br>
             <input type="text" v-model='right.form.test'>
           </div>
         </div>
+        <div v-if='right.form.type=="number"'>
+          <div class='form blo'>
+            表单名字
+            <input type="text" v-model='right.form.name'>
+          </div>
+          <div class='form blo'>
+            初始值
+            <input type="number" v-model='right.form.value'>
+          </div>
+          <div class='form blo'>
+            提示语
+            <input type="text" v-model='right.form.placeholder'>
+          </div>
+          <div class='form blo'>
+            最大值
+            <input type="number" v-model='right.form.max'>
+          </div>
+          <div class='form blo'>
+            最小值
+            <input type="number" v-model='right.form.min'>
+          </div>
+        </div>
+        <div v-if='right.form.type=="date"'>
+          <div class='form blo'>
+            表单名字
+            <input type="text" v-model='right.form.name'>
+          </div>
+          <div class='form blo'>
+            初始值
+            <!-- <input type="date" v-model='right.form.value'> -->
+            <input type="date" :min='right.form.min' :max='right.form.max' v-model='right.form.value'>
+          </div>
+          <div class='form blo'>
+            提示语
+            <input type="text" v-model='right.form.placeholder'>
+          </div>
+          <div class='form blo'>
+            最大值
+            <input type="date" v-model='right.form.max'>
+          </div>
+          <div class='form blo'>
+            最小值
+            <input type="date" v-model='right.form.min'>
+          </div>
+        </div>
         <div v-if='right.form.type=="radio"'>
+          <div class='form blo'>
+            表单名字
+            <input type="text" v-model='right.form.name'>
+          </div>
           <ul class='ul'>
             <button v-on:click='addli'>添加一组</button>
             <li v-for='(list,index) in right.form.options' :key='list.id'>
@@ -88,6 +191,10 @@
           </ul>
         </div>
         <div v-if='right.form.type=="checkbox"'>
+          <div class='form blo'>
+            表单名字
+            <input type="text" v-model='right.form.name'>
+          </div>
           <ul class='ul'>
             <button v-on:click='addli'>添加一组</button>
             <li v-for='(list,index) in right.form.options' :key='list.id'>
@@ -106,7 +213,7 @@
         </div>
       </div>
       <div v-else>
-        <!-- 布局设置 -->
+
       </div>
     </div>
     <div class="mouse" v-show='mouse' :style='absolute'>拖拽中</div>
@@ -118,10 +225,13 @@
 import $ from "jquery";
 // 引入布局组件
 import components from "@/components/component";
+// 引入显示布局组件
+import comlook from "@/components/comlook";
 export default {
   name: "Drag",
   components: {
-    components
+    components,
+    comlook
   },
   data() {
     return {
@@ -183,46 +293,37 @@ export default {
           value: ""
         },
         {
-          name: "数字校验",
-          value: "^[0-9]*$"
-        },
-        {
           name: "电话号码",
           value: "^1[0-9]{10}$"
+        },
+        {
+          name: "邮箱地址",
+          value: "^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$"
+        },
+        {
+          name: "身份证号",
+          value: "(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)"
         }
       ]
     };
   },
   methods: {
-    addli() {
-      // console.log("添加一组");
-      let one = {
-        name: "",
-        type: "",
-        value: ""
-      };
-      this.right.form.options.push(one);
-    },
-    removeli(index) {
-      this.right.form.options.splice(index, 1);
-    },
-    setup(list, e) {
-      this.right = list;
-    },
     totree() {
       this.$router.push({
         path: "/tree"
       });
     },
-    remove(index) {
-      this.form.splice(index, 1);
+    mousemove(e) {
+      let that = this;
+      if (that.mouse) {
+        that.absolute.top = e.clientY - 10 + "px";
+        that.absolute.left = e.clientX - 30 + "px";
+        let topY = e.pageY;
+        that.find($(e.path[0]).closest(".component"), topY, that);
+      }
     },
-    copy(list, index) {
-      this.form.splice(index, 0, list);
-    },
-    look(index) {
-      console.log(this.form);
-      console.log(index);
+    mouseup() {
+      this.mouse = false;
     },
     mousedown(type, e, list, flex) {
       let that = this;
@@ -242,13 +343,32 @@ export default {
             list: []
           };
         }
+        if (type == "title") {
+          that.data = {
+            width: 12,
+            type: "title",
+            form: {
+              type: "title",
+              key: new Date().getTime(),
+              // key: parseInt(new Date().getTime()).toString(36),
+              value: "标题",
+              style: {
+                "font-size": "16px",
+                color: "",
+                "text-align": "left",
+                "font-weight": "normal",
+                "background-color": ""
+              }
+            }
+          };
+        }
         if (type == "input") {
           that.data = {
             width: 12,
             type: "input",
-            show: false,
             form: {
               type: "input",
+              name: "",
               key: new Date().getTime(),
               // key: parseInt(new Date().getTime()).toString(36),
               readOnly: false, //只读
@@ -259,13 +379,51 @@ export default {
             }
           };
         }
+        if (type == "number") {
+          that.data = {
+            width: 12,
+            type: "number",
+            form: {
+              type: "number",
+              name: "",
+              key: new Date().getTime(),
+              // key: parseInt(new Date().getTime()).toString(36),
+              readOnly: false, //只读
+              required: true, //必填
+              // test: "", //校验
+              value: "",
+              max: "",
+              min: "",
+              placeholder: ""
+            }
+          };
+        }
+        if (type == "date") {
+          that.data = {
+            width: 12,
+            type: "date",
+            form: {
+              type: "date",
+              name: "",
+              key: new Date().getTime(),
+              // key: parseInt(new Date().getTime()).toString(36),
+              readOnly: false, //只读
+              required: true, //必填
+              // test: "", //校验
+              value: "",
+              max: "",
+              min: "",
+              placeholder: ""
+            }
+          };
+        }
         if (type == "radio") {
           that.data = {
             width: 12,
             type: "radio",
-            show: false,
             form: {
               type: "radio",
+              name: "",
               key: new Date().getTime(),
               // key: parseInt(new Date().getTime()).toString(36),
               readOnly: false, //只读
@@ -290,9 +448,9 @@ export default {
           that.data = {
             width: 12,
             type: "checkbox",
-            show: false,
             form: {
               type: "checkbox",
+              name: "",
               key: new Date().getTime(),
               // key: parseInt(new Date().getTime()).toString(36),
               readOnly: false, //只读
@@ -336,17 +494,46 @@ export default {
         }
       }
     },
+    generatejson() {
+      console.log(this.form);
+      let form = [];
+      this.form.forEach(function(list, index) {
+        if (list.form) {
+          form.push(list.form);
+        }
+      });
+      console.log(form);
+    },
     mouseover(e) {
       this.show = true;
     },
-    mousemove(e) {
-      let that = this;
-      if (that.mouse) {
-        that.absolute.top = e.clientY - 10 + "px";
-        that.absolute.left = e.clientX - 30 + "px";
-        let topY = e.pageY;
-        that.find($(e.path[0]).closest(".component"), topY, that);
-      }
+    mouseout() {
+      this.show = false;
+    },
+    setup(list, e) {
+      this.right = list;
+    },
+    copy(list, index) {
+      this.form.splice(index, 0, list);
+    },
+    look(index) {
+      console.log(this.form);
+      console.log(index);
+    },
+    remove(index) {
+      this.form.splice(index, 1);
+    },
+    addli() {
+      // console.log("添加一组");
+      let one = {
+        name: "",
+        type: "",
+        value: ""
+      };
+      this.right.form.options.push(one);
+    },
+    removeli(index) {
+      this.right.form.options.splice(index, 1);
     },
     find(div, topY, that) {
       let childs = div.children(".main").children(".com");
@@ -358,12 +545,6 @@ export default {
       }
       that.placeindex = index;
     },
-    mouseout() {
-      this.show = false;
-    },
-    mouseup() {
-      this.mouse = false;
-    },
     add(e) {
       if (this.mouse) {
         this.form.splice(this.placeindex, 0, this.data);
@@ -374,16 +555,6 @@ export default {
           .closest(".component")
           .addClass("active");
       }
-    },
-    generatejson() {
-      console.log(this.form);
-      let form = [];
-      this.form.forEach(function(list, index) {
-        if (list.form) {
-          form.push(list.form);
-        }
-      });
-      console.log(form);
     }
   }
 };
@@ -396,6 +567,7 @@ export default {
   min-height: 900px;
   display: flex;
   font-size: 16px;
+
   /*设置文字不能被选中     以下为css样式*/
   // -webkit-user-select: none;
   // -moz-user-select: none;
@@ -410,7 +582,7 @@ export default {
     /*Opera9.6*/
     -ms-box-sizing: border-box;
     /*IE8*/
-    width: 8%;
+    flex: 1;
     height: 100%;
     border: 1px solid #000;
 
@@ -430,7 +602,7 @@ export default {
     /*Opera9.6*/
     -ms-box-sizing: border-box;
     /*IE8*/
-    width: 77%;
+    flex: 3;
     height: 100%;
     padding: 20px 10px 0;
     border: 1px solid #000;
@@ -471,6 +643,26 @@ export default {
     }
   }
 
+  .look {
+    -moz-box-sizing: border-box;
+    /*Firefox3.5+*/
+    -webkit-box-sizing: border-box;
+    /*Safari3.2+*/
+    -o-box-sizing: border-box;
+    /*Opera9.6*/
+    -ms-box-sizing: border-box;
+    /*IE8*/
+    flex: 4;
+    height: 100%;
+    border: 1px solid #000;
+
+    .components {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+  }
+
   .right {
     -moz-box-sizing: border-box;
     /*Firefox3.5+*/
@@ -480,18 +672,18 @@ export default {
     /*Opera9.6*/
     -ms-box-sizing: border-box;
     /*IE8*/
-    width: 15%;
+    flex: 2;
     height: 100%;
     border: 1px solid #000;
 
     input {
       background-color: violet;
       display: block;
-      margin: 10px 0;
     }
 
     .form {
       display: flex;
+      margin-top: 10px;
 
       label {
         display: flex;
@@ -528,6 +720,10 @@ export default {
           background: green;
         }
       }
+    }
+
+    .form.blo {
+      display: block;
     }
 
     .ul {

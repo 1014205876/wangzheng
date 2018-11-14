@@ -2,7 +2,7 @@
   <div>
     <div class="component" @mouseover.stop='mouseover' @mouseout.stop='mouseout' @mouseup.stop='add' @click.stop='setup(form,$event)'>
       <div class="box">
-        <button class="btn" v-if='form.type!="component"'>设置</button>
+        <!-- <button class="btn" v-if='form.type!="component"'>设置</button> -->
         <button class="btn" @mousedown='move(form.type,$event,form);fatherremove()'>移动</button>
         <!-- <button class="btn" @click='fathercopy()'>复制</button> -->
         <button class="btn" @click='chakan'>查看</button>
@@ -13,22 +13,46 @@
       <div class='place' v-if='form.type=="component"' v-show='form.show&&mouse&&placeindex==0'>生成位置</div>
       <div class='main' v-if='form.type=="component"'>
         <div class='com' v-for='(list,index) in form.list' :key='list.id' :style='{width:(list.width/12*100+"%")}'>
-          <components :form='list' :index='index' :mouse='mouse' :data='data' :placeindex='placeindex'
-            @index='remove' @copy='copy' @look='look' @typechange='move' @setup='setup' @mouseup='mouseup'></components>
+          <components :form='list' :index='index' :mouse='mouse' :data='data' :placeindex='placeindex' @index='remove'
+            @copy='copy' @look='look' @typechange='move' @setup='setup' @mouseup='mouseup'></components>
           <div class='place' v-show='form.show&&mouse&&placeindex==index-0+1'>生成位置</div>
         </div>
       </div>
       <div v-if='form.type=="input"'>
         <div class='form'>
-          <input type="text" v-model='form.form.key' :disabled='true'>唯一key值
+          唯一key值
+          <input type="text" v-model='form.form.key' :disabled='true'>
         </div>
-        <input v-if='form.type=="input"' type="text" :placeholder='form.form.placeholder' v-model='form.form.value'>
+        {{form.form.name}}<br>
+        输入框
+        <input type="text" :placeholder='form.form.placeholder' v-model='form.form.value'>
         <button @click='test(form.form.value,form.form.test)'>校验</button>
+      </div>
+      <div v-if='form.type=="number"'>
+        <div class='form'>
+          唯一key值
+          <input type="text" v-model='form.form.key' :disabled='true'>
+        </div>
+        {{form.form.name}}<br>
+        数字框
+        <input type="number" :min='form.form.min' :max='form.form.max' :placeholder='form.form.placeholder' v-model='form.form.value'>
+      </div>
+      <div v-if='form.type=="date"'>
+        <div class='form'>
+          唯一key值
+          <input type="text" v-model='form.form.key' :disabled='true'>
+        </div>
+        {{form.form.name}}<br>
+        时间框
+        <input type="date" :min='form.form.min' :max='form.form.max' :placeholder='form.form.placeholder' v-model='form.form.value'>
       </div>
       <div v-if='form.type=="radio"'>
         <div class='form'>
-          <input type="text" v-model='form.form.key' :disabled='true'>唯一key值
+          唯一key值
+          <input type="text" v-model='form.form.key' :disabled='true'>
         </div>
+        {{form.form.name}}<br>
+        单选框
         <div class='form' v-for='item in form.form.options' :key='item.id'>
           <label class='radio'>
             <input type='radio' :value='item.value' v-model='form.form.value'>{{item.name}}
@@ -38,14 +62,23 @@
       </div>
       <div v-if='form.type=="checkbox"'>
         <div class='form'>
-          <input type="text" v-model='form.form.key' :disabled='true'>唯一key值
+          唯一key值
+          <input type="text" v-model='form.form.key' :disabled='true'>
         </div>
+        {{form.form.name}}<br>
+        多选框
         <div class='form' v-for='item in form.form.options' :key='item.id'>
           <label class='checkbox'>
             <input type='checkbox' :value='item.value' v-model='form.form.value'>{{item.name}}
             <div class="after"></div>
           </label>
         </div>
+      </div>
+      <div v-if='form.type=="title"'>
+        <!-- <div class='form'>
+          <input type="text" v-model='form.form.key' :disabled='true'>唯一key值
+        </div> -->
+        <div :style='form.form.style'>{{form.form.value}}</div>
       </div>
     </div>
   </div>
@@ -64,6 +97,10 @@ export default {
     test(val, re) {
       if (re) {
         let res = new RegExp(re);
+        console.log(re);
+        console.log(res);
+        console.log(res.test(val));
+        console.log(/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test('1014205876@qq.com'));
         if (res.test(val)) {
           console.log("校验成功");
         } else {
@@ -72,10 +109,6 @@ export default {
       } else {
         console.log("无需校验");
       }
-    },
-    stop(e) {
-      console.log("stop");
-      e.stopPropagation();
     },
     setup(list, e) {
       $(e.path[e.path.length - 7])
@@ -141,6 +174,7 @@ export default {
   padding: 0px 10px;
   border: 1px solid #000;
   border-radius: 5px;
+
   .place {
     margin: 10px;
   }
@@ -157,11 +191,13 @@ export default {
       color: #fff;
     }
   }
+
   .main {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
+
     .com {
       -moz-box-sizing: border-box;
       /*Firefox3.5+*/
@@ -172,9 +208,10 @@ export default {
       -ms-box-sizing: border-box;
       /*IE8*/
       padding: 0 10px;
-  margin: 20px 0px 20px;
+      margin: 20px 0px 20px;
     }
   }
+
   input {
     background-color: violet;
     display: block;
@@ -207,6 +244,7 @@ export default {
       background: green;
     }
   }
+
   .radio {
     .after:before {
       content: "";
@@ -216,6 +254,7 @@ export default {
       border: 1px solid red;
     }
   }
+
   .checkbox {
     .after:before {
       content: "";
@@ -228,7 +267,7 @@ export default {
 }
 
 .component.active {
-  border: 2px dashed yellow;
-  background: thistle;
+  border: 1px dashed yellow;
+  background: #c7c7c7;
 }
 </style>
