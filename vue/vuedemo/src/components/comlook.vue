@@ -41,24 +41,27 @@
     <div v-if='form.type=="title"'>
       <div :style='form.form.style' style='white-space:pre-wrap'>{{form.form.value}}</div>
     </div>
+    <div v-if='form.type=="editor"'>
+        <div v-html='form.form.div'></div>
+    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: "comlook",
-    props: ["form", "index", "mouse", "data", "placeindex"],
-    data() {
-      return {};
-    },
-    methods: {},
-    created() { }
-  };
+export default {
+  name: "comlook",
+  props: ["form", "index", "mouse", "data", "placeindex"],
+  data() {
+    return {};
+  },
+  methods: {},
+  created() {}
+};
 </script>
 
 <style lang="less" scoped>
-.comlook{
-  .components{
+.comlook {
+  .components {
     -moz-box-sizing: border-box;
     /*Firefox3.5+*/
     -webkit-box-sizing: border-box;
@@ -69,7 +72,7 @@
     /*IE8*/
     display: flex;
     flex-wrap: wrap;
-      justify-content: space-around;
+    justify-content: space-around;
   }
 }
 </style>

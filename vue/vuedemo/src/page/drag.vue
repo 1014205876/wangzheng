@@ -3,9 +3,10 @@
     <!-- <button @click='totree'>模板页面</button> -->
     <div class="left">
       组件选择
-      <!-- <button class='candrag' @mousedown='mousedown("component",$event,false,"6,6")'>6,6布局框</button> -->
+      <button class='candrag' @mousedown='mousedown("component",$event,false,"6,6")'>6,6布局框</button>
       <button class='candrag' @mousedown='mousedown("component",$event,false)'>布局框</button>
       <button class='candrag' @mousedown='mousedown("title",$event,false)'>文本栏</button>
+      <button class='candrag' @mousedown='mousedown("editor",$event,false)'>富文本栏</button>
       <button class='candrag' @mousedown='mousedown("input",$event,false)'>输入框</button>
       <button class='candrag' @mousedown='mousedown("number",$event,false)'>数字框</button>
       <button class='candrag' @mousedown='mousedown("date",$event,false)'>日期框</button>
@@ -100,6 +101,10 @@
               <div class="after"></div>
             </label>
           </div>
+        </div>
+        <div v-if='right.form.type=="editor"'>
+          富文本框无法定制
+          <!-- <editor :div='right.form.div' @changeeditor='editor'></editor> -->
         </div>
         <div v-if='right.form.type=="input"'>
           <div class='form blo'>
@@ -213,7 +218,14 @@
         </div>
       </div>
       <div v-else>
-
+      </div>
+    </div>
+    <div class='look' style='flex:10'>
+      最终显示
+      <div class='components'>
+        <div v-for='(list,index) in form' :key='list.id' :style='{width:(list.width/12*100+"%")}'>
+          <comlook :form='list' :index='index' :mouse='mouse' :data='data' :placeindex='placeindex'></comlook>
+        </div>
       </div>
     </div>
     <div class="mouse" v-show='mouse' :style='absolute'>拖拽中</div>
@@ -225,12 +237,15 @@
 import $ from "jquery";
 // 引入布局组件
 import components from "@/components/component";
+// 引入富文本组件
+import editor from "@/components/editor";
 // 引入显示布局组件
 import comlook from "@/components/comlook";
 export default {
   name: "Drag",
   components: {
     components,
+    editor,
     comlook
   },
   data() {
@@ -298,16 +313,20 @@ export default {
         },
         {
           name: "邮箱地址",
-          value: "^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$"
+          value:
+            "^[A-Za-zd]+([-_.][A-Za-zd]+)*@([A-Za-zd]+[-.])+[A-Za-zd]{2,4}$"
         },
         {
           name: "身份证号",
-          value: "(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)"
+          value: "(^d{15}$)|(^d{18}$)|(^d{17}(d|X|x)$)"
         }
       ]
     };
   },
   methods: {
+    editor(value) {
+      console.log(value);
+    },
     totree() {
       this.$router.push({
         path: "/tree"
@@ -339,6 +358,7 @@ export default {
           that.data = {
             width: 12,
             type: "component",
+            flex: "12",
             show: false,
             list: []
           };
@@ -359,6 +379,16 @@ export default {
                 "font-weight": "normal",
                 "background-color": ""
               }
+            }
+          };
+        }
+        if (type == "editor") {
+          that.data = {
+            width: 12,
+            type: "editor",
+            form: {
+              type: "editor",
+              div: ""
             }
           };
         }
@@ -475,17 +505,20 @@ export default {
           that.data = {
             width: 12,
             type: "component",
+            flex: "6,6",
             show: false,
             list: [
               {
                 width: 6,
                 type: "component",
+                flex: "6,6",
                 show: false,
                 list: []
               },
               {
                 width: 6,
                 type: "component",
+                flex: "6,6",
                 show: false,
                 list: []
               }
@@ -563,6 +596,7 @@ export default {
 <style lang="less" scoped>
 .drag {
   position: relative;
+  width:200%;
   height: 900px;
   min-height: 900px;
   display: flex;
@@ -602,8 +636,9 @@ export default {
     /*Opera9.6*/
     -ms-box-sizing: border-box;
     /*IE8*/
-    flex: 3;
+    flex: 4;
     height: 100%;
+    overflow: auto;
     padding: 20px 10px 0;
     border: 1px solid #000;
 
@@ -652,8 +687,9 @@ export default {
     /*Opera9.6*/
     -ms-box-sizing: border-box;
     /*IE8*/
-    flex: 4;
+    flex: 3;
     height: 100%;
+    overflow: auto;
     border: 1px solid #000;
 
     .components {

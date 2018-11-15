@@ -80,6 +80,10 @@
         </div> -->
         <div :style='form.form.style' style='white-space:pre-wrap'>{{form.form.value}}</div>
       </div>
+      <div v-if='form.type=="editor"'>
+        <!-- <div v-html='form.form.div'></div> -->
+        <editor @changeeditor='editor'></editor>
+      </div>
     </div>
   </div>
 </template>
@@ -87,20 +91,32 @@
 <script>
 // 引入jq
 import $ from "jquery";
+// 引入富文本组件
+import editor from "@/components/editor";
 export default {
   name: "components",
   props: ["form", "index", "mouse", "data", "placeindex"],
+  components: {
+    editor
+  },
   data() {
     return {};
   },
   methods: {
+    editor(value) {
+      this.form.form.div=value
+    },
     test(val, re) {
       if (re) {
         let res = new RegExp(re);
         console.log(re);
         console.log(res);
         console.log(res.test(val));
-        console.log(/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test('1014205876@qq.com'));
+        console.log(
+          /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(
+            "1014205876@qq.com"
+          )
+        );
         if (res.test(val)) {
           console.log("校验成功");
         } else {
@@ -213,6 +229,7 @@ export default {
   }
 
   input {
+    width: 100%;
     background-color: violet;
     display: block;
   }
