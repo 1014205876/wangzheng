@@ -78,7 +78,7 @@
         <!-- <div class='form'>
           <input type="text" v-model='form.form.key' :disabled='true'>唯一key值
         </div> -->
-        <div :style='form.form.style'>{{form.form.value}}</div>
+        <div :style='form.form.style' style='white-space:pre-wrap'>{{form.form.value}}</div>
       </div>
     </div>
   </div>

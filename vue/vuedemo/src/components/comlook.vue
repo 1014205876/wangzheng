@@ -39,7 +39,7 @@
       </div>
     </div>
     <div v-if='form.type=="title"'>
-      <div :style='form.form.style'>{{form.form.value}}</div>
+      <div :style='form.form.style' style='white-space:pre-wrap'>{{form.form.value}}</div>
     </div>
   </div>
 </template>

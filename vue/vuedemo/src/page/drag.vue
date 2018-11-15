@@ -34,7 +34,7 @@
     </div>
     <div class="right">
       表单定制<br>
-      宽度(1-12)<input type="text" v-model='right.width'>
+      宽度(1-12)<input type="number" min='1' max='12' v-model='right.width'>
       <div v-if='right.form'>
         <div v-if='right.form.type!="title"'>
           <div class='form blo'>
