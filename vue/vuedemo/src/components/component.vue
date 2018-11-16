@@ -10,9 +10,26 @@
         <div style='clear:both'></div>
       </div>
       <div style='clear:both'></div>
-      <div class='place' v-if='form.type=="component"' v-show='form.show&&mouse&&placeindex==0'>生成位置</div>
+      <div class='place' v-show='form.show&&mouse&&placeindex==0'>生成位置</div>
       <div class='main' v-if='form.type=="component"'>
         <div class='com' v-for='(list,index) in form.list' :key='list.id' :style='{width:(list.width/12*100+"%")}'>
+          <components :form='list' :index='index' :mouse='mouse' :data='data' :placeindex='placeindex' @index='remove'
+            @copy='copy' @look='look' @typechange='move' @setup='setup' @mouseup='mouseup'></components>
+          <div class='place' v-show='form.show&&mouse&&placeindex==index-0+1'>生成位置</div>
+        </div>
+      </div>
+      <!-- <div class='place' v-if='form.type=="table"' v-show='form.show&&mouse&&placeindex==0'>生成位置</div> -->
+      <div v-if='form.type=="table"' >
+      显示的组件
+      <div class='form' v-for='(item,index) in form.list' :key='item.id'>
+          <label class='radio'>
+            <input type='radio' :value='index' v-model='form.index'>第{{index}}个
+            <div class="after"></div>
+          </label>
+        </div>
+      </div>
+      <div class='main' v-if='form.type=="table"'>
+        <div class='com' v-for='(list,index) in form.list' :key='list.id' :style='{width:(list.width/12*100+"%")}' v-show='index==form.index'>
           <components :form='list' :index='index' :mouse='mouse' :data='data' :placeindex='placeindex' @index='remove'
             @copy='copy' @look='look' @typechange='move' @setup='setup' @mouseup='mouseup'></components>
           <div class='place' v-show='form.show&&mouse&&placeindex==index-0+1'>生成位置</div>
@@ -27,6 +44,13 @@
         输入框
         <input type="text" :placeholder='form.form.placeholder' v-model='form.form.value'>
         <button @click='test(form.form.value,form.form.test)'>校验</button>
+      </div>
+      <div v-if='form.type=="file"'>
+        <div class='form'>
+          唯一key值
+          <input type="text" v-model='form.form.key' :disabled='true'>
+        </div>
+        <img :src="form.form.url" alt="">
       </div>
       <div v-if='form.type=="number"'>
         <div class='form'>
@@ -104,7 +128,7 @@ export default {
   },
   methods: {
     editor(value) {
-      this.form.form.div=value
+      this.form.form.div = value;
     },
     test(val, re) {
       if (re) {

@@ -3,11 +3,13 @@
     <!-- <button @click='totree'>模板页面</button> -->
     <div class="left">
       组件选择
-      <button class='candrag' @mousedown='mousedown("component",$event,false,"6,6")'>6,6布局框</button>
+      <input type="number" v-model='num'>
+      <button class='candrag' @mousedown='mousedown("table",$event,false,num)'>选项卡布局框</button>
       <button class='candrag' @mousedown='mousedown("component",$event,false)'>布局框</button>
       <button class='candrag' @mousedown='mousedown("title",$event,false)'>文本栏</button>
       <button class='candrag' @mousedown='mousedown("editor",$event,false)'>富文本栏</button>
       <button class='candrag' @mousedown='mousedown("input",$event,false)'>输入框</button>
+      <button class='candrag' @mousedown='mousedown("file",$event,false)'>上传</button>
       <button class='candrag' @mousedown='mousedown("number",$event,false)'>数字框</button>
       <button class='candrag' @mousedown='mousedown("date",$event,false)'>日期框</button>
       <button class='candrag' @mousedown='mousedown("radio",$event,false)'>单选框</button>
@@ -40,7 +42,7 @@
         <div v-if='right.form.type!="title"'>
           <div class='form blo'>
             唯一key值
-            <input type="text" v-model='right.form.key' :disabled='true'>
+            <input type="text" v-model='right.form.key'>
           </div>
           <div class='form blo'>
             是否必填
@@ -127,6 +129,12 @@
             </label><br>
             ^[A-Z]+$<br>
             <input type="text" v-model='right.form.test'>
+          </div>
+        </div>
+        <div v-if='right.form.type=="file"'>
+          <div class='form blo'>
+            初始值
+            <input type="file" accept="image/*" @change="file">
           </div>
         </div>
         <div v-if='right.form.type=="number"'>
@@ -218,6 +226,15 @@
         </div>
       </div>
       <div v-else>
+          <!-- 显示的组件下标
+          <input type="number" v-model='right.index'>
+          
+        <div class='form' v-for='(item,index) in right.list' :key='item.id'>
+          <label class='radio'>
+            <input type='radio' :value='index' v-model='right.index'>第{{index}}个
+            <div class="after"></div>
+          </label>
+        </div> -->
       </div>
     </div>
     <div class='look' style='flex:10'>
@@ -251,6 +268,7 @@ export default {
   data() {
     return {
       type: "",
+      num: 3,
       mouse: false,
       show: false,
       absolute: {
@@ -324,6 +342,9 @@ export default {
     };
   },
   methods: {
+    file(e) {
+      console.log(e.target);
+    },
     editor(value) {
       console.log(value);
     },
@@ -344,7 +365,7 @@ export default {
     mouseup() {
       this.mouse = false;
     },
-    mousedown(type, e, list, flex) {
+    mousedown(type, e, list, num) {
       let that = this;
       that.absolute.top = e.clientY - 10 + "px";
       that.absolute.left = e.clientX - 30 + "px";
@@ -354,6 +375,24 @@ export default {
       if (list) {
         that.data = list;
       } else {
+        if (type == "table") {
+          that.data = {
+            width: 12,
+            index: 0,
+            type: "table",
+            show: false,
+            list: []
+          };
+          for (let i = 0; i < num; i++) {
+            let form = {
+              width: 12,
+              type: "component",
+              show: false,
+              list: []
+            };
+            that.data.list.push(form);
+          }
+        }
         if (type == "component") {
           that.data = {
             width: 12,
@@ -406,6 +445,24 @@ export default {
               test: "", //校验
               value: "",
               placeholder: ""
+            }
+          };
+        }
+        if (type == "file") {
+          that.data = {
+            width: 12,
+            type: "file",
+            form: {
+              type: "file",
+              name: "",
+              key: new Date().getTime(),
+              // key: parseInt(new Date().getTime()).toString(36),
+              // readOnly: false, //只读
+              // required: true, //必填
+              // test: "", //校验
+              // value: "",
+              // placeholder: ""
+              url: ""
             }
           };
         }
@@ -501,30 +558,6 @@ export default {
             }
           };
         }
-        if (flex == "6,6") {
-          that.data = {
-            width: 12,
-            type: "component",
-            flex: "6,6",
-            show: false,
-            list: [
-              {
-                width: 6,
-                type: "component",
-                flex: "6,6",
-                show: false,
-                list: []
-              },
-              {
-                width: 6,
-                type: "component",
-                flex: "6,6",
-                show: false,
-                list: []
-              }
-            ]
-          };
-        }
       }
     },
     generatejson() {
@@ -596,7 +629,7 @@ export default {
 <style lang="less" scoped>
 .drag {
   position: relative;
-  width:200%;
+  width: 200%;
   height: 900px;
   min-height: 900px;
   display: flex;

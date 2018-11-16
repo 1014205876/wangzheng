@@ -5,6 +5,11 @@
         <comlook :form='list' :index='index' :mouse='mouse' :data='data' :placeindex='placeindex'></comlook>
       </div>
     </div>
+    <div class='components' v-if='form.type=="table"'>
+      <div v-for='(list,index) in form.list' :key='list.id' :style='{width:(list.width/12*100+"%")}' v-show='index==form.index'>
+        <comlook :form='list' :index='index' :mouse='mouse' :data='data' :placeindex='placeindex'></comlook>
+      </div>
+    </div>
     <div v-if='form.type=="input"'>
       <span v-if='form.form.required' style='color:red'>*</span>
       <input type="text" :placeholder='form.form.placeholder' v-model='form.form.value'>
