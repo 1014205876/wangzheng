@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav02.component.css']
 })
 export class Nav02Component implements OnInit {
-
+  editorContent=''
   constructor() { }
 
   ngOnInit() {
   }
-
+con(){
+  console.log(this.editorContent)
+}
 }

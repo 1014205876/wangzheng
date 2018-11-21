@@ -20,7 +20,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { ChangedateComponent } from './component/changedate/changedate.component';
 import { LessComponent } from './component/less/less.component';
 import { ComponentComponent } from './component/component/component.component';
-
+// import { QuillModule } from 'ngx-quill';
+import {CKEditorModule} from 'ng2-ckeditor';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -58,7 +59,9 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    // QuillModule,
+    CKEditorModule
   ],
   providers: [Consol],
   bootstrap: [AppComponent]
