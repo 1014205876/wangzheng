@@ -1,38 +1,333 @@
 @charset "utf-8";
-*{
-padding:0;
-margin:0;
-list-style:none;
-border:0;
-}
-html{
-font-size: 100px;
-background: #fff;
-}
-body{
-font-family: "Microsoft YaHei","微软雅黑",Helvetica,"黑体",'SimSun',Arial,Tahoma;
-color: #000;
-font-size:0.24rem;
-}
-a,a:visited{
-color: #000;
-text-decoration: none;
-}
-a:hover{
-text-decoration: none;
-}
-img{
-display: block;
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border: 0;
 }
 
-.clearfix:after{
-content: "";
-display: block;
-height: 0;
-clear: both;
-visibility: hidden;
+html {
+    font-size: 100px;
+    background: #fff;
 }
+
+body {
+    font-family: "Microsoft YaHei", "微软雅黑", Helvetica, "黑体", 'SimSun', Arial, Tahoma;
+    color: #000;
+    font-size: 0.24rem;
+}
+
+a,
+a:visited {
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    display: block;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
 .clearfix {
-/* 触发 hasLayout */
-zoom: 1;
+    /* 触发 hasLayout */
+    zoom: 1;
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+.btn {
+    padding: 5px 15px;
+    background-color: rgba(221, 221, 221, 1);
+}
+
+.btn-primary,
+.sweet-alert button.confirm,
+.wizard>.actions a {
+    background-color: #716aca;
+    border-color: #716aca;
+}
+
+.btn-primary.disabled,
+.sweet-alert button.disabled.confirm,
+.wizard>.actions a.disabled,
+.btn-primary:disabled,
+.sweet-alert button.confirm:disabled,
+.wizard>.actions a:disabled {
+    color: #fff;
+    background-color: #716aca;
+    border-color: #716aca;
+}
+
+.btn-outline-primary {
+    color: #212529;
+    background-color: #fff;
+    background-color: transparent;
+    border-color: #ebedf2
+}
+
+.pcoded .pcoded-header.headBg {
+    background: #fff;
+    height: 70px;
+}
+
+.container-fluid {
+    padding: 7px 15px;
+}
+
+.header-navbar .navbar-wrapper .navbar-logo {
+    padding: 10px 24px;
+}
+
+.header-navbar .navbar-wrapper .navbar-logo a {
+    margin: 0;
+}
+
+.header-navbar .navbar-wrapper .navbar-container .nav-left li>a,
+.header-navbar .navbar-wrapper .navbar-container .nav-right li>a {
+    color: #000;
+}
+
+.header-navbar .navbar-wrapper .navbar-container .header-notification .show-notification,
+.header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification {
+    transform: translateY(30px);
+}
+
+.breadcrumb-box .page-block {
+    padding: 2rem 1.25rem;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    color: #a0a1ae;
+    content: "-";
+}
+
+.breadcrumb-item a {
+    color: #a0a1ae
+}
+
+#main_navbar {
+    background: #2c2e3e;
+}
+
+.pcoded .pcoded-navbar .pcoded-item>li.active:hover>a,
+.pcoded .pcoded-navbar .pcoded-item>li.active>a,
+.pcoded .pcoded-navbar .pcoded-item>li.pcoded-trigger:hover>a,
+.pcoded .pcoded-navbar .pcoded-item>li.pcoded-trigger>a,
+.pcoded .pcoded-navbar .pcoded-item>li:hover:hover>a,
+.pcoded .pcoded-navbar .pcoded-item>li:hover>a {
+    background: none;
+}
+
+.pcoded .pcoded-navbar .pcoded-item>li.active:hover>a,
+.pcoded .pcoded-navbar .pcoded-item>li.active>a,
+.pcoded .pcoded-navbar .pcoded-item>li.pcoded-trigger:hover>a,
+.pcoded .pcoded-navbar .pcoded-item>li.pcoded-trigger>a,
+.pcoded .pcoded-navbar .pcoded-item>li:hover:hover>a,
+.pcoded .pcoded-navbar .pcoded-item>li:hover>a {
+    background: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.pcoded .pcoded-navbar .pcoded-item li.pcoded-hasmenu .pcoded-submenu {
+    background: #282a3c;
+}
+
+.pcoded .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu li>a .pcoded-mtext:before {
+    content: '';
+    padding: 0;
+}
+
+.checkbox-fade.fade-in-default .cr,
+.checkbox-fade.zoom-default .cr,
+.checkbox-zoom.fade-in-default .cr,
+.checkbox-zoom.zoom-default .cr {
+    border: 1px solid #d6d6d6;
+    border-radius: 3px;
+}
+
+.checkbox-fade.fade-in-default .cr .cr-icon,
+.checkbox-fade.zoom-default .cr .cr-icon,
+.checkbox-zoom.fade-in-default .cr .cr-icon,
+.checkbox-zoom.zoom-default .cr .cr-icon {
+    color: #716aca;
+}
+
+ngx-datatable.data-table,
+.data-table datatable-header,
+.data-table datatable-body-cell+datatable-body-cell,
+.ngx-datatable .datatable-header .datatable-header-cell {
+    border: 0;
+}
+
+.datatable-footer .datatable-pager li.active a {
+    background-color: #716aca;
+}
+
+.datatable-body-cell-label .switch {
+    height: 32px;
+}
+
+.data-table datatable-header-cell .datatable-header-cell-label,
+.data-table datatable-body-cell {
+    padding: 10px;
+    border: 0;
+}
+
+.data-table datatable-header-cell .datatable-header-cell-label,
+.datatable-body-cell-label {
+    line-height: 34px;
+    overflow: hidden;
+    margin-top: -1px;
+    text-align: center;
+    border-left: none;
+}
+
+.data-table datatable-header-cell .datatable-header-cell-label,
+.datatable-body-cell-label span {
+    display: block;
+    margin: auto;
+    width: 95%;
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.data-table .btn {
+    color: #666674;
+    background: none;
+    padding: 0;
+    display: inline-block;
+    text-align: center;
+}
+
+.datatable-header-cell-wrapper,
+.datatable-header-cell-label {
+    background: #f4f3f8;
+}
+
+.ngx-datatable .datatable-body .datatable-row-wrapper .datatable-body-cell {
+    background: #faf9fc;
+}
+
+.ngx-datatable .datatable-body .datatable-row-wrapper:nth-child(2n-1) .datatable-body-cell {
+    background: #fff;
+}
+
+.ngx-datatable .datatable-body .datatable-row-wrapper:hover .datatable-body-cell {
+    background: rgba(247, 246, 250, 1);
+}
+
+/* 查询条件 */
+
+.select-box .input-box span {
+    display: block;
+    width: 100%;
+    line-height: 2.25rem;
+}
+
+.select-box .input-box select,
+.select-box .input-box input {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.9rem;
+    border-radius: 2px;
+    border: 1px solid #ebedf2;
+    color: #575962;
+    background: #fff;
+    background-clip: padding-box;
+    height: 2.25rem;
+}
+
+.select-box .search-btn {
+    min-width: 220px;
+}
+
+.select-box .search-btn .btn {
+    text-align: center;
+}
+
+select.form-control,
+select.form-control:focus,
+select.form-control:hover {
+    border: 1px solid #ccc;
+}
+
+.md-tabs.md-left-tabs .nav-tabs {
+    height: 300px;
+    overflow: hidden;
+}
+
+.nav-content {
+    width: 120%;
+    height: calc(100% - 20px);
+    overflow: hidden;
+}
+
+.md-tabs.md-left-tabs .nav-item {
+    max-width: 150px;
+}
+
+.md-tabs.md-left-tabs .nav-item .nav-link {
+    line-height: 24px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.md-tabs.md-left-tabs .nav-item .nav-link:hover,
+.md-tabs.md-left-tabs .nav-item .nav-link.active:hover,
+.md-tabs.md-left-tabs .nav-item .nav-link.active {
+    border-left: 0;
+    border-right: 4px solid #716aca;
+}
+
+.md-tabs.md-left-tabs .tab-content {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.tab-content>.tab-pane {
+    width: 320px;
+    height: 100%;
+    overflow: hidden;
+    /* overflow-y: auto; */
+}
+
+.ztree {
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* .ztree li span.button.switch {
+    display: none;
+  } */
+
+.data-table .btn.authHide,
+.authHide {
+    display: none;
+}
+
+.authShow {
+    display: block;
+}
+
+.data-table .btn.authShow {
+    display: inline-block;
 }

@@ -21,7 +21,8 @@ import { ChangedateComponent } from './component/changedate/changedate.component
 import { LessComponent } from './component/less/less.component';
 import { ComponentComponent } from './component/component/component.component';
 // import { QuillModule } from 'ngx-quill';
-import {CKEditorModule} from 'ng2-ckeditor';
+import { CKEditorModule } from 'ng2-ckeditor';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';//ui表格
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -61,7 +62,8 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     // QuillModule,
-    CKEditorModule
+    CKEditorModule,
+    NgxDatatableModule
   ],
   providers: [Consol],
   bootstrap: [AppComponent]

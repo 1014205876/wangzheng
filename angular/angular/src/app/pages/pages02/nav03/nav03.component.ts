@@ -7,6 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Nav03Component implements OnInit {
 
+  table= [//表格的数据
+    {
+      name: '进件端名称',
+      key: 'getCustomerName',
+      time: '2018-11-12 12：30：25',
+      type: 'textarea',
+      value: ''
+    },
+    {
+      name: '进件端名称',
+      key: 'getCustomerName',
+      time: '2018-11-12 12：30：25',
+      type: 'file',
+      value: ''
+    },
+    {
+      name: '进件端名称',
+      key: 'getCustomerName',
+      time: '2018-11-12 12：30：25',
+      type: 'editor',
+      value: ''
+    },
+  ]
   constructor() { }
 
   ngOnInit() {
