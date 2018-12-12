@@ -22,7 +22,8 @@ import { LessComponent } from './component/less/less.component';
 import { ComponentComponent } from './component/component/component.component';
 // import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ng2-ckeditor';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';//ui表格
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { MyeditorComponent } from './component/myeditor/myeditor.component';//ui表格
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -56,6 +57,7 @@ const routes: Routes = [
     ChangedateComponent,
     LessComponent,
     ComponentComponent,
+    MyeditorComponent,
   ],
   imports: [
     BrowserModule,

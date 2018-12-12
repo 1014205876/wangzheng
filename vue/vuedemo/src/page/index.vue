@@ -168,7 +168,7 @@ export default {
         el: ".swiper-pagination",
         clickable: true
       },
-      // grabCursor: true,//抓取手势
+      grabCursor: true,//抓取手势
       autoplay: {
         disableOnInteraction: false, //操作后继续轮轮播
         delay: 2000 //秒切换一次
