@@ -23,11 +23,14 @@ import { ComponentComponent } from './component/component/component.component';
 // import { QuillModule } from 'ngx-quill';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { MyeditorComponent } from './component/myeditor/myeditor.component';//ui表格
+import { MyeditorComponent } from './component/myeditor/myeditor.component';
+import { PickerComponent } from './component/picker/picker.component';
+import { FormComponent } from './pages/form/form.component';//ui表格
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'index', component: IndexComponent },
+  { path: 'form', component: FormComponent },
   {
     path: 'pages2', component: Pages02Component,
     children: [
@@ -58,6 +61,8 @@ const routes: Routes = [
     LessComponent,
     ComponentComponent,
     MyeditorComponent,
+    PickerComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,
