@@ -25,12 +25,14 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { MyeditorComponent } from './component/myeditor/myeditor.component';
 import { PickerComponent } from './component/picker/picker.component';
-import { FormComponent } from './pages/form/form.component';//ui表格
+import { FormComponent } from './pages/form/form.component';
+import { SelectComponent } from './pages/select/select.component';//ui表格
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'index', component: IndexComponent },
   { path: 'form', component: FormComponent },
+  { path: 'select', component: SelectComponent },
   {
     path: 'pages2', component: Pages02Component,
     children: [
@@ -63,6 +65,7 @@ const routes: Routes = [
     MyeditorComponent,
     PickerComponent,
     FormComponent,
+    SelectComponent,
   ],
   imports: [
     BrowserModule,

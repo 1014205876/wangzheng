@@ -30,7 +30,7 @@ const My = resolve => require(['@/page/my'], resolve);
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',//去除路径里面的#
+  // mode: 'history',//去除路径里面的#本地dist查看需要去掉
   routes: [
     {
       path: '/',
