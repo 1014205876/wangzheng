@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+<!--	
+//			var a1=123;
+//			var a2=a1.toString();
+//			console.log(typeof(a2));
+//			
+//			var b1='55';
+//			var b2=parseFloat(b1);
+//			console.log(typeof(b2));
+//			
+//			var c1='汉字';
+//			var c2=parseInt(c1);
+//			console.log(typeof(c2));
+//			
+//			var d1="55";
+//			var d2=parseFloat(d1);
+//			console.log(d2);
+//			console.log(typeof(d2));
+//			
+//			var e1="汉字";
+//			var e2=parseInt(e1);
+//			console.log(e2);
+//			console.log(typeof(e2));-->
+		<script>
+//			基模式:二进制,八进制,十进制,十六进制
+//			var inum=10;
+//			console.log(inum.toString(2));
+			
+//			Boolean():把给定的的值转换成Boolean型;
+//			如果该值是空字符串，数字0，undefined或null，他将返回false.
+			var b1=Boolean("");
+			console.log(b1);
+			console.log(typeof(b1));
+			
+			var b2=Boolean('hello')
+			console.log(b2);
+			console.log(typeof(b2));
+			
+			var b3=Boolean(50);
+			console.log(b3);
+			
+			var b4=Boolean(null);
+			console.log(b4);
+			
+//			Number():把给定的值转化成数字(可以是整数或小数)
+//			他转换的是整个值,而不是部分值。如1.2.3会输出nan而不是1.2
+			var num01=Number(false);
+			console.log(num01);
+			console.log(typeof(num01));
+			
+			var num02=Number(true);
+			console.log(num02);
+			
+			var num03=Number(undefined);
+			console.log(num03);
+			console.log(typeof(num03));
+			
+			var num04=Number('1.2');
+			console.log(num04);
+			console.log(typeof(num04));
+			
+			var num05=Number("1.2.1")
+			console.log(num05);
+			console.log(typeof(num05));
+			
+//			String():把给定的值转化成字符串;
+			var str01=String(12);
+			console.log(str01);
+			console.log(typeof(str01));
+			
+			var str02=String(true);
+			console.log(str02);
+			console.log(typeof(str02));
+			
+			var str03=String(null);
+			console.log(str03);
+			console.log(typeof(str03));
+			
+			var a1=null;
+			var str04=null.toString();
+			console.log(str04);
+			console.log(typeof(str04));
+//			toString()和String()的区别只在于null和undefined,toString会报错,String不会;
+
+			
+
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			li {
+				list-style: none;
+				float: left;
+			}
+			
+			li video {
+				width: 100px;
+				height: 80px;
+				border: 1px black solid;
+			}
+		</style>
+	</head>
+
+	<body>
+		<ul>
+			<li>
+				<video src="http://s8.qhimg.com/share/audio/piano1/a4.mp3"></video>
+			</li>
+			<li>
+				<video src="http://s8.qhimg.com/share/audio/piano1/b4.mp3"></video>
+			</li>
+			<li>
+				<video src="http://s8.qhimg.com/share/audio/piano1/c4.mp3"></video>
+			</li>
+			<li>
+				<video src="http://s8.qhimg.com/share/audio/piano1/d4.mp3"></video>
+			</li>
+			<li>
+				<video src="http://s8.qhimg.com/share/audio/piano1/e4.mp3"></video>
+			</li>
+			<li>
+				<video src="http://s8.qhimg.com/share/audio/piano1/f4.mp3"></video>
+			</li>
+			<li>
+				<video src="http://s8.qhimg.com/share/audio/piano1/g4.mp3"></video>
+			</li>
+			<div style='clear:both'></div>
+		</ul>
+		<script src='js/jquery-1.8.3.min.js'></script>
+		<script>
+
+				var livideo = document.getElementsByTagName('video');
+				var arrColor = ['red', 'orange', 'yellow', 'green', 'blue', 'yellow', 'green'];
+				var index = 0;
+				$('li').hover(function() {
+					index = $(this).index();
+					mplay();
+				}, function() {
+					//				mpause();
+				})
+
+				function mplay() {
+					livideo[index].play();
+					$('li video').css('background', 'white');
+					$('li video').eq(index).css('background', arrColor[index]);
+				}
+
+				function mpause() {
+					livideo[index].pause();
+				}
+		</script>
+	</body>
+
+</html>

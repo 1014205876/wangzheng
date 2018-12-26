@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box{display:none;}
+        #div2{
+        	overflow: hidden;
+        }
+        #div2 div{
+        	width: 100px;
+        	height: 40px;
+        	background-color: blue;
+        	float: left;
+        }
+        #div2 div:hover{
+        	background-color: red;
+        }
+        .box{
+        	width: 300px;
+        	height: 300px;
+        	border: 1px solid grey;
+        }
+    </style>
+</head>
+<body>
+		<div id="div2">
+		    <div class="active">1</div>
+		    <div>2</div>
+		    <div>3</div>
+		</div>
+		<div class="box" style="display:block;">11</div>
+		<div class="box">22</div>
+		<div class="box">33</div>
+			<script type="text/javascript">
+		    window.onload = function () {
+		        var oTab = new TabSwitch("div2");
+		    }
+		    var aBtn = null;
+		    var aDiv = null;
+		    function TabSwitch(id){
+		        var div2 = document.getElementById(id);
+		        this.aBtn = div2.getElementsByTagName('div');//全局变量 转变成属性
+		        this.aDiv = document.getElementsByClassName('box');
+		        var _this =this;//将这里的对象this存入_this中，方便在按钮点击里面用
+		        for(i=0;i<this.aBtn.length;i++){
+		            this.aBtn[i].index = i;
+		            this.aBtn[i].onclick = function () {
+		                _this.tab(this);//这里的this指的是按钮，把它作为参数传到函数中；
+		            }
+		        }
+		    }
+		    TabSwitch.prototype.tab = function (aBtn){//函数 转变成对象的方法
+		        for(i=0;i<this.aBtn.length;i++){
+		            this.aBtn[i].className = '';
+		            this.aDiv[i].style.display = 'none';
+		        }
+		        aBtn.className = 'active';
+		        this.aDiv[aBtn.index].style.display = 'block';
+		    }
+		</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p id='loading'>0%</p>
+		<div id='box'></div>
+		<script>
+			var loading=document.getElementById('loading');
+			var box=document.getElementById('box');
+			var imgArr=['图片/作业图片/img01.jpg','图片/作业图片/img02.jpg','图片/作业图片/img03.jpg','图片/作业图片/img04.jpg'];
+			var index=0;
+			
+			
+			function loadingImage()
+			{
+				for(var i=0;i<imgArr.length;i++)
+				{
+					var imgObj=new Image();
+					imgObj.onload=function()
+					{
+						index++;
+						loadingProgress(index)
+					}
+					imgObj.src=imgArr[i];
+				}
+			}
+			
+			function loadingProgress(index)
+			{
+				if(index==imgArr.length)
+				{
+					loadingOver();
+				}
+				loading.innerHTML=Math.ceil(index/imgArr.length*100)+'%';
+			}
+			
+			function loadingOver()
+			{
+				for(var i=0;i<imgArr.length;i++)
+				{
+					box.appendChild(imgObjs[i]);
+				}
+			}
+			loadingImage();
+		</script>
+		
+		
+	</body>
+</html>

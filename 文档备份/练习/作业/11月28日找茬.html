@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			#box {
+				width: 400px;
+				height: 500px;
+				margin: 0px auto;
+				border: 1px solid black;
+			}
+			
+			#box1 {
+				width: 300px;
+				height: 300px;
+				margin: 100px auto;
+				background: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id='box'>
+			剩余时间:<span id='time'>45</span>
+			<span style='float:right'>分数:<span></span id='fenshu'>0</span>
+			<div id='box1'>
+				<h2 id='h2'>开始</h2></div>
+		</div>
+
+		<script>
+			var h2 = document.getElementById('h2');
+			var box1 = document.getElementById('box1');
+			//			var h2=document.getElementById('h2');
+			//			var h2=document.getElementById('h2');
+			//			var h2=document.getElementById('h2');
+			//			var h2=document.getElementById('h2');
+			//			var h2=document.getElementById('h2');
+
+			var x = 0;
+			h2.onclick = function() {
+				h2.style.display = 'none';
+
+				x++;
+				var img1 = document.createElement('img');
+				var img2 = document.createElement('img');
+				img1.src = "图片/作业图片/QQ图片20171128092610.png";
+				img1.src = "图片/作业图片/QQ图片20171128092619.png";
+				box1.appendChild(img1);
+				img1.style.width = 300 / x + 'px';
+				img1.style.height = 300 / x + 'px';
+				img2.style.width = 300 / x + 'px';
+				img2.style.height = 300 / x + 'px';
+
+				img1.onclick = function() {
+
+					x++;
+					var img1 = document.createElement('img');
+					var img2 = document.createElement('img');
+					img1.src = "图片/作业图片/QQ图片20171128092610.png";
+					img2.src = "图片/作业图片/QQ图片20171128092619.png";
+					box1.appendChild(img1);
+					img1.style.width = 300 / x + 'px';
+					img1.style.height = 300 / x + 'px';
+					img2.style.width = 300 / x + 'px';
+					img2.style.height = 300 / x + 'px';
+					box1.removeChild(img1)
+				}
+			}
+
+		</script>
+	</body>
+
+</html>

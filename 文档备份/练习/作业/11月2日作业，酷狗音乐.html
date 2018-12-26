@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/酷狗音乐.css" />
+		<!--*-->
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+				font-family: "微软雅黑";
+			}
+			
+			.diin {
+				display: inline;
+			}
+			
+			.diinbl {
+				display: inline-block;
+			}
+			
+			.pora {
+				position: relative;
+			}
+			
+			.poab {
+				position: absolute;
+			}
+			
+			.clear {
+				clear: both;
+			}
+			
+			.left {
+				float: left;
+			}
+			
+			.right {
+				float: right;
+			}
+			
+			.red {
+				background-color: red;
+			}
+			
+			.blue {
+				background-color: blue;
+			}
+		</style>
+		<!--a-->
+		<style>
+			.box1 {
+				width: 1000px;
+				height: 78px;
+				margin: 0px auto;
+			}
+			
+			.a1 {
+				position: absolute;
+				top: 20px;
+			}
+			
+			.a2 {
+				width: 300px;
+				height: 36px;
+				padding-top: 20px;
+				margin: 0px auto 0px 183px;
+			}
+			
+			.a2-1 {
+				width: 281px;
+				height: 22px;
+				padding: 5px 0px 5px 10px;
+				border: 1px #CCCCCC solid;
+				margin: 0px 0px 0px 14px;
+				float: left;
+			}
+			
+			.a2-2 {
+				width: 15px;
+				height: 15px;
+				background-image: url(图片/作业图片/QQ图片20171102195418.png);
+				background-position: -40px -56px;
+				float: right;
+				margin: -25px 9px 0px 0px;
+			}
+			
+			.a3 {
+				width: 402px;
+				height: 25px;
+				top: 20px;
+				right: 0px;
+				margin-top: -34px;
+				float: right;
+			}
+			
+			.a3-1 {
+				color: #777777;
+				padding-right: 11px;
+				border-right: 1px solid #E6E6E6;
+				margin-top: 6px;
+				float: left;
+			}
+			
+			.a3-1-1 {
+				text-decoration: none;
+				color: #777777;
+				font-size: 13px;
+				display: inline-block;
+				padding: 0px 15px;
+				float: left;
+			}
+			
+			.a3-2 {
+				width: 48px;
+				height: 28px;
+				font-size: 13px;
+				color: white;
+				background-color: #169AF3;
+				text-align: center;
+				line-height: 28px;
+				border: 1px #169AF3 solid;
+				border-radius: 4px;
+				margin-left: 10px;
+				float: left;
+				cursor: pointer;
+			}
+			
+			.a3-3 {
+				width: 48px;
+				height: 28px;
+				font-size: 13px;
+				color: #777777;
+				text-align: center;
+				line-height: 28px;
+				border: 1px #DBDBDB solid;
+				border-radius: 4px;
+				margin-left: 10px;
+				float: left;
+				cursor: pointer;
+			}
+		</style>
+		<!--b-->
+		<style>
+			.box2 {
+				width: 100%;
+				background-color: #2C323B;
+			}
+			
+			.box2-1 {
+				width: 1000px;
+				height: 55px;
+				margin: 0px auto;
+			}
+			
+			.box2-1-1 {
+				float: left;
+			}
+			
+			.b1 {
+				display: inline-block;
+				text-decoration: none;
+				line-height: 55px;
+				font-size: 16px;
+				color: #DDDDDD;
+				padding: 0px 30px;
+				text-align: center;
+				float: left;
+			}
+			
+			.b1:hover {
+				display: inline-block;
+				text-decoration: none;
+				line-height: 55px;
+				font-size: 16px;
+				color: white;
+				padding: 0px 30px;
+				background-color: #169AF3;
+			}
+			
+			.bhover:hover {
+				display: inline-block;
+				text-align: center;
+				padding: 0px 30px;
+				text-decoration: none;
+				line-height: 55px;
+				font-size: 16px;
+				color: white;
+				background-color: #169AF3;
+			}
+			
+			.bhover:hover .b1-2 {
+				display: block;
+			}
+			
+			.b1-1 {
+				width: 10px;
+				height: 7px;
+				background: url(图片/作业图片/酷狗精灵.png) 0px -73px;
+				float: right;
+				margin-top: 27px;
+			}
+			
+			.b1-2 {
+				position: absolute;
+				left: 0px;
+				display: none;
+				z-index: 2;
+			}
+			
+			.b1-2-1 {
+				width: 42px;
+				text-align: center;
+				padding: 0px 30px;
+				font-size: 16px;
+				color: #777777;
+				background-color: #2C323B;
+			}
+			
+			.b1-2-1:hover {
+				width: 42px;
+				text-align: center;
+				padding: 0px 30px;
+				font-size: 16px;
+				color: white;
+				background-color: #2D343E;
+			}
+			
+			.box2-1-2 {
+				margin-top: 16px;
+				float: right;
+				font-size: 13px;
+			}
+			
+			.b2 {
+				background-image: url(图片/作业图片/酷狗精灵.png);
+				padding-left: 20px;
+				color: #BBBBBB;
+				text-decoration: none;
+				margin-left: 30px;
+			}
+			
+			.b2:hover {
+				color: #169AF3
+			}
+			
+			.b2-1 {
+				background-position: 0px -119px;
+			}
+			
+			.b2-1:hover {
+				background-position: 0px -101px;
+			}
+			
+			.b2-2 {
+				background-position: 0px -154px;
+			}
+			
+			.b2-2:hover {
+				background-position: 0px -136px;
+			}
+			
+			.b2-3 {
+				background-position: 0px -191px;
+			}
+			
+			.b2-3:hover {
+				background-position: 0px -173px;
+			}
+			
+			.b2-4 {
+				background-position: 0px -226px;
+			}
+			
+			.b2-4:hover {
+				background-position: 0px -208px;
+			}
+			
+			.b2-5 {
+				background-position: 0px -281px;
+			}
+			
+			.b2-5:hover {
+				background-position: 0px -245px;
+			}
+		</style>
+		<!--c-->
+		<style>
+			.box3 {
+				height: 445px;
+			}
+			
+			.box3:hover .c-1 {
+				display: block;
+			}
+			
+			.img {
+				display: block;
+				height: 445px;
+				width: 100%;
+				position: absolute;
+				top: 0px;
+				margin-left: 0px;
+				display: none;
+			}
+			
+			.dibl {
+				display: block;
+			}
+			
+			.img1 {
+				background: url(图片/作业图片/酷狗图片1.jpg) no-repeat center top;
+			}
+			
+			.img2 {
+				background: url(图片/作业图片/酷狗图片2.jpg) no-repeat center top;
+			}
+			
+			.img3 {
+				background: url(图片/作业图片/酷狗图片3.jpg) no-repeat center top;
+			}
+			
+			.img4 {
+				background: url(图片/作业图片/酷狗图片4.jpg) no-repeat center top;
+			}
+			
+			.img5 {
+				background: url(图片/作业图片/酷狗图片5.jpg) no-repeat center top;
+			}
+			
+			.img6 {
+				background: url(图片/作业图片/酷狗图片6.jpg) no-repeat center top;
+			}
+			
+			.img7 {
+				background: url(图片/作业图片/酷狗图片7.jpg) no-repeat center top;
+			}
+			
+			.img8 {
+				background: url(图片/作业图片/酷狗图片8.jpg) no-repeat center top;
+			}
+			
+			.c-1 {
+				width: 60px;
+				height: 120px;
+				background: url(图片/作业图片/酷狗精灵.png) 0 0 no-repeat;
+				display: none;
+			}
+			
+			.c-2 {
+				background-position-x: 0px;
+				background-position-y: -756px;
+				position: absolute;
+				top: 165px;
+				left: 0px;
+			}
+			
+			.c-2:hover {
+				background-position-x: 0px;
+				background-position-y: -881px;
+				position: absolute;
+				top: 165px;
+				left: 0px;
+			}
+			
+			.c-3 {
+				background-position-x: 0px;
+				background-position-y: -1131px;
+				position: absolute;
+				top: 165px;
+				right: 0px;
+			}
+			
+			.c-3:hover {
+				background-position-x: 0px;
+				background-position-y: -1006px;
+				position: absolute;
+				top: 165px;
+				right: 0px;
+			}
+			
+			.c {
+				width: 100%;
+				height: 60px;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+			}
+			
+			.c1 {
+				opacity: 0.5;
+				background-color: black;
+			}
+			
+			.c2 {
+				text-align: center;
+			}
+			
+			.c3 {
+				display: inline-block;
+				width: 130px;
+				height: 25px;
+				background: url(图片/作业图片/QQ图片20171102195418.png) 0px 0px no-repeat;
+				margin-top: 20px;
+				font-size: 15px;
+				color: white;
+				text-decoration: none;
+			}
+			
+			.c4 {
+				padding: 0px 45px 0px 30px;
+				border-right: 1px solid #BDBAB5;
+				background-position: -55px -53px;
+			}
+			
+			.c5 {
+				padding: 0px 45px 0px 30px;
+				border-right: 1px solid #BDBAB5;
+				margin-left: 55px;
+				background-position: -55px -83px;
+			}
+			
+			.c6 {
+				padding-left: 30px;
+				margin-left: 55px;
+				background-position: -24px -112px;
+			}
+			
+			.c7 {
+				width: 100%;
+				position: absolute;
+				bottom: 70px;
+				text-align: center;
+			}
+			
+			.c8 {
+				display: inline-block;
+				width: 10px;
+				height: 10px;
+				border-radius: 10px;
+				background-color: #8C8E8C;
+				margin: 3px 12px;
+			}
+			
+			.c8:hover {
+				display: inline-block;
+				width: 16px;
+				height: 16px;
+				border-radius: 30px;
+				background-color: white;
+				margin: 0px 9px;
+			}
+		</style>
+		<!--d-->
+		<style>
+			.box4 {
+				width: 1000px;
+				height: 390px;
+				margin: 40px auto 0px auto;
+			}
+			
+			.d {
+				height: 30px;
+				padding-bottom: 30px;
+			}
+			
+			.d1 {
+				width: 660px;
+			}
+			
+			.d1-1 {
+				font-size: 30px;
+				line-height: 30px;
+			}
+			
+			.d1-2 {
+				color: #28A3F3;
+			}
+			
+			.d1-3 {
+				font-size: 13px;
+				margin-top: 7px;
+			}
+			
+			.d2 {
+				width: 320px;
+			}
+			
+			.d3 {
+				width: 660px;
+				height: 330px;
+			}
+			
+			.d3-1-0 {
+				width: 160px;
+				height: 160px;
+			}
+			
+			.d3-1 {
+				width: 325px;
+				height: 325px;
+			}
+			
+			.abc {
+				display: none;
+			}
+			
+			.d3-1-1 {
+				position: absolute;
+				top: 0px;
+				opacity: 0.5;
+				width: 325px;
+				height: 325px;
+				background-color: black;
+			}
+			
+			.d3-1-2 {
+				width: 50px;
+				height: 50px;
+				background: url(图片/作业图片/QQ图片20171102195418.png);
+				position: absolute;
+				top: 274px;
+				left: 274px;
+			}
+			
+			.d3-1-2:hover {
+				background-position-x: -50px;
+			}
+			
+			.d3-1:hover .abc {
+				display: block;
+			}
+			
+			.d3-2 {
+				width: 160px;
+				height: 160px;
+				margin-left: 5px;
+				margin-bottom: 5px;
+			}
+			
+			.d3-2-1 {
+				position: absolute;
+				top: 0px;
+				opacity: 0.5;
+				width: 160px;
+				height: 160px;
+				background-color: #000000;
+				display: none;
+			}
+			
+			.d3-2:hover .d3-2-1 {
+				display: block;
+			}
+			
+			.d3-2-2 {
+				position: absolute;
+				top: 0px;
+				opacity: 0.5;
+				width: 160px;
+				height: 160px;
+				background-color: #000000;
+				display: none;
+			}
+			
+			.d3-2:hover .d3-2-2 {
+				display: block;
+			}
+			
+			.d3-2-3 {
+				position: absolute;
+				top: 165px;
+				opacity: 0.5;
+				width: 160px;
+				height: 160px;
+				background-color: #000000;
+				display: none;
+			}
+			
+			.d3-2:hover .d3-2-3 {
+				display: block;
+			}
+			
+			.d3-2-4 {
+				position: absolute;
+				top: 165px;
+				opacity: 0.5;
+				width: 160px;
+				height: 160px;
+				background-color: #000000;
+				display: none;
+			}
+			
+			.d3-2:hover .d3-2-4 {
+				display: block;
+			}
+			
+			.d4 {
+				width: 320px;
+				height: 325px;
+			}
+			
+			.d4-1 {
+				margin-bottom: 11px;
+			}
+			
+			.d4-2 {
+				width: 101px;
+				height: 101px;
+			}
+			
+			.d4-3 {
+				background-color: #F6F6F6;
+				width: 189px;
+				height: 71px;
+				padding: 15px 10px;
+			}
+			
+			.d4-3-1 {
+				width: 189px;
+				height: 27px;
+				line-height: 27px;
+				font-size: 14px;
+				overflow: hidden;
+			}
+		</style>
+		<!--e-->
+		<style>
+
+		</style>
+	</head>
+
+	<body>
+		<div class="box1">
+			<div class="a1">
+				<a href=""><img src="图片/作业图片/酷狗.png" alt="" /></a>
+			</div>
+			<div class="a2">
+				<form action=""><input type="text" class="a2-1" /></form>
+				<a href="" class="a2-2"></a>
+			</div>
+			<div class="a3">
+				<div class="a3-1">
+					<a href="" class="a3-1-1">客服中心</a>
+					<a href="" class="a3-1-1">招贤纳士</a>
+					<a href="" class="a3-1-1">会员中心</a>
+				</div>
+				<div style="float:right">
+					<div class="a3-2">登录</div>
+					<div class="a3-3">注册</div>
+				</div>
+			</div>
+		</div>
+		<div class="box2">
+			<div class="box2-1">
+				<div class="box2-1-1">
+					<a href="" class="b1">首页</a>
+					<a href="" class="b1">榜单</a>
+					<a href="" class="b1">下载客户端</a>
+					<a href="" class="b1 bhover pora">
+						<div style="font-size:16px">更多
+							<div class="b1-1"></div>
+						</div>
+						<div class="b1-2">
+							<div class="b1-2-1">电台</div>
+							<div class="b1-2-1">MV</div>
+							<div class="b1-2-1">歌单</div>
+						</div>
+					</a>
+				</div>
+				<div class="box2-1-2">
+					<a href="" class="b2 b2-1">音乐直播</a>
+					<a href="" class="b2 b2-2">酷狗LIVE</a>
+					<a href="" class="b2 b2-3">音乐人</a>
+					<a href="" class="b2 b2-4">游戏</a>
+					<a href="" class="b2 b2-5">商城</a>
+				</div>
+			</div>
+		</div>
+		<div class="box3 pora">
+			<div class="img img1 dibl"></div>
+			<div class="img img2"></div>
+			<div class="img img3"></div>
+			<div class="img img4"></div>
+			<div class="img img5"></div>
+			<div class="img img6"></div>
+			<div class="img img7"></div>
+			<div class="img img8"></div>
+			<div class="c-1 c-2"></div>
+			<div class="c-1 c-3"></div>
+			<div class="c c1"></div>
+			<div class="c c2">
+				<a href="" class="c3 c4">下载PC端</a>
+				<a href="" class="c3 c5">下载iPhone端</a>
+				<a href="" class="c3 c6">下载Android端</a>
+			</div>
+			<div class="c7">
+				<a href="" class="c8"></a>
+				<a href="" class="c8"></a>
+				<a href="" class="c8"></a>
+				<a href="" class="c8"></a>
+				<a href="" class="c8"></a>
+				<a href="" class="c8"></a>
+				<a href="" class="c8"></a>
+				<a href="" class="c8"></a>
+				<a href="" class="c8"></a>
+			</div>
+		</div>
+		<div class="box4">
+			<div class="d d1 left">
+				<div class="d1-1 left">
+					<span class="d1-2">精选</span>歌单
+				</div>
+				<div class="d1-3 right">更多</div>
+			</div>
+			<div class="d d2 right">
+				<div class="d1-1 left">
+					<span class="d1-2">热门</span>榜单
+				</div>
+				<div class="d1-3 right">更多</div>
+			</div>
+			<div class="d3 left pora">
+				<div class="d3-1 left">
+					<img src="图片/作业图片/酷狗图片12.jpg" alt="" style="width:325px;height:325px" />
+					<div class="abc">
+						<div class="d3-1-1"></div>
+						<div class="d3-1-2"></div>
+					</div>
+				</div>
+				<div class="d3-2 left">
+					<img src="图片/作业图片/酷狗图片13.jpg" alt="" class="d3-1-0" />
+					<div class="abc">
+						<div class="d3-2-1"></div>
+						<div></div>
+					</div>
+				</div>
+				<div class="d3-2 left">
+					<img src="图片/作业图片/酷狗图片10.jpg" alt="" class="d3-1-0" />
+					<div class="d3-2-2"></div>
+				</div>
+				<div class="d3-2 left">
+					<img src="图片/作业图片/酷狗图片11.jpg" alt="" class="d3-1-0" />
+					<div class="d3-2-3"></div>
+				</div>
+				<div class="d3-2 left">
+					<img src="图片/作业图片/酷狗图片9.jpg" alt="" class="d3-1-0" />
+					<div class="d3-2-4"></div>
+				</div>
+			</div>
+			<div class="d4 right">
+				<div class="d4-1 left">
+					<img src="图片/作业图片/酷狗图片14.jpg" alt="" class="d4-2 left" />
+					<div class="d4-3 left">
+						<div class="d4-3-1"><strong>酷狗飙升表</strong></div>
+						<div class="d4-3-1">1 . 王乐乐-分开之后</div>
+						<div class="d4-3-1">2 . 陈洁仪、霍尊 - 至少还有你 (Live)</div>
+					</div>
+				</div>
+				<div class="d4-1 left">
+					<img src="图片/作业图片/酷狗图片15.jpg" alt="" class="d4-2 left" />
+					<div class="d4-3 left">
+						<div class="d4-3-1"><strong>酷狗TOP500</strong></div>
+						<div class="d4-3-1">1 . 大壮-我们不一样</div>
+						<div class="d4-3-1">2 . 校长 - 带你去旅行</div>
+					</div>
+				</div>
+				<div class="d4-1 left">
+					<img src="图片/作业图片/酷狗图片16.jpg" alt="" class="d4-2 left" />
+					<div class="d4-3 left">
+						<div class="d4-3-1"><strong>网络红歌榜</strong></div>
+						<div class="d4-3-1">1 . 金南玲 - 逆流成河</div>
+						<div class="d4-3-1">2 . 梦然 - 没有你陪伴真的好孤单</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="box5"></div>
+	</body>
+
+</html>

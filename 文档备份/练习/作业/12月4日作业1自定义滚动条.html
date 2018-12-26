@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			#box {
+				position: relative;
+				margin: 50px 100px;
+			}
+			
+			#box1 {
+				width: 180px;
+				height: 210px;
+				border: 1px black solid;
+				overflow: hidden;
+				position: absolute;
+			}
+			
+			#box2 {
+				width: 180px;
+				position: absolute;
+			}
+			
+			#box3 {
+				width: 20px;
+				height: 210px;
+				border-radius: 20000px;
+				background-color: #757575;
+				position: absolute;
+				left: 183px;
+			}
+			
+			#box4 {
+				width: 20px;
+				height: 50px;
+				border-radius: 20000px;
+				background-color: red;
+				position: absolute;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id='box'>
+			<div id='box1'>
+				<div id='box2'>
+					<h2>头部</h2>
+					<span>
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+						27端午节风俗习惯作文 04-2751劳动
+					</span>
+					<h2>底部</h2>
+				</div>
+			</div>
+			<div id='box3'>
+				<div id='box4'></div>
+			</div>
+		</div>
+
+		<script>
+			var box = document.getElementById('box');
+			var box1 = document.getElementById('box1');
+			var box2 = document.getElementById('box2');
+			var box3 = document.getElementById('box3');
+			var box4 = document.getElementById('box4');
+			var y1 = 0;
+			
+			function move1(event) {
+				var event = event || window.event;
+				var y1 = event.clientY - y2 - box.offsetTop;
+
+				if(y1 < 0) {
+					y1 = 0;
+				}
+				if(y1 > 160) {
+					y1 = 160;
+				}
+
+				var x = (box2.offsetHeight - box1.offsetHeight) / (box3.offsetHeight - box4.offsetHeight)
+
+				box4.style.top = y1 + 'px';
+				box2.style.top = -y1 * x + 'px';
+				
+			}
+
+			function down1(event) {
+				var event = event || window.event;
+				y2 = event.clientY - box4.offsetTop - box.offsetTop;
+
+				document.addEventListener('mousemove', move1, false);
+
+			}
+
+			function up1() {
+				document.removeEventListener('mousemove', move1, false);
+				
+			}
+
+			box4.addEventListener('mousedown', down1, false);
+			document.addEventListener('mouseup', up1, false);
+			
+		</script>
+	</body>
+
+</html>

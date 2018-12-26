@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p id='page'>埃里克好地方卡活动是否可好看</p>
+		<script type="text/javascript">
+			//初级事件；
+			
+			
+			
+			
+			
+			//DOM1级事件；
+			//resize事件，改变浏览器的大小；
+			window.onresize=function()//窗口大小发生变化时触发
+			{
+				console.log('窗口大小发生变化');
+			}
+			
+			
+			
+			//鼠标事件：onmoseout,
+			
+			//oncontextmenu//右键菜单事件
+			//
+			//DOM2级事件；
+			//事件监听：IE9以下不兼容；
+			
+			var page=document.getElementById('page');
+//			page.addEventListener('click',function()
+//			{
+//				alert(page.innerHTML);
+//			},false)
+//			
+//			page.addEventListener('click',function()
+//			{
+//				this.innerHTML='变变变';
+//			},false)
+//			
+//			page.removeEventListener('click',function()
+//			{
+//				alert(page.innerHTML);
+//			},false)
+			
+//			page.onclick=function()
+//			{
+//				alert(page.innerHTML);
+//			}
+//			page.onclick=function()
+//			{
+//				this.innerHTML='变变变';
+//			}
+			
+			function a1()
+			{
+				alert(page.innerHTML);
+			}
+			
+			function a2()
+			{
+				this.innerHTML='变变变';
+			}
+			
+			page.addEventListener('click',a1,false)
+			
+			page.addEventListener('click',a2,false)
+			
+			page.removeEventListener('click',a1,false)
+			
+//			var EventUtil=
+//			{
+//				addHandler:fuction(element,type,handler)
+//				{
+//					if(element.addEventListener)
+//					{
+//						element.addEventListener
+//					}
+//				}
+//			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

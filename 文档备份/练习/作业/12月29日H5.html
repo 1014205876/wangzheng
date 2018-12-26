@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.a {
+				width: 100px;
+				height: 40px;
+				background: yellow;
+				margin: 10px;
+			}
+			
+			.b {
+				width: 100px;
+				height: 150px;
+				background: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="a" draggable="true"></div>
+		<div class="a" draggable="true"></div>
+		<div class="a" draggable="true"></div>
+		<div class="b" draggable="true"></div>
+		<script>
+			var a = document.getElementsByClassName('a');
+			var b = document.getElementsByClassName('b');
+			var x = 0;
+			for(var i = 0; i < a.length; i++) {
+				a[i].ondragenter = function() {//被移动的标签移入时
+					this.style.backgroundColor = 'red';
+				}
+				a[i].ondragleave = function() {//被移动的标签移出时
+					this.style.backgroundColor = 'yellow';
+				}
+				a[i].ondragstart = function() {//开始移动时
+					this.style.backgroundColor = 'green';
+				}
+				a[i].ondragend = function() {//停止移动时
+					this.style.backgroundColor = 'blue';
+				}
+				a[i].ondrag = function() {
+					x++;
+					b[0].innerHTML = x;
+				}
+			}
+			b[0].ondragenter=function(){
+				this.style.backgroundColor='blue';
+			}
+			b[0].ondragleave=function(){
+				this.style.backgroundColor='red';
+			}
+			
+			
+			b[0].ondragover = function(ev) {
+				ev.preventDefault();
+				return false;
+			}
+			b[0].ondrop=function(ev){
+				var fs=ev.dataTransfer.files;
+				alert(fs);
+				alert(fs.length);
+				alert(fs[0].type);
+				return false;
+			}
+		</script>
+	</body>
+
+</html>

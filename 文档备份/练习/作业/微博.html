@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+
+		</style>
+	</head>
+
+	<body>
+		<button id="btn">增加<tton><br />
+	
+		<script>
+			var btn=document.getElementById('btn');
+			
+			btn.onclick=function()
+			{
+				var br=document.createElement('br')
+				var btn02=document.createElement('a');//创建a标签
+				
+				btn02.href='#'
+				
+				var text01=document.createElement('span');//创建文字标签
+				var text02=document.createTextNode('点击删除')//创建文字
+				var t01=document.createTextNode('删除')//创建文字
+				
+				document.body.appendChild(text01);//在body里添加文字标签
+				document.body.appendChild(btn02);//在body里添加a标签
+				document.body.appendChild(br)
+				
+				text01.appendChild(text02);//在文字标签里添加文字			
+				btn02.appendChild(t01);//在创建的a标签里添加文字
+				
+				btn02.onclick=function()
+				{//创建的a的点击事件
+					document.body.removeChild(br)
+					document.body.removeChild(btn02);//删除创建的a标签
+					document.body.removeChild(text01);// 删除创建的文字标签
+					
+				}
+	
+				
+				
+			}
+			
+			
+			
+			
+		</script>
+	</body>
+<html>

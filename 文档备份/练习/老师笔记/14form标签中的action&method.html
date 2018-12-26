@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>form标签中的action&method属性</title>
+	</head>
+	<body>
+		<form action="http://www.baidu.com" target="" method="get">
+			<p>账号：<input type="text" name="wd" /></p>
+			<p>密码：<input type="text" name="wd" /></p>
+			
+			<input type="button" value="按钮"/>
+			<input type="submit" value="提交"/>
+			<input type="reset"  value="重置" />
+		</form>
+		
+	<!--	action属性: 属性值是一个url网址.这个网址就是submit发送的网址.这个网址应该是我们存储数据的位置,将submit发送的数据跟我们后台数据库进行校验.最后确定账号密码是否正确.
+		
+			target属性: 用来规定网页的打开方式,属性值包括四种.
+				_blank属性值: 在新窗口/选项卡中打开。
+				_self属性值: 在同一框架中打开。（默认）
+				_top属性值: 在父框架中打开。
+				_parent属性值: 在整个窗口中打开。
+				
+			method属性: 传输数据的方法,一共有两种.
+			
+			get属性值: 默认选项,会将用户输入在输入框中的内容与action的网址,一共展现在浏览器上,然后发给服务器. 安全性极低.
+			
+			post属性值: 会获取用户输入在输入框中的内容,但并不会原封不动的模样展现在浏览器上,是讲内容进行转码加密,在发送给服务器.	
+
+-->
+	</body>
+</html>

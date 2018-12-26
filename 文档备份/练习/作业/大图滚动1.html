@@ -1,0 +1,147 @@
+	<style>
+			* { margin: 0; padding: 0; list-style: none; }
+			.btn_mod,.img_mod { width: 400px; margin: 20px auto 0; overflow: hidden; }
+			.btn_mod { padding-left: 10px; }
+			.img_mod{position: relative;}
+			.img_mod,
+			.img_mod .scroll { height: 400px; }
+			.img_mod .scroll { position: absolute; left: 0px; right: 0; width: 9999px; }
+			.img_mod .scroll img { float: left; width: 400px; height: 400px; }
+			.btn_mod li,
+			.btn_mod div { float: left; width: 60px; height: 30px; margin-right: 6px; line-height: 30px; text-align: center; font-weight: bold; font-size: 14px; color: #666; background: #ccc; cursor: pointer; outline: none; }
+</style>
+	</head>
+	<body>
+		<div class="btn_mod">
+			<div class="prev">��һҳ</div>
+			<ul class="btn_list">
+				<li class="active">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ul>
+			<div class="next">��һҳ</div>
+		</div>
+		<div class="img_mod">
+			<div class="scroll">
+				<img src="img/img01.jpg" />
+				<img src="img/img02.jpg" />
+				<img src="img/img03.jpg" />
+				<img src="img/img04.jpg" />
+			</div>
+		</div>
+	<script>
+		var btnMod=document.getElementsByClassName("btn_mod")[0];
+		var imgMod=document.getElementsByClassName("img_mod")[0];
+		var scroll=document.getElementsByClassName("scroll")[0];
+		var imgs=document.getElementsByTagName("img");
+		var lis=document.getElementsByTagName("li");
+		var next=document.getElementsByClassName("next")[0];
+		var prev=document.getElementsByClassName("prev")[0];
+		var width=imgMod.offsetWidth;
+		var imgLength=imgs.length;
+		var activeIndex=0;
+		var time1=null;
+		var time2=null;
+
+		scroll.style.width=width*imgLength+"px";
+
+		for(var i=0;i<lis.length;i++) 						
+
+		{
+			(function(i) 
+			{
+				lis[i].onclick=function() 
+				{
+				switchTo(i);
+				}
+			})(i);
+		}
+
+		function switchTo(index){
+			var start=scroll.offsetLeft;
+			var end=-index * width;
+
+			clearInterval(time1);
+			var time1=setInterval(function() 
+			{
+				if(start==end) 
+				{
+					clearInterval(time1);
+				} 
+				else 
+				{
+					if(start>end)
+					{
+						start-=20;
+					}
+					else
+					{
+						start+=20;
+					}
+				}
+
+				scroll.style.left=start+"px";
+			}, 10);
+			activeIndex = index;
+		}
+
+		next.onclick=function() 
+		{
+			nextFn();
+		}
+
+		prev.onclick = function() 
+		{
+			prevFn();
+		}
+
+		function nextFn()
+		{
+			var index=activeIndex+1;
+			index=index>imgLength-1?0:index;
+			switchTo(index);
+		}
+
+		function prevFn() 
+		{
+			var index=activeIndex-1;
+			index=index<0?imgLength-1:index;
+			switchTo(index);
+		}
+
+		autoSwitch();
+		function autoSwitch()
+		{
+			time2=setInterval(function()
+			{
+				nextFn();
+			}, 2000);
+		}
+
+		function clear()
+		{
+			clearTimeout(time2);
+			time2 = null;
+		}
+
+		btnMod.onmouseover=function()
+		{
+			clear();
+		}
+
+		btnMod.onmouseout=function() 
+		{
+			autoSwitch();
+		}
+		
+		imgMod.onmouseover=function()
+		{
+			clear();
+		}
+
+		imgMod.onmouseout=function() 
+		{
+			autoSwitch();
+		}
+	</script>

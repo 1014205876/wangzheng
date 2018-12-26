@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>form表单</title>
+	</head>
+	<body>
+		<!--账号/密码-->
+		<form>
+			姓名：<input type="text" name="name" value="请输入"  placeholder="请输入" style="width: 100px;">
+			密码：<input type="password" name="password">
+		</form>
+		<br />
+		
+		
+		<!--
+			
+		form标签: 表单标签,用来搜集不同类型的用户输入.将输入的内容标签包裹起来.
+		input标签: 用于搜集用户信息
+		text属性值: 表示用户输入的是文本格式.
+		value属性值：定义输入字段的初始值
+		name属性: 规定表单的名称.
+		type属性: 属性规定 input 元素的类型。
+		password属性值: 表示用户输入的是密码security安全输入.
+		-->
+		<!--单选按钮-->
+		<form>
+			<input type="radio" name="sex" value="male">Male
+			<input type="radio" name="sex" value="female">female
+		</form>
+		<br />
+		<!--复选框-->
+		<form>
+			<input type="checkbox" name="家乡话" value="青岛话">青岛话
+			<input type="checkbox" name="家乡话" value="北京话">北京话
+		</form>
+		<br />
+		<!--radio属性值: 单选按钮
+		value属性: 用来定义送往服务器的属性值
+		checkbox属性值: 多选按钮 
+		-->
+		<!--提交按钮 重置按钮-->
+		<form>
+			username:<input type="text" name="user"/>
+			<input type="submit" value="提交" />
+			<input type="reset" value="重置" />
+		</form>
+		<br />
+		
+		<form>
+			<input type="button" value="helloworld" />
+			
+		</form>
+		<!--submit属性值: 提交按钮,系统已经封装好了一些方法,可以将提交的内容一同打包通过某种方式上传.
+		value属性值：定义按钮上的显示的文本
+		reset属性值：	定义重置按钮。重置按钮会清除表单中的所有数据。
+		button属性值: 单纯只是一种按钮,可以为它添加点击事件. 
+		-->
+		
+		<!--下拉文本区域-->
+		<form>
+			<textarea cols="20" rows="3">在w3school，你可以找到你所需要的所有的网站建设教程。在w3school，你可以找到你所需要的所有的网站建设教程。在w3school，你可以找到你所需要的所有的网站建设教程。
+
+			</textarea>
+				<!--textarea标签：标签定义多行的文本输入控件。
+					rows属性:规定文本区内的可见行数。
+					cols属性：规定文本区内的可见宽度。
+					
+				-->
+
+			
+		</form>
+		<br/>
+		
+		<!--下拉列表-->
+		<form>
+			<select name="cars">
+				<option value="BYD">比亚迪</option>
+				<option value="audi" selected="">奥迪</option>
+				<option value="mobike">摩拜</option>
+				
+			</select>
+			
+		</form>
+		<br />
+		
+		<!--select标签: 划定一块区域,用来承载option的内容.
+		option标签: 用来承载内容,存放在select标签中.
+		selected属性: 用来确定预选项. 
+		-->
+		
+		
+		<!-- 下拉列表(分组) -->
+		<form>
+			<select name="sel">
+				<optgroup label="cars">
+					<option value="BYD">比亚迪</option>
+					<option value="audi" selected="">奥迪</option>
+					<option value="mobike" disabled="">摩拜</option>
+				</optgroup>
+
+				<optgroup label="airs">
+				
+					<option value="BYD">大飞机</option>
+					<option value="audi" selected="">中飞机</option>
+					<option value="mobike">小飞机</option>
+				</optgroup>
+			</select>
+		</form>
+		
+		<!--optgroup标签: 用来分选项组,可以将某一类放到一个组中. 
+		optgroup标签-lable属性: 用来规定当前项目组名 
+
+		option标签-disable属性: 用来禁止某选项组-->
+		
+		
+		<!-- 带外边框的文本输入 -->
+		<form>
+			<fieldset id="">
+				<legend>
+					<input type="text">
+				</legend>
+		
+			</fieldset>
+		</form>
+
+		
+		<!--form标签: 表单标签,用来搜集不同类型的用户输入.将输入的内容标签包裹起来.
+		input标签: 文本域,当用户需要输入内容的时候,就需要用到文本域
+		text属性值: 表示用户输入的是文本格式.
+		radio属性值: 单选按钮
+		checkbox属性值: 多选按钮
+		password属性值: 表示用户输入的是密码security安全输入.
+		submit属性值: 提交按钮,系统已经封装好了一些方法,可以将提交的内容一同打包通过某种方式上传.
+		reset属性值：	定义重置按钮。重置按钮会清除表单中的所有数据。
+		button属性值: 单纯只是一种按钮,可以为它添加点击事件.
+		
+		select标签: 划定一块区域,用来承载option的内容.
+		option标签: 用来承载内容,存放在select标签中.
+		selected属性: 用来确定预选项.
+		optgroup标签: 用来分选项组,可以将某一类放到一个组中.
+		lable属性: 用来规定当前项目组名 
+		disable属性: 用来禁止某选项组
+		-->
+
+		
+	</body>
+</html>

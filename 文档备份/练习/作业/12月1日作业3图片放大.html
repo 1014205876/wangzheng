@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			img {
+				position: absolute;
+				left: 300px;
+				top: 150px;
+				width: 240px;
+				height: 300px;
+			}
+			
+			div {
+				position: absolute;
+				background: red;
+				left: 300px;
+				top: 150px;
+				width: 240px;
+				height: 300px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div></div>
+		<img src="图片/小米官网/part52.jpg" alt="" />
+
+		<script type="text/javascript" src="../js/鼠标滚轮JS文件.js"></script>
+		<script>
+			var box = document.getElementsByTagName('img')[0];
+			var x2 = 0;
+			var y2 = 0;
+			var x3 = 0;
+			var y3 = 0;
+
+			mouseWheel(box, function(event, down) {
+				
+				
+				var event = event || window.event;
+
+				x2 = event.offsetX || event.offsetLeft;
+				y2 = event.offsetY || event.offsetTop;
+				
+				var width1 = box.offsetWidth;
+				var height1 = box.offsetHeight;
+				
+				if(down) {
+
+					box.style.width = box.offsetWidth * 0.9 + 'px';
+					box.style.height = box.offsetHeight * 0.9 + 'px';
+					
+				} else {
+
+					box.style.width = box.offsetWidth * 1.1 + 'px';
+					box.style.height = box.offsetHeight * 1.1 + 'px';
+				}
+
+
+					var width2 = box.offsetWidth;
+					var height2 = box.offsetHeight;
+					
+					var widthmove=width1-width2;
+					var heightmove=height1-height2;
+					
+					var bi1=x2/width1;
+					var bi2=y2/height1;
+					
+					box.style.left = box.offsetLeft+bi1*widthmove +'px';
+					box.style.top = box.offsetTop+bi2*heightmove +'px';
+
+			})
+		</script>
+	</body>
+
+</html>

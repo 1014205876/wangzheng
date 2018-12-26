@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			#box {
+				overflow: hidden;
+				position: relative;
+			}
+			
+			#box ul {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 100%;
+			}
+			
+			.div {
+				float: left;
+			}
+		</style>
+		<script src='js/jquery-1.8.3.min.js'></script>
+		<script>
+			//			$(function() {
+			//				var arrColor = ['red', 'blue', 'yellow', 'green']
+			//				$(window).resize(function() {
+			//					moveWh();
+			//				})
+			//				moveWh();
+			//
+			//				function moveWh() {
+			//					var divWidth = $(window).width();
+			//					var divHeight = $(window).height();
+			//					$('#box,.div').css({
+			//						'width': divWidth,
+			//						'height': divHeight
+			//					})
+			//					$('#div ul').css({
+			//						'width': divWidth
+			//					})
+			//					for(var i = 0; i < arrColor.length; i++) {
+			//						$('.div').eq(i).css('background', arrColor[i]);
+			//					}
+			//				}
+			//			})
+		</script>
+		<!--<script>
+			$(function() {
+				$('button').eq(0).click(function() {
+					var txt = '';
+					txt += 'width of div' + $('#box').width() + '</br>'
+					txt += 'height of div' + $('#box').height() + '</br>'
+					txt += 'innerWidth of div' + $('#box').innerWidth() + '</br>'
+					txt += 'innerHeight of div' + $('#box').innerHeight() + '</br>'
+					txt += 'outerWidth of div' + $('#box').outerWidth() + '</br>'
+					txt += 'outerHeight of div' + $('#box').outerHeight() + '</br>'
+					$('#box').html(txt);
+				})
+				$('button').eq(1).click(function() {
+					$('#box').width('200px');
+					$('#box').height('200px');
+				})
+			})
+		</script>-->
+	</head>
+
+	<body>
+		<!--<div id='box'></div>
+		<button>打印</button>
+		<button>改变</button>
+		<p>
+			<label for="wheelDelta">滚动值:</label> (IE/Opera/Chrome)
+			<input type="text" id='wheelDelta' />
+		</p>
+		<p>
+			<label for="wheelDelta">滚动值:</label> (Firefox)
+			<input type="text" id='detail' />
+		</p>-->
+
+		<div id='box'>
+			<ul id='box1'>
+				<li class='div'></li>
+				<li class='div'></li>
+				<li class='div'></li>
+				<li class='div'></li>
+			</ul>
+		</div>
+
+		<script>
+			$(function() {
+
+				var divWidth = $(window).width();
+				var divHeight = $(window).height();
+				var index = 0;
+				var arrColor = ['red', 'blue', 'yellow', 'green']
+				$(window).resize(function() {
+					moveWh();
+				})
+				moveWh();
+				function moveWh() {
+					divWidth = $(window).width();
+					divHeight = $(window).height();
+					$('#box,.div').css({
+						'width': divWidth,
+						'height': divHeight
+					})
+					$('#div ul').css({
+						'width': divWidth
+					})
+					for(var i = 0; i < arrColor.length; i++) {
+						$('.div').eq(i).css('background', arrColor[i]);
+					}
+					ulmove();
+				}
+
+				function ulmove() {
+					$('#box1').stop().animate({
+						'top': -index * divHeight
+					}, 500);
+				}
+				function upmove() {
+					index--;
+					if(index <= 0) {
+						index = 0
+					}
+					ulmove();
+				}
+				function downmove() {
+					index++;
+					if(index >= $('.div').length - 1) {
+						index = $('.div').length - 1
+					}
+					ulmove();
+				}
+				
+				var scrollFun = function(e) {
+					e = e || window.event;
+					var direct = 0; //				var v1 = document.getElementById('wheelDelta');
+					//				var v2 = document.getElementById('detail');
+					if(e.wheelDelta) { //IE/Opera/Chrome
+						if(e.wheelDelta > 0) {
+							upmove()
+						} else {
+							downmove()
+						}
+					} else if(e.detail) {
+						if(e.detail > 0) {
+							downmove()
+						} else {
+							upmove()
+						}
+					}
+				};
+				if(document.addEventListener) { //Firefox
+					document.addEventListener('DOMMouseScroll', scrollFun, false);
+				}
+				window.onmousewheel = document.onmousewheel = scrollFun;
+			})
+		</script>
+	</body>
+
+</html>

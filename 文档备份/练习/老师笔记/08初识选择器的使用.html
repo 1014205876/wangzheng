@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			/*1.元素选择器*/
+			div{
+				width:100px;
+			height:100px;
+			
+			}
+			/*2.类选择器*/
+			.myclass{
+				background: green;
+			}
+			/*3.id选择器*/
+			#myid{
+				color: red;
+			}
+			/*4.群组选择器*/
+			h1,h2,div{
+				color:green;
+			}
+			/*5.子元素选择器*/
+			div>h1
+			{
+				color:yellow;
+			}
+			
+			/*6.后代选择器*/
+			div div
+			{
+				color:green;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="myclass" id="" style="">1</div>
+		<div>2</div>
+		<div class="myclass">3</div>
+		<div id="myid">4</div>
+		<h1>1</h1>
+		<h1>3</h1>
+		<h2>2</h2>
+		<div>
+			<h1>4</h1>
+			<h1>5</h1>
+		</div>
+		
+		<div>
+			11
+			<div>
+				22
+				<div>33</div>
+			</div>
+			
+		</div>
+		
+		<!--selector选择器:
+		元素选择器作用: 为相同的标签名赋予样式.
+		类选择器的作用: 为相同的类名赋予样式.
+		ID选择器的作用: 为对应的id名赋予样式,建议一个id名称只能在一个页面的标签中出现一次.
+		选择器分组：可以将任意多个选择器分组在一起，对此没有任何限制。
+		子元素选择器：只能选择作为某元素的子元素。
+		后代选择器：可以选择作为某元素后代的元素。
+		-->
+		
+	</body>
+</html>

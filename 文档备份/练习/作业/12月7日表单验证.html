@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			span {
+				font-size: 12px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<input type="text" placeholder="姓名" /><span>张伟</span><br />
+		<input type="text" placeholder="邮箱" /><span>1234567890@qq.com</span><br />
+		<input type="text" placeholder="QQ号码" /><span>1234567890</span><br />
+		<input type="text" placeholder="手机号码" /><span>13712341234</span><br />
+		<input type="text" placeholder="身份证号码" /><span>360125198765432100</span><br />
+		<input type="button" value="提交" />
+
+		<script>
+			var inp1 = document.getElementsByTagName('input');
+			var span1 = document.getElementsByTagName('span');
+			var str = [];
+
+			inp1[5].onclick = function() {
+				for(var i = 0; i < inp1.length - 1; i++) {
+					shuru(i);
+				}
+				yanzheng();
+			}
+
+			function shuru(i) {
+				str[i] = inp1[i].value;
+				return str[i];
+			}
+
+			function yanzheng() {
+				var re1 = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/; //姓名
+				var re2 = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g; //邮箱
+				var re3 = /^\d{5,10}$/; //qq号
+				var re4 = /^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\d{8}$/; //手机号
+				var re5 = /(^\d{15}$)|(^\d{17}(\d|X)$)/; //身份证
+
+				var bBtn = 0;
+				if(re1.test(shuru(0))) {
+					span1[0].innerHTML = '姓名正确';
+					span1[0].style.color = 'green';
+					bBtn++;
+				} else {
+					if(str[0] == '') {
+						span1[0].innerHTML = '请输入姓名';
+						span1[0].style.color = 'blue';
+					} else {
+
+						span1[0].innerHTML = '姓名错误';
+						span1[0].style.color = 'red';
+					}
+				};
+				if(re2.test(shuru(1))) {
+					span1[1].innerHTML = '邮箱正确';
+					span1[1].style.color = 'green';
+					bBtn++;
+				} else {
+					if(str[1] == '') {
+						span1[1].innerHTML = '请输入邮箱';
+						span1[1].style.color = 'blue';
+					} else {
+
+						span1[1].innerHTML = '邮箱错误';
+						span1[1].style.color = 'red';
+					}
+				};
+				if(re3.test(shuru(2))) {
+					span1[2].innerHTML = 'QQ号正确';
+					span1[2].style.color = 'green';
+					bBtn++;
+				} else {
+					if(str[2] == '') {
+						span1[2].innerHTML = '请输入QQ号';
+						span1[2].style.color = 'blue';
+					} else {
+
+						span1[2].innerHTML = 'QQ号错误';
+						span1[2].style.color = 'red';
+					}
+				};
+				if(re4.test(shuru(3))) {
+					span1[3].innerHTML = '手机号正确';
+					span1[3].style.color = 'green';
+					bBtn++;
+				} else {
+					if(str[3] == '') {
+						span1[3].innerHTML = '请输入手机号';
+						span1[3].style.color = 'blue';
+					} else {
+
+						span1[3].innerHTML = '手机号错误';
+						span1[3].style.color = 'red';
+					}
+				};
+				if(re5.test(shuru(4))) {
+					span1[4].innerHTML = '身份证正确';
+					span1[4].style.color = 'green';
+					bBtn++;
+				} else {
+					if(str[4] == '') {
+						span1[4].innerHTML = '请输入身份证';
+						span1[4].style.color = 'blue';
+					} else {
+
+						span1[4].innerHTML = '身份证错误';
+						span1[4].style.color = 'red';
+					}
+				};
+				if(bBtn >= 5) {
+					alert('登陆成功');
+				}
+			}
+		</script>
+
+	</body>
+
+</html>

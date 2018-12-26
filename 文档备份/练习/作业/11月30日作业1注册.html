@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<input type="text" id='x' />用户名
+		<input type="button" value="注册" id='a' />
+		<input type="button" value="登录" id='b' />
+
+		<script>
+			var x = document.getElementById('x');//输入框
+			var a = document.getElementById('a');//注册
+			var b = document.getElementById('b');//登录
+			
+			a.onclick=function()
+			{
+				var a1=x.value;
+				console.log(getCookie(a1));
+				if(a1=='')
+				{
+					alert('用户名不能为空');
+				}
+				else
+				{
+					if(getCookie(a1)==110)
+					{
+						alert('用户名已被使用');
+					}
+					else
+					{
+						setCookie(a1,110,10);
+						alert('注册成功')
+					}
+				}
+			}
+			
+			b.onclick=function()
+			{
+				var b1=x.value;
+				console.log(getCookie(b1));
+				if(b1=='')
+				{
+					alert('请输入用户名');
+				}
+				else
+				{
+					if(getCookie(b1)==110)
+					{
+						alert('登录成功');
+					}
+					else
+					{
+						alert('登录失败');
+					}
+				}
+			}
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			//存储cookie
+			function setCookie(c_name, value, expiredays) {
+				var exdate = new Date()
+				exdate.setDate(exdate.getDate() + expiredays)
+				document.cookie = c_name + "=" + escape(value) +
+					((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+			}
+			//接收三个参数，第一个cookie名,第二个cookie值，第三个,存储时间(天);时间如果不设置代表过期时间默认浏览器关闭失效
+
+			//获取cookie
+			function getCookie(c_name) //参数是cookie名
+			{
+				if(document.cookie.length > 0) {
+					c_start = document.cookie.indexOf(c_name + "=")
+					if(c_start != -1) {
+						c_start = c_start + c_name.length + 1
+						c_end = document.cookie.indexOf(";", c_start)
+						if(c_end == -1) c_end = document.cookie.length
+						return unescape(document.cookie.substring(c_start, c_end))
+					}
+				}
+				return "" //返回相应的cookie值
+			}
+			
+//删除cookie
+//			function removeCookie(key) {
+//
+//				setCookie(key, '', -1);
+//
+//			}//清缓存
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+//			if(getCookie('num'))
+//			{
+//				var num=getCookie('num');
+//				var thename='name'+num;
+//			}
+//			else
+//			{
+//				var num=0;
+//				var thename='';
+//			}
+//			
+//			a.onclick = function() 
+//			{
+//				var a1 = x.value;
+//				if(a1=='')
+//				{
+//					alert('用户名不能为空');
+//				}
+//				else
+//				{
+//					if(getCookie(a1))
+//					{
+//						setCookie(a1, num, 1);
+//						alert('用户名注册成功')
+//					}
+//					else
+//					{
+//						alert('用户名已被注册')
+//					}
+//				}
+//			}
+//			b.onclick = function()
+//			{
+//				var b1 = x.value;
+//				
+//			}
+		</script>
+
+	</body>
+
+</html>

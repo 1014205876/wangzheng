@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.thespan{
+				background: red;
+				display: none;
+				/*display: block;*/
+				/*display: inline;*/
+				/*display: inline-block;*/
+				
+			}
+			
+			.thediv02{
+				background: red;
+				width: 100px;
+				height: 100px;
+				visibility:hidden; 
+				visibility:visible;
+				
+				
+			}
+			.thediv{
+				width: 200px;
+				height: 200px;
+				background: black;
+			}
+			.thediv03
+			{
+				background: blue;
+				width: 100px;
+				height: 100px;
+				overflow: scroll;
+				overflow: visible;
+			}
+		</style>
+	</head>
+	<body>
+		<span class="thespan">11231231231</span>
+		<div class="thediv02">2321213123</div>
+		<div class="thediv">123</div>
+		
+		<div class="thediv03">
+			 这个属性定义溢出元素内容区的内容会如何处理。如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。因此，有可能即使元素框中可以放下所有内容也会出现滚动条。默认值是 visible。
+
+	
+		</div>
+		
+		
+		<!--display:none   隐藏元素，且不占位置
+			
+			dilplay:block  使有display:none属性的元素显示,并变成块元素
+			
+			dilplay:inline  使有display:none属性的元素显示,并变成行元素
+			
+			dilplay:inline-block  使有display:none属性的元素显示,并变成内联块元素
+			
+			visibility:hidden  隐藏元素，但占位置
+			
+			visibility:visible  使有visibility:hidden属性的元素显示
+
+			怎么隐藏的就怎么显示
+			
+			overflow:hidden    内容会被修剪，并且其余内容是不可见的。
+			
+			overflow:auto	        当内容超出，浏览器都会显示滚动条以便查看其余的内容
+			
+			overflow:scroll    不论内容是否超出，浏览器都会显示滚动条以便查看其余的内容。
+			
+			overflow: visible  默认值。内容不会被修剪，会呈现在元素框之外。
+
+
+
+
+		-->
+
+	</body>
+</html>

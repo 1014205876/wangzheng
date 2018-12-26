@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		美女
+		<br />
+		<input type="text" id="a1" placeholder="美女的手指" disabled="disabled"/>
+		<input type="text" id="a2" placeholder="美女的数字" disabled="disabled"/>
+		<br /> 帅哥
+		<br />
+		<select name="" id="a3">
+			<option value="0">0</option>
+			<option value="5">5</option>
+			<option value="10">10</option>
+		</select>
+		<select name="" id="a4">
+			<option value="0">0</option>
+			<option value="5">5</option>
+			<option value="10">10</option>
+			<option value="15">15</option>
+			<option value="20">20</option>
+		</select>
+		<br />
+		<input type="button" id="a5" value="pk" />
+		<script>
+			var b1 = document.getElementById('a1');
+			var b2 = document.getElementById('a2');
+			var b3 = document.getElementById('a3');
+			var b4 = document.getElementById('a4');
+			var b5 = document.getElementById('a5');
+
+			b5.onclick = function() {
+				var c1 = Math.random();
+				var c2 = Math.random();
+				var c3 = parseInt(a3.value); //帅哥的手指
+				var c4 = parseInt(a4.value); //帅哥的数字
+				var c5 = Math.floor(c1 * 3) * 5; //美女的手指
+				var c6 = Math.floor(c2 * 5) * 5; //美女的数字
+				b1.value = c5;
+				b2.value = c6;
+				var d1 = c3 + c5;
+				if(d1 == c6) {
+					if(d1 == c4)
+					{
+						alert('平局')
+					} else {
+						alert('美女赢')
+					}
+				}
+				else
+				{
+					if(d1==c4)
+					{
+						alert('帅哥赢')
+					}
+					else{
+						alert('再来一局')
+					}
+				}
+			}
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>练习官网</title>
+		<link rel="stylesheet" type="text/css" href="css/body.css" />
+		<link rel="stylesheet" type="text/css" href="css/animate.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="js/move.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+	</head>
+
+	<body style='background:#F7F7F7'>
+		<!--注册登录-->
+		<div class="header">
+			<div class="header_wrap">
+				<div class="head_left">
+					您好欢迎来到猎拍网！
+					<span class="load">登录</span>
+					<span class="login">[注册]</span>
+					<span id='guanliyuan'>后台管理员登录</span>
+				</div>
+				<div class="head_right">
+					<div class="person">我的猎拍
+						<span class="person_01"></span>
+						<div class="person_block">
+							<span>暂时没有商品</span>
+						</div>
+					</div>
+					<span></span>
+					<div class="goods01">购物车 <span class="goods_01"></span></div>
+					<span></span>
+				</div>
+			</div>
+		</div>
+
+		<!--搜索框-->
+		<div class="lnav">
+			<div class="nav_wrap">
+				<div class="logo" onclick='javascript:window.location.href="拍拍网子页面.html"'></div>
+				<div class="nav_list">
+					<div class="search">
+						<span></span>
+						<input type="text" placeholder="  搜索商品" class="inp01" />
+						<input type="button" value="搜索" class="inp02" />
+					</div>
+					<div class="search_bottom">
+						<span>移动手机</span>
+						<span class="hot">科技台灯</span>
+						<span>液晶电视</span>
+						<span class="hot">洗衣机</span>
+						<span>充电器</span>
+						<span>笔记本</span>
+						<span>更多</span>
+					</div>
+				</div>
+				<div class="nav_code">
+					<div class="erweima">
+						<img src="img/erweima.png" />
+					</div>
+					<p>扫码赢大奖</p>
+				</div>
+			</div>
+		</div>
+
+		<!--导航栏-->
+		<div class='nav'>
+			<div id='nav01'>
+				<div class='nave01background'></div>
+				<ul class='nav01'>
+					<a href="###">
+						<li class='nav02'>全部商品</li>
+					</a>
+					<a href="###" id='to_top01'>
+						<li>返回顶部</li>
+					</a>
+					<a href="###">
+						<li>热卖单品</li>
+					</a>
+					<li>
+						<div></div>
+					</li>
+					<a href="###">
+						<li>精良装备</li>
+					</a>
+					<li>
+						<div></div>
+					</li>
+					<a href="###">
+						<li>店铺推荐</li>
+					</a>
+					<li>
+						<div></div>
+					</li>
+					<a href="###">
+						<li>公司地址</li>
+					</a>
+				</ul>
+			</div>
+			<div id='navbox'></div>
+		</div>
+
+		<!--大图轮播-->
+		<div class=' bannercolor01 bannercolor'></div>
+		<div class=' bannercolor02 bannercolor'></div>
+		<div class=' bannercolor03 bannercolor'></div>
+		<div class=' bannercolor04 bannercolor'></div>
+		<div class='banner'>
+			<!--<div class='color color01'></div>
+			<div class='color color02'></div>-->
+			<div class='banner01'>
+
+				<!--/*左边10个li标签*/-->
+				<ul class='banner02'>
+					<a href="###">
+						<li><span><strong>热门手机</strong></span>/<span>苹果</span>/<span>三星</span>/<span>小米</span></li>
+					</a>
+					<a href="###">
+						<li><span><strong>数码相机</strong></span>/<span>佳能</span>/<span>卡西欧</span>/<span>索尼</span></li>
+					</a>
+					<a href="###">
+						<li><span><strong>洗衣机</strong></span>/<span>海尔</span>/<span>小天鹅</span>/<span>美的</span></li>
+					</a>
+					<a href="###">
+						<li><span><strong>空调</strong></span>/<span>美的</span>/<span>格力</span>/<span>奥克斯</span></li>
+					</a>
+					<a href="###">
+						<li><span><strong>显示器</strong></span>/<span>三星</span>/<span>戴尔</span>/<span>华硕</span></li>
+					</a>
+					<a href="###">
+						<li><span><strong>智能电视</strong></span>/<span>创维</span>/<span>TCL</span>/<span>海信</span></li>
+					</a>
+					<a href="###">
+						<li><span><strong>厨卫家装</strong></span>/<span>方太</span>/<span>老板</span>/<span>能率</span></li>
+					</a>
+					<a href="###">
+						<li><span><strong>电脑主板</strong></span>/<span>微星</span>/<span>华硕</span>/<span>技嘉</span></li>
+					</a>
+					<a href="###">
+						<li><span><strong>车载导航仪</strong></span>/<span>车萝卜</span>/<span>神行者</span></li>
+					</a>
+					<a href="###">
+						<li><span><strong>微波炉</strong></span>/<span>佳能</span>/<span>佳能</span>/<span>索尼</span></li>
+					</a>
+				</ul>
+
+				<!--/*左边10个li标签控制右边10个li标签的显示与隐藏*/-->
+				<ul class='banner03'>
+					<!--热门手机-->
+					<li>
+						<!--<h1>
+							<p>0苹果</p>
+							<p>0小米</p>
+						</h1>-->
+						<div>
+							<h3>
+								<img src="img/TB1UTTRHXXXXXaqapXXkqOt7VXX_014356.jpg_b.jpg" alt="" />
+								<p>iPhone 6</p>
+								<p><span>¥2298.00</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB1nCYMJpXXXXbOXFXXG8XK_VXX_063642.jpg_b.jpg" alt="" />
+								<p>iPhone 6s</p>
+								<p><span>$3688.00</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB1gWLIfwnH8KJjSspcsLH3QFXa_043447.jpg_b.jpg" alt="" />
+								<p>荣耀V10 </p>
+								<p><span>$2999.00</span></p>
+								</h3>
+							<h3>
+								<img src="img/TB1SY.ERpXXXXaEXpXXnbc4.FXX_111029.jpg_b.jpg" alt="" />
+								<p>魅蓝 note6</p>
+								<p><span>$1299</span></p>
+							</h3>
+							<h3>
+								<img src="img/note3-80-2.png" alt="" />
+								<p>华为</p>
+								<p><span>$1899</span></p>
+							</h3>
+							<h3>
+								<img src="img/mix2-80.png" alt="" />
+								<p>OPPO R11S</p><p><span>$2399</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB1FiFFmfBNTKJjSszeHcEu2VXa_072144.jpg_b.jpg" alt="" />
+								<p>OPPO A77</p><p><span>$1599</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB1FrOLSXXXXXc7XpXXrhPQ_XXX_053507.jpg_b (1).jpg" alt="" />
+								<p>魅族 PRO 7</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/805a.png" alt="" />
+								<p>酷派 Cool S1 </p><p><span>$1279</span></p>
+							</h3>
+						</div>
+					</li>
+					<!--数码相机-->
+					<li>
+						<!--<h1>
+							<p>1苹果</p>
+							<p>1小米</p>
+						</h1>-->
+						<div>
+							<h3>
+								<img src="img/TB1ETlFMXXXXXbDXXXXXXXXXXXX.jpg_220x220.jpg_.webp" alt="" />
+								<p>佳能 800D</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB1gkg4b6gy_uJjSZTEXXcYkFXa.jpg_220x220.jpg_.webp" alt="" />
+								<p>佳能 77D</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB16hrmOXXXXXcmXFXXXXXXXXXX.jpg_220x220.jpg_.webp" alt="" />
+								<p>卡西欧 TR-M10 </p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB1MutnMXXXXXaWaXXXXXXXXXXX.jpg_220x220.jpg_.webp" alt="" />
+								<p>佳能 1300D</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB1S3ptQpXXXXcDXXXXsQwA8XXX_022000.jpg_220x220.jpg_.webp" alt="" />
+								<p>TOUGH TG-5 </p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB2PtYFc0LO8KJjSZPcXXaV0FXa_!!0-saturn_solar.jpg_220x220.jpg" alt="" />
+								<p>美国原装数码相机</p>
+								<p><span>$1999</span></p>
+								</h3>
+							<h3>
+								<img src="img/TB1sfdmg8fH8KJjy1XbOynLdXXa_105450.jpg_220x220.jpg_.webp" alt="" />
+								<p>佳能 80D</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB10ZUIQXXXXXaoaFXXVB908pXX_023509.jpg_220x220.jpg_.webp" alt="" />
+								<p>尼康 D850 </p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB1gkg4b6gy_uJjSZTEXXcYkFXa.jpg_220x220.jpg_.webp" alt="" />
+								<p>EX-TR750 </p><p><span>$1999</span></p>
+							</h3>
+						</div>
+					</li>
+					<!--洗衣机-->
+					<li>
+						<!--<h1>
+							<p>2苹果</p>
+							<p>2小米</p>
+						</h1>-->
+						<div>
+							<h3>
+								<img src="img/TB1cV10MVXXXXaJXVXXXXXXXXXX.jpg_220x220.jpg_.webp" alt="" />
+								<p>海尔 EG100</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB1KwwCNpXXXXa1XVXXXXXXXXXX.jpg_220x220.jpg_.webp" alt="" />
+								<p>4HBX39G</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB1MgX6RFXXXXaNaXXXXXXXXXXX.jpg_220x220.jpg_.webp" alt="" />
+								<p>海尔 EG8</p>
+								<p><span>$1999</span></p>
+								</h3>
+							<h3>
+								<img src="img/TB1SfSARpXXXXXsaXXXXXXXXXXX.jpg_220x220.jpg_.webp" alt="" />
+								<p>小天鹅 TD</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB1v6lRRXXXXXcPXFXXXXXXXXXX.jpg_220x220.jpg_.webp" alt="" />
+								<p>全自动洗衣机</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB2I2xAcNrI8KJjy0FpXXb5hVXa_!!0-saturn_solar.jpg_220x220.jpg" alt="" />
+								<p>小天鹅 TD</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB13D0NSVXXXXXnaXXXXXXXXXXX.jpg_220x220.jpg_.webp" alt="" />
+								<p>小天鹅 TG10</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB1771iXkfb_uJkSmLyXXcxoXXa.jpg_220x220.jpg_ (1).webp" alt="" />
+								<p>海尔 EG10</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/TB1771iXkfb_uJkSmLyXXcxoXXa.jpg_220x220.jpg_.webp" alt="" />
+								<p>美的 MG9</p><p><span>$1999</span></p>
+							</h3>
+						</div>
+					</li>
+					<!--空调-->
+					<li>
+						<!--<h1>
+							<p>3苹果</p>
+							<p>3小米</p>
+						</h1>-->
+						<div>
+							<h3>
+								<img src="img/0000000000-000000000125353804_1.jpg" alt="" />
+								<p>美的变频1.5</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000128866947_1.jpg" alt="" />
+								<p>奥克斯1.5匹</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000139544578_1.jpg" alt="" />
+								<p>海尔智能</p>
+								<p><span>$1999</span></p>
+								</h3>
+							<h3>
+								<img src="img/0000000000-000000000144835627_1.jpg" alt="" />
+								<p>格力(gree)</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000152709847_1.jpg" alt="" />
+								<p>美的变频</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000193392955_1.jpg" alt="" />
+								<p>科龙1.5匹</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000193392956_1.jpg" alt="" />
+								<p>志高1匹</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000615436238_1.jpg" alt="" />
+								<p>奥克斯定频</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000615436239_1.jpg" alt="" />
+								<p>格力变频</p><p><span>$1999</span></p>
+							</h3>
+						</div>
+					</li>
+					<!--显示器-->
+					<li>
+						<!--<h1>
+							<p>4苹果</p>
+							<p>4小米</p>
+						</h1>-->
+						<div>
+							<h3>
+								<img src="img/0000000000-000000000127921027_1.jpg" alt="" />
+								<p>戴尔（DELL）</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000137194596_1.jpg" alt="" />
+								<p>三星(SAMSUNG)</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000145847951_1.jpg" alt="" />
+								<p>S24E390HL</p>
+								<p><span>$1999</span></p>
+								</h3>
+							<h3>
+								<img src="img/0000000000-000000000176388029_1.jpg" alt="" />
+								<p>华硕（ASUS）</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000605659795_1.jpg" alt="" />
+								<p>AOC I2080SW</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000614052084_1.jpg" alt="" />
+								<p>LG 27UD68-W</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000617117893_1.jpg" alt="" />
+								<p>Aoc/冠捷 I2769V</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000653826574_1.jpg" alt="" />
+								<p>三星SAMSUNG）</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0070146505-000000000175290873_1.jpg" alt="" />
+								<p>戴尔（DELL）</p><p><span>$1999</span></p>
+							</h3>
+						</div>
+					</li>
+					<!--智能电视-->
+					<li>
+						<!--<h1>
+							<p>5苹果</p>
+							<p>5小米</p>
+						</h1>-->
+						<div>
+							<h3>
+								<img src="img/0000000000-000000000126569749_1.jpg" alt="" />
+								<p>海信(Hisense)</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000133089241_1.jpg" alt="" />
+								<p>创维(Skyworth)</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000175000735_1.jpg" alt="" />
+								<p>三星(SAMSUNG)</p>
+								<p><span>$1999</span></p>
+								</h3>
+							<h3>
+								<img src="img/0000000000-000000000190720077_1.jpg" alt="" />
+								<p>TCL D55A620U</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000601393042_1.jpg" alt="" />
+								<p>小米（MI）</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000651790021_1.jpg" alt="" />
+								<p>索尼(SONY)</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000660693144_1.jpg" alt="" />
+								<p>海信(Hisense)</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000683246685_1.jpg" alt="" />
+								<p>海信(Hisense)</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000721114108_1.jpg" alt="" />
+								<p>长虹（CHANGHONG）</p><p><span>$1999</span></p>
+							</h3>
+						</div>
+					</li>
+					<!--厨卫家电-->
+					<li>
+						<!--<h1>
+							<p>6苹果</p>
+							<p>6小米</p>
+						</h1>-->
+						<div>
+							<h3>
+								<img src="img/0000000000-000000000104167973_1.jpg" alt="" />
+								<p>方太经典欧式</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000123742944_1.jpg" alt="" />
+								<p>老板19立方</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000123787663_1.jpg" alt="" />
+								<p>美的19升</p>
+								<p><span>$1999</span></p>
+								</h3>
+							<h3>
+								<img src="img/0000000000-000000000136961805_1.jpg" alt="" />
+								<p>能率热水器</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000152568791_1.jpg" alt="" />
+								<p>小米净水器</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000178395752_1.jpg" alt="" />
+								<p>美的热水器</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000601035464_1.jpg" alt="" />
+								<p>西门子洗碗机</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000611183204_1.jpg" alt="" />
+								<p>史密斯热水器</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000618609019_1.jpg" alt="" />
+								<p>西门子油烟机</p><p><span>$1999</span></p>
+							</h3>
+						</div>
+					</li>
+					<!--电脑主板-->
+					<li>
+						<!--<h1>
+							<p>7苹果</p>
+							<p>7小米</p>
+						</h1>-->
+						<div>
+							<h3>
+								<img src="img/0000000000-000000000144975464_1.jpg" alt="" />
+								<p>微星Z270</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000193106191_1.jpg" alt="" />
+								<p>技嘉B250</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000193148812_1.jpg" alt="" />
+								<p>七彩虹iGame</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000656046569_1.jpg" alt="" />
+								<p>技嘉Z370</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000656046581_1.jpg" alt="" />
+								<p>华硕ASUS</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000656046591_1.jpg" alt="" />
+								<p>微星MSI</p>
+								<p><span>$1999</span></p>
+								</h3>
+							<h3>
+								<img src="img/0000000000-000000000656046600_1.jpg" alt="" />
+								<p>微星H110M</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000740984369_1.jpg" alt="" />
+								<p>华硕PRIME</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0000000000-000000000772182016_1.jpg" alt="" />
+								<p>华硕(ASUS)</p><p><span>$1999</span></p>
+							</h3>
+						</div>
+					</li>
+					<!--车载导航仪-->
+					<li>
+						<!--<h1>
+							<p>8苹果</p>
+							<p>8小米</p>
+						</h1>-->
+						<div>
+							<h3>
+								<img src="img/0070069481-000000000120796535_1.jpg" alt="" />
+								<p>E路航E800 </p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0070069481-000000000159668023_1.jpg" alt="" />
+								<p>车萝卜</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0070069481-000000000625440533_1.jpg" alt="" />
+								<p>HYUNDA</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0070099587-000000000180740908_1.jpg" alt="" />
+								<p>E路航E800</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0070131491-000000000178149342_1.jpg" alt="" />
+								<p>神行者 D20</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/0070152112-000000000826195214_1.jpg" alt="" />
+								<p>e路航E20</p>
+								<p><span>$1999</span></p>
+								</h3>
+							<h3>
+								<img src="img/0070174327-000000000826126289_1.jpg" alt="" />
+								<p>E路航E13</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/000000000137695196_1.jpg" alt="" />
+								<p>京华7009</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/000000000137703216_1.jpg" alt="" />
+								<p>Philips 飞利浦</p><p><span>$1999</span></p>
+							</h3>
+						</div>
+					</li>
+					<!--微波炉-->
+					<li>
+						<!--<h1>
+							<p>9苹果</p>
+							<p>9小米</p>
+						</h1>-->
+						<div>
+							<h3>
+								<img src="img/805a.png" alt="" />
+								<p>小米</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/805a.png" alt="" />
+								<p>小米</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/805a.png" alt="" />
+								<p>小米</p><p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/805a.png" alt="" />
+								<p>小米</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/805a.png" alt="" />
+								<p>小米</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/805a.png" alt="" />
+								<p>小米</p>
+								<p><span>$1999</span></p>
+								</h3>
+							<h3>
+								<img src="img/805a.png" alt="" />
+								<p>小米</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/805a.png" alt="" />
+								<p>小米</p>
+								<p><span>$1999</span></p>
+							</h3>
+							<h3>
+								<img src="img/805a.png" alt="" />
+								<p>小米</p><p><span>$1999</span></p>
+							</h3>
+						</div>
+					</li>
+				</ul>
+
+				<!--/*4张大图的切换*/-->
+				<div class='banner04'>
+					<!--张大图-->
+					<ul>
+						<li><img src="img/TB1GSL9hZrI8KJjy0FhXXbfnpXa-1130-500.jpg_q100.jpg_.webp.jpg" /></li>
+						<li><img src="img/TB2RXcLa0HO8KJjSZFtXXchfXXa_!!189-0-luban.jpg_q100.jpg_.webp.jpg" /></li>
+						<li><img src="img/TB2SN.cdgfH8KJjy1zcXXcTzpXa_!!154-0-luban.jpg_q100.jpg_.png" /></li>
+						<li><img src="img/TB1Qd0nbkfb_uJkSnb4SutCrXXa.jpg" /></li>
+					</ul>
+					<!--大图下面的分页器-->
+					<div class='pager01'>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+					<!--左右点击按钮-->
+					<div class='btn01 left01'>
+						<img src="img/sliderL.png" alt="" />
+						<img src="img/sliderLH.png" alt="" />
+					</div>
+					<div class='btn01 right01'>
+						<img src="img/sliderR.png" alt="" />
+						<img src="img/sliderRH.png" alt="" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--轮播图-->
+		<div class='title'>
+			<h2 class='title_name'>热卖单品</h2>
+		</div>
+		<div class="box">
+			<ul class="slideshow">
+				<li>
+					<img src="img/55英寸4K超高清WIFI智能液晶电视 2899.webp" />
+					<span class="name01">55英寸4K超高清WIFI智能液晶电视</span>
+					<span class="money"><a href="javascript:;">￥ 2899</a></span>
+				</li>
+				<li>
+					<img src="img/4K超高清人工智能液晶平板电视 2898.webp" />
+					<span class="name01">4K超高清人工智能液晶平板电视</span>
+					<span class="money"><a href="javascript:;">￥ 2898</a></span>
+				</li>
+				<li>
+					<img src="img/笔记本 3599.png" />
+					<span class="name01">小米笔记本Air 13.3英寸</span>
+					<span class="money"><a href="javascript:;">￥ 3599</a></span>
+				</li>
+				<li>
+					<img src="img/iPhone X现货抢购 7988.jpg" />
+					<span class="name01">iPhone X现货抢购</span>
+					<span class="money"><a href="javascript:;">￥ 7988</a></span>
+				</li>
+				<li>
+					<img src="img/小米Max 2 1299.png" />
+					<span class="name01">小米Max 2 惊爆价</span>
+					<span class="money"><a href="javascript:;">￥ 1099</a></span>
+				</li>
+				<li>
+					<img src="img/vivo 1399.png" />
+					<span class="name01">送父母最好的选择 vivo</span>
+					<span class="money"><a href="javascript:;">￥ 2898</a></span>
+				</li>
+				<li>
+					<img src="img/华为 HUAWEI nova 2 Plus 2599.jpg" />
+					<span class="name01">华为 HUAWEI nova 2 Plus</span>
+					<span class="money"><a href="javascript:;">￥ 2599</a></span>
+				</li>
+				<li>
+					<img src="img/华为 HUAWEI nova 青春版.png" />
+					<span class="name01">华为 HUAWEI nova 青春版</span>
+					<span class="money"><a href="javascript:;">￥ 1599</a></span>
+				</li>
+				<li>
+					<img src="img/55英寸4K超高清WIFI智能液晶电视 2899.webp" />
+					<span class="name01">55英寸4K超高清WIFI智能液晶电视</span>
+					<span class="money"><a href="javascript:;">￥ 2899</a></span>
+				</li>
+				<li>
+					<img src="img/4K超高清人工智能液晶平板电视 2898.webp" />
+					<span class="name01">4K超高清人工智能液晶平板电视</span>
+					<span class="money"><a href="javascript:;">￥ 2898</a></span>
+				</li>
+				<li>
+					<img src="img/笔记本 3599.png" />
+					<span class="name01">小米笔记本Air 13.3英寸</span>
+					<span class="money"><a href="javascript:;">￥ 3599</a></span>
+				</li>
+				<li>
+					<img src="img/iPhone X现货抢购 7988.jpg" />
+					<span class="name01">iPhone X现货抢购</span>
+					<span class="money"><a href="javascript:;">￥ 7988</a></span>
+				</li>
+				<li>
+					<img src="img/小米Max 2 1299.png" />
+					<span class="name01">小米Max 2 惊爆价</span>
+					<span class="money"><a href="javascript:;">￥ 1099</a></span>
+				</li>
+				<li>
+					<img src="img/vivo 1399.png" />
+					<span class="name01">送父母最好的选择 vivo</span>
+					<span class="money"><a href="javascript:;">￥ 2898</a></span>
+				</li>
+				<li>
+					<img src="img/华为 HUAWEI nova 2 Plus 2599.jpg" />
+					<span class="name01">华为 HUAWEI nova 2 Plus</span>
+					<span class="money"><a href="javascript:;">￥ 2599</a></span>
+				</li>
+				<li>
+					<img src="img/华为 HUAWEI nova 青春版.png" />
+					<span class="name01">华为 HUAWEI nova 青春版</span>
+					<span class="money"><a href="javascript:;">￥ 1599</a></span>
+				</li>
+			</ul>
+		</div>
+
+		<!--选项卡-->
+		<div class="smart smart01">
+			<!------标题------>
+			<div class="title">
+				<h2 class="title_name">精良装备</h2>
+				<div class="item">
+					<ul class="item_list">
+						<li class="active">热门推荐</li>
+						<li>游戏本</li>
+						<li>macbook</li>
+						<li>笔记本</li>
+						<li>一体机</li>
+					</ul>
+				</div>
+			</div>
+			<!------内容------>
+			<div class="goods">
+				<div class="goods_left">
+					<ul class="left_pic">
+						<li class="goods_item" style='padding-left:none;'>
+							<a href='###'><img src="img/5a321793Nfad3a55f.jpg!q90.jpg" width="224" height="300" style='margin-top:0px'/></a>
+						</li>
+						<li class="goods_item">
+							<a href='###'><img src="img/5a124113Na7afcaab.jpg!q90.jpg" width="224" height="300"  style='margin-top:0px'/></a>
+						</li>
+					</ul>
+				</div>
+				<div class="goods_right">
+					<div class="goods_content">
+						<ul class="goods_list" style="display: block;">
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59ddb765N62523179.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> 联想(Lenovo)小新潮7000</a></h3>
+								<p class="desc">13.3英寸超轻薄窄边框笔记本电脑</p>
+								<p class="price">
+									<span class="num">¥5599.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/595cace7N10d4b2a2.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> 戴尔（DELL） 灵越5567 -1545</a></h3>
+								<p class="desc">15.6英寸7代I5 4G独显游戏笔记本电脑</p>
+								<p class="price">
+									<span class="num">¥4299.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/591527eaN39724c60.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> 联想（Lenovo）拯救者 刃7000</a></h3>
+								<p class="desc">UIY吃鸡游戏台式电脑主机</p>
+								<p class="price">
+									<span class="num">¥4799.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a2e3261N4d591c77.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> 惠普(HP)暗影精灵3代</a></h3>
+								<p class="desc"> GTX1050Ti 15.6英寸游戏笔记本电脑</p>
+								<p class="price">
+									<span class="num">¥7299.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/725a37e3-78b7-4298-8098-c40097bf179d.png" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>小米笔记本Air 13.3英寸</a></h3>
+								<p class="desc">Intel 酷睿i5 处理器 独立显卡</p>
+								<p class="price">
+									<span class="num">4999</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/725a37e3-78b7-4298-8098-c40097bf179d.png" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>小米笔记本</a></h3>
+								<p class="desc">更轻更薄，像杂志一样随身携带</p>
+								<p class="price">
+									<span class="num">3599</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/725a37e3-78b7-4298-8098-c40097bf179d.png" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>12.5" 笔记本 128GB</a></h3>
+								<p class="desc">轻薄金属机身 换芯升级</p>
+								<p class="price">
+									<span class="num">3599</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/WechatIMG603.png" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>米家 LED 智能台灯</a></h3>
+								<p class="desc">无可视频闪，四种场景优化调光</p>
+								<p class="price">
+									<span class="num">169</span>元
+								</p>
+							</li>
+						</ul>
+						<ul class="goods_list">
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a128bebN55293392.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>戴尔DELL灵越游匣</a></h3>
+								<p class="desc">15.6英寸游戏笔记本电脑</p>
+								<p class="price">
+									<span class="num">¥5799.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a26044eNa0bef032.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>机械革命（MECHREVO）深海泰坦X1</a></h3>
+								<p class="desc">15.6英寸游戏笔记本 i7-7700HQ</p>
+								<p class="price">
+									<span class="num">¥6299.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a2124c7N42c35d5f.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>联想(Lenovo)拯救者R720</a></h3>
+								<p class="desc">15.6英寸游戏笔记本电脑</p>
+								<p class="price">
+									<span class="num">¥7499.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a212d7dNb1fd6bf4.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>华硕(ASUS) 飞行堡垒四代FX63VD</a></h3>
+								<p class="desc">15.6英寸游戏笔记本电脑</p>
+								<p class="price">
+									<span class="num">¥5999.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a30b20eNd99cd02f.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>微星(MSI)GL62VR 7RFX-848CN</a></h3>
+								<p class="desc">15.6英寸游戏本(i7-7700HQ 8G 1T+128GSSD GTX1</p>
+								<p class="price">
+									<span class="num">¥7999.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59fabc80N4a217bf2.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>神舟（HASEE）战神Z7M-KP7GT</a></h3>
+								<p class="desc">15.6英寸游戏本笔记本电脑</p>
+								<p class="price">
+									<span class="num">¥5999.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59f2a9a7Nb0ddecf1.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>神舟（HASEE）战神ZX8-CP5S1</a></h3>
+								<p class="desc">15.6英寸游戏笔记本电脑（I5-8400 8G 1T+128G SSD GTX10</p>
+								<p class="price">
+									<span class="num">¥10988.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a14ef6fN2aeb118b.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>微星(MSI)GL62VR 7RFX-848CN灯</a></h3>
+								<p class="desc">15.6英寸游戏本(i7-7700HQ 8G 1T+128GSSD GTX1</p>
+								<p class="price">
+									<span class="num">¥7999.00</span>元
+								</p>
+							</li>
+						</ul>
+						<ul class="goods_list">
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/593a49a3Nf9c2a052.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> Air 13.3英寸笔记本电脑</a></h3>
+								<p class="desc">2017新款Core i5 处理器</p>
+								<p class="price">
+									<span class="num">6399.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5631d26bNdbc7ec32.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> Air 11.6英寸笔记本电脑</a></h3>
+								<p class="desc">Core i5 处理器/4GB内存</p>
+								<p class="price">
+									<span class="num">4499</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a3494c3Ndd3dfd42.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> Air 13.3英寸笔记本电脑</a></h3>
+								<p class="desc">2017款 MQD32CH/A Core i5/8G内存</p>
+								<p class="price">
+									<span class="num">5948</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a3495efNc6b1df6a.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>米家 LED 智能台灯</a></h3>
+								<p class="desc">无可视频闪，四种场景优化调光</p>
+								<p class="price">
+									<span class="num">169</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a349674N12a9efef.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>Pro 13.3英寸笔记本</a></h3>
+								<p class="desc">2017年款 MPXQ2CH/A深空灰-128GB</p>
+								<p class="price">
+									<span class="num">8785</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a368cc6Nb028bd92.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>Air 13.3英寸轻薄笔记本电脑 </a></h3>
+								<p class="desc">2017新款 MQD32CH/A 128闪存版</p>
+								<p class="price">
+									<span class="num">5888</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a34adb0N1b85943d.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> Pro 2017款 13.3英寸笔记本</a></h3>
+								<p class="desc"> 17款/银色/128G/MPXR2CH/A</p>
+								<p class="price">
+									<span class="num">8785</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a0bb16bN37a1ddb8.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>Air 13.3英寸轻薄笔记本电脑</a></h3>
+								<p class="desc">air i5 1.8 8G 256G</p>
+								<p class="price">
+									<span class="num">8998</span>元
+								</p>
+							</li>
+						</ul>
+						<ul class="goods_list">
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/595dd5a5Nc3a7dab5.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>小米(MI)Air</a></h3>
+								<p class="desc">13.3英寸全金属轻薄笔记本i5-7200U 8G</p>
+								<p class="price">
+									<span class="num">5199</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a2124c7N42c35d5f.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>联想(Lenovo)拯救者R720</a></h3>
+								<p class="desc">15.6英寸游戏笔记本电脑i5-7300HQ 8G 1T+128G SSD GTX105</p>
+								<p class="price">
+									<span class="num">6399</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59f7dfa2N9b08ef39.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>ThinkPad New S2 2017（02CD）</a></h3>
+								<p class="desc">13.3英寸轻薄笔记本电脑i5-7200U 8G</p>
+								<p class="price">
+									<span class="num">5988</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a1c052aNc5fb8ce6.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>华硕(ASUS) 灵耀S4000UA</a></h3>
+								<p class="desc">14英寸超窄边框超轻薄笔记本电脑</p>
+								<p class="price">
+									<span class="num">4699</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a0e556cNf97ba45f.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>戴尔DELL灵越游匣Master15-R4645B</a></h3>
+								<p class="desc">15.6英寸游戏笔记本电脑</p>
+								<p class="price">
+									<span class="num">6399</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a2e3261N4d591c77.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>惠普(HP)暗影精灵3代 </a></h3>
+								<p class="desc">15.6英寸游戏笔记本电脑</p>
+								<p class="price">
+									<span class="num">7299</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59f1a0abN3f15a78a.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>戴尔(DELL)XPS8930-R1AN8S</a></h3>
+								<p class="desc">八代i7-8700 GTX1070 8G独显</p>
+								<p class="price">
+									<span class="num">12999</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a308bf2N2353da49.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>机械师游戏本（MACHENIKE）</a></h3>
+								<p class="desc">F117 七代i7/GTX1050Ti独显笔记本电脑</p>
+								<p class="price">
+									<span class="num">6799</span>元
+								</p>
+							</li>
+						</ul>
+						<ul class="goods_list">
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a28ea18Ndd550420.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>戴尔(DELL)灵越AIO 3464-R1528W</a></h3>
+								<p class="desc">23.8英寸一体机电脑</p>
+								<p class="price">
+									<span class="num">¥4999.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59966d5fN9eabc8ba.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>联想（Lenovo）AIO 520 致美一体机21.5英寸</a></h3>
+								<p class="desc">E2-9010 4G 1T 集显</p>
+								<p class="price">
+									<span class="num">2999</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/594b28d0N0452fad5.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>联想（Lenovo）AIO 300 23英寸一体机台式电脑</a></h3>
+								<p class="desc">i5-6200U 8G 1T 2G独显 WiFi 蓝牙</p>
+								<p class="price">
+									<span class="num">4999</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59966ce8N977edaea.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>联想（Lenovo）AIO 520 致美一体机21.5英寸</a></h3>
+								<p class="desc">i3-6006U 4G 1T 集显 WIFI 蓝牙</p>
+								<p class="price">
+									<span class="num">3799.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a28ea18Ndd550420.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>戴尔(DELL)成就AIO 5460-R2548B</a></h3>
+								<p class="desc">23.8英寸防眩光一体机电脑</p>
+								<p class="price">
+									<span class="num">5899.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a2e2f10Nef244e34.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>游戏台式电脑主机DIY组装机</a></h3>
+								<p class="desc">武极 i3/i5/i7定制GTX1060/1070/1080</p>
+								<p class="price">
+									<span class="num">¥1.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59c8be35Nfd0469a1.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>水冷游戏台式吃鸡电脑主机DIY组装机</a></h3>
+								<p class="desc">武极 新i7 8700K/GTX1080/256G</p>
+								<p class="price">
+									<span class="num">¥8999.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a32577aNb8fa47d7.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>SSD游戏吃鸡台式电脑主机/DIY电竞组装机</a></h3>
+								<p class="desc">宁美国度 i7-7700/GTX1060</p>
+								<p class="price">
+									<span class="num">¥4999.00</span>元
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="smart smart02">
+			<!------标题------>
+			<div class="title">
+				<h2 class="title_name">店铺推荐</h2>
+				<div class="item">
+					<ul class="item_list">
+						<li class="active">热门推荐</li>
+						<li>游戏本</li>
+						<li>macbook</li>
+						<li>笔记本</li>
+						<li>一体机</li>
+					</ul>
+				</div>
+			</div>
+			<!------内容------>
+			<div class="goods">
+				<div class="goods_left">
+					<ul class="left_pic">
+						<li class="goods_item" style='padding-left:none'>
+							<a href='###'><img src="img/5a321793Nfad3a55f.jpg!q90.jpg" width="224" height="300"  style='margin-top:0px'/></a>
+						</li>
+						<li class="goods_item">
+							<a href='###'><img src="img/5a124113Na7afcaab.jpg!q90.jpg" width="224" height="300"  style='margin-top:0px'/></a>
+						</li>
+					</ul>
+				</div>
+				<div class="goods_right">
+					<div class="goods_content">
+
+						<ul class="goods_list" style="display: block;">
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a128bebN55293392.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>戴尔DELL灵越游匣</a></h3>
+								<p class="desc">15.6英寸游戏笔记本电脑</p>
+								<p class="price">
+									<span class="num">¥5799.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a26044eNa0bef032.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>机械革命（MECHREVO）深海泰坦X1</a></h3>
+								<p class="desc">15.6英寸游戏笔记本 i7-7700HQ</p>
+								<p class="price">
+									<span class="num">¥6299.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a2124c7N42c35d5f.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>联想(Lenovo)拯救者R720</a></h3>
+								<p class="desc">15.6英寸游戏笔记本电脑</p>
+								<p class="price">
+									<span class="num">¥7499.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a212d7dNb1fd6bf4.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>华硕(ASUS) 飞行堡垒四代FX63VD</a></h3>
+								<p class="desc">15.6英寸游戏笔记本电脑</p>
+								<p class="price">
+									<span class="num">¥5999.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a30b20eNd99cd02f.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>微星(MSI)GL62VR 7RFX-848CN</a></h3>
+								<p class="desc">15.6英寸游戏本(i7-7700HQ 8G 1T+128GSSD GTX1</p>
+								<p class="price">
+									<span class="num">¥7999.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59fabc80N4a217bf2.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>神舟（HASEE）战神Z7M-KP7GT</a></h3>
+								<p class="desc">15.6英寸游戏本笔记本电脑</p>
+								<p class="price">
+									<span class="num">¥5999.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59f2a9a7Nb0ddecf1.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>神舟（HASEE）战神ZX8-CP5S1</a></h3>
+								<p class="desc">15.6英寸游戏笔记本电脑（I5-8400 8G 1T+128G SSD GTX10</p>
+								<p class="price">
+									<span class="num">¥10988.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a14ef6fN2aeb118b.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>微星(MSI)GL62VR 7RFX-848CN灯</a></h3>
+								<p class="desc">15.6英寸游戏本(i7-7700HQ 8G 1T+128GSSD GTX1</p>
+								<p class="price">
+									<span class="num">¥7999.00</span>元
+								</p>
+							</li>
+						</ul>
+
+						<ul class="goods_list">
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59ddb765N62523179.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> 联想(Lenovo)小新潮7000</a></h3>
+								<p class="desc">13.3英寸超轻薄窄边框笔记本电脑</p>
+								<p class="price">
+									<span class="num">¥5599.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/595cace7N10d4b2a2.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> 戴尔（DELL） 灵越5567 -1545</a></h3>
+								<p class="desc">15.6英寸7代I5 4G独显游戏笔记本电脑</p>
+								<p class="price">
+									<span class="num">¥4299.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/591527eaN39724c60.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> 联想（Lenovo）拯救者 刃7000</a></h3>
+								<p class="desc">UIY吃鸡游戏台式电脑主机</p>
+								<p class="price">
+									<span class="num">¥4799.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a2e3261N4d591c77.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> 惠普(HP)暗影精灵3代</a></h3>
+								<p class="desc"> GTX1050Ti 15.6英寸游戏笔记本电脑</p>
+								<p class="price">
+									<span class="num">¥7299.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/725a37e3-78b7-4298-8098-c40097bf179d.png" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>小米笔记本Air 13.3英寸</a></h3>
+								<p class="desc">Intel 酷睿i5 处理器 独立显卡</p>
+								<p class="price">
+									<span class="num">4999</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/725a37e3-78b7-4298-8098-c40097bf179d.png" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>小米笔记本</a></h3>
+								<p class="desc">更轻更薄，像杂志一样随身携带</p>
+								<p class="price">
+									<span class="num">3599</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59ddb765N62523179.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>12.5" 笔记本 128GB</a></h3>
+								<p class="desc">轻薄金属机身 换芯升级</p>
+								<p class="price">
+									<span class="num">3599</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/WechatIMG603.png" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>米家 LED 智能台灯</a></h3>
+								<p class="desc">无可视频闪，四种场景优化调光</p>
+								<p class="price">
+									<span class="num">169</span>元
+								</p>
+							</li>
+						</ul>
+
+						<ul class="goods_list">
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/593a49a3Nf9c2a052.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> Air 13.3英寸笔记本电脑</a></h3>
+								<p class="desc">2017新款Core i5 处理器</p>
+								<p class="price">
+									<span class="num">6399.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5631d26bNdbc7ec32.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> Air 11.6英寸笔记本电脑</a></h3>
+								<p class="desc">Core i5 处理器/4GB内存</p>
+								<p class="price">
+									<span class="num">4499</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a3494c3Ndd3dfd42.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> Air 13.3英寸笔记本电脑</a></h3>
+								<p class="desc">2017款 MQD32CH/A Core i5/8G内存</p>
+								<p class="price">
+									<span class="num">5948</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a3495efNc6b1df6a.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>米家 LED 智能台灯</a></h3>
+								<p class="desc">无可视频闪，四种场景优化调光</p>
+								<p class="price">
+									<span class="num">169</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a349674N12a9efef.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>Pro 13.3英寸笔记本</a></h3>
+								<p class="desc">2017年款 MPXQ2CH/A深空灰-128GB</p>
+								<p class="price">
+									<span class="num">8785</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a368cc6Nb028bd92.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>Air 13.3英寸轻薄笔记本电脑 </a></h3>
+								<p class="desc">2017新款 MQD32CH/A 128闪存版</p>
+								<p class="price">
+									<span class="num">5888</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a34adb0N1b85943d.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'> Pro 2017款 13.3英寸笔记本</a></h3>
+								<p class="desc"> 17款/银色/128G/MPXR2CH/A</p>
+								<p class="price">
+									<span class="num">8785</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a0bb16bN37a1ddb8.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>Air 13.3英寸轻薄笔记本电脑</a></h3>
+								<p class="desc">air i5 1.8 8G 256G</p>
+								<p class="price">
+									<span class="num">8998</span>元
+								</p>
+							</li>
+						</ul>
+						<ul class="goods_list">
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/595dd5a5Nc3a7dab5.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>小米(MI)Air</a></h3>
+								<p class="desc">13.3英寸全金属轻薄笔记本i5-7200U 8G</p>
+								<p class="price">
+									<span class="num">5199</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a2124c7N42c35d5f.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>联想(Lenovo)拯救者R720</a></h3>
+								<p class="desc">15.6英寸游戏笔记本电脑i5-7300HQ 8G 1T+128G SSD GTX105</p>
+								<p class="price">
+									<span class="num">6399</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59f7dfa2N9b08ef39.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>ThinkPad New S2 2017（02CD）</a></h3>
+								<p class="desc">13.3英寸轻薄笔记本电脑i5-7200U 8G</p>
+								<p class="price">
+									<span class="num">5988</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a1c052aNc5fb8ce6.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>华硕(ASUS) 灵耀S4000UA</a></h3>
+								<p class="desc">14英寸超窄边框超轻薄笔记本电脑</p>
+								<p class="price">
+									<span class="num">4699</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a0e556cNf97ba45f.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>戴尔DELL灵越游匣Master15-R4645B</a></h3>
+								<p class="desc">15.6英寸游戏笔记本电脑</p>
+								<p class="price">
+									<span class="num">6399</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a2e3261N4d591c77.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>惠普(HP)暗影精灵3代 </a></h3>
+								<p class="desc">15.6英寸游戏笔记本电脑</p>
+								<p class="price">
+									<span class="num">7299</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59f1a0abN3f15a78a.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>戴尔(DELL)XPS8930-R1AN8S</a></h3>
+								<p class="desc">八代i7-8700 GTX1070 8G独显</p>
+								<p class="price">
+									<span class="num">12999</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a308bf2N2353da49.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>机械师游戏本（MACHENIKE）</a></h3>
+								<p class="desc">F117 七代i7/GTX1050Ti独显笔记本电脑</p>
+								<p class="price">
+									<span class="num">6799</span>元
+								</p>
+							</li>
+						</ul>
+						<ul class="goods_list">
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a28ea18Ndd550420.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>戴尔(DELL)灵越AIO 3464-R1528W</a></h3>
+								<p class="desc">23.8英寸一体机电脑</p>
+								<p class="price">
+									<span class="num">¥4999.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59966d5fN9eabc8ba.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>联想（Lenovo）AIO 520 致美一体机21.5英寸</a></h3>
+								<p class="desc">E2-9010 4G 1T 集显</p>
+								<p class="price">
+									<span class="num">2999</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/594b28d0N0452fad5.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>联想（Lenovo）AIO 300 23英寸一体机台式电脑</a></h3>
+								<p class="desc">i5-6200U 8G 1T 2G独显 WiFi 蓝牙</p>
+								<p class="price">
+									<span class="num">4999</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59966ce8N977edaea.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>联想（Lenovo）AIO 520 致美一体机21.5英寸</a></h3>
+								<p class="desc">i3-6006U 4G 1T 集显 WIFI 蓝牙</p>
+								<p class="price">
+									<span class="num">3799.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a28ea18Ndd550420.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>戴尔(DELL)成就AIO 5460-R2548B</a></h3>
+								<p class="desc">23.8英寸防眩光一体机电脑</p>
+								<p class="price">
+									<span class="num">5899.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a2e2f10Nef244e34.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>游戏台式电脑主机DIY组装机</a></h3>
+								<p class="desc">武极 i3/i5/i7定制GTX1060/1070/1080</p>
+								<p class="price">
+									<span class="num">¥1.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/59c8be35Nfd0469a1.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href='###'>水冷游戏台式吃鸡电脑主机DIY组装机</a></h3>
+								<p class="desc">武极 新i7 8700K/GTX1080/256G</p>
+								<p class="price">
+									<span class="num">¥8999.00</span>元
+								</p>
+							</li>
+							<li class="goods_item">
+								<div class="item_pic">
+									<a href='###'><img src="img/5a32577aNb8fa47d7.jpg!q90.jpg" width="150" /></a>
+								</div>
+								<h3 class="name"><a href="###">SSD游戏吃鸡台式电脑主机/DIY电竞组装机</a></h3>
+								<p class="desc">宁美国度 i7-7700/GTX1060</p>
+								<p class="price">
+									<span class="num">¥4999.00</span>元
+								</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--公司地址-->
+		<div class='title'>
+			<h2 class='title_name'>公司地址</h2>
+		</div>
+
+		<div class='mapbox'>
+			<div class='map'>
+				<img src="img/QQ截图20171222174522.png" alt="" />
+			</div>
+		</div>
+		<div class='the_map'>
+			<!--<div class='map_topimg'>
+				<img src="img/map_topimg.png" alt="" />
+			</div>-->
+			<div id='allmap' class='all_map_baidu'></div>
+			<!--<div class='map_bottomimg'>
+				<img src="img/map_bottomimg.png" alt="" />
+			</div>-->
+
+		</div>
+
+		<!--备案声明-->
+		<div class='shengming'>六班王政作品</div>
+
+		<!--后台管理员登录界面-->
+		<div id='houtai'></div>
+		<div id='houtaimengban'>12344</div>
+		<div id='denglu'>
+			<h2>后台管理员登录界面<span>X</span></h2>
+			<input type="text" placeholder="请输入账户名" />
+			<input type="password" placeholder="请输入密码" />
+			<input type="button" value='登录' class='denglu' />
+		</div>
+
+	</body>
+
+	<!--百度地图js-->
+	<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2.0&ak=3qkFf2G2rUbWKsNYmc2dDvL7"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+	<script type="text/javascript">
+		// 百度地图API功能
+		var map = new BMap.Map("allmap"); // 创建Map实例
+		var poi = new BMap.Point(115.910524, 28.692935);
+		map.centerAndZoom(poi, 15); // 初始化地图,设置中心点坐标和地图级别
+		map.addControl(new BMap.MapTypeControl()); //添加地图类型控件
+		map.setCurrentCity("南昌"); // 设置地图显示的城市 此项是必须设置的
+		//map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+
+		//创建和初始化地图函数：
+		function initMap() {
+			addMapControl(); //向地图添加控件
+		}
+
+		//地图控件添加函数：
+		function addMapControl() {
+			//向地图中添加缩放控件
+			var ctrl_nav = new BMap.NavigationControl({
+				anchor: BMAP_ANCHOR_TOP_LEFT,
+				type: BMAP_NAVIGATION_CONTROL_LARGE
+			});
+			map.addControl(ctrl_nav);
+			//向地图中添加缩略图控件
+			var ctrl_ove = new BMap.OverviewMapControl({
+				anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
+				isOpen: 1
+			});
+			map.addControl(ctrl_ove);
+			//向地图中添加比例尺控件
+			var ctrl_sca = new BMap.ScaleControl({
+				anchor: BMAP_ANCHOR_BOTTOM_LEFT
+			});
+			map.addControl(ctrl_sca);
+		}
+
+		var content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+			'<img src="images/xiaoniao_icon.png" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+			'地址：北京市昌平区站前东街2号<br/>电话：(010)028-8888888<br/>简介：田园风光综合商业楼3层，为小鸟掌学综合研发及办公地址。' +
+			'</div>';
+		//创建检索信息窗口对象
+		var searchInfoWindow = null;
+		searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
+			title: "卓新思创", //标题
+			width: 290, //宽度
+			height: 105, //高度
+			panel: "panel", //检索结果面板
+			enableAutoPan: true, //自动平移
+			searchTypes: [
+				BMAPLIB_TAB_TO_HERE, //到这里去
+				BMAPLIB_TAB_SEARCH, //周边检索
+				BMAPLIB_TAB_FROM_HERE //从这里出发
+			]
+		});
+
+		var marker = new BMap.Marker(poi); //创建marker对象
+		marker.addEventListener("click", function(e) {
+			searchInfoWindow.open(marker);
+		})
+		marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+		map.addOverlay(marker); //在地图中添加marker
+		initMap(); //创建和初始化地图
+	</script>
+
+</html>

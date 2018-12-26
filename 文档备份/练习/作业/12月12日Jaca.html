@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#ziwei {
+				width: 100px;
+				height: 100px;
+				background: blue;
+			}
+			
+			#box {
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript">
+			//			$(function(){})//写法一
+			//			$(document).ready(function(){})//写法二
+
+			//			$(function() {
+			//				$("p").hide();
+			//			})
+			//			$(function() {
+			//				//				$('p').css('color','blue');
+			//				//				$('#ziwei').css('color','red');
+			//				//				$('.ziwei').css('color','yellow');
+			//				//				$('*').css('color','red');
+			//				//				$('.ziwei.erkang').css('color','yellow');
+			//
+			//				$('#ziwei').hide();
+			//				$('.ziwei.erkang').click(function() {
+			////					$('#ziwei').toggle(500, function() {
+			//////						alert('我已经显示了');
+			////					});
+			////					$('#ziwei').toggle(1000);
+			////					$('#ziwei').fadeToggle(1000);
+			////					$('#ziwei').slideToggle(1000);//slideUp上去
+			////					$('#ziwei').fadeTo('show',0);
+			//					$('#ziwei').fadeTo('show',1);
+			//					//					$('#ziwei').show(500);
+			//					//					$('#ziwei').hide();
+			//				})
+			//				//				$('.ziwei.erkang').mouseover(function(){
+			//				//					$('*').css('color','blue');
+			//				//					$('.ziwei.erkang').css('color','blue');
+			//				//				})
+			//				//				$('.ziwei.erkang').mouseout(function(){
+			//				//					$('*').css('color','black');
+			//				//					$('.ziwei.erkang').css('color','pink');
+			//				//				})
+			//
+			//				//				$('p:eq(1)').css('color','blue');
+			//			})
+			//				$(function(){
+			//					$('#btn').click(function(){
+			//						$('#box').animate({'width':'200px','height':'200px'},2000);
+			//					})
+			//				})
+			$(function() {
+				$('.ziwei.erkang').click(function() {
+					$('#ziwei').delay(100).fadeToggle(1000);
+				})
+
+				$('#box').hover(function() {
+					$(this).css({
+						'width': '200px',
+						'height': '200px',
+						'background-color': 'blue',
+						'border-radius': '200px'
+					});
+				}, function() {
+					$(this).css({
+						'width': '100px',
+						'height': '100px',
+						'background-color': 'red',
+						'border-radius': '00px'
+					});
+				})
+			})
+		</script>
+	</head>
+
+	<body>
+
+		<p id='ziwei'>隐藏</p>
+		<p class='ziwei erkang'>点击显示</p>
+		<p class='ziwei'>alksdjflkajds</p>
+		<p id='btn'>动画</p>
+		<div id='box'></div>
+	</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+		
+			#box2 {
+				width: 460px;
+				height: 600px;
+				background-image: url(图片/小米官网/part52.jpg);
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+			
+			#box1 {
+				width: 230px;
+				height: 300px;
+				position: absolute;
+				overflow: hidden;
+				left: 250px;
+				top: 0px;
+			}
+			
+			#move1 {
+				width: 115px;
+				height: 150px;
+				background-color: red;
+				opacity: 0.5;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				display: none;
+			}
+			
+			#img {
+				width: 230px;
+				height: 300px;
+				float: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id='bigbox'>
+			<div id='img'>
+				<img src="图片/小米官网/part52.jpg" alt="" style='width:240px;height:300px' />
+				<div id='move1'></div>
+			</div>
+			<div id='box1'>
+				<div id="box2"></div>
+			</div>
+		</div>
+		<script>
+			var img1 = document.getElementById('img');
+			var box2 = document.getElementById('box2');
+			var move1 = document.getElementById('move1');//红色蒙版
+			img1.onmousemove = function() {
+				var event = event || window.event;
+
+				var x2 = event.clientX;
+				var y2 = event.clientY;//获取当前鼠标坐标
+
+				if(x2<57) 
+				{
+					x2=57;
+				}
+				if(x2>182) 
+				{
+					x2=182;
+				}
+				if(y2<75) 
+				{
+					y2=75;
+				}
+				if(y2>225) 
+				{
+					y2=225;
+				}
+
+
+				box2.style.left = -(x2-57) * 2 + 'px';
+				box2.style.top = -(y2-75) * 2 + 'px';//用类似精灵图的方式定位背景图片位置
+				move1.style.left = x2 - 57 + 'px';
+				move1.style.top = y2 - 75 + 'px';//规定红色蒙版位置
+			}
+			
+			img1.onmouseover=function()//移入显示红色蒙版
+			{
+				move1.style.display = 'block';
+			}
+			
+			img1.onmouseout=function()//移除隐藏红色蒙版
+			{
+				move1.style.display = 'none';
+			}
+			
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#a2 {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="x1"></div>
+		<input type="button" id="a1" value="生成中奖号码" /><br />
+		<input type="button" id="a2" value="开始投注" />
+		<div id="x2"></div>
+		<script>
+			var a1 = document.getElementById('a1');
+			var a2 = document.getElementById('a2');
+			var x1 = document.getElementById('x1');
+			var x2 = document.getElementById('x2');
+
+			a1.onclick = function() {
+				var a3 = [];
+
+				a2.style.display = 'block';
+				for(b = 0; b < 100; b++) {
+					var b1 = [];
+					b1 = parseInt(Math.random() * 34);
+
+					if(a3.length > 5) {
+						break;
+					}
+					if(b1 == a3[0] || b1 == a3[1] || b1 == a3[2] || b1 == a3[3] || b1 == a3[4] || b1 == a3[5]) {
+						continue;
+					} 
+					else
+					{
+						if(b1 < 10)//当得到的随机数小于0时手动加一个0
+						{
+							a3.push('0' + b1);
+						} 
+						else 
+						{
+							a3.push(b1);
+						}
+					}
+				}
+				b2 = parseInt(Math.random() * 17);
+				if(b2 < 10) //当得到的随机数小于0时手动加一个0
+				{
+					a3[6] = '0' + b2;
+				} else {
+					a3[6] = b2;
+				}
+//				console.log(a3);//得到中奖号码
+				x1.innerHTML = a3
+
+				var a5 = [];
+				a2.onclick = function()
+				{
+					var a4 = [];
+					for(c = 0; c < 1000; c++)
+					{
+						b3 = parseInt(Math.random() * 34);
+
+						if(a4.length > 5) 
+						{
+							break;
+						}
+						if(b3 == a4[0] || b3 == a4[1] || b3 == a4[2] || b3 == a4[3] || b3 == a4[4] || b3 == a4[5]) {
+							continue;
+						} 
+						else
+						{
+							if(b3 < 10) //当得到的随机数小于0时手动加一个0
+							{
+								a4.push('0' + b3);
+							} else {
+								a4.push(b3);
+							}
+						}
+					}
+					b4 = parseInt(Math.random() * 17);
+					if(b4 < 10) //当得到的随机数小于0时手动加一个0
+					{
+						a4[6] = '0' + b4;
+					}
+					else
+					{
+						a4[6] = b4;
+					}
+//					console.log(a4);//得到投注号码
+					a5 = a5 + a4 + '</br>';
+					x2.innerHTML = a5;
+//					console.log(a3);
+//					console.log(a4);
+//					console.log(e);
+//					var a3=[01,02,03,04,05,06,07];//手动给中奖号码定义
+//					var a4=[00,00,00,00,00,00,00];//手动给投注号码定义，测试中奖
+					var e = 0 //定义一个变量，判断以下数组有几个重复的数字
+					for(var d = 0; d < 6; d++)
+					{
+						if(a3[d] == a4[d]) 
+						{
+							e++; //当有数字重复时e++
+						}
+					}
+
+					if(e == 6 && a3[6] == a4[6]) //当e==6时，前6个全对
+					{
+						console.log('一等奖')
+					}
+					if(e < 6 && a3[6] == a4[6]) 
+					{
+						console.log('二等奖')
+					}
+					if(e > 0 && a3[6] != a4[6]) //当e>0时，前6个有e个正确的
+					{
+						console.log('三等奖')
+					}
+					if(e == 0 && a3[6] != a4[6]) //当e==0时，前6个全错
+					{
+						console.log('没中奖')
+					}
+				}
+			}
+		</script>
+
+	</body>
+
+</html>

@@ -1,2 +1,7 @@
 
-  <div class="select">弹出选择器</div>
+
+  <ul>
+    <li *ngFor='let list of form;let index=index'>
+      <app-picker [list]='list' [index]='index'></app-picker>
+    </li>
+  </ul>

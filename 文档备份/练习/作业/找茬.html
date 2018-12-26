@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.box {
+				position: relative;
+				width: 400px;
+				height: 550px;
+				margin: 0 auto;
+				background: #ccc;
+			}
+			
+			#p1 {
+				position: absolute;
+				top: 20px;
+				left: 20px;
+				font-size: 20px;
+			}
+			
+			#p2 {
+				position: absolute;
+				top: 20px;
+				right: 20px;
+				font-size: 20px;
+			}
+			
+			#btn {
+				position: absolute;
+				top: 60px;
+				left: 50%;
+				width: 50px;
+				height: 40px;
+				margin-left: -25px;
+				border: 0;
+				background: green;
+				font-size: 20px;
+				color: #fff;
+				cursor: pointer;
+			}
+			
+			#loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background: #000;
+				text-align: center;
+				font-size: 30px;
+				color: #fff;
+			}
+			
+			#wrap {
+				position: absolute;
+				top: 150px;
+				left: 15%;
+				width: 70%;
+			}
+			
+			#wrap img {
+				width: 100%;
+				margin: 10px 0 0 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<p id='p1'>剩余时间：<span id="time">60.00</span>秒</p>
+			<p id='p2'>分数：<span id="fraction">0</span></p>
+			<input type="button" value="开始" id="btn" />
+			<div id="wrap">
+				<!--房祖名们的父级-->
+				<img src="图片/作业图片/QQ图片20171128092610.png" alt="" />
+			</div>
+			<div id="loading">loading.....</div>
+		</div>
+
+		<script>
+			var loading = document.getElementById("loading");
+			var fraction = document.getElementById("fraction"); //分数
+			var btn = document.getElementById("btn");
+			var imgs = ["图片/作业图片/QQ图片20171128092610.png", "图片/作业图片/QQ图片20171128092619.png"];
+			var colors = ["#339966", "#0099FF", "#6600FF", "#993366", "#FF3399", "#FFCC99", "#CCCC99", "#66FFCC", "#CC3300"];
+			var wrap=document.getElementById('wrap');
+			var loadingIndex=0;
+			var multiple=1;
+			var fractionNum=-1;
+			var cou=null;
+			var coutime=60;
+			var iBtn=true;
+			
+			for(var i=0;i<imgs.length;i++)
+			{
+				var imgObj=new Image();
+				imgObj.onload=function()
+				{
+					loadingIndex++;
+					if(loadingIndex==imgs.length)
+					{
+						loading.style.display='none';
+					}
+				}
+				imgObj.src=imgs[i];
+			}
+			
+			
+			btn.onclick=function(){
+				removeFn();
+				createImg();
+				gameTime();
+			}
+			
+			function removeFn()
+			{
+				wrap.innerHTML='';
+				btn.style.display='none';
+			}
+			
+			function createImg()
+			{
+				multiple++;
+				if(multiple>=9)
+				{
+					multiple=9;
+				}
+				
+				fractionNum++;
+				fraction.innerHTML=fractionNum;
+				
+				var imgNum=Math.pow(multiple,2);
+				
+				var imgWidth=(wrap.offsetWidth/multiple-10)+'px';
+				
+				
+				colors.push(colors.shift());
+				
+				for(var i=0;i<imgNum;i++)
+				{
+					var imgObj=document.createElement('img');
+					imgObj.src="图片/作业图片/QQ图片20171128092610.png";
+					imgObj.style.width=imgWidth;
+					imgObj.style.height=imgWidth;
+					imgObj.style.backgroundColor=colors[0];
+					if(iBtn)
+					{
+						wrap.appendChild(imgObj);
+						imgObj.onclick=function()
+						{
+							alert('GG');
+							iBtn=false;
+						}
+					}
+				}
+				appeatFn(imgNum);
+			}	
+			function appeatFn(x)
+			{
+				var index=rand(0,x);
+				nowImgs=wrap.children;
+				nowImgs[index].src="图片/作业图片/QQ图片20171128092619.png";
+				nowImgs[index].style.backgroundColor=colors[0];
+				if(iBtn)
+				{
+					nowImgs[index].onclick=function()
+					{
+						removeFn();
+						createImg();
+					}
+				}
+			}
+				
+			function rand(min,max)
+			{
+				return parseInt(Math.random()*(max-min)+min);
+			}
+			
+			function gameTime()
+			{
+				cou=setInterval(function()
+				{
+					coutime-=0.1;
+					coutime=coutime.toFixed(2);
+					if(coutime<=0)
+					{
+						alert('gameover');
+						clearInterval(cou);
+						iBtn=false;
+					}
+					time.innerHTML=coutime;
+				},100)
+			}
+			
+		</script>
+	</body>
+
+</html>

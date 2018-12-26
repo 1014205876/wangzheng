@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			/*#theinp{
+				width:50px;
+				height:20px;
+				background-color:red;
+			}
+			#thediv{
+				width:200px;
+				height:200px;
+				background-color:blue;
+			}*/
+			p{
+				color:blue;
+			}
+			.para_c{
+				color:red;
+			}
+			#thep{
+				color:yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<input type="button" id="theinp" onclick="alert('1qqq')"/>
+		
+		<div id="thediv" >点我</div>
+		
+		<script>
+//			onclick:点击事件,当鼠标单击某个元素时,触发了某个事件
+			
+			var thediv=document.getElementById('thediv');
+			点击事件
+			thediv.onclick=function()
+			{
+				alert(1);
+			}
+			
+		</script>-->
+		
+		<!--<script type="text/javascript">
+			window.onload=function()//:所有内容加载完了再读取这个标签
+		{
+			var c2=document.getElementById('thep');
+			
+			console.log(c2);
+//			document.write('111');
+
+			c2.style.height="200px";
+			c2.style.width="200px";
+			c2.innerHTML="<a href=''>123</a>";
+			
+
+			var p=document.getElementsByClassName('para_c');
+			
+			console.log(p);
+			p[0].style.color="black";
+			
+			
+			var ps=document.getElementsByTagName('p');
+			
+			console.log(ps);
+			ps[0].style.backgroundColor="green";
+			ps[1].style.backgroundColor="yellow";
+			ps[2].style.backgroundColor="red";-->
+		<!--	//改样式-->
+			
+			
+
+<!--
+		}
+		</script>
+		-->
+		<!--<p class="para_c" id="thep" style="height:100px">this is p</p>
+		<p class="para_c2">this is p2</p>
+		<p class="para_c3">this is p3</p>-->
+		
+		
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<ul id="theul">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<ul id="theul2">
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+		</ul>
+		
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<script>
+			var a1=document.getElementById('theul2');
+			var a2=document.getElementsByTagName('li');
+			a2[0].style.width="100px";
+			a2[0].style.height="100px";
+			var a3=a1.getElementsByTagName('li');
+			a3[0].style.backgroundColor="red";
+		</script>
+	</body>
+</html>
