@@ -1,0 +1,182 @@
+<app-card class="authHide" [appResource]="{authName:'get/fields/grid'}">
+  <div class="col-sm-12 select-box">
+    <div class="row m-b-10">
+      <div class="col-6 col-md-3 input-box">
+        <span>分组：</span>
+        <input type="text" maxlength="20" placeholder="请输入分组" [(ngModel)]="items.group">
+      </div>
+      <div class="col-6 col-md-3 input-box">
+        <span>分组主键：</span>
+        <input type="text" maxlength="20" placeholder="请输入分组主键" [(ngModel)]="items.groupKey">
+      </div>
+      <div class="col-6 col-md-3 input-box">
+        <span>字段名称：</span>
+        <input type="text" maxlength="20" placeholder="请输入字段名称" [(ngModel)]="items.fieldName">
+      </div>
+      <div class="col-6 col-md-3 input-box">
+        <span>字段主键：</span>
+        <input type="text" maxlength="20" placeholder="请输入字段主键" [(ngModel)]="items.fieldKey">
+      </div>
+      <div class="col-6 col-md-3 input-box">
+        <span>类型：</span>
+        <select [(ngModel)]="items.type">
+          <option value="" [disabled]='true'>请选择类型</option>
+          <option *ngFor='let list of type' [value]="list.code">{{list.name}}</option>
+          <!-- <option value="text">单行文本</option> -->
+        </select>
+      </div>
+      <div class="col-6 col-md-3 input-box">
+        <span>数据源：</span>
+        <select [(ngModel)]="items.dataSource">
+          <option value="" [disabled]='true'>请选择数据源</option>
+          <option *ngFor='let list of dataSource' [value]="list.code">{{list.name}}</option>
+          <!-- <option value="text">单行文本</option> -->
+        </select>
+      </div>
+      <div class="col-6 col-md-3 input-box float-right search-btn">
+        <span>&nbsp;</span>
+        <button class="btn btn-primary ripple light" (click)="search(1,'search');"><i class="icofont icofont-search-alt-2"></i>查询</button>
+        <button class="btn btn-primary btn-outline-primary ripple light" (click)="reset()"><i class="icofont icofont-close"></i>重置</button>
+      </div>
+    </div>
+  </div>
+</app-card>
+<app-card [title]="'区域列表'">
+  <div class="header-right buttonsShow">
+    <button class="btn btn-primary ripple light authHide" [appResource]="{authName:'post/field'}" (click)="modalDefault.show();changeTitle('创建字段','add');addForm.reset()"><i
+        class="icofont icofont-ui-add"></i>创建字段</button>
+    <button class="btn btn-primary ripple light authHide" [appResource]="{authName:'post/fields/import'}"><i class="icofont icofont-ui-add"></i>批量导入</button>
+    <input class="authHide" type="file" [appResource]="{authName:'post/fields/import'}" *ngIf='refresh' id="file" name='file' accept=".xlsx,.xls" ng2FileSelect [uploader]="uploader" (change)='selectedFileOnChanged($event)'
+      style="position: absolute; top: 0; right: 0; width: 112px; height: 34px; opacity: 0;" />
+  </div>
+  <ngx-datatable class="data-table dt-chk" [rows]="rows" [columnMode]="'force'" [scrollbarH]="true" [headerHeight]="50"
+    [rowHeight]="'auto'" [limit]="10" style='height:602px'>
+    <ngx-datatable-column [sortable]="false" name="分组" prop="group"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="分组主键" prop="groupKey"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="字段名称" prop="fieldName"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="字段主键" prop="fieldKey"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="字段定义" prop="fieldDef"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="类型" prop="typeName"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="数据源">
+      <ng-template ngx-datatable-cell-template let-row="row">
+        <span *ngIf='row.type=="select"||row.type=="multSelect"' style='color:#589af8;cursor:pointer' [appResource]="{authName:'get/dictionaryItems'}"
+          [routerLink]="['/baseResource/dictionary/item']" [queryParams]="{code: row.dataSource,id: row.dataSourceId}">{{row.dataSourceName}}</span>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="备注" prop="introduction"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="操作" prop="" [width]="160">
+      <ng-template ngx-datatable-cell-template let-row="row">
+        <button class="btn authHide" [appResource]="{authName:'post/field/edit'}" (click)="modalDefault.show();changeTitle('编辑字段','edit');edit(row)"><i
+            class="icon iconfont icon-edit"></i>编辑</button>
+        <!-- <button >配置</button> -->
+        <button class="btn authHide" [appResource]="{authName:'delete/fields'}" (click)="modalDefaultRemove.show();removeshow(row)">删除</button>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+  <app-page-nav (getCurrentPage)="changePage($event)" [totalPage]='totalPage' [pageNum]='pageNum' [total]='total'></app-page-nav>
+</app-card>
+<app-modal-basic [hideFooter]="'false'" #modalDefault>
+  <div class="app-modal-header">
+    <h4 class="modal-title">{{modalTitle}}</h4>
+    <button type="button" class="close basic-close" (click)="modalDefault.hide();addForm.reset()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="app-modal-body">
+    <form [formGroup]="addForm" accept-charset='UTF-8' (ngSubmit)="onSubmit()">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">分组</label>
+        <div class="col-sm-9">
+          <input type="text" [(ngModel)]="modalItems.group" class="form-control" id="group" required placeholder="请输入分组"
+            formControlName="group" maxlength="20">
+          <div class="messages text-danger" *ngIf="(!addForm.controls.group.valid)&&(addForm.controls.group.dirty || addForm.controls.group.touched)">分组不能为空</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">分组主键</label>
+        <div class="col-sm-9">
+          <input type="text" [(ngModel)]="modalItems.groupKey" class="form-control" id="groupKey" required placeholder="请输入分组主键"
+            formControlName="groupKey" maxlength="20">
+          <div class="messages text-danger" *ngIf="(!addForm.controls.groupKey.valid)&&(addForm.controls.groupKey.dirty || addForm.controls.groupKey.touched)">分组主键不能为空</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">字段名称</label>
+        <div class="col-sm-9">
+          <input type="text" [(ngModel)]="modalItems.fieldName" class="form-control" id="fieldName" required
+            placeholder="请输入字段名称" formControlName="fieldName" maxlength="20">
+          <div class="messages text-danger" *ngIf="(!addForm.controls.fieldName.valid)&&(addForm.controls.fieldName.dirty || addForm.controls.fieldName.touched)">字段名称不能为空</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">字段主键</label>
+        <div class="col-sm-9">
+          <input type="text" [(ngModel)]="modalItems.fieldKey" class="form-control" id="fieldKey" required placeholder="请输入字段主键"
+            formControlName="fieldKey" maxlength="20">
+          <div class="messages text-danger" *ngIf="(!addForm.controls.fieldKey.valid)&&(addForm.controls.fieldKey.dirty || addForm.controls.fieldKey.touched)">字段主键不能为空</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">字段定义</label>
+        <div class="col-sm-9">
+          <input type="text" [(ngModel)]="modalItems.fieldDef" class="form-control" id="fieldDef" placeholder="请输入字段定义"
+            formControlName="fieldDef" maxlength="20">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">类型</label>
+        <div class="col-sm-9">
+          <select name="select" class="form-control" [(ngModel)]="modalItems.type" required formControlName="type" (change)='typechange()'>
+            <option value="" [disabled]='true'>请选择类型</option>
+            <option *ngFor='let list of type' [value]="list.code">{{list.name}}</option>
+          </select>
+          <div class="messages text-danger" *ngIf="(!addForm.controls.type.valid)&&(addForm.controls.type.dirty || addForm.controls.type.touched)">类型不能为空</div>
+        </div>
+      </div>
+      <div class="form-group row" [hidden]='!(modalItems.type=="select"||modalItems.type=="multSelect")'>
+        <label class="col-sm-3 col-form-label">数据源</label>
+        <div class="col-sm-9">
+          <select name="select" class="form-control" [(ngModel)]="modalItems.dataSource" [required]='modalItems.type=="select"||modalItems.type=="multSelect"'
+            formControlName="dataSource">
+            <option value="" [disabled]='true'>请选择类型</option>
+            <option *ngFor='let list of dataSource' [value]="list.code">{{list.name}}</option>
+          </select>
+          <!-- <input type="text" [(ngModel)]="modalItems.dataSource" class="form-control" id="dataSource" required
+            placeholder="请输入数据源" formControlName="dataSource"> -->
+          <div class="messages text-danger" *ngIf="(!addForm.controls.dataSource.valid)&&(addForm.controls.dataSource.dirty || addForm.controls.dataSource.touched)">数据源不能为空</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">备注</label>
+        <div class="col-sm-9">
+          <textarea cols="30" rows="5" class="form-control" [(ngModel)]="modalItems.introduction" id="introduction"
+            placeholder="请输入备注" maxlength="100" formControlName="introduction"></textarea>
+        </div>
+      </div>
+      <div class="form-group form-group-btn row">
+        <button type="button" class="btn btn-primary btn-outline-primary ripple light" (click)="modalDefault.hide();addForm.reset()">取消</button>
+        <button type="submit" class="btn btn-primary ripple light" (click)="modalDefault.hide()" [disabled]="!addForm.valid">确定</button>
+      </div>
+    </form>
+  </div>
+</app-modal-basic>
+
+<app-modal-basic [hideFooter]="'false'" [width]='"300px"' #modalDefaultRemove>
+  <div class="app-modal-header">
+    <h4 class="modal-title">系统提示
+      <button type="button" class="close basic-close" (click)="modalDefaultRemove.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </h4>
+  </div>
+  <div class="app-modal-body">
+    <div class="form-group row">
+      <label class="col-sm-12 col-form-label">是否确认删除？</label>
+    </div>
+    <div class="form-group form-group-btn row">
+      <button class="btn btn-primary btn-outline-primary ripple light" (click)='modalDefaultRemove.hide()'>取消</button>
+      <button class="btn btn-primary ripple light" (click)='modalDefaultRemove.hide();deleteItem()'>确认删除</button>
+    </div>
+  </div>
+</app-modal-basic>
+<ng2-toasty [position]="toast.position"></ng2-toasty>

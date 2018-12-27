@@ -1,0 +1,110 @@
+<div class='configure'>
+  <app-card class="authHide" [appResource]="{authName:'get/settingsDataGrid'}">
+    <div class="col-sm-12 select-box">
+      <div class="row m-b-10">
+        <div class="col-6 col-md-4 input-box">
+          <span>配置项名称:</span>
+          <input type="text" maxlength="20" placeholder="请输入配置项名称" [(ngModel)]="data.find.name">
+        </div>
+        <div class="col-6 col-md-4 input-box">
+          <span>配置项key:</span>
+          <input type="text" maxlength="50" placeholder="请输入配置项key" [(ngModel)]="data.find.key">
+        </div>
+        <div class="col-6 col-md-4 input-box float-right search-btn">
+          <span>&nbsp;</span>
+          <button class="btn btn-primary ripple light" (click)="gettable(data.find.pageNum,data.find)"><i class="icofont icofont-search-alt-2"></i>查询</button>
+          <button class="btn btn-primary btn-outline-primary ripple light" (click)="reset()"><i class="icofont icofont-close"></i>重置</button>
+        </div>
+      </div>
+    </div>
+  </app-card>
+  <app-card [title]="'配置项列表'" [buttonContent]="'新增配置项'" class='table'>
+    <div class="header-right authHide right" [appResource]="{authName:'post/setting'}">
+      <button class="btn btn-primary ripple light" (click)="modalDefaultForm.show();formshow(false)"><i class="icofont icofont-ui-add"></i>新增配置项</button>
+    </div>
+    <ngx-datatable class="data-table dt-chk" [rows]="data.table" [columnMode]="'force'" [scrollbarH]="true"
+      [headerHeight]="50" [rowHeight]="'auto'" [limit]="10" style='height:530px'>
+      <ngx-datatable-column [sortable]="false" name="配置项名称" prop="name"></ngx-datatable-column>
+      <ngx-datatable-column [sortable]="false" name="配置项（key）" prop="key"></ngx-datatable-column>
+      <ngx-datatable-column [sortable]="false" name="更新时间" prop="updateTime"></ngx-datatable-column>
+      <ngx-datatable-column [sortable]="false" name="操作">
+        <ng-template ngx-datatable-cell-template let-row="row">
+            <button class="btn authHide" [appResource]="{authName:'put/settings'}" (click)="modalDefaultForm.show();formshow(row)"><i class="icon iconfont icon-edit"></i>编辑</button>
+            <button class="btn authHide" [appResource]="{authName:'delete/settings'}" (click)="modalDefaultRemove.show();removeshow(row)">删除</button>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+    <app-page-nav (getCurrentPage)="changePage($event)" [totalPage]='data.find.pages' [pageNum]='data.find.pageNum'
+      [total]='data.find.total'></app-page-nav>
+  </app-card>
+  <app-modal-basic [hideFooter]="'false'" [width]='"800px"' #modalDefaultForm>
+    <div class="app-modal-header">
+      <h4 class="modal-title">{{data.addtext}}配置项</h4>
+      <button type="button" class="close basic-close" (click)="modalDefaultForm.hide();hidden();">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="app-modal-body">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">配置项名称</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" required placeholder='请输入配置项名称' [(ngModel)]='data.form.name' maxlength="20">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">配置项key</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" required placeholder='请输入配置项key' [(ngModel)]='data.form.key'>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">配置项类型</label>
+        <div class="col-sm-9">
+          <select class="form-control" required [(ngModel)]='data.form.type' (change)='typechange()'>
+            <option value="text">单行文本框</option>
+            <option value="textArea">多行文本框</option>
+            <option value="editor">富文本编辑器</option>
+            <option value="file">文件上传域</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">配置项值</label>
+        <div class="col-sm-9">
+          <input class="form-control" [hidden]='data.form.type!="text"' type="text" [(ngModel)]='data.form.value'>
+          <textarea cols="30" rows="5" class="form-control" required [hidden]='data.form.type!="textArea"' [(ngModel)]='data.form.value' maxlength="100"></textarea>
+          <input [hidden]='true' type="file" id="file" name='file' required ng2FileSelect [uploader]="uploader" (change)='selectedFileOnChanged($event,data.form)'>
+          <div [hidden]='data.form.type!="file"'>
+            <input class="form-control" [disabled]='true' style='width:80%;float:left;' type="text" required [(ngModel)]='data.form.value'>
+            <button class="btn btn-primary ripple light" style='float:right' onclick="document.getElementById('file').click()">上传文件</button>
+            <div style='clear:both'></div>
+          </div>
+          <app-tiny-editor [hidden]='data.form.type!="editor"' [elementId]="'my-editor'" (onEditorContentChange)="keyupHandler($event)" [initialContent]="data.form.value"></app-tiny-editor>
+        </div>
+      </div>
+      <div class="form-group form-group-btn row">
+        <button class="btn btn-primary btn-outline-primary ripple light" (click)="modalDefaultForm.hide();hidden()">取消</button>
+        <button class="btn btn-primary ripple light" [disabled]='data.form.cansubmit' (click)="modalDefaultForm.hide();submit()">提交</button>
+      </div>
+    </div>
+  </app-modal-basic>
+  <app-modal-basic [hideFooter]="'false'" [width]='"300px"' #modalDefaultRemove>
+    <div class="app-modal-header">
+      <h4 class="modal-title">系统提示
+        <button type="button" class="close basic-close" (click)="modalDefaultRemove.hide();hidden();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </h4>
+    </div>
+    <div class="app-modal-body">
+      <div class="form-group row">
+        <label class="col-sm-12 col-form-label">您确定要删除此配置项吗？</label>
+      </div>
+      <div class="form-group form-group-btn row">
+        <button class="btn btn-primary btn-outline-primary ripple light" (click)='modalDefaultRemove.hide();hidden()'>取消</button>
+        <button class="btn btn-primary ripple light" (click)='modalDefaultRemove.hide();remove()'>确认删除</button>
+      </div>
+    </div>
+  </app-modal-basic>
+</div>
+<ng2-toasty [position]="toast.position"></ng2-toasty>

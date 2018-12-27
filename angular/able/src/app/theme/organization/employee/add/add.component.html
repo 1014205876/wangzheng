@@ -1,0 +1,123 @@
+<app-card [title]="'基本资料'">
+  <form [formGroup]="detailForm" accept-charset='UTF-8' (ngSubmit)="onSubmit()">
+    <div class="form-group row col-md-6 col-sm-12">
+      <label class="col-md-2 col-sm-6 col-form-label">员工账号</label>
+      <div class="col-md-10 col-sm-6">
+        <input type="text" class="form-control" id="account" required placeholder="请输入员工账号" formControlName="account"
+          maxlength="20" [(ngModel)]="items.account">
+        <div class="messages text-danger" *ngIf="(!detailForm.controls.account.valid)&&(detailForm.controls.account.dirty || detailForm.controls.account.touched)">必填，最大20个字符</div>
+      </div>
+    </div>
+    <div class="form-group row col-md-6 col-sm-12">
+      <label class="col-md-2 col-sm-6 col-form-label">员工姓名</label>
+      <div class="col-md-10 col-sm-6">
+        <input type="text" class="form-control" id="name" required placeholder="请输入员工姓名" formControlName="name"
+          maxlength="4" [(ngModel)]="items.name">
+        <div class="messages text-danger" *ngIf="(!detailForm.controls.name.valid)&&(detailForm.controls.name.dirty || detailForm.controls.name.touched)">必填，最大4个字符</div>
+      </div>
+    </div>
+    <div class="form-group row col-md-6 col-sm-12">
+      <label class="col-md-2 col-sm-6 col-form-label">手机号码</label>
+      <div class="col-md-10 col-sm-6">
+        <input type="text" class="form-control" id="mobile" required placeholder="请输入手机号码" formControlName="mobile"
+          maxlength="11" [(ngModel)]="items.mobile">
+        <div class="messages text-danger">
+          <span *ngIf="(!detailForm.controls.mobile.valid)&&(detailForm.controls.mobile.dirty || detailForm.controls.mobile.touched)">必填</span>
+          <span *ngIf="(!detailForm.controls.mobile.valid)&&(detailForm.controls.mobile.errors?.pattern)">手机号码格式错误</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row col-md-6 col-sm-12">
+      <label class="col-md-2 col-sm-6 col-form-label">所属部门</label>
+      <div class="col-md-10 col-sm-6">
+        <select name="select" class="form-control" required formControlName="departmentId" [(ngModel)]="items.departmentId">
+          <option value="">----</option>
+          <option value="{{item.id}}" *ngFor="let item of department">
+            <app-space [length]="item.level"></app-space>{{item.fullName}}
+          </option>
+        </select>
+        <div class="messages text-danger" *ngIf="(!detailForm.controls.departmentId.valid)&&(detailForm.controls.departmentId.dirty || detailForm.controls.departmentId.touched)">必填</div>
+      </div>
+    </div>
+    <div class="form-group row col-md-6 col-sm-12">
+      <label class="col-md-2 col-sm-6 col-form-label">岗位名称</label>
+      <div class="col-md-10 col-sm-6">
+        <input type="text" class="form-control" id="jobName" required placeholder="请输入岗位名称" formControlName="jobName"
+          maxlength="10" [(ngModel)]="items.jobName">
+        <div class="messages text-danger" *ngIf="(!detailForm.controls.jobName.valid)&&(detailForm.controls.jobName.dirty || detailForm.controls.jobName.touched)">必填，最大长度10个字符</div>
+      </div>
+    </div>
+    <div class="form-group row col-md-6 col-sm-12">
+      <label class="col-md-2 col-sm-6 col-form-label">职位级别</label>
+      <div class="col-md-10 col-sm-6">
+        <select name="select" required class="form-control" formControlName="occupationClass" [(ngModel)]="items.occupationClass">
+          <option value="总经理">总经理</option>
+          <option value="中心总经理">中心总经理</option>
+          <option value="中心副总经理">中心副总经理</option>
+          <option value="部长">部长</option>
+          <option value="副部长">副部长</option>
+          <option value="组长">组长</option>
+          <option value="员工">员工</option>
+        </select>
+        <div class="messages text-danger" *ngIf="(!detailForm.controls.occupationClass.valid)&&(detailForm.controls.occupationClass.dirty || detailForm.controls.occupationClass.touched)">必填</div>
+      </div>
+    </div>
+
+    <div class="form-group row col-md-6 col-sm-12">
+        <label class="col-md-2 col-sm-6 col-form-label">性别</label>
+        <div class="col-md-10 col-sm-6">
+            <div class="form-radio">
+                <div class="radio radiofill radio-primary radio-inline">
+                  <label>
+                    <input type="radio" [value]="1"  formControlName="sex" [(ngModel)]="items.sex" [checked]="items.sex===1"><i class="helper"></i>
+                    男
+                  </label>
+                </div>
+                <div class="radio radiofill radio-primary radio-inline">
+                  <label>
+                    <input class="form-check-input" type="radio" [value]="2"  formControlName="sex" [(ngModel)]="items.sex" [checked]="items.sex===2"><i
+                      class="helper"></i>女
+                  </label>
+                </div>
+              </div>
+        </div>
+      </div>
+
+    <div class="form-group row col-md-6 col-sm-12">
+      <label class="col-md-2 col-sm-6 col-form-label">备注信息</label>
+      <div class="col-md-10 col-sm-6">
+        <textarea cols="30" rows="5" class="form-control" [(ngModel)]="items.remark" id="remark" placeholder="使用者的角色等其他信息"
+          maxlength="200" formControlName="remark"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group row col-md-6 col-sm-12">
+      <label class="col-md-2 col-sm-6 col-form-label">状态</label>
+      <div class="col-md-10 col-sm-6">
+        <div class="form-radio">
+          <div class="radio radiofill radio-primary radio-inline">
+            <label>
+              <input type="radio" [value]="1" required formControlName="status" [(ngModel)]="items.status" [checked]="items.status===1"><i class="helper"></i>启用
+            </label>
+          </div>
+          <div class="radio radiofill radio-primary radio-inline">
+            <label>
+              <input class="form-check-input" type="radio" [value]="0" required formControlName="status" [(ngModel)]="items.status" [checked]="items.status===0"><i
+                class="helper"></i>禁用
+            </label>
+          </div>
+        </div>
+        <div class="messages text-danger" *ngIf="(!detailForm.controls.status.valid)&&(detailForm.controls.status.dirty || detailForm.controls.status.touched)">应用状态不能为空</div>
+      </div>
+    </div>
+
+    <div class="form-group row col-md-6 col-sm-12">
+      <label class="col-md-2 col-sm-6 col-form-label">&nbsp;</label>
+      <div class="col-md-10 col-sm-6">
+        <button type="submit" class="btn btn-primary ripple light" [disabled]="!detailForm.valid">提交</button>
+        <button type="button" class="btn btn-primary btn-outline-primary ripple light" (click)="reset()">重置</button>
+      </div>
+    </div>
+  </form>
+</app-card>
+<ng2-toasty [position]="toast.position"></ng2-toasty>

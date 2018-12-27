@@ -1,0 +1,42 @@
+<app-card class="" [cardOptionBlock]='true'>
+  <!-- <p-calendar [(ngModel)]="searchItems.startTime"></p-calendar> -->
+  <div class="col-sm-12 select-box">
+    <div class="row m-b-10">
+      <div class="col-12 col-md-3 input-box m-b-20">
+        <span>操作时间：</span>
+        <div class="calendar_box">
+          <!-- <app-calendar [placeholder]="'开始时间'" (inputText)='searchItems.startTime=$event'></app-calendar>~~ -->
+          <!-- <app-calendar [placeholder]="'结束时间'" (inputText)='searchItems.endTime=$event' [minDate]='searchItems.startTime'></app-calendar> -->
+          <input type="text" placeholder="开始时间" [(ngModel)]="searchItems.startDate" ngbDatepicker #startDate="ngbDatepicker" (click)="startDate.toggle()">
+          <i class="lj">~~</i>
+          <input type="text" placeholder="结束时间" [(ngModel)]="searchItems.endDate" ngbDatepicker #endDate="ngbDatepicker" (click)="endDate.toggle()">
+        </div>
+      </div>
+      <div class="col-12 col-md-3 input-box m-b-20">
+        <span>标题：</span>
+        <input type="text" placeholder="请输入标题" [(ngModel)]="searchItems.title" maxlength="20">
+      </div>
+      <div class="col-12 col-md-3 input-box float-right search-btn">
+        <span>&nbsp;</span>
+        <button class="btn btn-primary ripple light" (click)="search(1,'search')">
+          <i class="icofont icofont-search-alt-2"></i>查询</button>
+        <button class="btn btn-primary btn-outline-primary ripple light" (click)="reset()">
+          <i class="icofont icofont-close"></i>重置</button>
+      </div>
+    </div>
+  </div>
+</app-card>
+
+<app-card [title]="'日志列表'">
+  <ngx-datatable class="data-table dt-chk" [rows]="rows" [columnMode]="'force'" [scrollbarH]="true" [headerHeight]="50" [rowHeight]="'auto'"
+    [limit]="10">
+    <ngx-datatable-column [sortable]="false" name="用户名称" prop="userName"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="标题" prop="title"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="url" prop="url"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="方法" prop="method"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="操作时间" prop="createTime"></ngx-datatable-column>
+  </ngx-datatable>
+  <app-page-nav (getCurrentPage)="changePage($event)" [totalPage]='totalPage' [pageNum]='pageNum' [total]='total'></app-page-nav>
+</app-card>
+
+<ng2-toasty [position]="toast.position"></ng2-toasty>

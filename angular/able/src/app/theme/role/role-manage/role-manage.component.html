@@ -1,0 +1,166 @@
+<app-card class="authHide" [appResource]="{authName:'get/roles/grid'}">
+  <div class="col-sm-12 select-box">
+    <div class="row m-b-10">
+      <div class="col-12 col-md-3 input-box m-b-20">
+        <span>角色名称：</span>
+        <input type="text" maxlength="20" placeholder="请输入角色名称" [(ngModel)]="searchItems.name">
+      </div>
+      <div class="col-12 col-md-3 input-box m-b-20">
+        <span>角色键值：</span>
+        <input type="text" maxlength="20" placeholder="请输入角色键值" [(ngModel)]="searchItems.roleKey">
+      </div>
+      <div class="col-12 col-md-3 input-box m-b-20">
+        <span>角色状态：</span>
+        <select [(ngModel)]="searchItems.status">
+          <option value="">所有状态</option>
+          <option value="0">禁用</option>
+          <option value="1">启用</option>
+        </select>
+      </div>
+      <div class="col-12 col-md-3 input-box float-right search-btn">
+        <span>&nbsp;</span>
+        <button class="btn btn-primary ripple light" (click)="search(1,'search')"><i class="icofont icofont-search-alt-2"></i>查询</button>
+        <button class="btn btn-primary btn-outline-primary ripple light" (click)="reset()"><i class="icofont icofont-close"></i>重置</button>
+      </div>
+    </div>
+  </div>
+</app-card>
+<app-card [title]="'角色列表'" [buttonContent]="'创建角色'">
+  <div class="header-right authHide" [appResource]="{authName:'post/role'}">
+    <button class="btn btn-primary ripple light" (click)="modalDefault.show();changeTitle('创建角色','add')"><i class="icofont icofont-ui-add"></i>创建角色</button>
+  </div>
+  <ngx-datatable class="data-table" [rows]="rows" [columnMode]="'force'" [headerHeight]="54" [rowHeight]="'auto'">
+    <ngx-datatable-column [sortable]="false" name="角色名称" prop="name"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="角色键值" prop="roleKey"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="更新时间" prop="updateDate"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="状态" prop="status">
+      <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+        <div class="switch authHide" [appResource]="{authName:'patch/role/status'}">
+          <ui-switch class="js-single" color="#ecedf2" switchColor="#716aca" switchOffColor="#e0e2e9" size="medium"
+            (click)="switchange(row)" [checked]="value=='1'"></ui-switch>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="操作" prop="">
+      <ng-template ngx-datatable-cell-template let-row="row">
+        <button class="btn authHide" [appResource]="{authName:'post/role/id/permission'}" style="color: #666674; background: none; padding: 0; margin: auto 10px;"
+          (click)="modalAuth.show();changeTitle('角色授权','auth');auth(row)">
+          <i class="icofont icofont-ui-add"></i>角色授权</button>
+        <button class="btn authHide" [appResource]="{authName:'put/role/id'}" style="color: #666674; background: none; padding: 0; margin: auto 10px;"
+          (click)="modalDefault.show();changeTitle('编辑角色','edit');modify(row)">
+          <i class="icon iconfont icon-edit"></i>编辑</button>
+
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+  <app-page-nav (getCurrentPage)="changePage($event)" [totalPage]='totalPage' [pageNum]='pageNum' [total]='total'></app-page-nav>
+</app-card>
+<app-modal-basic [hideFooter]="'false'" #modalDefault>
+  <div class="app-modal-header">
+    <h4 class="modal-title">{{modalTitle}}</h4>
+    <button type="button" class="close basic-close" (click)="modalDefault.hide();addForm.reset()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="app-modal-body">
+    <form [formGroup]="addForm" accept-charset='UTF-8' (ngSubmit)="onSubmit()">
+
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">角色键值</label>
+        <div class="col-sm-9">
+          <input type="text" *ngIf="modalStatus === 'edit'" maxlength="20" [(ngModel)]="items.roleKey" disabled class="form-control"
+            id="name" required placeholder="请输入角色键值" formControlName="roleKey">
+          <input type="text" *ngIf="modalStatus === 'add'" maxlength="20" [(ngModel)]="items.roleKey" class="form-control"
+            id="name" required placeholder="请输入角色键值" formControlName="roleKey">
+          <div class="messages text-danger" *ngIf="(!addForm.controls.roleKey.valid)&&(addForm.controls.roleKey.dirty || addForm.controls.roleKey.touched)">角色键值不能为空</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">角色名称</label>
+        <div class="col-sm-9">
+          <input type="text" maxlength="20" [(ngModel)]="items.name" class="form-control" id="name" required
+            placeholder="请输入角色名称" formControlName="name">
+          <div class="messages text-danger" *ngIf="(!addForm.controls.name.valid)&&(addForm.controls.name.dirty || addForm.controls.name.touched)">角色名称不能为空</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">描述</label>
+        <div class="col-sm-9">
+          <textarea cols="30" rows="5" class="form-control" [(ngModel)]="items.remark" id="remark" placeholder="请输入描述"
+            maxlength="200" formControlName="remark"></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">状态</label>
+        <div class="col-sm-9">
+          <div class="form-radio">
+            <div class="radio radiofill radio-primary radio-inline">
+              <label>
+                <input type="radio" value="1" required formControlName="status" [(ngModel)]="items.status" [checked]="items.status===1"><i
+                  class="helper"></i>启用
+              </label>
+            </div>
+            <div class="radio radiofill radio-primary radio-inline">
+              <label>
+                <input type="radio" value="0" required formControlName="status" [(ngModel)]="items.status" [checked]="items.status===0"><i
+                  class="helper"></i>禁用
+              </label>
+            </div>
+          </div>
+          <div class="messages text-danger" *ngIf="(!addForm.controls.status.valid)&&(addForm.controls.status.dirty || addForm.controls.status.touched)">状态不能为空</div>
+        </div>
+      </div>
+      <div class="form-group form-group-btn row">
+        <button type="button" class="btn btn-primary btn-outline-primary ripple light" (click)="modalDefault.hide();addForm.reset()">取消</button>
+        <button type="submit" class="btn btn-primary ripple light"  [disabled]="!addForm.valid">确定</button>
+      </div>
+    </form>
+  </div>
+</app-modal-basic>
+<app-modal-basic #modalAuth>
+  <div class="app-modal-header">
+    <h4 class="modal-title">{{modalTitle}}</h4>
+    <button type="button" class="close basic-close" (click)="modalAuth.hide();">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="app-modal-body">
+    <div class="md-tabs md-left-tabs">
+      <!-- <ngb-tabset>
+        <ngb-tab title="{{item.appName}}" *ngFor="let item of appLists">
+          <ng-template ngbTabContent>
+            <div [@fadeInOutTranslate] class="m-t-15">
+              <p class="m-4">htdrutvgujtv</p>
+              <ul id="ztree" class="ztree"></ul>
+            </div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset> -->
+      <ul role="tablist" class="nav nav-tabs justify-content-start">
+        <h6 class="text-center">请选择应用</h6>
+        <div class="nav-content">
+          <li class="nav-item ng-star-inserted" *ngFor="let item of appLists">
+            <a class="nav-link" [ngClass]="{'active': item.active }" (click)="changeApp(item);item.active=true">{{item.appName}}</a>
+          </li>
+        </div>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active ng-star-inserted">
+          <h6 class="text-center">权限列表</h6>
+          <div class="nav-content">
+            <ul id="ztree" class="ztree m-2"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="app-modal-footer">
+    <button type="button" class="btn btn-primary btn-outline-primary ripple light" (click)="modalAuth.hide();authHide()">取消</button>
+    <button type="button" class="btn btn-primary ripple light" (click)="modalAuth.hide();selectNode();authHide()" *ngIf="roleStatus">确定</button>
+    <button type="button" class="btn btn-primary ripple light" (click)="modalAuth.hide();selectNode();authHide()"
+      disabled *ngIf="!roleStatus">确定</button>
+  </div>
+</app-modal-basic>
+<ng2-toasty [position]="toast.position"></ng2-toasty>
