@@ -19,6 +19,7 @@ import { HttpServe } from './layout/service/http-serve.service';
 import { FileUploadService } from './layout/service/file-upload.service';
 import { TreeviewModule } from 'ngx-treeview';
 import { AppLoadModule } from './layout/app-load/app-load.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -38,14 +39,15 @@ import { AppLoadModule } from './layout/app-load/app-load.module';
     HttpInterceptorModule,
     TreeviewModule.forRoot(),
     ToastyModule.forRoot(),
-    AppLoadModule
+    AppLoadModule,
+    HttpClientModule,
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [
     MenuItems,
     HttpInterceptorService,
     HttpServe,
-    FileUploadService
+    FileUploadService,
   ],
   bootstrap: [AppComponent]
 })

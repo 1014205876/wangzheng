@@ -1,209 +1,27 @@
-<app-card class="authHide" [appResource]="{authName:'get/users/grid'}">
-  <div class="col-sm-12 select-box">
-    <div class="row m-b-10">
-      <div class="col-12 col-md-3 input-box m-b-20">
-        <span>员工账号：</span>
-        <input type="text" maxlength="20" placeholder="请输入员工账号" [(ngModel)]="items.account">
-      </div>
-      <div class="col-12 col-md-3 input-box m-b-20">
-        <span>员工姓名：</span>
-        <input type="text" maxlength="4" placeholder="请输入员工姓名" [(ngModel)]="items.name">
-      </div>
-      <div class="col-12 col-md-3 input-box m-b-20">
-        <span>手机号码：</span>
-        <input type="text" maxlength="20"  placeholder="请输入手机号码" [(ngModel)]="items.mobile">
-      </div>
-      <div class="col-12 col-md-3 input-box m-b-20">
-        <span>状态：</span>
-        <select [(ngModel)]="items.status">
-          <option value="">所有状态</option>
-          <option value="0">禁用</option>
-          <option value="1">启用</option>
-        </select>
-      </div>
-      <div class="col-12 col-md-3 input-box">
-        <span>所在部门：</span>
-        <select [(ngModel)]="items.departmentId">
-          <option value="">所有部门</option>
-          <option value="{{item.id}}" *ngFor="let item of department"><app-space [length]="item.level"></app-space>{{item.fullName}}</option>
-        </select>
-      </div>
-      <div class="col-12 col-md-3 input-box float-right search-btn">
-        <span>&nbsp;</span>
-        <button class="btn btn-primary ripple light" (click)="search(1,'search')"><i class="icofont icofont-search-alt-2"></i>查询</button>
-        <button class="btn btn-primary btn-outline-primary ripple light" (click)="reset()"><i class="icofont icofont-close"></i>重置</button>
-      </div>
-    </div>
-    <!-- <div class="row m-b-10 search-btn">
-      <div class="col-12 col-md-3">
-        <button class="btn btn-primary ripple light"><i class="icofont icofont-search-alt-2"></i>查询</button>
-        <button class="btn btn-primary btn-outline-primary ripple light"><i class="icofont icofont-close"></i>重置</button>
-      </div>
-    </div> -->
-  </div>
-</app-card>
-<app-card [title]="'员工列表'" [buttonContent]="'添加员工'">
-  <div class="header-right authHide" [appResource]="{authName:'post/user'}">
-    <button class="btn btn-primary ripple light" routerLink="add"><i class="icofont icofont-ui-add"></i>添加员工</button>
-  </div>
-  <ngx-datatable
-    class="data-table dt-chk"
-    [rows]="rows"
-    [columnMode]="'force'"
-    [scrollbarH]="true"
-    [headerHeight]="50"
-    [rowHeight]="'auto'"
-    [limit]="10">
-    <ngx-datatable-column [sortable]="false" name="员工账号" prop="account"></ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="员工姓名" prop="name" [width]="130"></ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="手机号码" prop="mobile" [width]="130"></ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="部门" prop="departmentName"></ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="职级" prop="occupationClass" [width]="130"></ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="更新时间" prop="updateDate"></ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="状态" prop="status" [width]="120">
-      <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-        <div class="switch authHide" [appResource]="{authName:'patch/user/status'}">
-          <ui-switch class="js-single" color="#ecedf2" switchColor="#716aca" switchOffColor="#e0e2e9" size="medium" (click)="switchange(row)" [checked]="value=='1'"></ui-switch>
-        </div>
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="操作" prop="" [width]= "550" >
-      <ng-template ngx-datatable-cell-template let-row="row">
-        <button class="btn authHide" [appResource]="{authName:'post/user/id/role'}" (click)="roleAuth.show();changeTitle('角色指派','role');role(row)"><i class="icon iconfont icon-changeRole"></i>角色指派</button>
-        <button class="btn authHide" [appResource]="{authName:'get/user/id'}" (click)="readInfo.show();user(row.id)"><i class="icon iconfont icon-read"></i>查看</button>
-        <button class="btn authHide" [appResource]="{authName:'put/user/id'}" [routerLink]="['modify']" [queryParams]="{id: row.id}"><i class="icon iconfont icon-edit"></i>编辑</button>
-        <button class="btn authHide" [appResource]="{authName:'post/user/id/area'}" (click)="changeTitle('数据权限指派','data');modalDefault.show();getArea(row)"><i class="icon iconfont icon-auth"></i>数据权限指派</button>
-        <button class="btn authHide" [appResource]="{authName:'patch/user/resetpass'}" (click)="resetPass(row)"><i class="icon iconfont icon-password"></i>重置密码</button>
-        <button class="btn authHide" [appResource]="{authName:'post/user/id/processData'}" (click)="taskAuth.show();getTask(row);changeTitle('任务权限指派','task');"><i class="icon iconfont icon-auth"></i>任务权限指派</button>
-      </ng-template>
-    </ngx-datatable-column>
-  </ngx-datatable>
-  <app-page-nav (getCurrentPage)="changePage($event)" [totalPage]='totalPage' [pageNum]='pageNum' [total]='total'></app-page-nav>
-</app-card>
-<!-- 数据权限指派 -->
-<app-modal-basic #modalDefault>
-  <div class="app-modal-header">
-    <h4 class="modal-title">{{modalTitle}}</h4>
-    <button type="button" class="close basic-close" (click)="modalDefault.hide();">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="app-modal-body">
-    <div class="row" style="overflow: hidden;">
-      <div class="col-sm-12 col-md-12">
-        <span class="sub-title">区域权限</span>
-        <p></p>
-        <div class="tree-box">
-          <ul id="ztree" class="ztree"></ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="app-modal-footer">
-    <button type="button" class="btn btn-primary btn-outline-primary ripple light" (click)="modalDefault.hide()">取消</button>
-    <button type="button" class="btn btn-primary ripple light" (click)="selectTree();modalDefault.hide()" *ngIf="userStatus">确定</button>
-    <button type="button" class="btn btn-primary ripple light" (click)="selectTree();modalDefault.hide()" disabled *ngIf="!userStatus">确定</button>
-  </div>
-</app-modal-basic>
-<!-- 查看详情 -->
-<app-modal-basic #readInfo>
-  <div class="app-modal-header">
-    <h4 class="modal-title">查看详情</h4>
-    <button type="button" class="close basic-close" (click)="readInfo.hide();">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="app-modal-body">
-    <div class="row">
-      <label class="col-md-3 col-sm-6">员工账号</label>
-      <div class="col-md-9 col-sm-6">{{userInfo.account}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-3 col-sm-6">员工姓名</label>
-      <div class="col-md-9 col-sm-6">{{userInfo.name}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-3 col-sm-6">手机号码</label>
-      <div class="col-md-9 col-sm-6">{{userInfo.mobile}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-3 col-sm-6">所属部门</label>
-      <div class="col-md-9 col-sm-6">{{userInfo.departmentName}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-3 col-sm-6">岗位名称</label>
-      <div class="col-md-9 col-sm-6">{{userInfo.jobName}}</div>
-    </div>
-    <div class="row">
-      <label class="col-md-3 col-sm-6">职位级别</label>
-      <div class="col-md-9 col-sm-6">{{userInfo.occupationClass}}</div>
-    </div>
-    <div class="row" *ngIf="userInfo.roleNames">
-      <label class="col-md-3 col-sm-6">角色</label>
-      <div class="col-md-9 col-sm-6"><span *ngFor="let item of userInfo.roleNames">{{item}}&nbsp;&nbsp;</span></div>
-    </div>
-    <div class="row">
-      <label class="col-md-3 col-sm-6">状态</label>
-      <div class="col-md-9 col-sm-6">
-        <span *ngIf="userInfo.status==0">禁用</span>
-        <span *ngIf="userInfo.status==1">启用</span>
-      </div>
-    </div>
-    <div class="row m-b-20">
-      <label class="col-md-3 col-sm-6">更新时间</label>
-      <div class="col-md-9 col-sm-6">{{userInfo.updateDate}}</div>
-    </div>
-  </div>
-  <div class="app-modal-footer">
-    <button type="button" class="btn btn-primary btn-outline-primary ripple light" (click)="readInfo.hide()">关闭</button>
-  </div>
-</app-modal-basic>
-<!-- 角色指派 -->
-<app-modal-basic #roleAuth>
-  <div class="app-modal-header">
-    <h4 class="modal-title">{{modalTitle}}</h4>
-    <button type="button" class="close basic-close" (click)="roleAuth.hide();">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="app-modal-body" style="overflow: hidden;">
-    <div class="row" style="overflow: hidden; width: 110%; height: 400px;">
-      <div class="checkbox" style="height: 100%; width: 100%; overflow-y: auto;">
-        <div class="border-checkbox-group border-checkbox-group-primary" *ngFor="let item of roleAuthLists">
-          <input class="border-checkbox" type="checkbox" name="roleAuthName" id="{{item.roleId}}" [checked]="item.disable=='1'" (click)="checkChange(item)" [disabled]="item.status==0" >
-          <label class="border-checkbox-label" for="{{item.roleId}}">{{item.name}}</label>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="app-modal-footer">
-    <button type="button" class="btn btn-primary btn-outline-primary ripple light" (click)="roleAuth.hide()">取消</button>
-    <button type="button" class="btn btn-primary ripple light" (click)="roleAuth.hide();roleAuthChecked()" *ngIf="userStatus">确定</button>
-    <button type="button" class="btn btn-primary ripple light" (click)="roleAuth.hide();roleAuthChecked()" disabled *ngIf="!userStatus">确定</button>
-  </div>
-</app-modal-basic>
-<!-- 任务权限指派 -->
-<app-modal-basic #taskAuth>
-  <div class="app-modal-header">
-    <h4 class="modal-title">{{modalTitle}}</h4>
-    <button type="button" class="close basic-close" (click)="taskAuth.hide();clearData()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="app-modal-body" style="overflow: hidden;">
-    <div class="row" style="overflow: hidden; width: 110%; height: 400px;">
-      <div class="checkbox" style="height: 100%; width: 100%; overflow-y: auto;">
-        <div class="border-checkbox-group border-checkbox-group-primary" *ngFor="let item of taskList">
-          <input class="border-checkbox" type="checkbox" name="taskAuthName" id="{{item.id}}" [checked]="item.disable==true" (click)="taskSelect(item)">
-          <label class="border-checkbox-label" for="{{item.id}}">{{item.code}}</label>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="app-modal-footer">
-    <button type="button" class="btn btn-primary btn-outline-primary ripple light" (click)="taskAuth.hide();clearData()">取消</button>
-    <button type="button" class="btn btn-primary ripple light" (click)="taskAuth.hide();postTask()">确定</button>
-  </div>
-</app-modal-basic>
-<ng2-toasty [position]="toast.position"></ng2-toasty>
-
+<div style='margin-top:50px'>
+  <button (click)='openall()'>全部展开</button>
+  <button (click)='retractall()'>全部收起</button>
+  <p-treeTable [value]="files2" (onNodeExpand)='result($event)' (onNodeCollapse)='result($event)'>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Size</th>
+        <th>Type</th>
+        <th>操作</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+      <tr>
+        <td>
+          <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+          {{rowData.name}}
+        </td>
+        <td>{{rowData.size}}</td>
+        <td>{{rowData.type}}</td>
+        <td>
+          <button (click)='add(rowNode,rowData);reset()'>添加</button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-treeTable>
+</div>

@@ -1,175 +1,25 @@
-<app-card [title]="'权限列表'" [buttonContent]="'添加权限'">
-  <div class="header-left">
-    <select [(ngModel)]="appId" (change)="search(appId)">
-      <option value="{{item.appId}}" *ngFor="let item of appLists">{{item.appName}}</option>
-    </select>
-  </div>
-  <div class="header-right authHide" [appResource]="{authName:'post/permission'}">
-    <button class="btn btn-primary ripple light" (click)="modalDefault.show();changeTitle('添加权限','add');add()">
-      <i class="icofont icofont-ui-add"></i>添加权限
-    </button>
-  </div>
-  <ngx-datatable 
-    class="data-table dt-chk" 
-    [rows]="rows" 
-    [columnMode]="'force'" 
-    [headerHeight]="54" 
-    [rowHeight]="'auto'" >
-    <ngx-datatable-column [sortable]="false" name="权限名称" prop="name">
-      <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        <span style="text-align: left;" title="{{value}}"><app-space [length]="row.deep"></app-space>{{value}}</span>
+<nz-table #nzTable [nzDataSource]="data" [nzPageSize]="10">
+  <thead nz-thead>
+    <tr>
+      <th nz-th [nzWidth]="'40%'"><span>Name</span></th>
+      <th nz-th [nzWidth]="'30%'"><span>Age</span></th>
+      <th nz-th><span>Address</span></th>
+    </tr>
+  </thead>
+  <tbody nz-tbody>
+    <ng-template ngFor let-data [ngForOf]="nzTable.data">
+      <ng-template ngFor let-item [ngForOf]="expandDataCache[data.key]">
+        <tr nz-tbody-tr *ngIf="(item.parent&&item.parent.expand)||!(item.parent)">
+          <td nz-td>
+            <nz-row-indent [nzIndentSize]="item.level"></nz-row-indent>
+            <nz-row-expand-icon [(nzExpand)]="item.expand" (nzExpandChange)="collapse(expandDataCache[data.key],item,$event)" [nzShowExpand]="!item.children"></nz-row-expand-icon>
+            {{item.name}}
+          </td>
+          <td nz-td>{{item.age}}</td>
+          <td nz-td>{{item.address}}</td>
+        </tr>
       </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="权限类型" prop="type">
-      <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        <span *ngIf="value == '1'">目录</span>
-        <span *ngIf="value == '2'">菜单</span>
-        <span *ngIf="value == '3'">功能</span>
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="所属应用" prop="appName"></ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="菜单url" prop="menuUrl"></ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="资源名称" prop="resourceName"></ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="层级深度" prop="deep"></ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="排序" prop="sort"></ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="更新时间" prop="updateDate"></ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="状态" prop="status">
-      <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        <div class="switch authHide" [appResource]="{authName:'patch/permission/status'}">
-          <ui-switch class="js-single" color="#ecedf2" switchColor="#716aca" switchOffColor="#e0e2e9" size="medium" (click)="switchange(row)" [checked]="value=='1'"></ui-switch>
-        </div>
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="操作" prop="" [width]="240" >
-      <ng-template ngx-datatable-cell-template let-row="row">
-        <button class="btn authHide" [appResource]="{authName:'post/permission/child'}" 
-         *ngIf="row.status === 1" (click)="modalDefault.show();changeTitle('添加子权限','addChild');addChild(row)">
-          <i class="icofont icofont-ui-add"></i>添加子权限</button>
-          <button class="btn authHide" [appResource]="{authName:'post/permission/child'}" 
-          *ngIf="row.status === 0" (click)="addChild(row)">
-            <i class="icofont icofont-ui-add"></i>添加子权限</button>
-        <button class="btn authHide" [appResource]="{authName:'put/permission/id'}" (click)="modalDefault.show();changeTitle('编辑权限','edit');modify(row)">
-          <i class="icon iconfont icon-edit"></i>编辑</button>
-      </ng-template>
-    </ngx-datatable-column>
-  </ngx-datatable>
-</app-card>
-
-<app-modal-basic [hideFooter]="'false'" #modalDefault>
-  <div class="app-modal-header">
-    <h4 class="modal-title">{{modalTitle}}</h4>
-    <button type="button" class="close basic-close" (click)="modalDefault.hide();addForm.reset();menuUrlActive=false;">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="app-modal-body">
-    <form [formGroup]="addForm" accept-charset ='UTF-8'>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label">所属应用</label>
-        <div class="col-sm-9">
-          <select *ngIf="modalStatus=='add'" name="select" (change)="getParent(items.appId)" class="form-control" [(ngModel)]="items.appId" formControlName="appId">
-            <option value="{{item.appId}}" *ngFor="let item of appLists">{{item.appName}}</option>
-          </select>
-          <select *ngIf="modalStatus!='add'" disabled name="select" class="form-control" [(ngModel)]="items.appId" formControlName="appId">
-            <option value="{{items.appId}}">{{items.appName}}</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label">父级权限</label>
-        <div class="col-sm-9">
-          <select name="select" *ngIf="modalStatus != 'addChild'" class="form-control" [(ngModel)]="items.parentId" formControlName="parentId">
-            <option value="">----</option>
-            <option value="{{item.id}}" *ngFor="let item of parentAuth"><app-space [length]="item.deep"></app-space>{{item.name}}</option>
-          </select>
-          <select name="select" *ngIf="modalStatus=='addChild'" disabled class="form-control" [(ngModel)]="items.parentId" formControlName="parentId">
-            <option value=" ">----</option>
-            <option value="{{items.parentId}}"><app-space [length]="items.deep"></app-space>{{items.parentName}}</option>
-          </select>
-          <!-- <select name="select" *ngIf="modalStatus=='edit'" disabled class="form-control" [(ngModel)]="items.parentId" formControlName="parentId">
-            <option value=" ">----</option>
-            <option value="{{item.id}}" *ngFor="let item of parentAuth"><app-space [length]="item.level"></app-space>{{item.name}}</option>
-          </select> -->
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label">权限名称</label>
-        <div class="col-sm-9">
-          <input type="text" maxlength="10" [(ngModel)]="items.name" class="form-control" id="name" required placeholder="请输入权限名称" formControlName="name">
-          <div class="messages text-danger" *ngIf="(!addForm.controls.name.valid)&&(addForm.controls.name.dirty || addForm.controls.name.touched)">权限名称不能为空</div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label">排序</label>
-        <div class="col-sm-9">
-          <input type="text" maxlength="2" [(ngModel)]="items.sort" class="form-control" id="sort" required placeholder="请输入排序" formControlName="sort">
-          <div class="messages text-danger" *ngIf="(addForm.controls.sort.dirty || addForm.controls.sort.touched)">
-            <span *ngIf="!addForm.controls.sort.valid">排序不能为空</span>
-            <span *ngIf="addForm.controls.sort.errors?.pattern">排序只能为1~99的数字</span>
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label">状态</label>
-        <div class="col-sm-9">
-          <div class="form-radio">
-            <div class="radio radiofill radio-primary radio-inline">
-              <label>
-                <input type="radio" value="1" required formControlName="status" [(ngModel)]="permissionStatus" [checked]="permissionStatus===1"><i class="helper"></i>启用
-              </label>
-            </div>
-            <div class="radio radiofill radio-primary radio-inline">
-              <label>
-                <input type="radio" value="0" required formControlName="status" [(ngModel)]="permissionStatus" [checked]="permissionStatus===0"><i class="helper"></i>禁用
-              </label>
-            </div>
-          </div>
-          <div class="messages text-danger" *ngIf="(!addForm.controls.status.valid)&&(addForm.controls.status.dirty || addForm.controls.status.touched)">状态不能为空</div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label">权限类型</label>
-        <div class="col-sm-9">
-          <div class="form-radio">
-            <div class="radio radiofill radio-primary radio-inline">
-              <label>
-                <input type="radio" value="1" required formControlName="type" [(ngModel)]="permissionType" [checked]="permissionType===1"><i class="helper"></i>目录
-              </label>
-            </div>
-            <div class="radio radiofill radio-primary radio-inline">
-              <label>
-                <input type="radio" value="2" required formControlName="type" [(ngModel)]="permissionType" [checked]="permissionType===2"><i class="helper"></i>菜单
-              </label>
-            </div>
-            <div class="radio radiofill radio-primary radio-inline">
-              <label>
-                <input type="radio" value="3" required formControlName="type" [(ngModel)]="permissionType" [checked]="permissionType===3"><i class="helper"></i>功能
-              </label>
-            </div>
-          </div>
-          <div class="messages text-danger" *ngIf="(!addForm.controls.status.valid)&&(addForm.controls.status.dirty || addForm.controls.status.touched)">权限类型不能为空</div>
-        </div>
-      </div>
-      <div class="form-group row" *ngIf="permissionType == 2">
-        <label class="col-sm-3 col-form-label">菜单url</label>
-        <div class="col-sm-9">
-          <input type="text" maxlength="50" [(ngModel)]="items.menuUrl" class="form-control" id="menuUrl" placeholder="请输入菜单url" formControlName="menuUrl" (blur)="menuUrlBlur()">
-          <div class="messages text-danger" *ngIf="(!items.menuUrl)&&(menuUrlActive)">菜单url不能为空</div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label">资源名称</label>
-        <div class="col-sm-9">
-          <input type="text" maxlength="50" [(ngModel)]="items.resourceName" class="form-control" id="resourceName" required placeholder="请输入资源名称" formControlName="resourceName">
-          <div class="messages text-danger" *ngIf="(!addForm.controls.resourceName.valid)&&(addForm.controls.resourceName.dirty || addForm.controls.resourceName.touched)">资源名称不能为空</div>
-        </div>
-      </div>
-      <div class="form-group form-group-btn row">
-        <button type="button" class="btn btn-primary btn-outline-primary ripple light" (click)="modalDefault.hide();addForm.reset();menuUrlActive=false;">取消</button>
-        <button type="submit" class="btn btn-primary ripple light" (click)="modalDefault.hide();menuUrlActive=false;onSubmit()" [disabled]="!addForm.valid" *ngIf="permissionType != 2">确定</button>
-        <button type="submit" class="btn btn-primary ripple light" (click)="modalDefault.hide();menuUrlActive=false;onSubmit()" [disabled]="(!addForm.valid)||(!items.menuUrl)" *ngIf="permissionType == 2">确定</button>
-    </div>
-    </form>
-  </div>
-</app-modal-basic>
-<ng2-toasty [position]="toast.position"></ng2-toasty>
+    </ng-template>
+  </tbody>
+</nz-table>
+<button nz-button [nzType]="'primary'">测试按钮</button>

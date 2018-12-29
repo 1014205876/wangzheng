@@ -17,14 +17,14 @@ const routes: Routes = [
         path: 'employee',
         loadChildren: './employee/employee.module#EmployeeModule'
       },
-      {
-        path: 'employee/add',
-        loadChildren: './employee/add/add.module#AddModule'
-      },
-      {
-        path: 'employee/modify',
-        loadChildren: './employee/modify/modify.module#ModifyModule'
-      }
+      // {
+      //   path: 'employee/add',
+      //   loadChildren: './employee/add/add.module#AddModule'
+      // },
+      // {
+      //   path: 'employee/modify',
+      //   loadChildren: './employee/modify/modify.module#ModifyModule'
+      // }
     ]
   }
 ]

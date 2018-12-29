@@ -14,10 +14,10 @@ const routes: Routes = [
         path: 'authority',
         loadChildren: './authority/authority.module#AuthorityModule'
       },
-      {
-        path: 'role-manage',
-        loadChildren: './role-manage/role-manage.module#RoleManageModule'
-      }
+      // {
+      //   path: 'role-manage',
+      //   loadChildren: './role-manage/role-manage.module#RoleManageModule'
+      // }
     ]
   }
 ]
