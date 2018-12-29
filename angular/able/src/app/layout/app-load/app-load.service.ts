@@ -24,4 +24,5 @@ export class AppLoadService {
     return promise;
   }
   // getSettings(){}
+
 }

@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpServe } from './../../../layout/service/http-serve.service';
 import { ToastyModule } from 'ng2-toasty';
 import { TreeModule } from 'angular-tree-component';
+// import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { TreeModule } from 'angular-tree-component';
     FormsModule,
     ReactiveFormsModule,
     ToastyModule.forRoot(),
-    TreeModule
+    TreeModule,
+    // NgZorroAntdModule
   ],
   declarations: [AuthorityComponent],
   providers: [HttpServe]

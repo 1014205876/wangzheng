@@ -19,310 +19,106 @@ import { ModalBasicComponent } from './../../../shared/modal-basic/modal-basic.c
   ]
 })
 export class AuthorityComponent implements OnInit {
+  data = [
+    {
+      key     : 1,
+      name    : 'John Brown sr.',
+      age     : 60,
+      address : 'New York No. 1 Lake Park',
+      children: [ {
+        key    : 11,
+        name   : 'John Brown',
+        age    : 42,
+        address: 'New York No. 2 Lake Park',
+      }, {
+        key     : 12,
+        name    : 'John Brown jr.',
+        age     : 30,
+        address : 'New York No. 3 Lake Park',
+        children: [ {
+          key    : 121,
+          name   : 'Jimmy Brown',
+          age    : 16,
+          address: 'New York No. 3 Lake Park',
+        } ],
+      }, {
+        key     : 13,
+        name    : 'Jim Green sr.',
+        age     : 72,
+        address : 'London No. 1 Lake Park',
+        children: [ {
+          key     : 131,
+          name    : 'Jim Green',
+          age     : 42,
+          address : 'London No. 2 Lake Park',
+          children: [ {
+            key    : 1311,
+            name   : 'Jim Green jr.',
+            age    : 25,
+            address: 'London No. 3 Lake Park',
+          }, {
+            key    : 1312,
+            name   : 'Jimmy Green sr.',
+            age    : 18,
+            address: 'London No. 4 Lake Park',
+          } ],
+        } ],
+      } ],
+    },
+    {
+      key    : 2,
+      name   : 'Joe Black',
+      age    : 32,
+      address: 'Sidney No. 1 Lake Park',
+    }
+  ];
+  expandDataCache = {};
 
-  rows = [];
-  appLists = []
-  appId;
-  addForm: FormGroup;
-  menuUrlActive=false;
+  collapse(array, data, $event) {
+    if ($event === false) {
+      if (data.children) {
+        data.children.forEach(d => {
+          const target = array.find(a => a.key === d.key);
+          target.expand = false;
+          this.collapse(array, target, false);
+        });
+      } else {
+        return;
+      }
+    }
+  }
 
-  public items;
-  public modalTitle: String;
-  public modalStatus: String;
+  convertTreeToList(root) {
+    const stack = [], array = [], hashMap = {};
+    stack.push({ ...root, level: 0, expand: false });
 
-  public total;
-  public totalPage;
-  public pageNum;
+    while (stack.length !== 0) {
+      const node = stack.pop();
+      this.visitNode(node, hashMap, array);
+      if (node.children) {
+        for (let i = node.children.length - 1; i >= 0; i--) {
+          stack.push({ ...node.children[ i ], level: node.level + 1, expand: false, parent: node });
+        }
+      }
+    }
 
-  public parentAuth = [];
+    return array;
+  }
 
-  // 权限状态
-  public permissionStatus: Number;
+  visitNode(node, hashMap, array) {
+    if (!hashMap[ node.key ]) {
+      hashMap[ node.key ] = true;
+      array.push(node);
+    }
+  }
 
-  // 权限类型
-  public permissionType: Number;
-
-  toast = {
-    "position": 'center-center',
-    "title": '提示',
-    "msg": '',
-    "showClose": true,
-    "theme": 'material',
-    "type": 'success',
-    "closeOther": false
-  };
-
-  constructor(
-    private http: HttpServe,
-    private toastyService: ToastyService
-  ) {
-    this.items = new Items();
-    this.permissionStatus = 1;
-    this.permissionType = 1;
+  constructor() {
   }
 
   ngOnInit() {
-    this.getApp();
-    this.formInit();
-    this.items.status = 1;
-    this.items.type = 1;
-  }
-  formInit() {
-    this.addForm = new FormGroup({
-      appId: new FormControl(),
-      appName: new FormControl(),
-      name: new FormControl(),
-      sort: new FormControl('', Validators.pattern(/^[1-9]\d{0,1}$/)),
-      type: new FormControl(),
-      menuUrl: new FormControl(),
-      resourceName: new FormControl(),
-      status: new FormControl(),
-      parentId: new FormControl()
-    })
-  }
-  // typeChange(){
-  //   if(this.permissionType==2){
-  //     this.addForm.controls.menuUrl.setValidators(Validators.required)
-  //   }
-  // }
-  getApp() {
-    this.http.getCustomHeaders("v1/resource/app").subscribe(res => {
-      this.appLists = res.result;
-      if ((this.appLists.length > 0) && (!this.appId)) {
-        // this.appId = '97a78cc5-2e92-42b8-9a7a-de4a6ad5a3b8';
-        this.appId = this.appLists[0].appId;
-      }
-      if (this.appId) {
-        this.search(this.appId);
-        this.parentAuth = this.rows;
-      }
-    })
-  }
-  search(e) {
-    this.http.getCustomHeaders("v1/resource/permission?appId=" + e).subscribe(res => {
-      this.rows=[];
-      this.rows = res.result;
-    })
+    this.data.forEach(item => {
+      this.expandDataCache[ item.key ] = this.convertTreeToList(item);
+    });
   }
 
-  addPermission(e) {
-    this.http.getCustomHeaders("v1/resource/permission/status?appId=" + e).subscribe(res => {
-      this.parentAuth = res.result;
-    })
-  }
-
-  getParent(appId) {
-    this.addPermission(appId);
-    // this.parentAuth = this.rows;
-  }
-  changeTitle(title, status) {
-    this.items.status = 1;
-    this.items.type = 1;
-    this.modalTitle = title;
-    this.modalStatus = status;
-    if (status == 'add') {
-      this.items.parentId = ' ';
-    }
-  }
-  add() {
-    // 设置状态
-    this.permissionStatus = 1;
-
-    // 设置类型
-    this.permissionType = 1;
-    this.items.appId = this.appId;
-    this.getParent(this.appId);
-    this.items.parentId = '';
-  }
-  addChild(value) {
-    // 设置状态
-    this.permissionStatus = 1;
-
-    // 设置类型
-    this.permissionType = 1;
-    this.items.appId = value.appId;
-    this.items.appName = value.appName;
-    this.items.code = value.code;
-    this.items.type = 1;
-    this.items.status = 1;
-    this.items.authId = value.id;
-    if (value) {
-      if ((value.status == 0) || (value.stauts == '0')) {
-        this.toast.msg = "该权限已被禁用，此操作不可用";
-        this.toast.type = "warning";
-        this.addToast(this.toast);
-      } else {
-        this.items.parentId = value.id;
-        this.items.deep = value.deep;
-        this.items.parentName = value.name;
-      }
-    }
-  }
-  modify(value) {
-    if (value) {
-      this.permissionStatus = value.status;
-      // 设置类型
-      this.permissionType = value.type;
-      this.setValue(value);
-      this.http.getCustomHeaders("v1/resource/permission/edit?appId=" + this.appId + "&id=" + value.id)
-        .subscribe(res => {
-          this.parentAuth = res.result;
-          if (value.parentId) {
-            this.items.parentId = value.parentId;
-          } else {
-            this.items.parentId = '';
-          }
-        })
-    }
-  }
-  setValue(value) {
-    this.items.appId = value.appId;
-    this.items.appName = value.appName;
-    this.items.code = value.code;
-    this.items.name = value.name;
-    this.items.type = value.type;
-    this.items.sort = value.sort;
-    this.items.status = value.status;
-    this.items.menuUrl = value.menuUrl;
-    this.items.resourceName = value.resourceName;
-    this.items.authId = value.id;
-  }
-  menuUrlBlur(){
-    this.menuUrlActive=true;
-  }
-  onSubmit() {
-    for (var i = 0; i < this.appLists.length; i++) {
-      if (this.items.appId == this.appLists[i].appId) {
-        this.items.appName = this.appLists[i].appName
-      }
-    }
-    if (!this.items.appId || !this.items.parentId || !this.items.code) {
-      this.items.appId = (this.items.appId ? this.items.appId : '');
-      this.items.parentId = (this.items.parentId ? this.items.parentId : '');
-      this.items.code = (this.items.code ? this.items.code : '');
-    }
-    if (this.permissionType != 2) {
-      this.items.menuUrl = '';
-    }
-    if (this.modalStatus != 'edit') {
-      // console.log(this.permissionType);
-      // console.log(this.items);
-      // 将状态设置到对象中
-      this.items.status = this.permissionStatus;
-      this.items.type = this.permissionType;
-      this.http.postCustomHeaders("v1/resource/permission", this.items)
-        .subscribe(res => {
-          this.search(this.items.appId)
-          if (res.code == "200") {
-            this.toast.msg = "成功";
-            this.toast.type = "success";
-            this.addToast(this.toast);
-          }
-          if (res.code != "200") {
-            this.toast.msg = res.reason;
-            this.toast.type = "error";
-            this.addToast(this.toast);
-          }
-          this.rows = [];
-          this.getApp();
-          this.items = new Items();
-          this.addForm.reset();
-          this.items.status = 1;
-          this.items.type = 1;
-        })
-    } else if (this.modalStatus == 'edit') {
-      // 将状态设置到对象中
-      this.items.status = this.permissionStatus;
-      this.items.type = this.permissionType;
-      this.http.putCustomHeaders("v1/resource/permission/" + this.items.authId, this.items)
-        .subscribe(res => {
-          if (res.code == "200") {
-            this.toast.msg = "成功";
-            this.toast.type = "success";
-            this.addToast(this.toast);
-          } else {
-            this.toast.msg = res.reason;
-            this.toast.type = "error";
-            this.addToast(this.toast);
-          }
-          this.search(this.items.appId);
-          this.addForm.reset();
-          this.items = new Items();
-          this.items.status = 1;
-          this.items.type = 1;
-        });
-    }
-  }
-
-  switchange(row) {
-    // console.log(row.id)
-    var status = { "status": null };
-    if (row.status == 0) {
-      status.status = 1;
-    } else if (row.status == 1) {
-      status.status = 0;
-    }
-    this.http.patchCustomHeaders("/v1/resource/permission/" + row.id, status)
-      .subscribe(res => {
-        // console.log(res)
-        if (res.code == '200') {
-          this.toast.msg = '状态修改成功';
-          this.toast.type = 'success';
-          this.addToast(this.toast);
-        } else {
-          this.toast.msg = res.reason;
-          this.toast.type = 'error';
-          this.addToast(this.toast);
-        }
-        this.rows = []
-        this.getApp()
-      })
-  }
-
-  // toast提示
-  addToast(options) {
-    console.log(options)
-    if (options.closeOther) {
-      this.toastyService.clearAll();
-    }
-    this.toast.position = options.position ? options.position : this.toast.position;
-    const toastOptions: ToastOptions = {
-      title: options.title,
-      msg: options.msg,
-      showClose: options.showClose,
-      timeout: 5000,
-      theme: options.theme,
-      onAdd: (toast: ToastData) => {
-        /* added */
-      },
-      onRemove: (toast: ToastData) => {
-        /* removed */
-      }
-    };
-
-    switch (options.type) {
-      case 'default': this.toastyService.default(toastOptions); break;
-      case 'info': this.toastyService.info(toastOptions); break;
-      case 'success': this.toastyService.success(toastOptions); break;
-      case 'wait': this.toastyService.wait(toastOptions); break;
-      case 'error': this.toastyService.error(toastOptions); break;
-      case 'warning': this.toastyService.warning(toastOptions); break;
-    }
-  }
-
-}
-class Items {
-  constructor(
-    public appId?: String,
-    public appName?: String,
-    public name?: String,
-    public sort?: Number,
-    public type?: Number,
-    public menuUrl?: String,
-    public resourceName?: String,
-    public parentId?: String,
-    public code?: String,
-    public authId?: String,
-    public status?: Number
-  ) { }
 }

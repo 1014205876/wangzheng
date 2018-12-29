@@ -21,18 +21,18 @@ const routes: Routes = [
         path: 'application',
         loadChildren: './theme/application/application.module#ApplicationModule'
       },
-      // {
-      //   path: 'configure',
-      //   loadChildren: './theme/configure/configure.module#ConfigureModule'
-      // },
-      // {
-      //   path: 'role',
-      //   loadChildren: './theme/role/role.module#RoleModule'
-      // },
-      // {
-      //   path: 'organization',
-      //   loadChildren: './theme/organization/organization.module#OrganizationModule'
-      // },
+      {
+        path: 'configure',
+        loadChildren: './theme/configure/configure.module#ConfigureModule'
+      },
+      {
+        path: 'organization',
+        loadChildren: './theme/organization/organization.module#OrganizationModule'
+      },
+      {
+        path: 'role',
+        loadChildren: './theme/role/role.module#RoleModule'
+      },
       // {
       //   path: 'baseResource',
       //   loadChildren: './theme/base-resource/base-resource.module#BaseResourceModule'

@@ -10,6 +10,8 @@ import { HttpServe } from './../../../layout/service/http-serve.service';
 import { ToastyModule } from 'ng2-toasty';
 import { TreeModule } from 'angular-tree-component';
 import { TreeviewModule } from 'ngx-treeview';
+import { TreeTableModule } from 'primeng/treetable';
+// import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   imports: [
@@ -22,7 +24,9 @@ import { TreeviewModule } from 'ngx-treeview';
     ReactiveFormsModule,
     ToastyModule.forRoot(),
     TreeModule,
-    TreeviewModule.forRoot()
+    TreeviewModule.forRoot(),
+    TreeTableModule,
+    // BrowserAnimationsModule
   ],
   declarations: [EmployeeComponent],
   providers: [HttpServe]

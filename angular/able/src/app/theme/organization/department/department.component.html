@@ -1,123 +1,24 @@
-<app-card [title]="'部门列表'" [buttonContent]="'添加部门'">
-  <div class="header-right authHide" [appResource]="{authName:'post/department'}">
-    <button class="btn btn-primary ripple light" (click)="modalDefault.show();changeTitle('添加部门','add');getDepartment();add('')">
-      <i class="icofont icofont-ui-add"></i>添加部门</button>
-  </div>
-  <ngx-datatable 
-    class="data-table dt-chk" 
-    [rows]="rows" 
-    [columnMode]="'force'" 
-    [headerHeight]="54" 
-    [rowHeight]="'auto'" >
-    <ngx-datatable-column [sortable]="false" name="部门全称" prop="fullName" [width]="400">
-      <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        <span style="text-align: left;" title="{{value}}"><app-space [length]="row.level"></app-space>{{value}}</span>
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="部门简称" prop="shortName"></ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="排序" prop="sort" [width]="100"></ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="状态" prop="status">
-      <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        <div class="switch authHide" [appResource]="{authName:'patch/department/status'}">
-          <ui-switch class="js-single" color="#ecedf2" switchColor="#716aca" switchOffColor="#e0e2e9" size="medium" (click)="switchange(row)" [checked]="value=='1'"></ui-switch>
-        </div>
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="更新时间" prop="updateDate"></ngx-datatable-column>
-    <ngx-datatable-column [sortable]="false" name="操作" prop="" [width]="300">
-      <ng-template ngx-datatable-cell-template let-row="row">
-        <button class="btn authHide" [appResource]="{authName:'post/department/child'}" style="color: #666674; background: none; padding: 0; margin: auto 10px;" 
-        *ngIf="row.status === 1" (click)="modalDefault.show(row.status);changeTitle('添加部门子部门','addChild');getDepartment();add(row)">
-          <i class="icofont icofont-ui-add"></i>添加子部门</button>
-          <button class="btn authHide" [appResource]="{authName:'post/department/child'}" style="color: #666674; background: none; padding: 0; margin: auto 10px;" 
-        *ngIf="row.status === 0" (click)="add(row)">
-            <i class="icofont icofont-ui-add"></i>添加子部门</button>
-        <button class="btn authHide" [appResource]="{authName:'put/department'}" style="color: #666674; background: none; padding: 0; margin: auto 10px;" 
-        (click)="modalDefault.show(row.status);changeTitle('编辑部门','edit');getDepartmentEdit(row.id);modify(row)">
-        <i class="icon iconfont icon-edit"></i>编辑</button>
-      </ng-template>
-    </ngx-datatable-column>
-  </ngx-datatable>
-  <!-- <app-page-nav (getCurrentPage)="changePage($event)" [total]='total'></app-page-nav> -->
-</app-card>
-<app-modal-basic [hideFooter]="'false'" #modalDefault>
-  <div class="app-modal-header">
-    <h4 class="modal-title">{{modalTitle}}</h4>
-    <button type="button" class="close basic-close" (click)="modalDefault.hide();addForm.reset();">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="app-modal-body">
-    <form [formGroup]="addForm" accept-charset ='UTF-8' (ngSubmit)="onSubmit()">
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label">父级部门</label>
-        <div class="col-sm-9">
-          <select name="select" class="form-control" [(ngModel)]="items.parentId" formControlName="parentId" *ngIf="modalStatus == 'add'">
-            <option value="">----</option>
-            <option value="{{item.id}}" *ngFor="let item of department"><app-space [length]="item.level"></app-space>{{item.fullName}}</option>
-          </select>
-          <select name="select" class="form-control" [(ngModel)]="items.parentId" formControlName="parentId" *ngIf="modalStatus == 'edit'">
-            <option value="">----</option>
-            <option value="{{item.id}}" *ngFor="let item of departmentEdit"><app-space [length]="item.level"></app-space>{{item.fullName}}</option>
-          </select>
-          <select name="select" class="form-control" [(ngModel)]="items.parentId" formControlName="parentId" *ngIf="modalStatus == 'addChild'" disabled="true">
-            <option value="{{items.parentId}}"><app-space [length]="items.level"></app-space>{{items.parentName}}</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label">部门全称</label>
-        <div class="col-sm-9">
-          <input type="text" maxlength="50" [(ngModel)]="items.fullName" class="form-control" id="fullName" required placeholder="请输入部门全称" formControlName="fullName">
-          <div class="messages text-danger" *ngIf="(!addForm.controls.fullName.valid)&&(addForm.controls.fullName.dirty || addForm.controls.fullName.touched)">部门全称不能为空</div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label">部门简称</label>
-        <div class="col-sm-9">
-          <input type="text" maxlength="10" [(ngModel)]="items.shortName" class="form-control" id="shortName" required placeholder="请输入部门简称" formControlName="shortName">
-          <div class="messages text-danger" *ngIf="(!addForm.controls.shortName.valid)&&(addForm.controls.shortName.dirty || addForm.controls.shortName.touched)">部门简称不能为空</div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label">排序</label>
-        <div class="col-sm-9">
-          <input type="text" maxlength="2" [(ngModel)]="items.sort" class="form-control" id="sort" required placeholder="请输入排序" formControlName="sort">
-          <div class="messages text-danger" *ngIf="(addForm.controls.sort.dirty || addForm.controls.sort.touched)">
-            <span *ngIf="addForm.controls.sort.errors?.required">排序不能为空</span>
-            <span *ngIf="addForm.controls.sort.errors?.pattern">排序只能为1~99的数字</span>
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label">描述</label>
-        <div class="col-sm-9">
-          <textarea cols="30" rows="5" class="form-control" [(ngModel)]="items.remark" id="remark" placeholder="请输入描述" maxlength="200" formControlName="remark"></textarea>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label">状态</label>
-        <div class="col-sm-9">
-          <div class="form-radio">
-            <div class="radio radiofill radio-primary radio-inline">
-              <label>
-                <input type="radio" value="1" required formControlName="status" [(ngModel)]="items.status" [checked]="items.status===1"><i class="helper"></i>启用
-              </label>
-            </div>
-            <div class="radio radiofill radio-primary radio-inline">
-              <label>
-                <input type="radio" value="0" required formControlName="status" [(ngModel)]="items.status" [checked]="items.status===0"><i class="helper"></i>禁用
-              </label>
-            </div>
-          </div>
-          <div class="messages text-danger" *ngIf="(!addForm.controls.status.valid)&&(addForm.controls.status.dirty || addForm.controls.status.touched)">应用状态不能为空</div>
-        </div>
-      </div>
-      <div class="form-group form-group-btn row">
-        <button type="button" class="btn btn-primary btn-outline-primary ripple light" (click)="modalDefault.hide();addForm.reset()">取消</button>
-        <button type="submit" class="btn btn-primary ripple light" (click)="modalDefault.hide();" [disabled]="!addForm.valid">确定</button>
-      </div>
-    </form>
-  </div>
-</app-modal-basic>
-<ng2-toasty [position]="toast.position"></ng2-toasty>
+<table>
+  <tr>
+    <th>部门全称</th>
+    <th>部门简称</th>
+    <th>排序</th>
+    <th>更新时间</th>
+  </tr>
+  <tr *ngFor='let list of rows' [hidden]='hiddenid.indexOf(list.parentId)!=-1'>
+    <td>
+      <app-space [length]="list.level"></app-space>
+      <!-- <span style='padding:0 10px' *ngFor='let item of list.level'></span> -->
+      <span>
+        <img [hidden]='hiddenid.indexOf(list.id)!=-1' (click)='open(list.id)' src="../../../../assets/images/icon/open.png"
+          alt="">
+        <img [hidden]='hiddenid.indexOf(list.id)==-1' (click)='retract(list.id)' src="../../../../assets/images/icon/retract.png"
+          alt="">
+      </span>
+      {{list.fullName}}
+    </td>
+    <td>{{list.shortName}}</td>
+    <td>{{list.sort}}</td>
+    <td>{{list.updateDate}}</td>
+  </tr>
+</table>
