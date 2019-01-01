@@ -10,13 +10,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { HomeComponent } from './pages/home/home.component';
+import { TableComponent } from './pages/table/table.component';
+import { EchartComponent } from './pages/echart/echart.component';
+import { NavComponent } from './pages/nav/nav.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 registerLocaleData(zh);
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    TableComponent,
+    EchartComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +31,8 @@ registerLocaleData(zh);
     NgZorroAntdModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxEchartsModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]
