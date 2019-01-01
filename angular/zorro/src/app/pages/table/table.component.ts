@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class TableComponent implements OnInit {
 
   constructor() { }
+  loading=false;
   data = [
     {
       key: 1,
@@ -73,6 +74,111 @@ export class TableComponent implements OnInit {
     },
     {
       key: 2,
+      status: 1,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: 3,
+      status: 1,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: 4,
+      status: 1,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: 5,
+      status: 1,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: 6,
+      status: 1,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: 7,
+      status: 1,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: 8,
+      status: 1,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: 9,
+      status: 1,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: 10,
+      status: 1,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: 11,
+      status: 1,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: 12,
+      status: 1,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: 13,
+      status: 1,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: 14,
+      status: 1,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: 15,
+      status: 1,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: 16,
+      status: 1,
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: 17,
       status: 1,
       name: 'Joe Black',
       age: 32,
@@ -150,7 +256,7 @@ export class TableComponent implements OnInit {
       address: 'Sidney No. 1 Lake Park'
     }
   ];
-  expandDataCache = [];
+  expandDataCache = {};
 
   update() {
     this.data = this.data1
@@ -160,12 +266,17 @@ export class TableComponent implements OnInit {
     this.openall();
   }
 
+  pagechange(num){
+    console.log(num)
+  }
+
   collapse(array: TreeNodeInterface[], data: TreeNodeInterface, $event: boolean): void {
     if ($event === false) {
       if (data.children) {
         data.children.forEach(d => {
           const target = array.find(a => a.key === d.key);
           target.expand = false;
+          target.loading = false;
           this.collapse(array, target, false);
         });
       } else {
@@ -182,7 +293,8 @@ export class TableComponent implements OnInit {
       {
         ...root,
         level: 0,
-        expand: false
+        expand: false,
+        loading: false,
       }
     );
 
@@ -196,6 +308,7 @@ export class TableComponent implements OnInit {
               ...node.children[i],
               level: node.level + 1,
               expand: false,
+              loading: false,
               parent: node
             }
           );
@@ -230,13 +343,16 @@ export class TableComponent implements OnInit {
   }
   statuschange(list) {
     console.log(list)
+    list.loading=true;
     if (list.status == 1) {
       setTimeout(() => {
-        list.status = 0
+        list.status = 0;
+        list.loading=false;
       }, 1000);
     } else {
       setTimeout(() => {
-        list.status = 1
+        list.status = 1;
+        list.loading=false;
       }, 1000);
     }
   }
@@ -272,6 +388,7 @@ export interface TreeNodeInterface {
   age: number;
   level: number;
   expand: boolean;
+  loading: boolean;
   address: string;
   children?: TreeNodeInterface[];
 }
