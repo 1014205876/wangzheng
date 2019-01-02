@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { TableComponent } from './pages/table/table.component';
+import { EchartComponent } from './pages/echart/echart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  // { path: 'index', component: IndexComponent },
-  // { path: 'form', component: FormComponent },
-  // { path: 'select', component: SelectComponent },
+  { path: 'table', component: TableComponent },
+  { path: 'echart', component: EchartComponent },
   // {
   //   path: 'pages2', component: Pages02Component,
   //   children: [

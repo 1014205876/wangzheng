@@ -34,7 +34,10 @@
             "styles": [
               "src/styles.less"
             ],
-            "scripts": []
+            "scripts": [
+              
+    "./node_modules/echarts/dist/echarts.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -90,7 +93,8 @@
             "styles": [
               "src/styles.less"
             ],
-            "scripts": [],
+            "scripts": [
+              "./node_modules/echarts/dist/echarts.min.js"],
             "assets": [
               "src/favicon.ico",
               "src/assets"
