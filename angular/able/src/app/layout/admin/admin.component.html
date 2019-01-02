@@ -14,7 +14,7 @@
         <div class="navbar-container container-fluid">
           <ul class="navLeft">
             <li *ngFor="let item of AppList">
-              <!-- <a href="{{item.appAddress}}">{{item.appName}}</a> -->
+              <a href="{{item.appAddress}}">{{item.appName}}</a>
             </li>
           </ul>
           <ul [@mobileHeaderNavRight]="navRight" [ngClass]="navRight" class="nav-right">
@@ -51,7 +51,6 @@
           [style.height]="sidebarFixedNavHeight" (mouseleave)="hoverOutsideSidebar()">
           <perfect-scrollbar [style.max-width]="'255px'" [style.max-height]="sidebarFixedHeight" [config]="config" [ngClass]="perfectDisable">
             <div class="pcoded-inner-navbar main-menu" appAccordion>
-
               <div *ngFor="let asideItems of menuItems.getAll()">
                 <ul class="pcoded-item pcoded-left-item" [attr.item-border]="itemBorder" [attr.item-border-style]="itemBorderStyle" [attr.subitem-border]="subItemBorder"
                   *ngFor="let asideItem of asideItems.main" appAccordionLink group="{{asideItem.state}}">

@@ -37,7 +37,7 @@
               "src/scss/widget.scss",
               "src/scss/pages.scss",
               "src/assets/icon/feather/css/feather.css",
-              "src/styles.less"
+              "src/styles.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -104,7 +104,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.less"
+              "src/styles.css"
             ],
             "scripts": [],
             "assets": [

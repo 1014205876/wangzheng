@@ -285,6 +285,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   resetPwd(){
     this.http.patchCustomHeaders('v1/resource/user/pass/'+this.account,{"oldPassword":this.pwd.origPwd,"newPassword":this.pwd.newPwd})
     .subscribe(res => {
+      console.log(res)
       if(res.code=='200'){
         this.logout()
       }else{
@@ -336,6 +337,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   getOtherAPP(){
     this.http.getCustomHeaders("/v1/resource/apps/permission").subscribe(res => {
       this.AppList=res.result;
+      console.log(res)
     })
   }
 
