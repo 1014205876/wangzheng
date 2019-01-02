@@ -1,0 +1,8 @@
+<ul nz-menu [nzMode]="'inline'" [nzTheme]="'dark'" style='min-height:100%'>
+  <li nz-submenu *ngFor='let list of nav.menu;let index=index' [(nzOpen)]="index==nowindex" (nzOpenChange)="openChange(index)">
+    <span title>{{list.name}}</span>
+    <ul>
+      <li nz-menu-item *ngFor='let item of list.children' [routerLink]='item.url'>{{item.name}}</li>
+    </ul>
+  </li>
+</ul>
