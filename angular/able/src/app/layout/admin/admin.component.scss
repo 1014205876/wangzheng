@@ -1,0 +1,103 @@
+.header-navbar .navbar-wrapper .navbar-container .nav-right .user-profile img {
+  width: 18px;
+}
+.header-navbar .navbar-wrapper .navbar-container .nav-right li > a {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.pcoded .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu li > a .pcoded-mtext:before {
+  content: '';
+}
+.pcoded .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu li > a .pcoded-micon {
+  font-size: 1rem;
+  padding: 4px;
+  margin-right: 0;
+  border-radius: 4px;
+  width: 25px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 30px;
+  text-align: center;
+}
+.pcoded .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu li > a .pcoded-micon .icon-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 100%;
+  background-color: #fff;
+  margin-left: calc(1rem - 4px);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.pcoded .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu li:hover > a .pcoded-micon .icon-dot,
+.pcoded .pcoded-navbar .pcoded-item .pcoded-hasmenu .pcoded-submenu li.active > a .pcoded-micon .icon-dot {
+  background-color: #716aca;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+body .pcoded .pcoded-item .pcoded-hasmenu.pcoded-trigger .pcoded-submenu .pcoded-micon {
+  font-size: 1rem;
+  padding: 4px;
+  margin-right: 0;
+  border-radius: 4px;
+  width: 25px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 30px;
+  text-align: center;
+}
+
+.navLeft {
+  float: left;
+  padding: 8px 15px;
+  line-height: 40px;
+}
+.navLeft li {
+  float: left;
+  margin: 0 5px;
+}
+.navLeft li a {
+  color: #000;
+  font-size: 16px;
+  display: block;
+  padding: 0 10px;
+}
+.navLeft li a:hover {
+  color: #fff;
+  border-radius: 5px;
+  background: #716aca;
+  color: #fff;
+}
+
+.header-right {
+  position: absolute;
+  right: 30px;
+  top: 14px;
+}
+.form-group-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  padding: 1rem;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-top: 1px solid #e9ecef;
+}
+.form-group-btn .btn {
+  margin-left: 10px;
+}

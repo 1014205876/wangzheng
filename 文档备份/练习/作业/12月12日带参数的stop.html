@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box1 {
+				width: 200px;
+				height: 100px;
+				background: blue;
+				position: absolute
+			}
+			
+			.box2 {
+				border-radius: 100px;
+			}
+			
+			.red {
+				background: red;
+			}
+			
+			.white {
+				background: white;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript">
+			$(function(index) {
+						//				$('button:eq(0)').click(function() {
+						//					$('div').animate({
+						//						'margin-left': '100px'
+						//					}, 2000);
+						//					$('div').animate({
+						//						'font-size': '30px'
+						//					}, 2000);
+						//				})
+						//				$('#stop').click(function() {
+						//					$('div').stop();
+						//				})
+						//				$('#stop2').click(function() {
+						//					$('div').stop(true);
+						//				})
+						//				$('#stop3').click(function() {
+						//					$('div').stop(true, true);
+						//					$('div').css('background', 'red').slideUp(1000).slideDown(1000);
+						//				})
+						//				$(function Fn() {
+						//					$('div').fadeToggle(1000);
+						//					Fn();
+						//				})
+						//				$('div').toggle();
+						//				$('#stop3').hover(function() {
+						//					$('div').stop().slideToggle(500);
+						//				})
+						//				$(function Fn(){
+						//					$('div').slideToggle(500);
+						//					Fn();
+						//				})
+						//				$('#stop3').mouseout(function() {
+						//					$('div').slideToggle(500);
+						//				})
+						//				$('input').focus(function() {
+						//					$(this).css('background','red');
+						//				}).blur(function() {
+						//					$(this).css('background','white');
+						//				})
+						//				$('#stop3').click(function() {
+						//					$('div').addClass('box1 box2');
+						//				})
+						//				$('#stop2').click(function() {
+						//					$('div').removeClass('box2');
+						//				})
+						//				$('#stop').click(function() {
+						//					$('div').removeClass();
+						//				})
+						//				$('div').toggle();
+						//				$('div').addClass('box1');
+						//				$('#stop3').click(function() {
+						//					$(this).toggleClass('red');
+						//					$('div').stop().slideToggle(500);
+						//				})
+						//				$('#stop3').toggle(function() {
+						//					$(this).addClass('red');
+						//					$('div').stop().slideDown(500);
+						//				},function(){
+						//					$(this).removeClass('red');
+						//					$('div').stop().slideUp(500);
+						//				})
+						$('div').hide();
+						$('div:eq(0)').show();
+
+						function dian(i) {
+							$('button:eq(' + i + ')').click(function() {
+								mover(i);
+							})
+						}
+
+						function mover(i) 
+						{
+							$('div').hide();
+							$('div:eq(' + i + ')').show();
+						}
+
+						$(function() {
+							for(var i = 0; i < 4; i++) {
+								dian(i);
+							}
+							time1(0);
+						}) 
+						
+						function time1(index) {
+							setInterval(function() {
+								index++;
+								if(index >= 4) {
+									index = 0;
+								}
+								mover(index);
+							}, 1000)
+						}
+
+					})
+		</script>
+	</head>
+
+	<body>
+		<button id="start">开始</button>
+		<button id="stop">停止1</button>
+		<button id="stop2">停止2</button>
+		<button id="stop3">停止3</button>
+		<input type="text" name="" id="" value="" />
+		<div style='color:red'>开始</div>
+		<div style='color:blue'>停止1</div>
+		<div style='color:black'>停止2</div>
+		<div style='color:yellow'>停止3</div>
+
+	</body>
+
+</html>

@@ -1,0 +1,22 @@
+.not-active {
+    pointer-events: none;
+    cursor: default;
+}
+.breadcrumb-box {
+    position: relative;
+    border-radius: 0;
+    padding-bottom: 50px;
+}
+.breadcrumb-box .page-block {
+    padding: 1.25rem;
+    padding-bottom: 0;
+}
+.page-header-title {
+    float: left;
+    padding: 0.5rem 1rem;
+    border-right: 1px solid #dfe0ea;
+}
+.page-header-title h4 {
+    color: #434349;
+    font-weight: inherit;
+}

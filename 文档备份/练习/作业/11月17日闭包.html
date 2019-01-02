@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+		<script>
+			var a=document.getElementsByTagName('li')
+//			for(var i=0;i<a.length;i++)
+//			{
+//				a[i].onclick=function()
+//				{
+//					console.log(i);
+//				}
+//			}
+			
+			//解决方法，1函数自执行
+			for(var i=0;i<a.length;i++)
+			{
+				a[i].onclick=(function(index)
+				{
+					return function()
+					{
+						console.log(index);
+					}
+				}(i))
+			}
+		</script>
+	</body>
+</html>

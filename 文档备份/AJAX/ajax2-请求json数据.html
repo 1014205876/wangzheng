@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Ajax 2 - 请求JSON数据</title>
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+				list-style: none;
+			}
+			
+			div {
+				background-color: red;
+				padding: 10px;
+				margin: 10px;
+			}
+			
+			img {
+				width: 100px;
+				height: 100px;
+			}
+			
+			ul {
+				display: inline-block;
+			}
+			
+			li {
+				line-height: 40px;
+			}
+			#user{
+				background-color:white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<button id="button1">显示所有用户信息</button>
+		<h1>用户信息</h1>
+		<div id="user"></div>
+
+		<script type="text/javascript">
+			document.getElementById('button1').onclick = function() 
+			{
+				loadUser()
+			}
+
+			function loadUser()
+			{
+				var xhr = new XMLHttpRequest();
+				if(window.XMLHttpRequest) 
+				{
+					xhr = new XMLHttpRequest();
+				} 
+				else
+				{
+					xhr = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+
+				xhr.open('GET', 'https://api.github.com/users', true);
+
+				if(navigator.userAgent.indexOf('Trident') == -1) 
+				{
+					xhr.onload = function() //ie用on
+					{
+						if(this.readyState == 4 && this.status==200) 
+						{
+							var user = JSON.parse(this.responseText);
+							console.log(user[0]);
+							var output = '';
+							for(var i=0;i<user.length;i++)
+							{
+								output +=
+								'<div>' +
+								'<img src="' + user[i].avatar_url + '"/>' +
+								'<ul>' +
+								'<li>name:<span>' + user[i].login + '</span></li>' +
+								'<li>iD:<span>' +user[i].id + '</span></li>' +
+								'</ul>' +
+							}
+							document.getElementById('user').innerHTML = output;
+						}
+					}
+				} 
+				xhr.send();
+			}
+		</script>
+	</body>
+</html>

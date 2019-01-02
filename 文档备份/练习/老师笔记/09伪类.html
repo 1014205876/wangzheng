@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>伪类</title>
+		<style>
+			
+
+			
+			/* 未访问的链接 */
+			/*a:link{
+				color:black;
+			}*/
+			
+			/* 已访问的链接 */
+
+			a:visited {color:antiquewhite}
+			
+			
+
+			/* 鼠标移动到链接上 */
+			a:hover{
+				color: red;
+			}
+			
+			/* 选定的链接 */
+			a:active {color:yellow}	
+			
+			/*在 CSS 定义中，a:hover 必须被置于 a:link 和 a:visited 之后，才是有效的。
+		a:active 必须被置于 a:hover 之后，才是有效的。
+		伪类名称对大小写不敏感。
+		*/
+		
+		a.red:hover{color:chartreuse;}
+		
+		/*伪类可以与 CSS 类选择器配合使用：*/
+		
+		p:first-child {color:yellow}
+		
+		
+		/*first-child 伪类来选择元素的第一个子元素*/
+		
+		/*第一个条件:必须是p标签
+		第二个条件:必须是他的父元素的第一个标签*/
+
+		p:last-child{ color: #7FFF00;}
+		
+		/*第一个条件:必须是p标签
+		第二个条件:必须是他的父元素的最后一个标签*/
+
+		q:lang(no)
+		{
+			quotes:  "~" "~";
+		}
+		
+		/*:lang 伪类使你有能力为不同的语言定义特殊的规则。*/
+
+		input:focus{
+			background-color:yellow;
+
+		}
+		/*:focus 伪类在元素获得焦点时向元素添加特殊的样式。*/
+
+
+		</style>
+	</head>
+	<body>
+		<p>123123123123</p>
+		<a href="/index.html" target="_blank" class="red">这是一个链接。</a>
+		<a href="/index.html" target="_blank">这是一个链接。</a>
+		
+		<div class="red">123213</div>
+		
+		<div>
+			<p>These are the necessary steps:</p>
+	
+			<p>Do <em>not</em> push the brake at the same time as the accelerator.</p>
+		</div>
+		
+		<p>dasdfsadfs</p>
+		
+		
+		<p>文字<q lang="no">段落中的引用的文字</q>文字</p>
+		
+		<form>
+			first name:<input type="text" name="fname" /><br />
+			last name:<input type="text" name="fname" /><br />
+		</form>
+
+
+	</body>
+</html>

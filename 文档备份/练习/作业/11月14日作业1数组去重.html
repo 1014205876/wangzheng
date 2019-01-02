@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script>
+			var a = Math.floor(Math.random() * 5);
+			var b = Math.floor(Math.random() * 5);
+			var c = Math.floor(Math.random() * 5);
+			var d = Math.floor(Math.random() * 5);
+			var e = Math.floor(Math.random() * 5);
+			var f = Math.floor(Math.random() * 5);
+			var g = Math.floor(Math.random() * 5);
+			var h = Math.floor(Math.random() * 5);
+			var i = Math.floor(Math.random() * 5);
+			var j = Math.floor(Math.random() * 5);
+			var k = [a, b, c, d, e, f, g, h, i, j];//得到有10个随机数的数组。范围为整数0-4
+			console.log('得到的数组为'+k);
+			
+			var l = 0;
+//			for(var m = 0; m < ka - 1; m++) {
+//				for(var n = 0; n < ka - 1 - m; n++) {
+//					if(k[n] > k[n + 1]) {
+//						l = k[n];
+//						k[n] = k[n + 1];
+//						k[n + 1] = l;
+//					}
+//				}
+//			}//将这个数组排序
+//			var k=[1,1,1,11,1,1,1,]//测试
+			var ka = k.length//取得这个数组的长度，在下面使用
+			k=k.sort();
+			console.log('将数组排序'+k);
+			
+			var o = [];
+			for(p = 0; p < ka; p++) {
+				for(var q = 0; q < k.length; q++) {
+//					console.log(k);
+					if(k[q] == k[q + 1]) {
+						var r = k.splice(q, 1);
+						o.push(r);
+					}
+//					console.log(k);
+				}
+			}
+			console.log('去重后得到的原数组为'+k);
+			console.log('把去除掉的元素组合成的数组'+o);
+		</script>
+	</body>
+</html>

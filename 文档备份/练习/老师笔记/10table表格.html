@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>table表格</title>
+	</head>
+	<body>
+		<!--<table border="1">
+			<thead>
+				<tr>
+					<th>星期一</th><th>星期二</th><th>星期三</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>语文</td><td>数学</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				
+			</tfoot>
+		</table>-->
+		
+		<!--表格的重要特点：同一列中的td标签，宽度一样-->
+		<!--表格中的标签: 
+		table标签: 定义表格
+		thead标签: 定义表格的页眉
+		tbody标签: table body 定义表格的主体
+		tfoot标签: table foot 页脚
+		tr标签: table row 定义表格的行
+		th标签: table header 定义表格的表头 
+	   	td标签: table data 定义每行显示的内容,也就是表格单元
+	   	border样式: 当给table标签设置了border属性之后,那么其内部的内容就会有边框效果.
+	   	-->
+	   	
+	   	
+	   	<!--colspan属性-->
+	   	<!--<table border="1">
+	   		<tr>
+	   			<td>name</td>
+	   			<td>henry</td>
+	   		</tr>
+	   		<tr>
+	   			<td>电话</td>
+	   			<td>13810101010</td>
+	   		</tr>
+	   		<tr>
+	   			<td colspan="2">110</td>
+	   		</tr>
+	   		
+	   	</table>-->
+	   	
+	   	<!-- 
+	1.colspan 列单元格合并 
+	写法：
+	在行间写 colspan="数值" 数值代表合并的单元格数量
+	当为表格表头标签设置colspan的属性值为2的时候,那就会为表头
+	标签留出2列的位置,如果只有一列,就按一列显示,如果两列,会自动分配空间. 
+	-->
+	    
+	<!--rowspan属性 -->   
+	    <!--<table border="1"> 
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Henry</td>
+			</tr>
+			<tr>
+				<td rowspan="">Telephone</td>
+				<td>13651322451</td>
+			</tr>
+			<tr>
+				<td>13651322451</td>
+			</tr>
+		</thead>
+	</table>-->
+	<!--写法：
+		在行间写 rowspan="数值" 数值代表合并的单元格数量
+		当为表格表头标签设置rowspan的属性值为2的时候,那就会为表头标签留出2行的位置,如果只有一行,就按一行显示,
+		如果两行,会自动分配空间.-->
+		
+		
+	<!--<table border="1" cellpadding="20" cellspacing="20">
+		<tr>
+			<td>第一</td>
+			<td>行</td>
+		</tr>
+		<tr>
+			<td>第二</td>
+			<td>行</td>
+		</tr>
+	</table>-->
+	<!--
+		cellpadding: 单元格留白,使单元格具有留白效果.
+		cellspacing: 单元格间距,单元格之间会保持设定的距离.
+	 -->
+	 
+	 	<table border="1" cellpadding="20" cellspacing="20">
+		<tr>
+			<td>第一</td>
+			<td>行</td>
+		</tr>
+		<tr>
+			<td>第二</td>
+			<td>行</td>
+		</tr>
+		
+		<tr>
+			<td>
+				<ul><li>1213w2132</li><li>1213w2132</li></ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<ol><li>1213w2132</li><li>1213w2132</li></ol>
+			</td>
+		</tr>
+	 	</table>
+	 	<!-- 
+	       在表格中,如果需要嵌套其他标签,那需要在td标签内嵌套.
+	
+	 -->
+	
+	</body>
+</html>

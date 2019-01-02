@@ -1,0 +1,249 @@
+*{margin: 0;
+padding: 0;
+text-decoration: none;}
+#box{
+	width: 1200px;
+	height: 300px;
+	margin: 42px auto 0;
+}
+.nav{
+	width: 950px;
+	float: left;
+	margin-bottom: 8px;
+}
+.nav_01{
+	width: 7px;
+	height: 22px;
+	display: inline-block;
+	background: #FF8BA9;
+	float: left;
+}
+.wunav{
+	font-size: 20px;
+	height: 25px;
+	font-weight: bold;
+	line-height: 25px;
+	margin-left: 10px;
+	display: inline-block;
+}
+.wu_nav01{
+	float: right;
+	font-size: 11px;
+	height: 29px;
+	display: inline-block;
+}
+.wu_nav01 a{
+	width: 29px;
+	height: 29px;
+	line-height: 25px;
+	text-align: center;
+	display: inline-block;
+	float: left;
+	color: #fff;
+}
+.dot_default{
+	background:url(../img/jinglingtu.png) ;
+	background-position: -101px -42px;
+}
+
+
+/*精选专题轮播*/
+.box1{
+	position: absolute;
+	width: 950px;
+	height: 260px;
+}
+.mslide_banner{
+	width: 950px;
+	height: 260px;
+	float: left;
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+}
+.mslide_user_pic{
+	width: 50px;	
+	height: 20px;
+	font-size: 13px;
+	line-height: 18px;
+	display: inline-block;
+	position: absolute;	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           	z-index: 2;
+	margin: 12px 0 0 9px;
+}
+
+.wu_nav02{
+	display: inline-block;
+	width: 65px;
+	height: 20px;
+	background: rgba(0,0,0,0.2);
+	border-radius: 30px;
+}
+.wu_nav02 img{
+	width: 14px;
+	height: 14px;
+	border-radius: 30px;
+	display: inline-block;
+	margin-top: 3px;
+	margin-left: 2px;
+}
+.mslide_user_name{
+	display: inline-block;
+	color: #fff;
+	margin-top: 3px;
+}
+
+/*精选专题轮播*/
+.wu_nav03{
+	width: 310px;
+	/*height: 105px;*/
+	float: left;
+	display: inline-block;
+	background-color: #fff;
+}
+.wu_nav031 .wu_nav0311{
+	width: 310px;
+}
+.wu_nav0311{
+	margin-top: 9px;
+}
+.wu_nav031 img{
+	width: 310px;
+	height: 155.77px;
+}
+.wu_nav03111{
+	display: inline-block;
+	float: left;
+	margin-left: 14px;
+}
+.wu_nav03111 img{
+	width: 60px;
+	height: 60px;
+}
+.thep{
+	height: 17px;
+	font-size: 13px;
+	line-height: 17px;
+	padding-bottom: 10px;
+	text-align: center;
+	color: #333;
+}
+
+.wu_two{
+	width: 60px;	
+	height: 20px;
+	font-size: 13px;
+	line-height: 18px;
+	display: inline-block;
+	position: absolute;	 
+	z-index: 2;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+	margin: 12px 0 0 9px;
+}
+
+.wu_two01{
+	display: inline-block;
+	width: 97px;
+	height: 20px;
+	background: rgba(0,0,0,0.2);
+	border-radius: 30px;
+	margin-left: 19px;
+}
+
+.wu_two01 img{
+	width: 14px;
+	height: 14px;
+	border-radius: 30px;
+	display: inline-block;
+	margin-top: 3px;
+	margin-left: 2px;
+}
+
+.wu_two02{
+	display: inline-block;
+	color: #fff;
+	margin-top: 3px;
+}
+.wu_two03{
+	width: 310px;
+	float: left;
+	margin-left: 10px;
+	display: inline-block;
+	background-color: #fff;
+}
+
+
+/*流行元素*/
+.wu_right{
+	width: 240px;
+	height: 260px;
+	background-color: #fff;
+	float: right;
+	bottom: 1px;
+}
+.wu_right01{
+	margin-top: 10px;
+	margin-left: 20px;
+	height: 40px;
+	font-size: 17px;
+	line-height: 40px;
+	padding-bottom: 10px;
+}
+.wu_right02{
+	width: 60px;
+	height: 80px;
+	margin-left: 13px;
+	margin-bottom: 15px;
+	display: inline-block;
+}
+.wu_right02 img{
+	width: 60px;
+	height: 60px;
+}
+.wu_right03{
+	font-size: 11px;
+}
+
+
+/*猜你喜欢*/
+
+.box2{
+	width: 1200px;
+	margin: 0 auto;
+}
+.wu_word01{
+	width: 100%;
+	float: left;
+	font-weight: bold;
+	font-size: 20px;
+	padding-top: 42px;
+	padding-bottom: 33px;
+}
+.boe2_01{
+	width: 1200px;
+}
+.uls{
+	width: 1220px;
+	list-style: none;
+	float: left;
+	margin-bottom: 28px;
+}
+.uls li img{
+	width: 220px;
+}
+.wu_word02{
+	height: 40px;
+	width: 202px;
+	font-size: 14px;
+	margin-left: 9px;
+}
+.price_info{
+	margin-top: 3px;
+}
+.uls li{
+	float: left;
+	background-color: #fff;
+	margin-right: 25px;
+}
+.uls li:nth-child(5n){
+	margin-right: 0px;
+}
+

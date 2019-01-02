@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin:0px;
+				padding:0px;
+				list-style: none;
+				font-family: "SF Pro SC","HanHei SC","SF Pro Text","Myriad Set Pro","SF Pro Icons","PingFang SC","Helvetica Neue","Helvetica","Arial",sans-serif;
+			}
+			#box1{
+				width:100%;
+				height:40px;
+				background:#424542;
+			}
+			#box2{
+				position:absolute;
+				width:100%;
+				height:44px;
+				background:#313031;
+				opacity:0.8;
+				-moz-opacity: 80;
+			}
+			#box2 ul{
+				width:1000px;
+				height:44px;
+				margin:0px auto;
+			}
+			#box2 ul li{
+				width:91px;
+				float:left;
+				margin:0px 10px;
+				color:#FFFFFF;
+				line-height: 44px;
+				text-align:center;
+				font-size:14px;
+			}
+			#box2 ul li:hover{
+				opacity:0.8;
+				-moz-opacity: 80;
+			}
+			.li1{
+				width:18px;
+				height:44px;
+				background:url(图片/苹果官网/QQ截图20171128182414.png) no-repeat;
+			}
+			.li2{
+				background-position:-150px 0px;
+			}
+			.li3{
+				background-position:-1010px 0px;
+			}
+			.li4{
+				background-position:-1115px 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id='box1'></div>
+		<div id='box2'>
+			<ul id='ul1'>
+				<a href=""><li class='li1 li2'></li></a>
+				<a href=""><li>Mac</li></a>
+				<a href=""><li>iPad</li></a>
+				<a href=""><li>iPhone</li></a>
+				<a href=""><li>Watch</li></a>
+				<a href=""><li>Music</li></a>
+				<a href=""><li>技术支持</li></a>
+				<a href=""><li class='li1 li3'></li></a>
+				<a href=""><li class='li1 li4'></li></a>
+			</ul>
+		</div>
+		<br /><br /><br />
+		<img src="图片/作业图片/酷狗图片1.jpg"/>
+		<img src="图片/作业图片/lunbo2.jpg"/>
+		
+		<script>
+			var box2=document.getElementById('box2');
+			
+			window.onscroll = function() 
+			{
+				var t = document.body.scrollTop || document.documentElement.scrollTop;
+				if(t>=40)
+				{
+					box2.style.position='fixed';
+					box2.style.top=0+'px';
+				}
+				else
+				{
+					box2.style.position='absolute';
+					box2.style.top=40+'px';
+				}
+			}
+			
+		</script>
+	</body>
+</html>

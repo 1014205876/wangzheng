@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			input{
+				width:50px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text"  id="a1"/>
+		<select name="" id="a2">
+			<option value="1">+</option>
+			<option value="2">-</option>
+			<option value="3">*</option>
+			<option value="4">/</option>
+		</select>
+		<input type="text"  id="a3"/>
+		<input type="button"  id="a4" value="等于"/>
+		<input type="text"  id="a5"/>
+		<script>
+			var b1=document.getElementById('a1');
+			var b2=document.getElementById('a2');
+			var b3=document.getElementById('a3');
+			var b4=document.getElementById('a4');
+			var b5=document.getElementById('a5');
+			
+			b4.onclick = function()
+			{
+				var c1=b1.value;
+				var c2=b2.value;
+				var c3=b3.value;
+				
+				var d1=parseInt(c1);
+				var d3=parseInt(c3);
+				var d4=d1+d3;
+				var d5=d1-d3;
+				var d6=d1*d3;
+				var d7=d1/d3;
+				
+				switch(c2)
+				{
+					case "1":b5.value=d4;
+					break;
+					case '2':b5.value=d5;
+					break;
+					case '3':b5.value=d6;
+					break;
+					case '4':b5.value=d7;
+					break;
+				}
+			}
+		</script>
+		
+		
+	</body>
+</html>

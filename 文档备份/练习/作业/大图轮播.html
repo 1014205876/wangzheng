@@ -1,0 +1,147 @@
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	
+	.btn_mod,
+	.img_mod {
+		width: 400px;
+		margin: 20px auto 0;
+		overflow: hidden;
+	}
+	
+	.btn_mod {
+		padding-left: 10px;
+	}
+	
+	.img_mod {
+		position: relative;
+	}
+	
+	.img_mod,
+	.img_mod .scroll {
+		height: 400px;
+	}
+	
+	.img_mod .scroll {
+		position: absolute;
+		left: 0px;
+		right: 0;
+		width: 9999px;
+	}
+	
+	.img_mod .scroll img {
+		float: left;
+		width: 400px;
+		height: 400px;
+	}
+	
+	.btn_mod li,
+	.btn_mod div {
+		float: left;
+		width: 60px;
+		height: 30px;
+		margin-right: 6px;
+		line-height: 30px;
+		text-align: center;
+		font-weight: bold;
+		font-size: 14px;
+		color: #666;
+		background: #ccc;
+		cursor: pointer;
+		outline: none;
+	}
+</style>
+</head>
+
+<body>
+	<div class="btn_mod">
+		<div class="prev">上一页</div>
+		<ul class="btn_list">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<div class="next">下一页</div>
+	</div>
+	<div class="img_mod">
+		<div class="scroll">
+			<img src="img/img01.jpg" />
+			<img src="img/img02.jpg" />
+			<img src="img/img03.jpg" />
+			<img src="img/img04.jpg" />
+		</div>
+	</div>
+	<script>
+		var imgMod = document.querySelector(".img_mod");
+		var scrollMod = imgMod.querySelector(".scroll");
+		var imgs = imgMod.querySelectorAll(".img_mod img");
+		var btns = document.querySelectorAll(".btn_list li");
+		var next = document.querySelector(".next");
+		var prev = document.querySelector(".prev");
+		var width = imgMod.offsetWidth;
+		var maxLength = imgs.length;
+		var activeIndex = 0;
+		var timer = null;
+		var scrollTimer = null;
+
+		scrollMod.style.width = width * imgs.length + "px";
+
+		for(var i = 0; i < btns.length; i++) {
+			(function(i) {
+				btns[i].onclick = function() {
+					switchTo(i);
+				}
+			})(i);
+		}
+
+		function switchTo(index) {
+			var start = scrollMod.offsetLeft;
+			var end = -index * width;
+			var change = end - start;
+
+			clearInterval(scrollTimer);
+			var scrollTimer = setInterval(function() {
+
+				if(change < 0) {
+					start -= 10;
+					if(start <= end) {
+						clearInterval(scrollTimer);
+						scrollTimer = null;
+					}
+				} else {
+					start += 10;
+					if(start >= end) {
+						clearInterval(scrollTimer);
+						scrollTimer = null;
+					}
+				}
+				scrollMod.style.left = start + "px";
+
+			}, 10)
+		}
+
+		next.onclick = function() {
+			nextFn()
+		}
+
+		function nextFn() {
+			var index = activeIndex + 1;
+			index = index > maxLength - 1 ? 0 : index;
+			switchTo(index);
+		}
+
+		prev.onclick = function() {
+			prevFn()
+		}
+
+		function prevFn() {
+			var index = activeIndex - 1;
+			index = index > 0 ? maxLength + 1 : index;
+			switchTo(index);
+		}
+	</script>
+</body>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			img {
+				float: left;
+			}
+			
+			.pore {
+				position: relative;
+				width:600px;
+				height:300px;
+				overflow: hidden;
+				border:1px solid black;
+				margin: 0 auto;
+			}
+			
+			#a1 {
+				position: absolute;
+				width:9000px;
+				left: 0px;
+			}
+			#a1 img{
+				float:left;
+				width:300px;
+				height:300px;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="pore">
+			<div id='a1'>
+				<img src="图片/作业图片/img01.jpg" alt=""/>
+				<img src="图片/作业图片/img02.jpg" alt=""/>
+				<img src="图片/作业图片/img03.jpg" alt=""/>
+				<img src="图片/作业图片/img04.jpg" alt=""/>
+				<img src="图片/作业图片/img01.jpg" alt=""/>
+				<img src="图片/作业图片/img02.jpg" alt=""/>
+				<img src="图片/作业图片/img03.jpg" alt=""/>
+				<img src="图片/作业图片/img04.jpg" alt=""/>
+			</div>
+		</div>
+		
+		<script>
+			var b1 = document.getElementById('a1');
+			var c = 0;	
+			var d1
+			function time() 
+			{
+				d1=setInterval(function() 
+				{
+					c = c +10;
+					if(c>=1200) 
+					{
+						c = 0;
+					}
+					b1.style.left = -c + 'px';
+				}, 100)
+
+			}			
+			function bind()
+			{
+				b1.onmouseover=function(){
+					clear();
+				};
+				b1.onmouseout=function(){
+					time();
+				};
+			}
+			function clear()
+			{
+				clearInterval(d1);
+			}
+			
+			bind();
+			time();
+		</script>
+	</body>
+
+</html>

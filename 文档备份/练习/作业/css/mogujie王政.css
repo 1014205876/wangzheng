@@ -1,0 +1,524 @@
+
+.bgcolorWhite{
+	background-color: #FFFFFF;
+}
+a{
+	text-decoration: none;
+}
+body{
+	background-color: #F5F5F5;
+}
+#main img{
+	width: 100%;
+	 cursor: pointer;
+}
+.part1{
+	float: left;
+	margin-right: ;
+}
+.part2{
+	float: left;
+}
+.part3{
+	float: right;
+}
+#div_body{
+	width: 100%;	
+}
+.wid1200{
+	width:1200px;
+	margin: 0 auto;
+}
+.time_buy{
+	height: 184px;
+	margin-top: 10px;
+	overflow: hidden;
+}
+.time_buy .buy_limit{
+	float: left;
+	width: 214px;
+	height: 100%;
+    border-right: 1px solid #e5e5e5;
+    position: relative;
+}
+.time_buy .buy_limit .time_title{
+	height: 43px;
+    width: 90%;
+    margin-top: 20px;
+    margin-left: 17px;
+}
+.buy_limit .time_title .font-title{
+	color: #333333;
+	height: 20px;
+    line-height: 20px;
+    width: 100%;
+    font-size: 18px;
+}
+.part1 .buy_limit .time_title .timer{
+	text-align: center;
+    width: 84px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #fff;
+    background: #000;
+    opacity: 0.7;
+    border-radius: 2px;
+    margin-top: 5px;
+}
+.buy_limit .time_title .timer{
+	height: 17px;
+    line-height: 17px;
+    margin-top: 6px;
+    font-size: 14px;
+    color: #999999;
+}
+.buy_limit .img{
+	width: 120px;
+    height: 120px;
+    margin: 1px auto 0;
+}
+.buy_limit .img img{
+	width: 100%;
+}
+.buy_limit .spcate_label{
+    width: 52px;
+    height: 52px;
+    position: absolute;
+    right: 12px;
+    bottom: 11px;
+    text-align: center;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 12px;
+    background: #f57;
+}
+.buy_limit .spcate_label .spcate-labeltitle{
+	margin-top: 14px;
+	height: 15px;
+    line-height: 15px;
+    text-align: center;
+}
+.buy_limit .spcate_label .spcate-labelprice{
+	height: 15px;
+    line-height: 15px;
+    text-align: center;
+}
+.time_buy .space_01{
+	width: 254px;
+	height: 100%;
+	float: left;
+	overflow: hidden;
+}
+.time_buy .space_01 a{
+	float: left;
+	width: 100%;
+	height: 92px;
+	position: relative;
+}
+.time_buy .space_01 .space01{
+	margin-bottom: 1px;
+    border-bottom: 1px solid #e5e5e5;
+    height: 91px;
+}
+.time_buy .space_01 a .img{
+	width: 80px;
+    height: 86px;
+    position: absolute;
+    top: 6px;
+    right: 10px;
+}
+.space_01 .time_title{
+    margin-top: 20px;
+    margin-left: 17px;
+}
+.space_01 .time_title .font-title{
+	color: #333333;
+	height: 20px;
+    line-height: 20px;
+    font-size: 18px;
+}
+.space_01 .time_title .timer{
+	height: 17px;
+    line-height: 17px;
+    margin-top: 6px;
+    font-size: 14px;
+    color: #999999;
+}
+.part2,.part3{
+	    margin-left: 23px;
+}
+.dress_title{
+	height: 25px;
+    width: 100%-5;
+    line-height: 25px;  
+    border-left:5px solid #FF484D;
+    overflow: hidden;
+    margin-bottom: 16px;
+    margin-top: 40px;
+}
+.dress_title span{
+	 color: #333;
+	 font-weight: bold;
+     font-size: 20px;
+     float: left;
+     margin-left: 10px;
+}
+.dress_title a{
+	 color: #333;
+	 float: right;
+	 font-size: 12px;
+	 line-height: 25px;
+}
+.dress .dress_imgs{
+	height: 364px;
+    width: 100%;
+    overflow: hidden;
+}
+.dress .dress_imgs .leftimgs{
+	float: left;	
+	overflow: hidden;
+}
+.dress .dress_imgs .leftimgs .img{
+    height: 100%;
+    width: 182px;
+    float: left;
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.dress .dress_imgs .rightimgs{
+	float: right;
+	width: 240px;
+	height: 100%;
+	overflow: hidden;
+}
+.dress .dress_imgs .rightimgs .img{
+	height: 114px;
+    width: 114px;
+    float: left;
+    margin-right: 12px;
+    margin-bottom: 11px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.dress .dress_imgs .rightimgs .img:hover{
+	opacity: 0.5;
+}
+.newdate{
+	overflow: hidden;
+}
+.newdate .leftnewdate{
+	width: 200px;
+    height: 273px;
+    float: left;
+}
+.newdate .rightnewdate{
+	float: left;
+	width: 984px;
+	height: 257px;
+	position: relative;
+	padding: 8px;
+	overflow: hidden;
+}
+.newdate .rightnewdate .newdate_dombox{
+	position: absolute;
+	left: 0px;
+}
+.newdate .rightnewdate .next{
+	width: 34px;
+	height: 60px;
+	background:url("../img/箭头精灵图.png")0 0 no-repeat;
+	position: absolute;
+	left: 0;
+	top: 106px;
+	cursor: pointer;
+	opacity: 0.8;
+	z-index: 10;
+}
+.newdate .rightnewdate .last{
+    width: 34px;
+	height: 60px;
+	background:url("../img/箭头精灵图.png") -50px 0 no-repeat;
+	position: absolute;
+	right: 0;
+	top: 106px;
+	cursor: pointer;
+	opacity: 0.8;
+	z-index: 10;
+}
+.newdate .rightnewdate .last:hover{
+	opacity: 1;
+}
+.newdate .rightnewdate .next:hover{
+	opacity: 1;
+}
+.newdate .rightnewdate .newdate_dom{
+	width: 180px;
+    padding-left: 9px;
+    padding-right: 10px;
+    height: 271px;
+    float: left;
+}
+.newdate .rightnewdate .newdate_dom .mod_img{
+	width: 180px;
+    height: 180px;
+}
+.newdate .rightnewdate .newdate_dom a{
+	display: block;
+	margin-top: 17px;
+    margin-bottom: 6px;
+    color: #666;
+    font-size: 14px;
+    line-height: 20px;
+    height: 20px;
+}
+.newdate .rightnewdate .newdate_dom .goods-price em{
+	color: #FF4B6D;
+    font-style: normal;
+    font-size: 20px;
+    font-family: Arial;
+}
+.newdate .rightnewdate .newdate_dom .goods-price del{
+	font-size: 14px;
+    color: #999;
+    margin-left: 10px;
+    font-family: Arial;
+}
+.brand .drand_mod .drand_ms{
+	width: 240px;
+	height: 360px;
+	background-color: #ECDAF5;
+	position: relative;
+	float: left;
+	
+}
+.brand .drand_mod .drand_ms a{
+    width: 57px;
+    height: 27px;
+    font-size: 12px;
+    margin: 0 10px 10px 0;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 28px;
+    float: left;	
+    border:1px solid #A195A7;
+    background-color: #000000;
+    opacity: 0.2;
+}
+.brand .drand_mod{
+	overflow: hidden;
+}
+
+.brand .drand_mod .drand_ms a:hover{
+	opacity: 0.5;
+}
+.brand .drand_mod .drand_ms .a_box{
+	position: absolute;
+    left: 20px;
+    top: 20px;
+}
+.brand .drand_mod .drand_ms .title{
+    top: 130px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 26px;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+}
+.brand .navlist{
+    font-size: 14px;
+    color: #666;
+    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
+}
+.brand .navlist p{
+	 float: left;
+	 
+}
+.brand .navlist span{
+	float: left;
+	color: darkgray;
+	font-weight: lighter;
+}
+.brand .navlist a{   
+	    float: left;
+	    padding: 0 16px;
+        font-size: 14px;
+        margin: 0 16px;
+        color: #666666;
+}
+.brand .drand_mod .drand_ms .title_font{
+    top: 160px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+}
+.brand .drand_mod .drand_ms .img_box{
+	width: 150px;
+    height: 160px;
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+}
+.brand .drand_mod .lazyDate{
+	float: left;
+	overflow: hidden;
+	width: 720px;
+}
+.brand .drand_mod .lazyDate a{
+	float: left;
+	position: relative;
+/*    display: block;*/
+    width: 238px;
+    height: 180px;
+    border-bottom: 1px solid #f2f2f2;
+    border-right: 1px solid #f2f2f2;
+    overflow: hidden;
+}
+.brand .drand_mod .lazyDate a .lazytitle{
+	position: absolute;
+    text-align: center;
+    top: 18px;
+    height: 22px;
+    line-height: 22px;
+    font-size: 18px;
+    color: #333333;
+    width: 100%;
+}
+.brand .drand_mod .lazyDate a .lazymean{
+	position: absolute;
+    height: 17px;
+    top: 42px;
+    z-index: 2;
+    line-height: 17px;
+    font-size: 14px;
+    text-align: center;
+    color: #999;
+    width: 100%;
+}
+.brand .drand_mod .lazyDate a .img_box{
+	position: absolute;
+    width: 140px;
+    height: 110px;
+    top: 70px;
+    left: 50px;
+}
+.brand .drand_mod .icon_item{
+	float: right;
+	width: 240px;
+	height: 100%;
+	overflow: hidden;
+}
+.brand .drand_mod .icon_item a{
+	 float: left;
+	width: 120px;
+    height: 90px;
+    display: block;
+   
+}
+.brand .drand_mod .icon_item a .img_box{
+	width: 60px;
+    height: 60px;
+    margin: 15px auto;
+}
+.date_new{
+	overflow: hidden;
+}
+.date_new .imgbox{
+	width: 190px;
+    height: 140px;
+    margin-right: 12px;
+    margin-bottom: 10px;
+    float: left;
+}
+.newtime_buy{
+	overflow: hidden;
+}
+.newtime_buy .imgbox{
+	width: 232px;
+    height: 161px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    float: left;
+}
+.date_new .imgbox img:hover,
+.newtime_buy .imgbox img:hover{
+	opacity: 0.7;
+}
+.brand .drand_mod .icon_item h3{
+	font-size: 16px;
+	color: #333333;
+	float: left;
+	height: 56px;
+	line-height: 56px;
+}
+.brand .drand_mod .icon_item p{
+	font-size: 12px;
+	height: 56px;
+	line-height: 56px;
+	color: #5f5f5f;
+	margin-right: 20px;
+	float: right;
+	cursor: pointer;
+}
+.brand .drand_mod .icon_item p span{
+	height: 13px;
+    width: 13px;
+    float: left;
+    margin-right: 10px;
+    margin-top: 22px;
+    background: url(../img/下载.png) center center no-repeat;
+    background-size: contain;
+}
+#main .brand .drand_mod .icon_item .goodsImg{
+	float: left;
+	width: 66px;
+	height: 66px;
+}
+.brand .drand_mod .icon_item .goodsRight{
+	width: 100%;
+    height: 66px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    display: block;
+}
+.brand .drand_mod .icon_item .goodsRight .goodsDesc{
+	height: 35px;
+    overflow: hidden;
+    font-size: 12px;
+    color: #5f5f5f;
+    padding-left: 10px;
+}
+.brand .drand_mod .icon_item .goodsPrice{
+	float: left;
+    color: #ff5777;
+    margin-top: 4px;
+   padding-left: 10px;
+}
+#main .brand .drand_mod .icon_item .dressRight{
+	 width: 100%;
+    height: 310px;
+    overflow: hidden;
+    display: block;
+    padding: 10px 20px;
+}
+#main .brand .drand_mod .icon_item .dressImg{
+	display: block;
+	width: 200px;
+	height: 200px;
+}
+.brand .drand_mod .icon_item .dressRight .dressDesc{
+	 height: 40px;
+    overflow: hidden;
+    margin-top: 20px;
+    color: #5f5f5f;
+    font-size: 12px; 
+}
+   

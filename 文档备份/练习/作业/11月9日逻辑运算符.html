@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+		//&&(与)都为真时输出右边的
+		var a1=4&&3;
+		console.log(a1);//3
+		var b1=Boolean(a1);
+		console.log(b1);
+		
+		var a2=0&&2;
+		console.log(a2);
+		var b2=Boolean(a2);
+		console.log(b2);
+		
+		var a3=5>6&&4<5;
+		console.log(a3);
+		var b3=Boolean(a3);
+		console.log(b3);
+		
+		//||(或)都为真时输出左边的
+		//与或一起时先计算或再计算与;与的优先级比或高
+		var a4=5||1;
+		console.log(a4);//5
+		
+		//！非
+		var a6=!0;
+		console.log(a6)
+		
+		//短路现象
+		var x=y=z=0;//等同于把0同时赋值给xyz
+		var answer=++x||++y&&++z;
+		console.log(answer);
+		console.log(x);
+		console.log(y);
+		console.log(z);
+		
+		
+		
+		</script>
+	</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id='thediv'>this is div</div>
+		<a href="###">百度</a>
+		
+		<script>
+			var thediv=document.getElementById('thediv');
+			var anchor=document.getElementsByTagName('a')[0];
+			
+			
+			
+			
+			
+			
+//			thediv.onclick=function(event){
+//				var event=event||window.event;//兼容写法，ie只支持window.event；
+//				console.log(event.type);
+//			}
+			
+//			thediv.onclick=function(event)
+//			{
+//				var event=event||window.event;
+//				var target=event.target||event.srcElement;
+//				console.log(target);
+//			}
+			
+			
+			//preventDefault阻止特定事件的默认行为
+//			anchor.onclick=function(event)
+//			{
+//				var event=event||window.event;
+//				if(event.preventDefault())
+//				{
+//					event.preventDefault();
+//				}
+//				else
+//				{
+//					event.returnValue=false;
+//				}
+//			
+//			}	
+			
+//			thediv.onclick=function(event)
+//			{
+//				var event=event||window.event;
+//				if(event.stopPropagation())
+//				{
+//					event.stopPropagation();
+//				}
+//				else
+//				{
+//					event.cancleBubble=true;
+//				}
+//				console.log(1);
+//			}
+//			
+//			document.body.onclick=function()
+//			{
+//				console.log(1);
+//			}
+
+
+
+//			document.oncontextmenu=function()
+//			{
+//				return false;
+//			}//清除右键功能
+			
+			document.onmousedown=function(event)//鼠标按下（onmouse
+			{
+				var event=event||window.event;
+				
+				var clientX=event.clientX;
+				var clientY=event.clientY;//到可视区的高度（如果滚动条拖动，也不改变）
+				
+				var screenX=event.screenX;
+				var screenY=event.screenY;
+				
+				var pageX=event.pageX;
+				var pageY=event.pageY;
+//				thediv.innerHTML='clientX:'+clientX+','+'clientY:'+clientY;
+//				thediv.innerHTML='clientX:'+screenX+','+'clientY:'+screenY;
+//				thediv.innerHTML='clientX:'+pageX+','+'clientY:'+pageY;
+				
+			}
+			
+			thediv.onmousemove=function()//鼠标移动就触发
+			{
+				console.log(1);
+			}
+			
+			thediv.onmouseover=function()
+			{
+				
+			}
+			
+			
+			
+			
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id='list'>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<button id='btn'></button>
+		<script>
+			var list=document.getElementById('list');
+			var lis=document.getElementsByTagName('li');
+			var btn=document.getElementById('btn');
+			
+			console.log(list.childNodes);//打印父标签内所有的子节点，包括空格和换行
+			console.log(list.children);//打印父标签内所有的子节点，不包括空格换行
+			console.log(list.childElementCount);//打印父标签内所有子集的长度，不包括空格换行
+			
+			console.log(list.firstElementChild);//打印父标签中的第一个子元素，不包括空格换行
+			
+			console.log(lis[1].previousElementSibling);//打印目标标签的前一个标签
+			console.log(lis[1].nextElementSibling);//打印目标标签的后一个标签
+			
+			btn.focus();//获取焦点
+			btn.blur();//使元素失去焦点
+			console.log(document.activeElement);
+			
+			console.log(list.innerHTML);//文本内容，或子元素
+			console.log(list.outerHTML);//自身加上文本内容，或子元素
+			
+			
+			
+		</script>
+	</body>
+</html>

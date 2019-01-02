@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>透明度</title>
+		<style>
+			.thediv{
+				background: url(img/thebg0.jpg) 0 0 no-repeat;
+				width: 767px;
+				height: 432px;
+				opacity: 0.5;
+				-moz-opacity: 0.5;
+				
+				filter:alpha(opacity=50);
+				/*ie8及以下浏览器透明度设置*/
+
+			}
+			.thdiv02{
+				 background-color: red;
+				 width: 200px;
+				 height:200px;
+				 opacity: 0.5;
+				 
+			}
+			.poab{
+				color: #000000;
+				opacity: 1;
+				/*position: absolute;
+				left:0px;
+				top:700px;*/
+			}
+		</style>
+	</head>
+	<body>
+		<div class="thediv"></div>
+		
+		<div class="thdiv02">
+			<div class="poab">我们的透明度</div>
+		</div> 
+		<!--针对于css2透明属性的元素而言，该元素内部的文本内容一定透明-->
+		<a href="">this is a</a>
+	</body>
+</html>

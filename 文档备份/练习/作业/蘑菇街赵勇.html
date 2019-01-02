@@ -1,0 +1,3201 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>蘑菇街</title>
+		<link rel="stylesheet" type="text/css" href="css/reset赵勇.css" />
+		<link rel="stylesheet" type="text/css" href="css/蘑菇街赵勇.css" />
+		<link rel="stylesheet" type="text/css" href="css/mogujie赵勇.css" />
+		<script src="js/move赵勇.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				/*--------------------图片轮播----------------------------*/
+				switchTo();
+
+				function switchTo() {
+					//获取元素
+					var oUl = document.querySelector(".wrapper .slider");
+					var aLi = document.querySelectorAll(".wrapper .slider li");
+					var imgs = document.querySelectorAll(".wrapper .slider li img");
+					var aLis = document.querySelectorAll(".pages li");
+					var activeIndex = 0;
+					var minIndex = 2;
+					var timer = null;
+					var switchTimer = null;
+					var iBtn = true;
+					//绑定事件
+					function bind() {
+						for(var i = 0; i < aLis.length; i++) {
+							aLis[i].onmouseover = (function(i) {
+								return function() {
+									tab(i);
+								}
+							}(i))
+						}
+						oUl.onmouseover = function() {
+							clearInterval(switchTimer);
+						}
+						oUl.onmouseout = function() {
+							auto();
+						}
+					}
+					//透明度变化函数
+					function tab(index) {
+						activeIndex = index;
+						//将所有图片透明度改为0.6
+						for(var i = 0; i < imgs.length; i++) {
+							startMove(imgs[i], 'opacity', 60);
+						}
+						//将当前图片透明度改为1，并且将z-index增加；
+						startMove(imgs[activeIndex], 'opacity', 100);
+						aLi[activeIndex].style.zIndex = minIndex++;
+					}
+					//自动播放
+
+					function auto() {
+						clearInterval(switchTimer);
+						switchTimer = setInterval(function() {
+
+							if(iBtn) {
+								activeIndex++;
+							} else {
+								activeIndex--;
+							};
+
+							if(activeIndex == aLi.length - 1) {
+								iBtn = false;
+							};
+							if(activeIndex == 0) {
+								iBtn = true;
+							}
+							tab(activeIndex);
+
+						}, 2000)
+					}
+					//初始化
+					init();
+
+					function init() {
+						bind();
+						auto();
+					}
+				}
+
+				/*--------------------选项卡切换----------------------------*/
+				tabFn();
+
+				function tabFn() {
+					var aDiv = document.querySelectorAll(".wrapper .item div");
+					var aList = document.querySelectorAll(".wrapper .itemRight .itemRight_list");
+					for(var i = 0; i < aDiv.length; i++) {
+						aDiv[i].index = i;
+						aDiv[i].onmouseover = function() {
+							this.classList.add('active');
+							aList[this.index].style.display = 'block';
+						}
+						aDiv[i].onmouseout = function() {
+							this.classList.remove('active');
+							aList[this.index].style.display = 'none';
+						}
+					}
+
+				}
+				/*--------------------倒计时----------------------------*/
+				timeOut();
+
+				function timeOut() {
+					var hour = document.getElementsByClassName('hour')[0];
+					var min = document.getElementsByClassName('min')[0];
+					var sou = document.getElementsByClassName('sou')[0];
+					var h = 1;
+					var m = 0;
+					var s = 0;
+					var timer = null;
+
+					timer = setInterval(function() {
+						if(s == 0) {
+							s = 60;
+							m--;
+						}
+						if(h < 0) {
+							h = 0;
+							clearInterval(timer)
+						}
+						if(m <= 0) {
+							m = 59;
+							h--;
+						}
+						s--;
+
+						hour.innerHTML = h;
+						if(hour.innerHTML < 10) {
+							hour.innerHTML = "0" + h;
+						}
+						min.innerHTML = m;
+						if(min.innerHTML < 10) {
+							min.innerHTML = "0" + m;
+						}
+						sou.innerHTML = s;
+						if(sou.innerHTML < 10) {
+							sou.innerHTML = "0" + s;
+						}
+					}, 1000)
+				}
+				/*--------------------图片旋转----------------------------*/
+				imgTrans();
+
+				function imgTrans() {
+					var transform = document.getElementById('transform');
+					var box = transform.querySelectorAll('.img');
+					var bolean = true;
+					var i = 0;
+					var rotateY = 0;
+					setInterval(function() {
+						if(bolean) {
+							box[i].style.transform = 'rotateY(180deg)';
+							box[i].style.transition = 'all 0.5s linear';
+							var theimg = box[i].getElementsByTagName('img')[0];
+							setTimeout(function() {
+								theimg.src = 'img/change' + i + '.webp';
+							}, 250)
+
+						} else {
+							box[i].style.transform = 'rotateY(0deg)';
+							box[i].style.transition = 'all 0.4s linear';
+							var theimg = box[i].getElementsByTagName('img')[0];
+							setTimeout(function() {
+								theimg.src = 'img/大长腿' + i + '.webp';
+							}, 200)
+						}
+						if(i == 4) {
+							bolean = !bolean;
+						}
+						i++;
+
+						if(i >= 5) {
+							i = 0;
+						}
+					}, 1500)
+				}
+				
+				/*--------------------图片滚动----------------------------*/
+				 imgSwitch();
+				function imgSwitch(){
+					var next=document.querySelector("#main .newdate .rightnewdate .next");
+					var last=document.querySelector("#main .newdate .rightnewdate .last");
+					var imgsBox=document.querySelector("#main .newdate .rightnewdate .newdate_dombox");
+					var imgs=document.querySelectorAll("#main .newdate .rightnewdate .newdate_dombox .newdate_dom");
+					var index=0;
+					var width=imgs[0].offsetWidth;
+					var timer=null;
+					imgsBox.style.width=width*imgs.length;
+					next.onclick=function(){
+						index--;
+						index=index<0?(imgs.length/5)-1:index;
+						startMove(imgsBox,'left',-5*index*width);
+					}
+					last.onclick=function(){
+						nextFn();
+					}
+					imgsBox.onmouseover=function(){
+						clearInterval(timer);
+					}
+					imgsBox.onmouseout=function(){
+						autoSwitch();
+					}
+					function nextFn(){
+						index++;
+						index=index>(imgs.length/5)-1?0:index;
+						startMove(imgsBox,'left',-5*index*width);	
+					}
+					autoSwitch();
+					function autoSwitch(){
+						clearInterval(timer);
+						timer=setInterval(function(){
+							nextFn();
+						},3000)
+					}
+					
+				}
+				/*--------------------瀑布流----------------------------*/
+						imgFn();
+						function imgFn(){
+							var oBox=document.getElementById('box');
+							var aUl=document.querySelectorAll('#box ul');
+							//创建li标签
+							createLi();
+							function createLi(){
+								for(var i=0;i<100;i++){
+									var aLi=document.createElement('li');
+									var imgs=document.createElement('img');
+									imgs.src="img/wall.webp";
+									aLi.appendChild(imgs);
+									var height=330;
+									aLi.style.height=height+'px';
+									var heightArr=[];
+									var minIndex=0;
+									for(var j=0;j<aUl.length;j++){
+										heightArr.push(aUl[j].offsetHeight);
+										var minHeight=heightArr[minIndex];
+										if(minHeight>heightArr[j]){
+											minHeight=heightArr[j];
+											minIndex=j;
+										}
+									}
+									aUl[minIndex].appendChild(aLi);
+								}
+							}
+								//滚动事件
+							window.onscroll=function(){
+								var top=document.documentElement.scrollTop||document.body.scrollTop;
+								var bodyHeight=document.body.clientHeight;//页面高度
+								var windowHeight=document.documentElement.clientHeight;//可视区
+								var scrollHeight=bodyHeight-windowHeight;
+								if(top>=scrollHeight-200){
+									createLi();
+								}
+							}
+						}
+				/*--------------------返回顶部----------------------------*/
+				/*back();
+			function back(){
+				//1.获取元素
+				var oBtn=document.getElementById('top');
+				var timer=null;//设定初始定时器
+				var flag=true;//滚动条开关
+				//2.绑定滚动事件
+				window.onscroll=function(){
+					//判断当前滚动条的位置
+					var top=document.documentElement.scrollTop||document.body.scrollTop;
+					if(top>0){
+						oBtn.style.display='block';
+					}else{
+						oBtn.style.display='none';
+					}
+					//当滚动条在回到顶部的过程时，发生滚动事件，停止滚动
+					if(!flag){
+						clearInterval(timer);
+					}
+					flag=false;
+				}
+				//给按钮绑定点击事件
+				oBtn.onclick=function(){
+					move();
+				}
+				//移动到指定位置函数
+				function move(){
+					clearInterval(timer);
+					timer=setInterval(function(){
+						var start=document.documentElement.scrollTop||document.body.scrollTop;//设置初始值
+						speed=Math.floor(-start/4);//设置速度
+						//判断是否回到顶部
+						if(start==0){
+							clearInterval(timer);
+						}
+						flag=true;
+						document.documentElement.scrollTop=document.body.scrollTop=start+speed;
+					},100)
+				}
+			}
+		*/
+			}
+		</script>
+	</head>
+
+	<body>
+		<!-- 导航栏 -->
+		<div id="header">
+			<!--------上面区域-------------- -->
+			<div class="top_nav">
+				<div class="content">
+					<a href="#" class="home spirit">蘑菇首页</a>
+					<ul class="top_tool">
+						<li>
+							<a href="#">登录</a>
+						</li>
+						<li>
+							<a href="#" class="spirit spirit-one">我的订单</a>
+						</li>
+						<li>
+							<a href="#" class="spirit spirit-two">购物车</a>
+						</li>
+						<li>
+							<a href="#">客户服务</a>
+						</li>
+						<li>
+							<a href="#" class="spirit spirit-three">我的小店</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--------中间区域-------------- -->
+			<div class="middle_nav">
+				<div class=" clearfix">
+					<a href="#" class="fl">
+						<img src="img/170904_1fj9406416501i4lkabcc0hjb8341_480x180.png" / width="240" height="90">
+					</a>
+					<!---------搜索框-------->
+					<div class="search fl rel">
+						<input type="text" id="search_box"/>
+						<div class="search_content abs">
+							<span>搜商品</span>
+							<ol>
+								<li class="current"><a href="">商品</a></li>
+								<li><a href="">店铺</a></li>
+							</ol>
+						</div>
+						<div class="search_button abs">搜索</div>	
+						<ul class="clearfix">
+							<li>
+								<a href="#">短袖T恤</a>
+							</li>
+							<li>
+								<a href="#">时尚套装</a>
+							</li>
+							<li>
+								<a href="#">牛仔裤</a>
+							</li>
+							<li>
+								<a href="#" style="color: #ff4466;">卫衣</a>
+							</li>
+							<li>
+								<a href="#" style="color: #ff4466;">小白鞋</a>
+							</li>
+							<li>
+								<a href="#" style="color: #ff4466;">口红</a>
+							</li>
+							<li>
+								<a href="#">眉笔</a>
+							</li>
+							<li>
+								<a href="#">内裤</a>
+							</li>
+							<li>
+								<a href="#">手机壳</a>
+							</li>
+							<li>
+								<a href="#">袜子</a>
+							</li>
+						</ul>
+					</div>
+					<a href="#" class="fr">
+						<img src="img/171130_8gf90d0d5bgc4ag4kk82gi8kc287d_440x180.png" / width="220" height="90">
+					</a>
+				</div>
+				<div class="clearfix">
+					<div class="index" style="background: url(img/131743902_57fa7026k3k6eghdcl5cgl8aalckk_257x40.png) no-repeat;">
+						<a href="#" style="color: white;">主题市场</a>
+					</div>
+					<div class="index" style="width: 422px;">
+						<a href="#">省钱团购</a>
+						<a href="#">限时快抢</a>
+						<a href="#">品质优选</a>
+					</div>
+				</div>
+
+			</div>
+			<!---------------轮播------------------>
+			<div class="wrapper  rel">
+				<!---------------选项卡------------------>
+				<div class="fl">
+					<div class="item" style="background-color: #ff94c6;">
+						<div>
+							<a href="#" style="color: #333;">上衣</a>
+							<a href="#">冬季新品</a>
+							<a href="#">毛呢</a>
+							<a href="#">毛衣</a>
+						</div>
+						<div>
+							<a href="#" style="color: #333;">裙子</a>
+							<a href="#">美群套装</a>
+							<a href="#">秋冬美裙</a>
+							<a href="#">毛呢裙</a>
+						</div>
+						<div>
+							<a href="#" style="color: #333;">裤子</a>
+							<a href="#">牛仔裤</a>
+							<a href="#">休闲裤</a>
+							<a href="#">打底裤</a>
+						</div>
+						<div>
+							<a href="#" style="color: #333;">女鞋</a>
+							<a href="#">靴子</a>
+							<a href="#">单鞋</a>
+							<a href="#">雪地靴</a>
+						</div>
+						<div>
+							<a href="#" style="color: #333;">美装</a>
+							<a href="#">面膜</a>
+							<a href="#">护肤套装</a>
+							<a href="#">底妆遮瑕</a>
+						</div>
+						<div>
+							<a href="#" style="color: #333;">男友</a>
+							<a href="#">潮T</a>
+							<a href="#">休闲裤</a>
+							<a href="#">休闲鞋</a>
+						</div>
+						<div>
+							<a href="#" style="color: #333;">家居</a>
+							<a href="#">家居鞋</a>
+							<a href="#">四件套</a>
+							<a href="#">小家具</a>
+						</div>
+						<div>
+							<a href="#" style="color: #333;">内衣</a>
+							<a href="#">少女内衣</a>
+							<a href="#">睡衣</a>
+							<a href="#">内裤</a>
+						</div>
+						<div>
+							<a href="#" style="color: #333;">母婴</a>
+							<a href="#">孕妇装</a>
+							<a href="#">童装棉服</a>
+							<a href="#">萌宝棉鞋</a>
+						</div>
+						<div>
+							<a href="#" style="color: #333;">包包</a>
+							<a href="#">斜挎包</a>
+							<a href="#">旅行箱</a>
+							<a href="#">双肩包</a>
+						</div>
+						<div>
+							<a href="#" style="color: #333;">配饰</a>
+							<a href="#">耳环新品</a>
+							<a href="#">项链</a>
+							<a href="#">帽子</a>
+						</div>
+						<div>
+							<a href="#" style="color: #333;">运动</a>
+							<a href="#">运动套装</a>
+							<a href="#">运动鞋</a>
+							<a href="#">运动卫衣</a>
+						</div>
+						<div>
+							<a href="#" style="color: #333;">食品</a>
+							<a href="#">休闲食品</a>
+							<a href="#">进口食品</a>
+							<a href="#">方便速食</a>
+						</div>
+						<div>
+							<a href="#" style="color: #333;">电器</a>
+							<a href="#">手机</a>
+							<a href="#">小家电</a>
+							<a href="#">手机壳</a>
+						</div>
+					</div>
+					<ul class="itemRight abs">
+						<li class="itemRight_list">
+							<div class="itemRight_list_info">
+								<div>
+									<p>
+										<a href="#" style="color: #000000;font-size: 16px;">上衣</a>
+									</p>
+									<p class="more">
+										<a href="#">当季热卖</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">初冬新品</a>
+										<a href="#">卫衣</a>
+										<a href="#">毛衣</a>
+										<a href="#">精致套装</a>
+										<a href="#">针织衫</a>
+										<a href="#">连帽卫衣</a>
+										<a href="#">衬衫</a>
+										<a href="#">热卖外套</a>
+									</p>
+									<p>
+										<a href="#">印花</a>
+										<a href="#">韩版卫衣</a>
+										<a href="#">背心吊带</a>
+										<a href="#">T恤</a>
+									</p>
+									<p>
+										<a href="#">流行新品</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">新款毛呢</a>
+										<a href="#">冬季外套</a>
+										<a href="#">棉服</a>
+										<a href="#">加绒卫衣</a>
+										<a href="#">马甲</a>
+										<a href="#">羽绒服</a>
+										<a href="#">风衣</a>
+										<a href="#">长袖衬衫</a>
+									</p>
+									<p>
+										<a href="#">皮草</a>
+										<a href="#">长袖T恤</a>
+										<a href="#">棒球外套</a>
+										<a href="#">牛仔外套</a>
+										<a href="#">短款外套</a>
+										<a href="#">针织开衫</a>
+										<a href="#">牛仔衬衫</a>
+									</p>
+									<p>
+										<a href="#">潮流时尚</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">性感V领</a>
+										<a href="#">喇叭袖</a>
+										<a href="#">刺绣</a>
+										<a href="#">俏皮露肩</a>
+										<a href="#">绑带衬衫</a>
+										<a href="#">条纹控</a>
+										<a href="#">白衬衫</a>
+										<a href="#">印花T恤</a>
+									</p>
+									<p>
+										<a href="#">一字肩</a>
+										<a href="#">情侣装</a>
+										<a href="#">时髦皮衣</a>
+									</p>
+									<p>
+										<a href="#">品牌</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href=""><img src="img/7.webp" /></a>
+										<a href=""><img src="img/8.webp" /></a>
+										<a href=""><img src="img/9.webp" /></a>
+										<a href=""><img src="img/10.webp" /></a>
+										<a href=""><img src="img/11.webp" /></a>
+									</p>
+								</div>
+							</div>
+							<div class="itemRight_list_pic">
+								<p class="item_word">为你推荐</p>
+								<p class="item_word2">根据你购买浏览记录为你推荐</p>
+								<a href="">
+									<img src="img/1.webp" />
+									<p>新款潮羊羔毛外..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/2.webp" />
+									<p>新款潮羊羔毛外..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/3.webp" />
+									<p>新款潮羊羔毛外..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/4.webp" />
+									<p>新款潮羊羔毛外..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/5.webp" />
+									<p>新款潮羊羔毛外..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/6.webp" />
+									<p>新款潮羊羔毛外..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+							</div>
+						</li>
+						<li class="itemRight_list">
+							<div class="itemRight_list_info">
+								<div>
+									<p>
+										<a href="#" style="color: #000000;font-size: 16px;">裙子</a>
+									</p>
+									<p class="more">
+										<a href="#">当季热卖</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">暖冬爆品</a>
+										<a href="#">精致连衣裙</a>
+										<a href="#">美裙套装</a>
+										<a href="#">半身裙</a>
+										<a href="#">针织裙</a>
+										<a href="#">开叉牛仔裙</a>
+										<a href="#">丝绒裙</a>
+									</p>
+									<p>
+										<a href="#">高腰裙</a>
+										<a href="#">包臀裙</a>
+										<a href="#">格纹裙</a>
+										<a href="#">鱼尾裙</a>
+										<a href="#">印花裙</a>
+										<a href="#">伞裙</a>
+										<a href="#">卫衣裙</a>
+									</p>
+									<p>
+										<a href="#">流行精选</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">毛呢裙</a>
+										<a href="#">包臀裙</a>
+										<a href="#">衬衫裙</a>
+										<a href="#">百褶裙</a>
+										<a href="#">收腰裙</a>
+										<a href="#">高腰裙</a>
+										<a href="#">皮裙</a>
+										<a href="#">针织裙</a>
+									</p>
+									<p>
+										<a href="#">经典必备</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">鱼尾裙</a>
+										<a href="#">背带裙</a>
+										<a href="#">半身长裙</a>
+										<a href="#">小黑裙</a>
+										<a href="#">PU皮裙</a>
+										<a href="#">A字裙</a>
+										<a href="#">丝绒裙</a>
+										<a href="#">针织裙</a>
+									</p>
+									<p>
+										<a href="#">品牌</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href=""><img src="img/7.webp" /></a>
+										<a href=""><img src="img/8.webp" /></a>
+										<a href=""><img src="img/9.webp" /></a>
+										<a href=""><img src="img/10.webp" /></a>
+										<a href=""><img src="img/11.webp" /></a>
+									</p>
+								</div>
+							</div>
+							<div class="itemRight_list_pic">
+								<p class="item_word">为你推荐</p>
+								<p class="item_word2">根据你购买浏览记录为你推荐</p>
+								<a href="">
+									<img src="img/1.webp" />
+									<p>冬季韩版新款名..</p>
+									<p style="margin-top: -10px;">$ 109.00</p>
+								</a>
+								<a href="">
+									<img src="img/2.webp" />
+									<p>秋冬新款韩版复..</p>
+									<p style="margin-top: -10px;">$ 39.00</p>
+								</a>
+								<a href="">
+									<img src="img/3.webp" />
+									<p>2017韩版女装气..</p>
+									<p style="margin-top: -10px;">$ 69.00</p>
+								</a>
+								<a href="">
+									<img src="img/4.webp" />
+									<p>韩版纽扣装饰侧..</p>
+									<p style="margin-top: -10px;">$ 64.00</p>
+								</a>
+								<a href="">
+									<img src="img/5.webp" />
+									<p>秋冬新款韩版针..</p>
+									<p style="margin-top: -10px;">$ 83.00</p>
+								</a>
+								<a href="">
+									<img src="img/6.webp" />
+									<p>秋冬新款韩版高..</p>
+									<p style="margin-top: -10px;">$ 68.00</p>
+								</a>
+							</div>
+						</li>
+						<li class="itemRight_list">
+							<div class="itemRight_list_info">
+								<div>
+									<p>
+										<a href="#" style="color: #000000;font-size: 16px;">裤子</a>
+									</p>
+									<p class="more">
+										<a href="#">当季热卖</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">打底裤</a>
+										<a href="#">牛仔裤</a>
+										<a href="#">休闲裤</a>
+										<a href="#">阔腿裤</a>
+										<a href="#">九分裤</a>
+										<a href="#">小脚裤</a>
+										<a href="#">背带裤</a>
+										<a href="#">短裤</a>
+									</p>
+									<p>
+										<a href="#">流行新品</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">休闲裤</a>
+										<a href="#">破洞牛仔裤</a>
+										<a href="#">磨边牛仔裤</a>
+										<a href="#">短裤</a>
+										<a href="#">连体裤</a>
+										<a href="#">直筒裤</a>
+										<a href="#">喇叭裤</a>
+									</p>
+									<p>
+										<a href="#">宽松牛仔裤</a>
+									</p>
+									<p>
+										<a href="#">经典必选</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">阔腿裤</a>
+										<a href="#">运动裤</a>
+										<a href="#">高腰裤</a>
+										<a href="#">条纹裤</a>
+										<a href="#">连体裤</a>
+										<a href="#">雪纺裤</a>
+										<a href="#">裙裤</a>
+									</p>
+									<p>
+										<a href="#">品牌推荐</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href=""><img src="img/7.webp" /></a>
+										<a href=""><img src="img/8.webp" /></a>
+										<a href=""><img src="img/9.webp" /></a>
+										<a href=""><img src="img/10.webp" /></a>
+										<a href=""><img src="img/11.webp" /></a>
+									</p>
+								</div>
+							</div>
+							<div class="itemRight_list_pic">
+								<p class="item_word">为你推荐</p>
+								<p class="item_word2">根据你购买浏览记录为你推荐</p>
+								<a href="">
+									<img src="img/1.webp" />
+									<p>2017冬季新款女..</p>
+									<p style="margin-top: -10px;">$ 79.00</p>
+								</a>
+								<a href="">
+									<img src="img/2.webp" />
+									<p>羊羔毛九分裤女..</p>
+									<p style="margin-top: -10px;">$ 59.00</p>
+								</a>
+								<a href="">
+									<img src="img/3.webp" />
+									<p>羊羔毛拼接加绒..</p>
+									<p style="margin-top: -10px;">$ 69.00</p>
+								</a>
+								<a href="">
+									<img src="img/4.webp" />
+									<p>2017秋冬韩版新..</p>
+									<p style="margin-top: -10px;">$ 79.00</p>
+								</a>
+								<a href="">
+									<img src="img/5.webp" />
+									<p>秋冬韩版高腰仿..</p>
+									<p style="margin-top: -10px;">$ 39.00</p>
+								</a>
+								<a href="">
+									<img src="img/6.webp" />
+									<p>秋冬季新款韩版..</p>
+									<p style="margin-top: -10px;">$ 68.00</p>
+								</a>
+							</div>
+						</li>
+						<li class="itemRight_list">
+							<div class="itemRight_list_info">
+								<div>
+									<p>
+										<a href="#" style="color: #000000;font-size: 16px;">女鞋</a>
+									</p>
+									<p class="more">
+										<a href="#">人气热销</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">初冬上新</a>
+										<a href="#">靴子</a>
+										<a href="#">马丁靴</a>
+										<a href="#">雪地靴</a>
+										<a href="#">短靴</a>
+										<a href="#">棉靴</a>
+										<a href="#">单鞋</a>
+										<a href="#">小白鞋</a>
+										<a href="#">毛毛鞋</a>
+									</p>
+									<p>
+										<a href="#">长靴</a>
+										<a href="#">及踝靴</a>
+										<a href="#">加绒靴</a>
+										<a href="#">切尔西靴</a>
+										<a href="#">厚底靴</a>
+										<a href="#">粗跟靴</a>
+										<a href="#">高跟靴</a>
+										<a href="#">运动鞋</a>
+									</p>
+									<p>
+										<a href="#">热门推荐</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">当季热卖</a>
+										<a href="#">加绒小白鞋</a>
+										<a href="#">松糕鞋</a>
+										<a href="#">豆豆鞋</a>
+										<a href="#">休闲鞋</a>
+										<a href="#">增高小白鞋</a>
+										<a href="#">甜美高跟</a>
+									</p>
+									<p>
+										<a href="#">英伦小皮鞋</a>
+										<a href="#">乐福鞋</a>
+										<a href="#">内增高</a>
+										<a href="#">尖头单鞋</a>
+										<a href="#">方头鞋</a>
+										<a href="#">一脚蹬</a>
+										<a href="#">平底</a>
+										<a href="#">厚底运动</a>
+									</p>
+									<p>
+										<a href="#">经典直击</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">明星同款</a>
+										<a href="#">名媛淑女</a>
+										<a href="#">森系清新</a>
+										<a href="#">韩版运动</a>
+										<a href="#">学院休闲</a>
+										<a href="#">舒适平底</a>
+										<a href="#">学生党</a>
+									</p>
+									<p>
+										<a href="#">复古棕色</a>
+										<a href="#">情侣款</a>
+										<a href="#">系带款</a>
+										<a href="#">原宿风</a>
+										<a href="#">欧美款</a>
+									</p>
+									<p>
+										<a href="#">品牌</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href=""><img src="img/7.webp" /></a>
+										<a href=""><img src="img/8.webp" /></a>
+										<a href=""><img src="img/9.webp" /></a>
+										<a href=""><img src="img/10.webp" /></a>
+										<a href=""><img src="img/11.webp" /></a>
+									</p>
+								</div>
+							</div>
+							<div class="itemRight_list_pic">
+								<p class="item_word">为你推荐</p>
+								<p class="item_word2">根据你购买浏览记录为你推荐</p>
+								<a href="">
+									<img src="img/1.webp" />
+									<p>雪地靴冬季新款..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/2.webp" />
+									<p>明星同款潮流时..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/3.webp" />
+									<p>兔毛2017冬季新款..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/4.webp" />
+									<p>初系冬季新款英..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/5.webp" />
+									<p>环球女鞋冬季新..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/6.webp" />
+									<p>学生粗跟切尔西..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+							</div>
+						</li>
+						<li class="itemRight_list">
+							<div class="itemRight_list_info">
+								<div>
+									<p>
+										<a href="#" style="color: #000000;font-size: 16px;">美状</a>
+									</p>
+									<p class="more">
+										<a href="#">必备护肤</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">保湿补水</a>
+										<a href="#">美白淡斑</a>
+										<a href="#">洁面</a>
+										<a href="#">人气面膜</a>
+										<a href="#">水乳</a>
+										<a href="#">眼唇护理</a>
+										<a href="#">T区护理</a>
+										<a href="#">护唇膏</a>
+									</p>
+									<p>
+										<a href="#">精华</a>
+										<a href="#">保湿套装</a>
+										<a href="#">防晒</a>
+										<a href="#">男士护肤</a>
+									</p>
+									<p>
+										<a href="#">潮流彩妆</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">妆前隔离</a>
+										<a href="#">BB霜</a>
+										<a href="#">遮瑕粉底</a>
+										<a href="#">腮红</a>
+										<a href="#">阴影高光</a>
+										<a href="#">定妆散粉</a>
+										<a href="#">口红</a>
+										<a href="#">眼妆</a>
+										<a href="#">眉笔</a>
+									</p>
+									<p>
+										<a href="#">美妆工具</a>
+										<a href="#">彩妆套装</a>
+										<a href="#">香水</a>
+										<a href="#">指甲油</a>
+									</p>
+									<p>
+										<a href="#">个人护理</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">洗发护发</a>
+										<a href="#">烫染造型</a>
+										<a href="#">沐浴露</a>
+										<a href="#">身体乳</a>
+										<a href="#">全身呵护</a>
+										<a href="#">手足护理</a>
+										<a href="#">美胸瘦身</a>
+									</p>
+									<p>
+										<a href="#">口腔护理</a>
+										<a href="#">卫生巾</a>
+										<a href="#">脱毛膏</a>
+									</p>
+									<p>
+										<a href="#">品牌</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href=""><img src="img/7.webp" /></a>
+										<a href=""><img src="img/8.webp" /></a>
+										<a href=""><img src="img/9.webp" /></a>
+										<a href=""><img src="img/10.webp" /></a>
+										<a href=""><img src="img/11.webp" /></a>
+									</p>
+								</div>
+							</div>
+							<div class="itemRight_list_pic">
+								<p class="item_word">为你推荐</p>
+								<p class="item_word2">根据你购买浏览记录为你推荐</p>
+								<a href="">
+									<img src="img/1.webp" />
+									<p>innisfree悦诗风..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/2.webp" />
+									<p>韩国DR.Althea..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/3.webp" />
+									<p>一叶子洛璃护肤..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/4.webp" />
+									<p>美白祛斑霜淡斑..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/5.webp" />
+									<p>丸美套装正品..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/6.webp" />
+									<p>买一送一同款..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+							</div>
+						</li>
+						<li class="itemRight_list">
+							<div class="itemRight_list_info">
+								<div>
+									<p>
+										<a href="#" style="color: #000000;font-size: 16px;">男友</a>
+									</p>
+									<p class="more">
+										<a href="#">当季热卖</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">棉衣棉服</a>
+										<a href="#">休闲裤</a>
+										<a href="#">卫衣</a>
+										<a href="#">衬衫</a>
+										<a href="#">休闲鞋</a>
+										<a href="#">加厚牛仔裤</a>
+										<a href="#">时尚套装</a>
+										<a href="#">男袜</a>
+									</p>
+									<p>
+										<a href="#">贴身内裤</a>
+										<a href="#">T恤</a>
+										<a href="#">绅士皮鞋</a>
+									</p>
+									<p>
+										<a href="#">人气单品</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">羽绒服</a>
+										<a href="#">九分裤</a>
+										<a href="#">厚底增高</a>
+										<a href="#">牛仔外套</a>
+										<a href="#">口号标语</a>
+										<a href="#">印花T恤</a>
+										<a href="#">休闲西装</a>
+										<a href="#">板鞋</a>
+									</p>
+									<p>
+										<a href="#">运动鞋</a>
+										<a href="#">破洞牛仔裤</a>
+										<a href="#">帆布鞋</a>
+										<a href="#">西装裤</a>
+									</p>
+									<p>
+										<a href="#">潮流元素</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">单宁风</a>
+										<a href="#">约会装</a>
+										<a href="#">基本款</a>
+										<a href="#">中国风</a>
+										<a href="#">品质购</a>
+										<a href="#">条纹装</a>
+										<a href="#">印花刺绣</a>
+										<a href="#">侧边织带</a>
+									</p>
+									<p>
+										<a href="#">一脚蹬</a>
+										<a href="#">束脚裤</a>
+										<a href="#">破洞风</a>
+									</p>
+									<p>
+										<a href="#">品牌</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href=""><img src="img/7.webp" /></a>
+										<a href=""><img src="img/8.webp" /></a>
+										<a href=""><img src="img/9.webp" /></a>
+										<a href=""><img src="img/10.webp" /></a>
+										<a href=""><img src="img/11.webp" /></a>
+									</p>
+								</div>
+							</div>
+							<div class="itemRight_list_pic">
+								<p class="item_word">为你推荐</p>
+								<p class="item_word2">根据你购买浏览记录为你推荐</p>
+								<a href="">
+									<img src="img/1.webp" />
+									<p>冬季新款韩版迷..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/2.webp" />
+									<p>2017冬季新款男..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/3.webp" />
+									<p>2017冬季情侣男..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/4.webp" />
+									<p>加绒毛呢大衣情..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/5.webp" />
+									<p>扎克2017冬季新..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/6.webp" />
+									<p>战狼同款低帮加..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+							</div>
+						</li>
+						<li class="itemRight_list">
+							<div class="itemRight_list_info">
+								<div>
+									<p>
+										<a href="#" style="color: #000000;font-size: 16px;">家居</a>
+									</p>
+									<p class="more">
+										<a href="#">家纺布艺</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">四件套</a>
+										<a href="#">春被</a>
+										<a href="#">沙发垫</a>
+										<a href="#">抱枕</a>
+										<a href="#">家居鞋</a>
+										<a href="#">枕头</a>
+										<a href="#">地毯地垫</a>
+										<a href="#">床幔</a>
+										<a href="#">床垫</a>
+										<a href="#">坐垫</a>
+									</p>
+									<p>
+										<a href="#">毯子</a>
+										<a href="#">窗帘</a>
+										<a href="#">被套</a>
+										<a href="#">餐桌布艺</a>
+									</p>
+									<p>
+										<a href="#">家居家饰</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">简易衣柜</a>
+										<a href="#">墙贴</a>
+										<a href="#">鞋架</a>
+										<a href="#">摆件</a>
+										<a href="#">电脑桌</a>
+										<a href="#">绿植盆栽</a>
+										<a href="#">镜子</a>
+										<a href="#">仿真花</a>
+										<a href="#">闹钟</a>
+									</p>
+									<p>
+										<a href="#">相片墙</a>
+										<a href="#">香薰</a>
+										<a href="#">衣帽架</a>
+										<a href="#">花架</a>
+										<a href="#">DIY</a>
+										<a href="#">鲜花速递</a>
+										<a href="#">沙发</a>
+									</p>
+									<p>
+										<a href="#">居家日用</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">保温杯</a>
+										<a href="#">收纳盒</a>
+										<a href="#">晴雨伞</a>
+										<a href="#">收纳箱</a>
+										<a href="#">毛绒玩具</a>
+										<a href="#">心机人物</a>
+										<a href="#">桌面收纳</a>
+										<a href="#">衣物护理</a>
+									</p>
+									<p>
+										<a href="#">防晒用品</a>
+										<a href="#">家务清洁</a>
+										<a href="#">脏衣娄</a>
+										<a href="#">毛巾/浴巾</a>
+										<a href="#">情趣用品</a>
+										<a href="#">情趣内衣</a>
+									</p>
+									<p>
+										<a href="#">品牌</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href=""><img src="img/7.webp" /></a>
+										<a href=""><img src="img/8.webp" /></a>
+										<a href=""><img src="img/9.webp" /></a>
+										<a href=""><img src="img/10.webp" /></a>
+										<a href=""><img src="img/11.webp" /></a>
+									</p>
+								</div>
+							</div>
+							<div class="itemRight_list_pic">
+								<p class="item_word">为你推荐</p>
+								<p class="item_word2">根据你购买浏览记录为你推荐</p>
+								<a href="">
+									<img src="img/1.webp" />
+									<p>LINE布朗熊公仔..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/2.webp" />
+									<p>led灯彩灯闪灯串..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/3.webp" />
+									<p>卡通暖贴暖宝宝..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/4.webp" />
+									<p>简易床头柜现代..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/5.webp" />
+									<p>加厚加绒毛绒马..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/6.webp" />
+									<p>ins新少女心卡通..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+							</div>
+						</li>
+						<li class="itemRight_list">
+							<div class="itemRight_list_info">
+								<div>
+									<p>
+										<a href="#" style="color: #000000;font-size: 16px;">内衣</a>
+									</p>
+									<p class="more">
+										<a href="#">内衣</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">内衣套装</a>
+										<a href="#">调整型内衣</a>
+										<a href="#">文胸</a>
+										<a href="#">内裤</a>
+										<a href="#">无痕内衣</a>
+										<a href="#">运动内衣</a>
+										<a href="#">卡通内裤</a>
+									</p>
+									<p>
+										<a href="#">保暖内衣</a>
+									</p>
+									<p>
+										<a href="#">家居睡衣</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">睡衣套装</a>
+										<a href="#">家居服</a>
+										<a href="#">睡裙</a>
+										<a href="#">情侣睡衣</a>
+										<a href="#">睡裙</a>
+										<a href="#">甜美家居服</a>
+										<a href="#">性感睡衣</a>
+										<a href="#">珊瑚绒</a>
+									</p>
+									<p>
+										<a href="#">袜子</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">堆堆袜</a>
+										<a href="#">短袜</a>
+										<a href="#">瘦腿袜</a>
+										<a href="#">丝袜</a>
+										<a href="#">打底袜</a>
+										<a href="#">牛筒袜</a>
+										<a href="#">船袜</a>
+									</p>
+									<p>
+										<a href="#">品牌</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href=""><img src="img/7.webp" /></a>
+										<a href=""><img src="img/8.webp" /></a>
+										<a href=""><img src="img/9.webp" /></a>
+										<a href=""><img src="img/10.webp" /></a>
+										<a href=""><img src="img/11.webp" /></a>
+									</p>
+								</div>
+							</div>
+							<div class="itemRight_list_pic">
+								<p class="item_word">为你推荐</p>
+								<p class="item_word2">根据你购买浏览记录为你推荐</p>
+								<a href="">
+									<img src="img/1.webp" />
+									<p>歌帕冬季蕾丝舒..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/2.webp" />
+									<p>【3条装】欧美..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/3.webp" />
+									<p>五双装 韩版糖果..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/4.webp" />
+									<p>3条装六只兔子..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/5.webp" />
+									<p>歌帕秋冬性感前..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/6.webp" />
+									<p>韩版新款睡衣..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+							</div>
+						</li>
+						<li class="itemRight_list">
+							<div class="itemRight_list_info">
+								<div>
+									<p>
+										<a href="#" style="color: #000000;font-size: 16px;">母婴</a>
+									</p>
+									<p class="more">
+										<a href="#">当季热卖</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">孕妇装</a>
+										<a href="#">童装棉服</a>
+										<a href="#">加厚棉鞋</a>
+										<a href="#">加绒托腹裤</a>
+										<a href="#">孕妈护肤</a>
+										<a href="#">靴子</a>
+										<a href="#">毛绒玩具</a>
+									</p>
+									<p>
+										<a href="#">运动鞋</a>
+										<a href="#">卫衣&绒衫</a>
+										<a href="#">家居服</a>
+										<a href="#">益智家教</a>
+									</p>
+									<p>
+										<a href="#">萌宝优选</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">新生儿</a>
+										<a href="#">1-3岁</a>
+										<a href="#">暖冬外套</a>
+										<a href="#">儿童套装</a>
+										<a href="#">叔叔童鞋</a>
+										<a href="#">连体衣</a>
+										<a href="#">运动鞋</a>
+										<a href="#">裤子</a>
+									</p>
+									<p>
+										<a href="#">毛衣</a>
+									</p>
+									<p>
+										<a href="#">孕妇精选</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">妈咪套装</a>
+										<a href="#">冬季外套</a>
+										<a href="#">托腹裤</a>
+										<a href="#">护肤孕衫</a>
+										<a href="#">哺乳内衣</a>
+										<a href="#">月子服</a>
+										<a href="#">待产包</a>
+									</p>
+									<p>
+										<a href="#">品牌</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href=""><img src="img/7.webp" /></a>
+										<a href=""><img src="img/8.webp" /></a>
+										<a href=""><img src="img/9.webp" /></a>
+										<a href=""><img src="img/10.webp" /></a>
+										<a href=""><img src="img/11.webp" /></a>
+									</p>
+								</div>
+							</div>
+							<div class="itemRight_list_pic">
+								<p class="item_word">为你推荐</p>
+								<p class="item_word2">根据你购买浏览记录为你推荐</p>
+								<a href="">
+									<img src="img/1.webp" />
+									<p>孕妇套装秋冬装..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/2.webp" />
+									<p>韩国孕妇秋冬裤..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/3.webp" />
+									<p>孕妇装秋冬新款..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/4.webp" />
+									<p>婴儿推车可坐可..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/5.webp" />
+									<p>月子服秋冬纯棉..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/6.webp" />
+									<p>孕妇裤秋冬加厚..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+							</div>
+						</li>
+						<li class="itemRight_list">
+							<div class="itemRight_list_info">
+								<div>
+									<p>
+										<a href="#" style="color: #000000;font-size: 16px;">包包</a>
+									</p>
+									<p class="more">
+										<a href="#">热门</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">新品</a>
+										<a href="#">双肩包</a>
+										<a href="#">斜挎包</a>
+										<a href="#">手提包</a>
+										<a href="#">单肩包</a>
+										<a href="#">百搭大包</a>
+										<a href="#">迷你小包</a>
+										<a href="#">旅行箱包</a>
+									</p>
+									<p>
+										<a href="#">女士钱包</a>
+										<a href="#">男士钱包</a>
+										<a href="#">香风链条</a>
+										<a href="#">手拿包</a>
+									</p>
+									<p>
+										<a href="#">款式</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">双肩包</a>
+										<a href="#">斜挎包</a>
+										<a href="#">单肩包</a>
+										<a href="#">手提包</a>
+										<a href="#">钱包</a>
+										<a href="#">旅行箱</a>
+										<a href="#">手拿包</a>
+										<a href="#">帆布包</a>
+									</p>
+									<p>
+										<a href="#">mini小包</a>
+									</p>
+									<p>
+										<a href="#">流行</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">链条包</a>
+										<a href="#">贝壳包</a>
+										<a href="#">水桶包</a>
+										<a href="#">方形包</a>
+										<a href="#">复古包</a>
+										<a href="#">卡通包</a>
+										<a href="#">铆钉包</a>
+										<a href="#">邮差包</a>
+									</p>
+									<p>
+										<a href="#">字母包</a>
+										<a href="#">印花包</a>
+									</p>
+									<p>
+										<a href="#">品牌</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href=""><img src="img/7.webp" /></a>
+										<a href=""><img src="img/8.webp" /></a>
+										<a href=""><img src="img/9.webp" /></a>
+										<a href=""><img src="img/10.webp" /></a>
+										<a href=""><img src="img/11.webp" /></a>
+									</p>
+								</div>
+							</div>
+							<div class="itemRight_list_pic">
+								<p class="item_word">为你推荐</p>
+								<p class="item_word2">根据你购买浏览记录为你推荐</p>
+								<a href="">
+									<img src="img/1.webp" />
+									<p>百搭水桶包女..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/2.webp" />
+									<p>双肩包女小包韩..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/3.webp" />
+									<p>水桶包包女..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/4.webp" />
+									<p>单肩包女包小包..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/5.webp" />
+									<p>包包新款女包冬..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/6.webp" />
+									<p>毛毛丝绒包包女..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+							</div>
+						</li>
+						<li class="itemRight_list">
+							<div class="itemRight_list_info">
+								<div>
+									<p>
+										<a href="#" style="color: #000000;font-size: 16px;">配饰</a>
+									</p>
+									<p class="more">
+										<a href="#">当季热卖</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">当季热卖</a>
+										<a href="#">手表</a>
+										<a href="#">锁骨链</a>
+										<a href="#">帽子</a>
+										<a href="#">发饰</a>
+										<a href="#">戒指</a>
+										<a href="#">眼镜框</a>
+										<a href="#">耳饰</a>
+										<a href="#">棒球帽</a>
+										<a href="#">手链</a>
+									</p>
+									<p>
+										<a href="#">墨镜</a>
+										<a href="#">耳钉</a>
+										<a href="#">男士手表</a>
+										<a href="#">皮带</a>
+									</p>
+									<p>
+										<a href="#">潮流速递</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">几何项链</a>
+										<a href="#">情侣手表</a>
+										<a href="#">银饰</a>
+										<a href="#">发箍</a>
+										<a href="#">吊坠</a>
+										<a href="#">组合戒指</a>
+										<a href="#">手镯</a>
+										<a href="#">胫链</a>
+										<a href="#">渔夫指</a>
+									</p>
+									<p>
+										<a href="#">脚链</a>
+										<a href="#">男士墨镜</a>
+									</p>
+									<p>
+										<a href="#">特色饰品</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">轻奢珠宝</a>
+										<a href="#">腰带</a>
+										<a href="#">胸针</a>
+										<a href="#">假领子</a>
+										<a href="#">新浪服饰</a>
+										<a href="#">假发</a>
+										<a href="#">钥匙扣</a>
+										<a href="#">纹身贴</a>
+									</p>
+									<p>
+										<a href="#">品牌推荐</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href=""><img src="img/7.webp" /></a>
+										<a href=""><img src="img/8.webp" /></a>
+										<a href=""><img src="img/9.webp" /></a>
+										<a href=""><img src="img/10.webp" /></a>
+										<a href=""><img src="img/11.webp" /></a>
+									</p>
+								</div>
+							</div>
+							<div class="itemRight_list_pic">
+								<p class="item_word">为你推荐</p>
+								<p class="item_word2">根据你购买浏览记录为你推荐</p>
+								<a href="">
+									<img src="img/1.webp" />
+									<p>韩版秋冬天流苏..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/2.webp" />
+									<p>围巾秋冬季披肩..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/3.webp" />
+									<p>皮手套女秋冬季..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/4.webp" />
+									<p>考试手表女韩版..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/5.webp" />
+									<p>秋冬韩版权志龙..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/6.webp" />
+									<p>秋冬新款时尚压..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+							</div>
+						</li>
+						<li class="itemRight_list">
+							<div class="itemRight_list_info">
+								<div>
+									<p>
+										<a href="#" style="color: #000000;font-size: 16px;">运动</a>
+									</p>
+									<p class="more">
+										<a href="#">茶酒饮料</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">咖啡</a>
+										<a href="#">冲饮谷物</a>
+										<a href="#">花草茶</a>
+										<a href="#">饮料</a>
+										<a href="#">冲饮</a>
+										<a href="#">果味茶饮</a>
+										<a href="#">酒类</a>
+										<a href="#">早餐茶饮</a>
+									</p>
+									<p>
+										<a href="#">代餐粉粉</a>
+									</p>
+									<p>
+										<a href="#">进口食品</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">韩国</a>
+										<a href="#">日本</a>
+										<a href="#">东南亚</a>
+										<a href="#">进口饼干</a>
+										<a href="#">进口糕点</a>
+										<a href="#">进口糖巧</a>
+										<a href="#">进口水饮</a>
+										<a href="#">泰国</a>
+									</p>
+									<p>
+										<a href="#">休闲零食</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">饼干</a>
+										<a href="#">糕点</a>
+										<a href="#">糖果</a>
+										<a href="#">蜜饯</a>
+										<a href="#">坚果</a>
+										<a href="#">肉铺肉食</a>
+										<a href="#">巧克力</a>
+										<a href="#">膨化食品</a>
+										<a href="#">零食大礼包</a>
+									</p>
+									<p>
+										<a href="#">方便速食</a>
+										<a href="#">曲奇</a>
+									</p>
+									<p>
+										<a href="#">品牌</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href=""><img src="img/7.webp" /></a>
+										<a href=""><img src="img/8.webp" /></a>
+										<a href=""><img src="img/9.webp" /></a>
+										<a href=""><img src="img/10.webp" /></a>
+										<a href=""><img src="img/11.webp" /></a>
+									</p>
+								</div>
+							</div>
+							<div class="itemRight_list_pic">
+								<p class="item_word">为你推荐</p>
+								<p class="item_word2">根据你购买浏览记录为你推荐</p>
+								<a href="">
+									<img src="img/1.webp" />
+									<p>谷物脏脏包..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/2.webp" />
+									<p>买两份送一袋..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/3.webp" />
+									<p>自热火锅..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/4.webp" />
+									<p>百草味 牛扎糖..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/5.webp" />
+									<p>【约70片】茂通..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/6.webp" />
+									<p>冠达酸奶味750g..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+							</div>
+						</li>
+						<li class="itemRight_list">
+							<div class="itemRight_list_info">
+								<div>
+									<p>
+										<a href="#" style="color: #000000;font-size: 16px;">上衣</a>
+									</p>
+									<p class="more">
+										<a href="#">当季热卖</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">初冬新品</a>
+										<a href="#">卫衣</a>
+										<a href="#">毛衣</a>
+										<a href="#">精致套装</a>
+										<a href="#">针织衫</a>
+										<a href="#">连帽卫衣</a>
+										<a href="#">衬衫</a>
+										<a href="#">热卖外套</a>
+									</p>
+									<p>
+										<a href="#">印花</a>
+										<a href="#">韩版卫衣</a>
+										<a href="#">背心吊带</a>
+										<a href="#">T恤</a>
+									</p>
+									<p>
+										<a href="#">流行新品</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">新款毛呢</a>
+										<a href="#">冬季外套</a>
+										<a href="#">棉服</a>
+										<a href="#">加绒卫衣</a>
+										<a href="#">马甲</a>
+										<a href="#">羽绒服</a>
+										<a href="#">风衣</a>
+										<a href="#">长袖衬衫</a>
+									</p>
+									<p>
+										<a href="#">皮草</a>
+										<a href="#">长袖T恤</a>
+										<a href="#">棒球外套</a>
+										<a href="#">牛仔外套</a>
+										<a href="#">短款外套</a>
+										<a href="#">针织开衫</a>
+										<a href="#">牛仔衬衫</a>
+									</p>
+									<p>
+										<a href="#">潮流时尚</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">性感V领</a>
+										<a href="#">喇叭袖</a>
+										<a href="#">刺绣</a>
+										<a href="#">俏皮露肩</a>
+										<a href="#">绑带衬衫</a>
+										<a href="#">条纹控</a>
+										<a href="#">白衬衫</a>
+										<a href="#">印花T恤</a>
+									</p>
+									<p>
+										<a href="#">一字肩</a>
+										<a href="#">情侣装</a>
+										<a href="#">时髦皮衣</a>
+									</p>
+									<p>
+										<a href="#">品牌</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href=""><img src="img/7.webp" /></a>
+										<a href=""><img src="img/8.webp" /></a>
+										<a href=""><img src="img/9.webp" /></a>
+										<a href=""><img src="img/10.webp" /></a>
+										<a href=""><img src="img/11.webp" /></a>
+									</p>
+								</div>
+							</div>
+							<div class="itemRight_list_pic">
+								<p class="item_word">为你推荐</p>
+								<p class="item_word2">根据你购买浏览记录为你推荐</p>
+								<a href="">
+									<img src="img/1.webp" />
+									<p>新款潮羊羔毛外..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/2.webp" />
+									<p>新款潮羊羔毛外..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/3.webp" />
+									<p>新款潮羊羔毛外..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/4.webp" />
+									<p>新款潮羊羔毛外..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/5.webp" />
+									<p>新款潮羊羔毛外..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/6.webp" />
+									<p>新款潮羊羔毛外..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+							</div>
+						</li>
+						<li class="itemRight_list">
+							<div class="itemRight_list_info">
+								<div>
+									<p>
+										<a href="#" style="color: #000000;font-size: 16px;">电器</a>
+									</p>
+									<p class="more">
+										<a href="#">美体电器</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">卷发棒</a>
+										<a href="#">热吹风</a>
+										<a href="#">热脸器</a>
+										<a href="#">剃须刀</a>
+										<a href="#">按摩器材</a>
+										<a href="#">电子秤</a>
+										<a href="#">美容仪</a>
+										<a href="#">电动牙刷</a>
+									</p>
+									<p>
+										<a href="#">理发器</a>
+										<a href="#">脱毛器</a>
+									</p>
+									<p>
+										<a href="#">生活电器</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">插座</a>
+										<a href="#">加湿器</a>
+										<a href="#">挂烫机</a>
+										<a href="#">影音电器</a>
+										<a href="#">USB小电器</a>
+										<a href="#">榨汁机</a>
+										<a href="#">电锅</a>
+										<a href="#">电饭煲</a>
+									</p>
+									<p>
+										<a href="#">电磁炉</a>
+										<a href="#">电烤箱</a>
+										<a href="#">煮蛋器</a>
+										<a href="#">面包机</a>
+									</p>
+									<p>
+										<a href="#">手机数码</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href="#">手机</a>
+										<a href="#">手机壳</a>
+										<a href="#">耳机</a>
+										<a href="#">智能手环</a>
+										<a href="#">移动电源</a>
+										<a href="#">手机贴膜</a>
+										<a href="#">自拍杆</a>
+										<a href="#">U盘</a>
+									</p>
+									<p>
+										<a href="#">手机支架</a>
+										<a href="#">小音箱</a>
+										<a href="#">数据线</a>
+										<a href="#">鼠标</a>
+									</p>
+									<p>
+										<a href="#">品牌</a>
+										<a href="#" class="fr">更多</a>
+									</p>
+								</div>
+								<div>
+									<p>
+										<a href=""><img src="img/7.webp" /></a>
+										<a href=""><img src="img/8.webp" /></a>
+										<a href=""><img src="img/9.webp" /></a>
+										<a href=""><img src="img/10.webp" /></a>
+										<a href=""><img src="img/11.webp" /></a>
+									</p>
+								</div>
+							</div>
+							<div class="itemRight_list_pic">
+								<p class="item_word">为你推荐</p>
+								<p class="item_word2">根据你购买浏览记录为你推荐</p>
+								<a href="">
+									<img src="img/1.webp" />
+									<p>韩国蛋卷棒水波..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/2.webp" />
+									<p>送三刀头 剃..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/3.webp" />
+									<p>洗剪吹拉卷..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/4.webp" />
+									<p>电煮锅宿舍学生..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/5.webp" />
+									<p>雷瓦蛋卷头卷发..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+								<a href="">
+									<img src="img/6.webp" />
+									<p>格式你加湿器家..</p>
+									<p style="margin-top: -10px;">$ 147.00</p>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!---------------图片轮播------------------>
+				<ul class="slider">
+					<li style="z-index: 1;">
+						<a href="#">
+							<img src="img/171130_2g84ggkjcl6d64fff4b33bb90j2d4_778x440.jpg_900x9999.v1c7E.70.webp" width="778" height="440" />
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="img/171130_7691kkfd58k4a15724gc70fb4lh46_778x440.jpg_900x9999.v1c7E.70.webp" width="778" height="440" />
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="img/171201_092kah5cbhf2gh9517d19jb8cl64k_778x440.png_900x9999.v1c7E.70.webp" width="778" height="440" />
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="img/171201_5l03ihkc8e70i76fhdf9ia1i1e3ie_778x440.jpg_900x9999.v1c7E.70.webp" width="778" height="440" />
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<img src="img/171130_7691kkfd58k4a15724gc70fb4lh46_778x440.jpg_900x9999.v1c7E.70.webp" width="778" height="440" />
+						</a>
+					</li>
+				</ul>
+				<!---------------分页器------------------>
+				<ol class="pages abs">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ol>
+				<!--------------右边用户信息------------------>
+				<div class="user_info fr">
+					<div class="base_info">
+						<a href=""></a>
+						<span>菇凉好！ 欢迎来到蘑菇街...</span>
+						<div>会员中心</div>
+					</div>
+					<div class="base_info" style="margin-top: 10px;">
+						<p class="title">0.01抽好运</p>
+						<p class="title" style="font-size: 14px;margin-top: 5px;">每天一分钱</p>
+						<img src="img/171024_87gk7l07k9l1c72dfi3fek4jea8a4_260x260.png_200x9999.v1c7E.70.webp" width="130" height="130" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 中间内容 -->
+		<div id="main">
+			<div class="date_new wid1200">
+				<div class="imgbox"><img src="img/主会场.webp" /></div>
+				<div class="imgbox"><img src="img/女装.webp" /></div>
+				<div class="imgbox"><img src="img/美妆.webp" /></div>
+				<div class="imgbox"><img src="img/女鞋.webp" /></div>
+				<div class="imgbox"><img src="img/男友.webp" /></div>
+				<div class="imgbox" style="padding: 0;margin: 0;"><img src="img/内衣.webp" /></div>
+				<div class="imgbox"><img src="img/家具.webp" /></div>
+				<div class="imgbox"><img src="img/箱包.webp" /></div>
+				<div class="imgbox"><img src="img/配饰.webp" /></div>
+				<div class="imgbox"><img src="img/母婴.webp" /></div>
+				<div class="imgbox"><img src="img/食品.webp" /></div>
+				<div class="imgbox" style="padding: 0;margin: 0;"><img src="img/运动.webp" /></div>
+			</div>
+			<div class="newtime_buy wid1200">
+				<div class="imgbox">
+					<img src="img/time1.webp" />
+				</div>
+				<div class="imgbox">
+					<img src="img/time2.webp" />
+				</div>
+				<div class="imgbox">
+					<img src="img/time3.webp" />
+				</div>
+				<div class="imgbox">
+					<img src="img/time4.webp" />
+				</div>
+				<div class="imgbox" style="margin: 0;padding: 0;">
+					<img src="img/time5.webp" />
+				</div>
+			</div>
+			<div class="time_buy wid1200">
+				<div class="part1">
+					<a class="buy_limit bgcolorWhite" href="#">
+						<div class="time_title">
+							<div class="font-title">限时快抢</div>
+							<div class="timer">
+								<span class="hour">01</span> :
+								<span class="min">00</span> :
+								<span class="sou">00</span>
+							</div>
+						</div>
+						<div class="img">
+							<img src="img/限时快抢.webp" />
+						</div>
+						<div class="spcate_label">
+							<div class="spcate-labeltitle">快抢价</div>
+							<div class="spcate-labelprice">125</div>
+						</div>
+					</a>
+					<div class="space_01">
+						<a class="space01 bgcolorWhite" href="#">
+							<div class="time_title">
+								<div class="font-title">秒速告罄</div>
+								<div class="timer">低价疯抢仅剩1件</div>
+							</div>
+							<div class="img">
+								<img src="img/秒速告罄.webp" />
+							</div>
+						</a>
+						<a class="space02 bgcolorWhite" href="#">
+							<div class="time_title">
+								<div class="font-title">一元快抢</div>
+								<div class="timer">百余好货1元抢</div>
+							</div>
+							<div class="img">
+								<img src="img/一元快抢.webp" />
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="part2">
+					<a class="buy_limit bgcolorWhite" href="#">
+						<div class="time_title">
+							<div class="font-title">团购好货</div>
+							<div class="timer">参团购物，每天上新</div>
+						</div>
+						<div class="img">
+							<img src="img/团购好货.webp" />
+						</div>
+					</a>
+					<div class="space_01">
+						<a class="space01 bgcolorWhite" href="#">
+							<div class="time_title">
+								<div class="font-title">品牌特卖</div>
+								<div class="timer" style="color: #FF5577;">品牌好货，每日10点</div>
+							</div>
+							<div class="img">
+								<img src="img/品牌特卖.webp" />
+							</div>
+						</a>
+						<a class="space02 bgcolorWhite" href="#">
+							<div class="time_title">
+								<div class="font-title">U质团</div>
+								<div class="timer">优质团价19元起</div>
+							</div>
+							<div class="img">
+								<img src="img/U质团.webp" />
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="part3">
+					<a class="buy_limit bgcolorWhite" href="#" style="border: none;">
+						<div class="time_title">
+							<div class="font-title">甄选爆款</div>
+							<div class="timer">买就送双十二无门槛券</div>
+						</div>
+						<div class="img">
+							<img src="img/甄品爆款.webp" />
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="dress wid1200">
+				<div class="dress_title">
+					<span>红人穿搭</span>
+					<a href="#">查看全部</a>
+				</div>
+				<div class="dress_imgs">
+					<div class="leftimgs" id="transform">
+						<div class="img">
+							<img src="img/大长腿0.webp" />
+						</div>
+						<div class="img">
+							<img src="img/大长腿1.webp" />
+						</div>
+						<div class="img">
+							<img src="img/大长腿2.webp" />
+						</div>
+						<div class="img">
+							<img src="img/大长腿3.webp" />
+						</div>
+						<div class="img">
+							<img src="img/大长腿4.webp" />
+						</div>
+					</div>
+					<div class="rightimgs">
+						<div class="img">
+							<img src="img/大长腿1.webp" />
+						</div>
+						<div class="img" style="margin: 0;">
+							<img src="img/大长腿2.webp" />
+						</div>
+						<div class="img">
+							<img src="img/大长腿3.webp" />
+						</div>
+						<div class="img" style="margin: 0;">
+							<img src="img/大长腿0.webp" />
+						</div>
+						<div class="img">
+							<img src="img/大长腿4.webp" />
+						</div>
+						<div class="img" style="margin: 0;">
+							<img src="img/大长腿2.webp" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="newdate wid1200">
+				<div class="dress_title">
+					<span>快抢发新日</span>
+					<a href="#">查看全部</a>
+				</div>
+				<div class="leftnewdate">
+					<img src="img/newdate1.webp" />
+				</div>
+				<div class="rightnewdate bgcolorWhite">
+					<div class="next"></div>
+					<div class="last"></div>
+					<div class="newdate_dombox">
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate2.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate3.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate4.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate5.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate6.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate8.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate9.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate10.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate11.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate12.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate13.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate14.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate15.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate16.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate17.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate18.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate19.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate20.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate21.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate22.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate23.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate24.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate25.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate26.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate27.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate28.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate29.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate30.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate31.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+						<div class="newdate_dom">
+							<div class="mod_img">
+								<img src="img/newdate32.webp" />
+							</div>
+							<a href="#">加绒加厚短款半高领针织衫</a>
+							<div class="goods-price">
+								<em>¥250.00</em>
+								<del>¥998.00</del>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="brand wid1200">
+				<div class="dress_title" style="border-left:5px solid #9F86CF;">
+					<span style="margin-right: 30px;height: 22px;line-height: 22px;font-size: 20px;">品牌特卖</span>
+					<div class="navlist">
+						<p>热门搜索：</p>
+						<a href="#">甄选爆款 价低质优</a><span>|</span>
+						<a href="#">冬日女装，39元起！</a><span>|</span>
+						<a href="#">大牌美妆，19元就购啦！</a><span>|</span>
+						<a href="#" style="border-right:none">精致包配，2折起售~</a>
+						<a href="#" style="float: right;border-right:none">查看全部</a>
+					</div>
+				</div>
+				<div class="drand_mod bgcolorWhite">
+					<div class="drand_ms">
+						<div class="a_box">
+							<a href="#">甄选爆款</a>
+							<a href="#">今日王牌</a>
+							<a href="#">下期预告</a>
+							<a href="#">新品单鞋</a>
+							<a href="#">小白鞋</a>
+							<a href="#">雪纺衫</a>
+						</div>
+						<div class="title" style="color: #333;"> 品牌精选 </div>
+						<div class="title_font" style="color: #666;">大牌1折起售！！ </div>
+						<div class="img_box">
+							<img src="img/brand1.png_200x9999.v1c7E.70.webp" />
+						</div>
+
+					</div>
+					<!--中刘幅图-->
+					<div class="lazyDate">
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style=""> 大牌店铺 </div>
+							<div class="lazymean" style="color: #ff5577"> 每天10点，1折开售！ </div>
+							<div class="img_box">
+								<img src="img/dapaitupian.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">双12买买买</div>
+							<div class="lazymean">大牌买1送~ </div>
+							<div class="img_box">
+								<img src="img/shuang12mai.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">秋冬女鞋</div>
+							<div class="lazymean">39元起~</div>
+							<div class="img_box">
+								<img src="img/qiudongnvxie.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">爆款尖货</div>
+							<div class="lazymean">19.9元起！</div>
+							<div class="img_box">
+								<img src="img/baokuanjianhuo.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">精致包配</div>
+							<div class="lazymean">全场11元起~</div>
+							<div class="img_box">
+								<img src="img/jingzhibaopei.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">大牌美妆</div>
+							<div class="lazymean">口红买2送1</div>
+							<div class="img_box">
+								<img src="img/dapaimeizhuang.webp" />
+							</div>
+						</a>
+					</div>
+					<div class="icon_item">
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon1.jpg_200x9999.v1c7E.70.webp.jpg" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon22.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon33.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon44.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon55.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon66.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon77.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon88.webp" />
+							</div>
+						</a>
+					</div>
+				</div>
+
+			</div>
+			<div class="brand wid1200">
+				<div class="dress_title" style="border-left:5px solid #FF7700;">
+					<span style="margin-right: 30px;height: 22px;line-height: 22px;font-size: 20px;">每日精选</span>
+					<div class="navlist">
+						<p>热门搜索：</p>
+						<a href="#">柔软针织</a><span>|</span>
+						<a href="#">时尚耳饰</a><span>|</span>
+						<a href="#">内衣套装</a><span>|</span>
+						<a href="#">包包精选</a><span>|</span>
+						<a href="#">收纳盒</a><span>|</span>
+						<a href="#">女生手表</a>
+						<a href="#" style="float: right;border-right:none">查看全部</a>
+					</div>
+				</div>
+				<div class="drand_mod bgcolorWhite">
+					<div class="drand_ms" style="background-color: #EBC7E0;">
+						<div class="a_box">
+							<a href="#">衬衫</a>
+							<a href="#">牛仔裤</a>
+							<a href="#">长袖T恤</a>
+							<a href="#">风衣</a>
+							<a href="#">秋冬美裙</a>
+							<a href="#">小白鞋</a>
+						</div>
+						<div class="title" style="color: #333;"> 精选美妆 </div>
+						<div class="title_font" style="color: #666;">最热门美妆单品戳 </div>
+						<div class="img_box">
+							<img src="img/meizhuangimg.webp" />
+						</div>
+
+					</div>
+					<!--中刘幅图-->
+					<div class="lazyDate">
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style=""> 秋季套装 </div>
+							<div class="lazymean" style="color: #ff5577"> 超美搭配 立减50元 </div>
+							<div class="img_box">
+								<img src="img/qiujidapei.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style=""> 秋冬上衣 </div>
+							<div class="lazymean"> 毛衣、呢大衣大减价！ </div>
+							<div class="img_box">
+								<img src="img/qiudongshangzhuang.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style=""> 平价美妆 </div>
+							<div class="lazymean"> 爆款女装立减30元 </div>
+							<div class="img_box">
+								<img src="img/pingjiameizhuang.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style=""> 保暖鞋靴 </div>
+							<div class="lazymean"> 好鞋不累脚 </div>
+							<div class="img_box">
+								<img src="img/baonuanxiexue.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style=""> 精选包配 </div>
+							<div class="lazymean"> 19.9元拥有明星同款 </div>
+							<div class="img_box">
+								<img src="img/jingxuanbaopei.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style=""> 折扣专区 </div>
+							<div class="lazymean" style="color: #ff5577"> 爆款团购，每日更新 </div>
+							<div class="img_box">
+								<img src="img/zhekouzhuanqu.webp" />
+							</div>
+						</a>
+					</div>
+					<div class="icon_item">
+						<img src="img/xinrenfuli.webp" />
+					</div>
+				</div>
+
+			</div>
+			<div class="brand wid1200">
+				<div class="dress_title" style="border-left:5px solid #FFA1B8;">
+					<span style="margin-right: 30px;height: 22px;line-height: 22px;font-size: 20px;">女装</span>
+					<div class="navlist">
+						<p>热门搜索：</p>
+						<a href="#">毛呢大衣</a><span>|</span>
+						<a href="#">时尚套装</a><span>|</span>
+						<a href="#">毛衣</a><span>|</span>
+						<a href="#">打底裤</a><span>|</span>
+						<a href="#">棉衣棉服</a>
+						<a href="#" style="float: right;border-right:none">查看全部</a>
+					</div>
+				</div>
+				<div class="drand_mod bgcolorWhite">
+					<div class="drand_ms" style="background-color: #FCE6EE;">
+						<div class="a_box">
+							<a href="#">卫衣</a>
+							<a href="#">连衣裙</a>
+							<a href="#">秋冬外套</a>
+							<a href="#">阔腿裤</a>
+							<a href="#">针织衫</a>
+							<a href="#">半身裙</a>
+						</div>
+						<div class="title" style="color: #333;"> 潮流女装 </div>
+						<div class="title_font" style="color: #666;">冬季新品 不止7折 </div>
+						<div class="img_box">
+							<img src="img/chaoliunvzhuang.webp" />
+						</div>
+
+					</div>
+					<!--中刘幅图-->
+					<div class="lazyDate">
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style=""> 爆款套装 </div>
+							<div class="lazymean"> 搭配指南 美翻整个冬季 </div>
+							<div class="img_box">
+								<img src="img/baokuantaozhuang.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">毛呢榜单</div>
+							<div class="lazymean"> 抢！网红同款 库存有限 </div>
+							<div class="img_box">
+								<img src="img/maonebangdan.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">特卖毛衣</div>
+							<div class="lazymean"> 低至49元 温柔整个冬天 </div>
+							<div class="img_box">
+								<img src="img/temaimaoyi.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">人气卫衣</div>
+							<div class="lazymean"> 为减龄神器疯狂打call </div>
+							<div class="img_box">
+								<img src="img/renqiweiyi.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">御寒棉服</div>
+							<div class="lazymean">女神最爱 显瘦温暖两不误</div>
+							<div class="img_box">
+								<img src="img/yuhanmianyi.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">显瘦牛仔裤</div>
+							<div class="lazymean">搭配神器 视觉甩肉5KG</div>
+							<div class="img_box">
+								<img src="img/xianshouniuzaiku.webp" />
+							</div>
+						</a>
+					</div>
+					<div class="icon_item">
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon33.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon55.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon99.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon10.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon11.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon12.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon13.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="img_box">
+								<img src="img/icon14.webp" />
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>	
+			<div class="brand wid1200">
+				<div class="dress_title" style="border-left:5px solid #FFA1B8;">
+					<span style="margin-right: 30px;height: 22px;line-height: 22px;font-size: 20px;">女鞋</span>
+					<div class="navlist">
+						<p>热门搜索：</p>
+						<a href="#">马丁靴</a><span>|</span>
+						<a href="#">及踝靴</a><span>|</span>
+						<a href="#">加绒小白鞋</a><span>|</span>
+						<a href="#" style="float: right;border-right:none">查看全部</a>
+					</div>
+				</div>
+				<div class="drand_mod bgcolorWhite">
+					<div class="drand_ms" style="background-color: #FCE6EE;">
+						<div class="a_box">
+							<a href="#">短靴</a>
+							<a href="#">毛毛鞋</a>
+							<a href="#">厚底鞋</a>
+							<a href="#">长靴</a>
+							<a href="#">切尔西靴</a>
+							<a href="#">棉鞋</a>
+						</div>
+						<div class="title" style="color: #333;"> 吸睛美靴 </div>
+						<div class="title_font" style="color: #666;">冬季人气热卖榜 1折疯抢 </div>
+						<div class="img_box">
+							<img src="img/shoes1.webp" />
+						</div>
+
+					</div>
+					<!--中刘幅图-->
+					<div class="lazyDate">
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style=""> 人气美靴 </div>
+							<div class="lazymean"> 冬季扮美 赚足回头率 </div>
+							<div class="img_box">
+								<img src="img/shoes2.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">时髦单鞋</div>
+							<div class="lazymean">红人私藏款 时髦精的首选 </div>
+							<div class="img_box">
+								<img src="img/shoes3.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">温暖雪地靴</div>
+							<div class="lazymean"> 冬季必备小地暖 </div>
+							<div class="img_box">
+								<img src="img/shoes4.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">星款小白鞋</div>
+							<div class="lazymean"> 风靡全球 万能百搭款 </div>
+							<div class="img_box">
+								<img src="img/shoes5.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">活力运动</div>
+							<div class="lazymean">平价热搜款 甩肉必备</div>
+							<div class="img_box">
+								<img src="img/shoes6.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">百搭休闲</div>
+							<div class="lazymean">把简约穿成时尚</div>
+							<div class="img_box">
+								<img src="img/shoes7.webp" />
+							</div>
+						</a>
+					</div>
+					<div class="icon_item">
+						<h3>大家都在买</h3>
+						<p>
+							<span></span>
+								换一批
+						</p>
+						<a href="#" class="goodsRight">
+							<img src="img/shoes8.webp"class="goodsImg"/>
+							<div>
+								<div class="goodsDesc">加绒运动鞋女韩版ulzzang秋冬季女原宿板鞋百搭跑步休闲鞋</div>
+								<div class="goodsPrice">¥ 65.00</div>
+							</div>
+						</a>
+						<a href="#" class="goodsRight">
+							<img src="img/shoes9.webp"class="goodsImg"/>
+							<div>
+								<div class="goodsDesc">长靴女秋冬2017新款过膝靴女瘦腿弹力靴平底百搭女靴长筒靴子</div>
+								<div class="goodsPrice">¥ 105.00</div>
+							</div>
+						</a>	
+						<a href="#" class="goodsRight">
+							<img src="img/shoes10.webp"class="goodsImg"/>
+							<div>
+								<div class="goodsDesc">欧美范性感显瘦过膝靴长靴女秋冬靴女时尚长筒弹力靴粗跟百搭靴子</div>
+								<div class="goodsPrice">¥ 86.00</div>
+							</div>
+						</a>	
+						<a href="#" class="goodsRight">
+							<img src="img/shoes11.webp"class="goodsImg"/>
+							<div>
+								<div class="goodsDesc">澳洲ce亮片5825真皮中筒加厚毛舒适保暖平底防滑两穿雪地靴</div>
+								<div class="goodsPrice">¥ 149.00</div>
+							</div>
+						</a>	
+					</div>
+				</div>
+			</div>
+			<div class="brand wid1200">
+				<div class="dress_title" style="border-left:5px solid #FFA1B8;">
+					<span style="margin-right: 30px;height: 22px;line-height: 22px;font-size: 20px;">美妆</span>
+					<div class="navlist">
+						<p>热门搜索：</p>
+						<a href="#">补水面膜</a><span>|</span>
+						<a href="#">保湿套装</a><span>|</span>
+						<a href="#">遮瑕BB</a><span>|</span>
+						<a href="#">卸妆口红</a><span>|</span>
+						<a href="#">斩男口红</a>
+						<a href="#" style="float: right;border-right:none">查看全部</a>
+					</div>
+				</div>
+				<div class="drand_mod bgcolorWhite">
+					<div class="drand_ms" style="background-color: #FCE6EE;">
+						<div class="a_box">
+							<a href="#">面膜</a>
+							<a href="#">套装</a>
+							<a href="#">底妆</a>
+							<a href="#">口红</a>
+							<a href="#">洁面</a>
+							<a href="#">身体护理</a>
+						</div>
+						<div class="title" style="color: #333;"> 护肤彩妆 </div>
+						<div class="title_font" style="color: #666;">买一送一 大牌满减 </div>
+						<div class="img_box">
+							<img src="img/dress7.webp" />
+						</div>
+
+					</div>
+					<!--中刘幅图-->
+					<div class="lazyDate">
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style=""> 美妆大赏 </div>
+							<div class="lazymean"> 爆款抢的早 不怕告罄了 </div>
+							<div class="img_box">
+								<img src="img/dress1.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">必备面膜</div>
+							<div class="lazymean">面膜敷的勤 小脸变水灵 </div>
+							<div class="img_box">
+								<img src="img/dress2.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">超值套装</div>
+							<div class="lazymean"> 套装你选的牛 省钱你最六 </div>
+							<div class="img_box">
+								<img src="img/dress3.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">底妆遮瑕</div>
+							<div class="lazymean"> 底妆用的对 永远18岁 </div>
+							<div class="img_box">
+								<img src="img/dress4.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">斩男口红</div>
+							<div class="lazymean">口红选的好 男神跑不了</div>
+							<div class="img_box">
+								<img src="img/dress5.webp" />
+							</div>
+						</a>
+						<a class="bgcolorWhite" href="#">
+							<div class="lazytitle" style="">身体个护</div>
+							<div class="lazymean">护理做得好 老公回家早</div>
+							<div class="img_box">
+								<img src="img/dress6.webp" />
+							</div>
+						</a>
+					</div>
+					<div class="icon_item">
+						<h3>大家都在买</h3>
+						<p>
+							<span></span>
+								换一批
+						</p>
+						<a href="#" class="dressRight">
+							<img src="img/dress8.webp" class="dressImg"/>
+							<div>
+								<div class="dressDesc">颜膜婴国天使 天使奢宠护肤六件套保湿补水套装收缩毛孔 正品</div>
+								<div class="goodsPrice">¥ 158.00</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="brand wid1200">
+				<div class="dress_title">
+					<span style="margin-right: 30px;height: 22px;line-height: 22px;font-size: 20px;">猜你喜欢</span>
+				</div>
+				<div id="box">
+					<ul></ul>
+					<ul></ul>
+					<ul></ul>
+					<ul></ul>
+					<ul></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

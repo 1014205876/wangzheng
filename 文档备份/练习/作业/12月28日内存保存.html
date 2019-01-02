@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<!--<form action="" method="get">
+			<input type="text" name="usr_name"/>
+			公钥：<keygen name=''/>
+			<input type="submit"/>
+		</form>-->
+
+		<!--<form action="">-->
+		<!--<input type="email" />-->
+		<!--<input type="tel" />-->
+		<!--<input type="url" />-->
+		<!--<input type="search" />-->
+		<!--<input type="color" />-->
+		<!--<input type="text"/>
+			<input type="required" />
+			<input type="submit" />
+		</form>-->
+		<!--<p><button onclick='clickCount()' type='button'>点击我会加一</button></p>
+		<p id='result'>单机按钮数字会增加</p>-->
+		<form action="">
+			姓名：<input type="text" /><br />
+			<input type="radio" name="1" class='radio' />1
+			<input type="radio" name="1" class='radio' />2
+			<input type="radio" name="1" class='radio' />3
+			<input type="radio" name="1" class='radio' />4
+			<input type="radio" name="1" class='radio' />5
+			<input type="radio" name="1" class='radio' />6
+			<input type="radio" name="1" class='radio' />7
+			<input type="radio" name="1" class='radio' />8
+			<input type="radio" name="1" class='radio' />9
+			<input type="radio" name="1" class='radio' />0<br /> 内容：
+			<textarea></textarea><br />
+			<input type="button" id='btn01' value='储存' /><br />
+			<input type="button" id='btn02' value='复原' /><br />
+			<input type="button" id='btn03' value='删除' />
+
+		</form>
+		<script>
+			var btn01 = document.getElementById('btn01');
+			var btn02 = document.getElementById('btn02');
+			var radios = document.getElementsByClassName('radio');
+			var inputs = document.getElementsByTagName('input');
+			var textarea01 = document.getElementsByTagName('textarea')[0];
+			btn01.onclick = function() {
+				save();
+			}
+			btn02.onclick = function() {
+				find();
+			}
+			btn03.onclick = function() {
+				remove();
+			}
+			//			window.onunload=function(){
+			//				save();
+			//			}
+			function save() {
+				if(inputs[0].value) {
+//					window.sessionStorage.setItem('name', inputs[0].value);//临时储存
+					window.localStorage.setItem('name', inputs[0].value);//永久储存
+				}
+				for(var i = 0; i < radios.length; i++) {
+					if(radios[i].checked) {
+						window.localStorage.setItem('sex', i);
+					}
+				}
+				if(textarea01.value) {
+					window.localStorage.setItem('textarea', textarea01.value);
+				}
+			}
+
+			function find() {
+				inputs[0].value = localStorage.getItem('name');
+				if(localStorage.getItem('sex')) {
+					radios[localStorage.getItem('sex')].checked = true;
+				} else {
+					for(var i = 0; i < radios.length; i++) {
+						radios[i].checked = false;
+					}
+				}
+				textarea01.value = localStorage.getItem('textarea');
+			}
+
+			function remove() {
+				window.localStorage.removeItem('name');
+				window.localStorage.removeItem('sex');
+				window.localStorage.removeItem('textarea');
+			}
+		</script>
+
+		<!--<script>
+			function clickCount() {
+				if(typeof(Storage) !== 'undefined') {
+					if(localStorage.clickcount) {
+						localStorage.clickcount = Number(localStorage.clickcount) + 1;
+					} else {
+						localStorage.clickcount = 1;
+					}
+					document.getElementById('result').innerHTML = '你单机了按钮' + localStorage.clickcount + '次';
+				} else {
+					document.getElementById('result').innerHTML = '你的浏览器并不支持storange';
+				}
+			}
+		</script>-->
+	</body>
+
+</html>

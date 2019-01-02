@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#top {
+				width: 50px;
+				height: 50px;
+				background-color: red;
+				position: fixed;
+				right: 20px;
+				bottom: 20px;
+			}
+			
+			.blue {
+				background: blue;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript">
+			//			$(function(){
+			////				$('button').click(function(){
+			////					$('#div1').html('我距离顶部是'+$('#div1').offset().top+'我距离文档左侧'+$('#div1').offset().left)
+			////					$('#div1').offset({'top':'100','left':'100'})
+			////					console.log($('#div1').html());
+			////					console.log($('#div1').text());
+			////					$('#div1').html('<span style="font-size:36px;">我是span</span>');
+			////					$('#div1').text('<span style="font-size:36px;">我是span</span>');
+			////				})
+			//				$('#top').hide();
+			//				$(window).scroll(function(){
+			//					if($(window).scrollTop()>=1000||$(window).scrollLeft()>=1000)
+			//					{
+			//						$('#top').fadeIn();
+			//					}
+			//					else
+			//					{
+			//						$('#top').fadeOut();
+			//					}
+			//				})
+			//				$('#top').click(function(){
+			//					$('html,body').animate({'scrollTop':a1-a1,scrollLeft:a3-a3},500);
+			////					console.log(a1);
+			////					console.log(a2);
+			////					console.log(a3);
+			////					console.log(a4);
+			//				})
+			//				
+			//					var a1=0;//文本框所有高度（包括可视区外的）
+			//					var a2=0;//可视区高度
+			//					var a3=0;//文本框所有宽度（包括可视区外的）
+			//					var a4=0;//文本框宽度
+			//					var t1=0;
+			//					var t2=0;
+			//					var p1=0;
+			//					var p2=0;
+			//				set();
+			//				function set(){
+			//					a1=$(document).height();//文本框所有高度（包括可视区外的）
+			//					a2=$(window).height();//可视区高度
+			//					a3=$(document).width();//文本框所有宽度（包括可视区外的）
+			//					a4=$(window).width();//文本框宽度
+			//					t1=$('#top').height();
+			//					t2=$('#top').width();
+			//					p1=(a2-t1)/2;
+			//					p2=(a4-t2)/2;
+			//					$('#top').css({'top':p1,'left':p2});
+			//				}
+			//				
+			//				$(window).resize(function(){
+			//					set();
+			//				})
+			//			})
+			//			
+
+			$(function() {
+				function eq(i) {
+					//					$('div').first().css({'background':'blue','color':'blue'});
+					//					$('div').last().css({'background':'red','color':'blue'});
+					//					$('div').eq(i).css({'background':'red','color':'blue'});
+					//					$('div').filter('#div1').css({'background':'yellow'});//找出所有匹配的项
+					//					$('div').filter(':even').css({'background':'yellow'});//偶数
+					//					$('div').filter(':odd').css({'background':'yellow'});//奇数
+					//					$('div').not('#div1').css({'background':'yellow'});//找出所有不匹配的项
+					//					$('div').children('strong').css({'background':'yellow'});
+					//					$('div').children('span').css({'background':'yellow'});
+					//					$('div').children().eq(i).css({'background':'yellow'});
+					//					$('div').find('strong').css({'background': 'yellow'});
+					//					$('#strong1').parent().css({'background': 'yellow'});//（）中加参数用于寻找特定的父级
+					//					$('#strong1').parents('span').css({'background': 'yellow'});
+					//					$('span:eq(0)').siblings().css({'background': 'yellow'});//（）中参数用于寻找特定的目标，标签的同级的所有元素
+					//					$('span').next('strong').css({'background': 'yellow'});//目标标签的同级的下一个标签
+					//					$('span').nextAll().css({'background': 'yellow'}); //目标标签的同级的下面所有标签
+					//					$('span').nextUntil().css({'background': 'yellow'}); //目标标签的同级的下面所有标签
+					//					$('span').prev('span:eq(0)').css({'background': 'yellow'});//目标标签的同级的上一个标签
+					//					$('span').prevAll().css({'background': 'yellow'}); //目标标签的同级的上面所有标签
+					//					$('span').prevUntil().css({'background': 'yellow'}); //目标标签的同级的上面所有标签
+
+					//										console.log($('span:eq(1)').index());//得到下标，所有同级元素都进入排序
+
+					var index1 = 0;
+					$($('#div1').children()).click(function() {
+						index1 = $(this).index();
+						con();
+					})
+
+					function con() {
+						$('#div2').children().removeClass('blue');
+						$('#div2').children().eq(index1).toggleClass('blue');
+						console.log($('#div3').hasClass('div1'));
+					}
+
+				}
+				eq(0);
+			})
+		</script>
+	</head>
+
+	<body style='width:10000px;height:10000px'>
+		<p>我是p标签</p>
+		<div id='div1'>
+			<span style='color:red'>
+				我是span0标签<strong id='strong1'>我是strong0</strong>
+			</span>
+			<br />
+			<span style='color:red'>
+				我是span1标签<strong>我是strong1</strong>
+			</span>
+			<br />
+			<span style='color:red'>我是span2标签</span>
+			<span style='color:red'>我是span3标签</span>
+			<span style='color:red'>我是span4标签</span>
+			<span style='color:red'>我是span5标签</span>
+			<br />
+			<strong>我是strong2</strong>
+			<strong>我是strong3</strong>
+			<strong>我是strong4</strong>
+			<strong>我是strong5</strong>
+		</div>
+		<div id='div2'>
+			<span style='color:red'>
+				我是span0标签<strong id='strong1'>我是strong0</strong>
+			</span>
+			<br />
+			<span style='color:red'>
+				我是span1标签<strong>我是strong1</strong>
+			</span>
+			<br />
+			<span style='color:red'>我是span2标签</span>
+			<span style='color:red'>我是span3标签</span>
+			<span style='color:red'>我是span4标签</span>
+			<span style='color:red'>我是span5标签</span>
+			<br />
+			<strong>我是strong2</strong>
+			<strong>我是strong3</strong>
+			<strong>我是strong4</strong>
+			<strong>我是strong5</strong>
+		</div>
+		<div id='div3' class='div1'>我是div1标签</div>
+		<div id='div4'>我是div2标签</div>
+		<button>按钮</button>
+		<div id='top'>返回顶部</div>
+	</body>
+
+</html>

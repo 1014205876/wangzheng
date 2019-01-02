@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">//声明数组，创建数组起作用是作为一个或多个（包括0个）数据的容器
+		//数组是一种复杂的数据类型，
+//			var a=['apple','banana','lemon'];//访问数组
+//			console.log(a);
+//			console.log(a[1]);
+//			console.log(a.length);
+//			a.pop();//得到删除掉的元素（最后一个）
+//			console.log(a);
+//			console.log(a.pop());//打印删除掉的那一个内容
+//			a.push('orang','waterman')//增加内容（加在后面）
+//			console.log(a);
+			var a=[1,2,3,4,5,6,7];
+			var c=[];
+			var b=a.shift();//得到删除掉的元素（第一个）
+			
+			console.log(a);
+			console.log(b);
+			console.log(c);
+//			var c=a.unshift('qqq','www');
+//			console.log(a);
+			
+//			var a=['go','to','for'];
+//			//a.splice(参数1下标，参数2长度)
+//			a.splice(1,1);//从第1（前面的1）个元素（第二个）开始删除1（后面的1）个
+//			console.log(a);
+			
+//			var a=['go','to','home','now'];
+//			//a.splice(0,3,'come','here');//先删除（从第0个起，删除3个），再添加（加在第0（前面的0）个后面）
+//			
+//			a.splice(-1,0,1,2,3);//在第-1（倒数第二个）个元素后面添加0个
+//			
+//			console.log(a);
+			
+			var a=[1,2,3,4,5,6,7,8,9]
+			//a.slice(开始位置,结束位置);
+			var b=a.slice(0,5);//从第0个开始，到第5个结束（第五个不算）
+			console.log(b);
+			var c=a.slice(1);
+			console.log(c);
+			console.log(a);
+			
+//			var a=['a','b','s','d',1,2,3,4,5,6];
+//			var b=a.join();//将数组中的所有元素转化成字符串
+//			console.log(a);
+//			console.log(b);
+			
+//			var a=['a','s','d'];
+//			console.log(a.reverse());//将数组中的元素倒置
+			
+//			var a=['a','s','d','f','g','h','j'];
+//			var d=[];
+//			for(var b=1;b<7;b++)
+//			{
+//				var c=a.pop();
+//				d.push(c);
+//			}
+//			console.log(a);
+//			a.push(d.reverse());
+//			console.log(a);
+			
+//			var a=['a','b','c','d'];//abefd
+//			a.splice(2,1,'e','f');
+//			console.log(a);
+			
+//			for(var a=0;a<10;a++)
+//			{
+//				for(var b=0;b<10;b++)
+//				{
+//					document.write(b+a);
+//				}
+//				document.write('</br>');
+//			}
+			
+			var q=[];
+			for(var a=1;a<10;a++)
+			{
+				for(var b=1;b<=a;b++)
+				{
+					var c=a*b;
+					a=a.toString();
+					document.write(b+'x'+a+'='+c+' ');
+					a=parseInt(a)
+				}
+				document.write('</br>');
+//				console.log('</br>');
+			}
+			
+			//pop():删除数组的最后一个元素并返回新的长度
+			//push(): 向数组的末尾添加一个/多个元素,并返回最新的长度
+			//shift(): 删除并返回数组的第一个元素
+			//unshift(): 向数组的开头添加一个或多个元素,并返回新长度
+			//splice(): 从数组中添加或删除元素
+			//slice(): 选取数组的一部分,返回一个新的数组
+			//join(): 将数组中的所有元素,转换成字符串
+			//reverse(): 将数组中的所有元素倒置
+			//a.lenth:数组的长度
+		</script>
+	</body>
+</html>

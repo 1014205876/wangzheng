@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ajax1-请求纯文本</title>
+	</head>
+	<body>
+		<button id="button">请求纯文本</button>
+		<br><br>
+
+		<div id="text"></div>
+		
+		<script>
+			document.getElementById('button').onclick=function(){loadText()};
+			
+			
+			function loadText(){
+				//console.log('hello world');
+				var xhr=new XMLHttpRequest();
+				if(window.XMLHttpRequest){
+					//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+					xhr=new XMLHttpRequest();
+				}
+				else{
+					// IE6, IE5 浏览器执行代码
+					xhr=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				console.log(xhr.readyState);  //0
+	
+				xhr.open('GET','sample.txt',true);
+				
+				console.log(xhr.readyState);  //1
+				
+			
+				//两种方式请求 onload/onreadystattechange
+
+				if(navigator.userAgent.indexOf('Trident')==-1)
+				{
+					xhr.onload=function(){
+						console.log(xhr.readyState); //4
+						//必须先判断readyState,否则ie9以下报错
+						if(this.readyState==4&&this.status==200){
+							document.getElementById('text').innerHTML=this.responseText;
+						}
+						else{
+							document.getElementById('text').innerHTML='error';
+						}
+						
+					}					
+				}
+				else{
+					xhr.onreadystatechange=function(){
+						
+						//必须先判断readyState,否则ie9以下报错
+						if(this.readyState==4&&this.status==200){
+							//console.log(this.responseText);
+							document.getElementById('text').innerHTML=this.responseText;
+						}
+						else{
+							document.getElementById('text').innerHTML='error';
+						}
+					}
+				}
+				
+
+				
+				//发送请求
+				xhr.send();
+				
+			}
+			
+			
+			/*GET 还是 POST？
+与 POST 相比，GET 更简单也更快，并且在大部分情况下都能用。
+然而，在以下情况中，请使用 POST 请求：
+1.无法使用缓存文件（更新服务器上的文件或数据库）
+2.向服务器发送大量数据（POST 没有数据量限制）
+3.发送包含未知字符的用户输入时，POST 比 GET 更稳定也更可靠
+*/
+
+/*				onload和onreadystattechange区别
+		IE(低版本)的 script 元素支持onreadystatechange事件，不支持onload事件。
+FF的script 元素不支持onreadystatechange事件，只支持onload事件。*/
+			
+			
+			
+		// HTTP 状态码
+		// 200 - 服务器成功返回网页
+		// 404 - 请求的网页不存在
+		// 503 - 服务器暂时不可用
+		
+		
+		// readyState 状态码
+		// 0: 请求未初始化
+		// 1: 服务器连接已建立
+		// 2: 请求已接收
+		// 3: 请求处理中
+		// 4: 请求已完成，且响应已就绪
+		
+		</script>
+		
+	</body>
+</html>

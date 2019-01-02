@@ -1,0 +1,353 @@
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.abs{
+	position: absolute;
+}
+.rel{
+	position: relative;
+}
+.active{
+	background: white;
+}
+/*----------------------------------header部分-------------------------------------*/
+.top_nav{
+	width: 100%;
+	height: 31px;
+	border-bottom: 1px solid #DDDDDD;
+	background-color: #F2F2F2;
+}
+.top_nav .content{
+	width: 1200px;
+	margin: 0 auto;
+	font-size: 12px;
+}
+.spirit{
+	background: url(../img/upload_8dhi7ll8egg1ee9i12a3fc1lg93b9_609x784.png) no-repeat;
+}
+.spirit-one{
+	width: 50px;
+	height: 10px;
+	background-position: -4px -538px;
+}
+.spirit-two{
+	width: 38px;
+	height: 14px;
+	background-position: -6px -429px;
+}
+.spirit-three{
+	width: 50px;
+	height: 19px;
+	background-position: -4px -574px;
+}
+.top_nav .content .home{
+	width: 50px;
+	height: 12px;
+	background-position: -5px -244px;
+	margin-top: 8px;
+}
+.top_nav .content a{
+	float: left;
+	color: #333333;
+	line-height: 12px;
+	padding: 0 20px;
+}
+.top_nav .content .top_tool{
+	float: right;
+	line-height: 30px;
+}
+.top_nav .content .top_tool li{
+	float: left;
+	border-right: 1px solid #666;
+	margin-top: 8px;
+	margin-left: 10px;
+}
+.top_nav .content .top_tool li:last-child{
+	border-right: none;
+}
+.middle_nav{
+	width: 1200px;
+	margin: 0 auto;
+}
+.middle_nav .search{
+	width: 482px;
+	height: 90px;
+	margin: 20px 0 0 85px;
+}
+.middle_nav .search #search_box{
+	outline: none;
+	width: 472px;
+	height: 26px;
+	padding: 5px;
+	border:  1px solid #FF5577;
+}
+.middle_nav .search .search_content{
+	cursor: pointer;
+	width: 60px;
+	text-align: center;
+	top: 3px;
+	left: 5px;
+}
+.middle_nav .search .search_content span{
+	display: block;
+	height: 34px;
+	line-height: 34px;
+	font-size: 13px;
+	color: #F07;
+	background: url(../img/下载1.png) no-repeat;
+	background-position: center right;
+}
+.middle_nav .search .search_content ol{
+	display: none;
+}
+.middle_nav .search .search_content:hover ol{
+	display: block;
+}
+.middle_nav .search .search_content .current{
+	display: list-item;
+	width: 60px;
+	background-color: #FFFFFF;
+}
+.middle_nav .search .search_button{
+	text-align: center;
+	line-height: 37px;
+	width: 100px;
+	height: 37px;
+	background-color: #FF0077;
+	color: white;
+	top: 0;
+	left: 383px;
+	cursor: pointer;
+}
+.middle_nav .search .search_content li a{
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 13px;
+	color: #FF0077;
+}
+.middle_nav .search ul li{
+	float: left;
+	font-size: 12px;
+	margin-top: 5px;
+	padding: 0 8px;
+}
+.middle_nav .search ul li a{
+	color: #333333;
+}
+.middle_nav .search ul li a:hover{
+	color: #ff4466;
+	text-decoration: underline;
+}
+.middle_nav .index{
+	width: 257px;
+	height: 40px;
+	line-height: 40px;
+	float: left;
+}
+.middle_nav .index a{
+	padding: 0 20px 0 40px;
+	font-size: 18px;
+	color: #333;
+	border-right: 1px solid #DDDDDD;
+}
+.middle_nav .index a:last-child{
+	border-right: none;
+}
+.middle_nav .index a:hover{
+	color: #ff4466;
+}
+.wrapper{
+	width: 1200px;
+	height: 450px;
+	border-top: 2px solid red;
+	margin: 0 auto;
+}
+ .wrapper .slider li{
+	width: 778px;
+	height: 440px;
+	position: absolute;
+	left: 257px;
+	z-index: 0;
+}
+.wrapper .pages{
+	z-index: 999;
+	width:140px;
+	top: 400px;
+	left: 550px;
+}
+.wrapper .pages li{
+	float: left;
+	background: url(../img/upload_6fd40a60b3g62dkcg3cc5ijhkf5fe_298x70.png) no-repeat;
+	width: 14px;
+	height: 14px;
+	background-position: -200px 0px;
+	padding: 5px;	
+}
+.wrapper .item{
+	width: 257px;
+	height: 440px;
+	z-index: 999;
+	top: 0;
+	left: 0;
+}
+.wrapper .item div{
+	padding: 5px 7px;
+}
+.wrapper .item div a{
+	color: #666;
+	font-size: 14px;
+	margin-left: 7px;
+}
+.wrapper .item div a:first-child{
+	font-size: 16px;
+	color: #000000;
+}
+.wrapper .item div a:hover{
+	text-decoration: underline;
+}
+.wrapper .itemRight{
+	left: 257px;
+	top: 0;
+	z-index: 999;
+}
+.wrapper .itemRight .itemRight_list{
+	width: 780px;
+	display: none;
+	height: 440px;
+}
+.wrapper .itemRight .itemRight_list .itemRight_list_info{
+	width: 515px;
+	height: 440px;
+	background-color: #FAFAFA;
+	float: left;
+}
+.wrapper .itemRight .itemRight_list .itemRight_list_pic{
+	width: 265px;
+	background-color: #F5F5F5;
+	float: left;
+	height: 440px;
+}
+.wrapper .itemRight .itemRight_list .itemRight_list_pic a{
+	display: inline-block;
+	margin: 2px 0 0 10px;
+}
+.wrapper .itemRight .itemRight_list .itemRight_list_pic a img{
+	width: 100px;
+	height: 80px;
+}
+.wrapper .itemRight .itemRight_list .itemRight_list_pic a p{
+	text-align: center;
+	font-size: 12px;
+	color: #333333;
+}
+.wrapper .itemRight .itemRight_list .itemRight_list_pic .item_word{
+	font-size: 18px;
+	color: #000000;
+	padding: 5px 95px;
+}
+.wrapper .itemRight .itemRight_list .itemRight_list_pic .item_word2{
+	font-size: 14px;
+	color: #333333;
+	margin: -15px 30px 5px;
+}
+.wrapper .itemRight div{
+	padding-bottom: 2px;
+	border-bottom: 1px solid #D4B1C4;
+}
+.wrapper .itemRight p{
+	padding-top: 10px;
+	padding-left: 15px;
+}
+.wrapper .itemRight p a{
+	margin-left: 10px;
+	font-size: 12px;
+	color: #666666;
+}
+.wrapper .itemRight p a img{
+	margin-top: -15px;
+	margin-left: 25px;
+}
+.wrapper .itemRight p:last-child{
+	margin-top: 10px;
+}
+.wrapper .itemRight p a:hover{
+	color: #ff4466;
+	text-decoration: underline;
+}
+.wrapper .user_info{
+	width: 166px;
+	height: 440px;
+	background-color: #FF3439;
+}
+.wrapper .user_info .base_info{
+	width: 166px;
+	height: 195px;
+	background-color: #FED6E3;
+	padding-top: 10px;
+	text-align: center;
+}
+.wrapper .user_info .base_info a{
+    display: block;
+    width: 72px;
+    height: 72px;
+    margin:  0 auto;
+    border-radius: 100%;
+    background: #ff94c6 url(../img/upload_7a9719cl61k83h5cbkc9fl1330i5c_60x64.png) no-repeat center center;
+    background-size: 30px 30px;
+}
+.wrapper .user_info .base_info span{
+	display: block;
+	margin: 10px 0;
+	text-align: center;
+	color: #8C9493;
+	font-size: 12px;
+}
+.wrapper .user_info .base_info div{
+	width: 72px;
+	height: 24px;
+	padding: 2px;
+	font-size: 12px;
+	color: #FFA1A5;
+	text-align: center;
+	border: 1px solid #FF5777;
+	margin: 0 auto;
+	line-height: 24px;
+}
+.wrapper .user_info .base_info .title{
+    font-size: 16px;
+    color: #333;
+    margin-top: 20px;
+    width: 100%;
+}
+.img_item{
+	width: 1200px;
+	margin: 0 auto;
+}
+.img_item div a img{
+	width: 190px;
+	height: 140px;
+	margin-right: 6px;
+	margin-top: 10px;
+}
+.img_item p a img{
+	width: 232px;
+	height: 161px;
+	margin-right: 2px;
+	margin-top: 20px;
+}
+/*-----------------------------------瀑布流------------------------------------*/
+#box{
+	width: 1225px;
+}
+#box ul{
+	float: left;
+}
+#box ul li{
+	width: 220px;
+	margin: 0 25px 25px 0;
+}

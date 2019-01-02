@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>开关</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #box{
+      overflow: hidden;/*超出隐藏  也可当作清楚浮动（只作用于父级）*/
+      transform: translateX(-600px);
+      transition: all 1.3s ease;
+    }
+    .one{
+      width: 600px;
+      height: 250px;
+      background-color: aqua;
+      float: left;/*浮动  */
+    }
+    p{
+      width:40px;
+      font-size: 36px;
+      text-align: center;/*文本居中*/
+      padding: 5px 0;
+      background-color: #ff4100;
+      color: #fff;
+      font-weight: bold;
+      float: left;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <div class="one"></div>
+    <p onclick="myClick();">点击查看</p>
+  </div>
+  <script>
+    var box = document.getElementById('box');
+    var flg = false;/*假*/
+    function myClick(){
+     if(flg){
+       box.style.transform = "translateX(-600px)";
+       flg = !flg;
+     }else{
+       box.style.transform = "translateX(0px)";
+       flg = !flg;
+     }
+    }
+  </script>
+</body>
+<html></html>

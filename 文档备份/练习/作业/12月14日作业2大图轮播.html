@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.vspace {
+				height: 10px;
+			}
+			
+			.wrapper {
+				width: 1000px;
+				margin: 0 auto;
+			}
+			
+			h2 {
+				padding: 10px;
+			}
+			
+			.ind01 {
+				width: 900px;
+				height: 100px;
+				background: #ccc;
+				margin: 0 auto;
+				padding: 10px 30px;
+			}
+			
+			.ind01 .ind01_lunbo {
+				width: 900px;
+				height: 100px;
+			}
+			
+			.ind01 .ind01_lunbo .ind01_left {
+				cursor: pointer;
+				width: 20px;
+				height: 100px;
+				background: #666;
+				float: left;
+				line-height: 100px;
+				text-align: center;
+			}
+			
+			.ind01 .ind01_lunbo .ind01_left:hover {
+				color: #fff;
+				background: #333;
+			}
+			
+			.ind01 .ind01_lunbo .ind01_right {
+				cursor: pointer;
+				width: 20px;
+				height: 100px;
+				background: #666;
+				float: right;
+				line-height: 100px;
+				text-align: center;
+			}
+			
+			.ind01 .ind01_lunbo .ind01_right:hover {
+				color: #fff;
+				background: #333;
+			}
+			
+			.ind01 .ind01_lunbo .ind01_center {
+				position: relative;
+				float: left;
+				height: 100px;
+				width: 800px;
+				overflow: hidden;
+				margin-left: 35px;
+			}
+			
+			.ind01 .ind01_lunbo ul {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 9999px;
+			}
+			
+			.ind01 .ind01_lunbo ul li {
+				list-style: none;
+				margin-right: 10px;
+				float: left;
+				background: #8c0b0b;
+				width: 150px;
+				height: 100px;
+				color: #FFF;
+				text-align: center;
+				line-height: 100px;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrapper">
+
+			<h2>左右切换</h2>
+			<div class="ind01">
+				<div class="ind01_lunbo">
+					<div class="ind01_left">左</div>
+					<div class="ind01_center">
+						<ul id="ind01_tp1">
+							<li><img src="img/a1.jpg"></li>
+							<li><img src="img/a2.jpg"></li>
+							<li><img src="img/a3.jpg"></li>
+							<li><img src="img/a4.jpg"></li>
+							<li><img src="img/a5.jpg"></li>
+							<li><img src="img/a6.jpg"></li>
+							<li><img src="img/a7.jpg"></li>
+							<li><img src="img/a8.jpg"></li>
+							<li><img src="img/a9.jpg"></li>
+							<li><img src="img/a10.jpg"></li>
+						</ul>
+					</div>
+					<div class="ind01_right">右</div>
+				</div>
+			</div>
+
+	</body>
+
+</html>

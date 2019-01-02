@@ -1,0 +1,157 @@
+<app-card class="authHide" [appResource]="{authName:'get/institutions/dataGrid'}">
+  <div class="col-sm-12 select-box">
+    <div class="row m-b-10">
+      <div class="col-6 col-md-3 input-box">
+        <span>机构名称：</span>
+        <input type="text" maxlength="20" placeholder="请输入机构名称" [(ngModel)]="searchItems.name">
+      </div>
+      <div class="col-6 col-md-3 input-box">
+        <span>机构编码：</span>
+        <input type="text" maxlength="20" placeholder="请输入机构编码" [(ngModel)]="searchItems.code">
+      </div>
+      <div class="col-6 col-md-3 input-box">
+        <span>机构类型：</span>
+        <select name="select" [(ngModel)]="searchItems.typeValue">
+          <option value="">全部</option>
+          <option value="SocialOrganization">社会组织</option>
+          <option value="StateAgency">国家机关</option>
+          <option value="BusinessEnterprise">工商企业</option>
+          <option value="PublicInstitution">事业单位</option>
+        </select>
+      </div>
+      <div class="col-6 col-md-3 input-box float-right search-btn">
+        <span>&nbsp;</span>
+        <button class="btn btn-primary ripple light" (click)="search(1,'search')">
+          <i class="icofont icofont-search-alt-2"></i>查询</button>
+        <button class="btn btn-primary btn-outline-primary ripple light" (click)="reset()">
+          <i class="icofont icofont-close"></i>重置</button>
+      </div>
+    </div>
+  </div>
+</app-card>
+<app-card [title]="'机构列表'">
+  <div class="header-right authHide" [appResource]="{authName:'post/institutions'}">
+    <button class="btn btn-primary ripple light" (click)="modalDefault.show();changeTitle('创建机构','add');add()">
+      <i class="icofont icofont-ui-add"></i>创建机构</button>
+  </div>
+  <ngx-datatable class="data-table dt-chk" [rows]="rows" [columnMode]="'force'" [scrollbarH]="true" [headerHeight]="50" [rowHeight]="'auto'"
+    [limit]="10">
+    <ngx-datatable-column [sortable]="false" name="机构名称" prop="name"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="机构简称" prop="shortName"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="机构编码" prop="code"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="机构类型" prop="typeName"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="机构负责人" prop="principal"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="联系电话" prop="mobile"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="状态" prop="status">
+      <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+        <div class="switch authHide" [appResource]="{authName:'patch/institutions'}">
+          <ui-switch class="js-single" color="#ecedf2" switchColor="#716aca" switchOffColor="#e0e2e9" size="medium" (click)="switchange(row)" [checked]="value===1"></ui-switch>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="更新时间" prop="updateDate" [width]="200"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="操作" prop="">
+      <ng-template ngx-datatable-cell-template let-row="row">
+        <button class="btn authHide" [appResource]="{authName:'put/institutions'}" (click)="modalDefault.show();changeTitle('编辑机构', 'edit');modify(row)"><i class="icon iconfont icon-edit"></i>编辑</button>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+  <app-page-nav (getCurrentPage)="changePage($event)" [totalPage]='totalPage' [pageNum]='pageNum' [total]='total'></app-page-nav>
+</app-card>
+<app-modal-basic [hideFooter]="'false'" #modalDefault>
+  <div class="app-modal-header">
+    <h4 class="modal-title">{{modal.title}}</h4>
+    <button type="button" class="close basic-close" (click)="modalDefault.hide();addForm.reset()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="app-modal-body">
+    <form [formGroup]="addForm" accept-charset='UTF-8' (ngSubmit)="onSubmit()">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">机构名称</label>
+        <div class="col-sm-9">
+          <input type="text" [(ngModel)]="modalItems.name" class="form-control" id="name" required placeholder="请输入机构名称" formControlName="name"
+            maxlength="50">
+          <div class="messages text-danger" *ngIf="(!addForm.controls.name.valid)&&(addForm.controls.name.dirty || addForm.controls.name.touched)">机构名称不能为空</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">机构简称</label>
+        <div class="col-sm-9">
+          <input type="text" [(ngModel)]="modalItems.shortName" class="form-control" id="shortName" placeholder="请输入机构简称"
+            formControlName="shortName" maxlength="20">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">机构编码</label>
+        <div class="col-sm-9">
+          <input type="text" *ngIf="modal.type == 'edit'" disabled [(ngModel)]="modalItems.code" class="form-control" id="code" required placeholder="请输入机构编码" formControlName="code"
+            maxlength="20">
+          <input type="text" *ngIf="modal.type != 'edit'"  [(ngModel)]="modalItems.code" class="form-control" id="code" required placeholder="请输入机构编码" formControlName="code"
+            maxlength="20">
+          <div class="messages text-danger" *ngIf="(!addForm.controls.code.valid)&&(addForm.controls.code.dirty || addForm.controls.code.touched)">机构编码不能为空</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">负责人</label>
+        <div class="col-sm-9">
+          <input type="text" [(ngModel)]="modalItems.principal" class="form-control" id="principal" placeholder="请输入负责人" formControlName="principal"
+            maxlength="20">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">联系电话</label>
+        <div class="col-sm-9">
+          <input type="text" [(ngModel)]="modalItems.mobile" class="form-control" id="mobile" placeholder="请输入联系电话" formControlName="mobile">
+          <div class="messages text-danger" *ngIf="addForm.controls.mobile.dirty || addForm.controls.mobile.touched">
+            <span *ngIf="addForm.controls.mobile.errors?.pattern">请输入正确的联系电话</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">状态</label>
+        <div class="col-sm-9">
+          <div class="form-radio">
+            <div class="radio radiofill radio-primary radio-inline">
+              <label>
+                <input type="radio" value="1" required formControlName="status" [(ngModel)]="cooperationStatus" [checked]="cooperationStatus === 1">
+                <i class="helper"></i>启用
+              </label>
+            </div>
+            <div class="radio radiofill radio-primary radio-inline">
+              <label>
+                <input type="radio" value="0" required formControlName="status" [(ngModel)]="cooperationStatus" [checked]="cooperationStatus === 0">
+                <i class="helper"></i>禁用
+              </label>
+            </div>
+          </div>
+          <div class="messages text-danger" *ngIf="(!addForm.controls.status.valid)&&(addForm.controls.status.dirty || addForm.controls.status.touched)">应用状态不能为空</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">机构类型</label>
+        <div class="col-sm-9">
+          <select name="select" required class="form-control" formControlName="typeValue" [(ngModel)]="modalItems.typeValue">
+            <option value="">请选择机构类型</option>
+            <option value="SocialOrganization">社会组织</option>
+            <option value="StateAgency">国家机关</option>
+            <option value="BusinessEnterprise">工商企业</option>
+            <option value="PublicInstitution">事业单位</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">备注信息</label>
+        <div class="col-sm-9">
+          <textarea cols="30" rows="5" class="form-control" [(ngModel)]="modalItems.remark" id="remark" placeholder="请输入备注信息" maxlength="200"
+            formControlName="remark"></textarea>
+        </div>
+      </div>
+      <div class="form-group form-group-btn row">
+        <button type="button" class="btn btn-primary btn-outline-primary ripple light" (click)="modalDefault.hide();addForm.reset()">取消</button>
+        <button type="submit" class="btn btn-primary ripple light" (click)="modalDefault.hide()" [disabled]="!addForm.valid">确定</button>
+      </div>
+    </form>
+  </div>
+</app-modal-basic>
+<ng2-toasty [position]="toast.position"></ng2-toasty>
