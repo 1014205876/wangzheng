@@ -1,3 +1,8 @@
-<p>
-  application works!
-</p>
+<app-menu [menu]="['规则模型','数据模型','查看字段']"></app-menu>
+<ul class='navright' nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'">
+    <!-- 巅峰导航 -->
+    <li nz-menu-item *ngFor='let tab of tabs'>
+        {{ tab.name }}
+        <!-- <a [href]='list.appAddress'>{{list.appName}}</a> -->
+    </li>
+</ul>
