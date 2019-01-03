@@ -1,1 +1,117 @@
-/* You can add global styles to this file, and also import other style files */
+@charset "utf-8";
+
+/*css reset start*/
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+p,
+blockquote,
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+ol,
+ul {
+    list-style: none;
+}
+fieldset,
+img {
+    border: 0;
+}
+html{
+	font-size: 100px;
+}
+body{
+	font-family: "Microsoft YaHei","微软雅黑",Helvetica,"黑体",'SimSun',Arial,Tahoma;
+	color: #000;
+	font-size:0.14rem;/*实际相当于14px*/
+}
+a,a:visited{
+	color: #000;
+	display: inline-block;
+	text-decoration: none;
+}
+a:hover{
+   text-decoration: none;
+}
+img{
+	vertical-align: middle;
+}
+button, select,input,textarea,option,optgroup{
+    font-family: inherit;
+    font-size: 100%;
+	outline: none;
+	/*把默认样式去掉*/
+	appearance:none;
+	-webkit-appearance:none;
+	-o-appearance:none;
+	-moz-appearance:none;
+	border-radius:0;
+	/*把默认样式去掉 end*/
+    margin: 0px;
+}
+
+.clearfix:after{
+  content: "020"; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden;  
+  }
+
+.clearfix {
+  /* 触发 hasLayout */ 
+  zoom: 1; 
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

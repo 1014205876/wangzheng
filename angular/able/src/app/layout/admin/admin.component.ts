@@ -274,6 +274,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.getOtherAPP()
     this.setBackgroundPattern('theme1');
     this.http.getCustomHeaders("v1/resource/user/info").subscribe(res => {
+      console.log(res)
       this.userName = res.result.name;
       this.account = res.result.account;
     })

@@ -17,6 +17,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { NavComponent } from './component/nav/nav.component';
 import { HeaderComponent } from './component/header/header.component';
 import { AdminComponent } from './component/admin/admin.component';
+import { ResourceDirective } from './component/directive/resource.directive';
 // 引入自定义ts文件
 import { HttpModule } from '@angular/http';
 import { HttpInterceptorModule } from 'ng-http-interceptor';
@@ -47,6 +48,7 @@ const routes: Routes = [
     NavComponent,
     HeaderComponent,
     AdminComponent,
+    ResourceDirective,
   ],
   imports: [
     BrowserModule,

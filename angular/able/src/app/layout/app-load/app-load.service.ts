@@ -17,6 +17,7 @@ export class AppLoadService {
     const promise = this.http.get("api/peak-resource/api/resource/user/permission")//线上8040
     // const promise = this.http.get("api/api/resource/user/permission")//吴哥8090
       .map(res => res.json()).toPromise().then(res => {
+        console.log(res)
         resource.ResourceItems = res.result.resource;
         resource.menu = res.result.menu;
         return res;
