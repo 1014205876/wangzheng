@@ -10,13 +10,12 @@
   </ul>
   <ul class="user">
     <li class="infor">
-      <nz-popover [nzTitle]="popoverTitle" [(nzVisible)]="password.popoverShow" [nzTrigger]="'click'" [nzPlacement]="'bottomRight'">
+      <nz-popover [(nzVisible)]="password.popoverShow" [nzTrigger]="'click'" [nzPlacement]="'bottomRight'">
         <div nz-popover>
           <i class="anticon anticon-user"></i>
           {{userInfor.name}}
           <i class="anticon anticon-down"></i>
         </div>
-        <!-- <ng-template #popoverTitle></ng-template> -->
         <ng-template #nzTemplate style='box-shadow: 0 0 20px 0 rgba(0,0,0,.3);border-radius: 5px;cursor:pointer'>
           <div style='cursor:pointer' (click)="password.popoverShow=false;password.modalShow=true;">
             <i class="anticon anticon-lock"></i>
