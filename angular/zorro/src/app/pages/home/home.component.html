@@ -1,1 +1,25 @@
-<p>home页面</p>
+<button (click)='consol([data,dataTable])'>打印</button>
+<nz-table #nzTable [nzData]="dataTable">
+    <thead>
+      <tr>
+        <th nzWidth="40%">Name</th>
+        <th nzWidth="30%">Age</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <ng-template ngFor let-data [ngForOf]="nzTable.data"> -->
+        <ng-template ngFor let-item [ngForOf]="nzTable.data">
+          <tr *ngIf="(item.parent&&item.parent.expand)||!(item.parent)">
+            <td [nzShowExpand]="!!item.children" [(nzExpand)]="item.expand" (nzExpandChange)="collapse(dataTable,item,$event)">
+              {{item.name}}
+            </td>
+            <td>
+                <input type="text" [(ngModel)]='item.item.age'>
+            </td>
+            <td>{{item.address}}</td>
+          </tr>
+        </ng-template>
+      <!-- </ng-template> -->
+    </tbody>
+  </nz-table>

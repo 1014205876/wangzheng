@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class TableComponent implements OnInit {
 
   constructor() { }
-  loading=false;
+  loading = false;
   data = [
     {
       key: 1,
@@ -38,151 +38,7 @@ export class TableComponent implements OnInit {
             address: 'New York No. 3 Lake Park'
           }]
         },
-        {
-          key: 13,
-          status: 1,
-          name: 'Jim Green sr.',
-          age: 72,
-          address: 'London No. 1 Lake Park',
-          children: [
-            {
-              key: 131,
-              status: 0,
-              name: 'Jim Green',
-              age: 42,
-              address: 'London No. 2 Lake Park',
-              children: [
-                {
-                  key: 1311,
-                  status: 1,
-                  name: 'Jim Green jr.',
-                  age: 25,
-                  address: 'London No. 3 Lake Park'
-                },
-                {
-                  key: 1312,
-                  status: 0,
-                  name: 'Jimmy Green sr.',
-                  age: 18,
-                  address: 'London No. 4 Lake Park'
-                }
-              ]
-            }
-          ]
-        }
       ]
-    },
-    {
-      key: 2,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      key: 3,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      key: 4,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      key: 5,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      key: 6,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      key: 7,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      key: 8,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      key: 9,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      key: 10,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      key: 11,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      key: 12,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      key: 13,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      key: 14,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      key: 15,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      key: 16,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
-    },
-    {
-      key: 17,
-      status: 1,
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park'
     }
   ];
   data1 = [
@@ -259,22 +115,22 @@ export class TableComponent implements OnInit {
   expandDataCache = {};
 
   update() {
-    this.data = this.data1
-    this.data.forEach(item => {
-      this.expandDataCache[item.key] = this.convertTreeToList(item);
-    });
-    this.openall();
+    // this.data = this.data1
+    // this.data.forEach(item => {
+    //   this.expandDataCache[item.key] = this.convertTreeToList(item);
+    // });
+    // this.openall();
   }
 
-  pagechange(num){
+  pagechange(num) {
     console.log(num)
   }
 
-  collapse(array: TreeNodeInterface[], data: TreeNodeInterface, $event: boolean): void {
+  collapse(array, data, $event: boolean): void {
     if ($event === false) {
-      if (data.children) {
-        data.children.forEach(d => {
-          const target = array.find(a => a.key === d.key);
+      if (data.item.children) {
+        data.item.children.forEach(d => {
+          const target = array.find(a => a.item.key === d.key);
           target.expand = false;
           target.loading = false;
           this.collapse(array, target, false);
@@ -285,13 +141,13 @@ export class TableComponent implements OnInit {
     }
   }
 
-  convertTreeToList(root: object): TreeNodeInterface[] {
+  convertTreeToList(root: object) {
     const stack = [];
     const array = [];
     const hashMap = {};
     stack.push(
       {
-        ...root,
+        item:root,
         level: 0,
         expand: false,
         loading: false,
@@ -301,11 +157,11 @@ export class TableComponent implements OnInit {
     while (stack.length !== 0) {
       const node = stack.pop();
       this.visitNode(node, hashMap, array);
-      if (node.children) {
-        for (let i = node.children.length - 1; i >= 0; i--) {
+      if (node.item.children) {
+        for (let i = node.item.children.length - 1; i >= 0; i--) {
           stack.push(
             {
-              ...node.children[i],
+              item:node.item.children[i],
               level: node.level + 1,
               expand: false,
               loading: false,
@@ -318,9 +174,9 @@ export class TableComponent implements OnInit {
     return array;
   }
 
-  visitNode(node: TreeNodeInterface, hashMap: object, array: TreeNodeInterface[]): void {
-    if (!hashMap[node.key]) {
-      hashMap[node.key] = true;
+  visitNode(node, hashMap: object, array): void {
+    if (!hashMap[node.item.key]) {
+      hashMap[node.item.key] = true;
       array.push(node);
     }
   }
@@ -343,16 +199,16 @@ export class TableComponent implements OnInit {
   }
   statuschange(list) {
     console.log(list)
-    list.loading=true;
+    list.loading = true;
     if (list.status == 1) {
       setTimeout(() => {
         list.status = 0;
-        list.loading=false;
+        list.loading = false;
       }, 1000);
     } else {
       setTimeout(() => {
         list.status = 1;
-        list.loading=false;
+        list.loading = false;
       }, 1000);
     }
   }
@@ -373,7 +229,11 @@ export class TableComponent implements OnInit {
       }
     })
   }
-
+  conso(arr) {
+    arr.forEach(item => {
+      console.log(item)
+    })
+  }
   ngOnInit() {
     let that = this;
     this.data.forEach(item => {
