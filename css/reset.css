@@ -16,8 +16,6 @@ body{
 	font-size:0.14rem;/*实际相当于14px*/
 }
 a,a:visited{
-	color: #000;
-	display: inline-block;
 	text-decoration: none;
 }
 a:hover{
@@ -25,7 +23,6 @@ a:hover{
 }
 img{
 	width: 100%;
-	display: block;
 	vertical-align: middle;
 }
 button, select,input,textarea,option,optgroup{
