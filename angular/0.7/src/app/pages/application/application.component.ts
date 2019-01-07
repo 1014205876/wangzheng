@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {  FormBuilder, FormGroup,  Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-application',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplicationComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder
+  ) { }
+  findForm: FormGroup;
   tabs = [//选项卡
     {
       name: 'Tab 1',
@@ -84,7 +88,7 @@ export class ApplicationComponent implements OnInit {
     },
   ];
   expandDataCache = {};//属性表格渲染数据
-  conso(arr) {
+  consol(arr) {
     arr.forEach(list => {
       console.log(list)
     })
@@ -278,6 +282,10 @@ export class ApplicationComponent implements OnInit {
     let that = this;
     this.data.forEach(item => {
       this.expandDataCache[item.key] = this.convertTreeToList(item);
+    });
+    
+    that.findForm = this.fb.group({
+      name: [ null, [ Validators.required ] ],
     });
   }
 
