@@ -1,0 +1,164 @@
+@charset "utf-8";
+/*清除浏览器默认样式*/
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+p,
+blockquote,
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+fieldset,
+img {
+    border: 0;
+}
+
+html {
+    font-size: 100px;
+}
+
+body {
+    font-family: "Microsoft YaHei", "微软雅黑", Helvetica, "黑体", 'SimSun', Arial, Tahoma;
+    color: #000;
+    font-size: 0.14rem;
+    /*实际相当于14px*/
+}
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+button,
+select,
+input,
+textarea,
+option,
+optgroup {
+    font-family: inherit;
+    font-size: 100%;
+    outline: none;
+    /*把默认样式去掉*/
+    appearance: none;
+    -webkit-appearance: none;
+    -o-appearance: none;
+    -moz-appearance: none;
+    border-radius: 0;
+    /*把默认样式去掉 end*/
+    margin: 0px;
+}
+
+/* 清除ng-zerro默认样式 */
+
+.ant-btn-primary {
+    background-color: #716aca;
+    border-color: #716aca;
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+    background-color: #9590d7;
+    border-color: #9590d7;
+}
+
+.ant-btn-default {
+    color: #212529;
+    background-color: transparent;
+    border-color: #ebedf2;
+}
+
+.ant-btn-default:hover,
+.ant-btn-default:focus {
+    color: #fff;
+    background-color: #716aca;
+    border-color: #716aca;
+}
+
+/* 定义部分全局class名调用 */
+
+.clearfix:after {
+    content: "020";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    /* 触发 hasLayout */
+    zoom: 1;
+}
+
+.padd20 {
+    padding: 20px;
+}
+
+.white_bg {
+    background-color: #fff;
+}
+
+.shadow {
+    box-shadow: 0 2px 10px -1px rgba(69,90,100,.3);
+    border-radius: 5px;
+}
+
+.ant-message {
+    top: auto;
+    bottom: 160px;
+}
+
+.mt0 {
+    margin-top: 0;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.mb0 {
+    margin-bottom: 0;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}

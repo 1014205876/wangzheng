@@ -29,9 +29,6 @@ import { HeaderComponent } from './component/header/header.component';
 import { AdminComponent } from './component/admin/admin.component';
 import { ResourceDirective } from './component/directive/resource.directive';
 import { TrComponent } from './component/tr/tr.component';
-import { HomeComponent } from './home/home.component';
-import { HomesComponent } from './homes/homes.component';
-import { HomessComponent } from './homess/homess.component';
 import { MenuComponent } from './component/menu/menu.component';
 
 // registerLocaleData(zh);
@@ -52,9 +49,6 @@ const routes: Routes = [
     NavComponent,
     HeaderComponent,
     AdminComponent,
-    HomeComponent,
-    HomesComponent,
-    HomessComponent,
     ResourceDirective,
     TrComponent,
     MenuComponent,
