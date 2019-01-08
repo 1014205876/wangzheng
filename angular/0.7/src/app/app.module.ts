@@ -2,21 +2,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // 引入ng-zorro
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
+// 引入自定义ts文件
+import { HttpModule } from '@angular/http';
+import { HttpInterceptorModule } from 'ng-http-interceptor';
+import { HttpServe } from './layout/service/http-serve.service';
 import { AppComponent } from './app.component';
 /** 注册语言包 */
 // import zh from '@angular/common/locales/zh';
 // import { registerLocaleData } from '@angular/common';
 
 // 引入外部插件
-// 引入自定义ts文件
-import { HttpModule } from '@angular/http';
-import { HttpInterceptorModule } from 'ng-http-interceptor';
-import { HttpServe } from './layout/service/http-serve.service';
 // 引入页面;
 import { IndexComponent } from './pages/index/index.component';
 import { TableComponent } from './pages/table/table.component';
@@ -34,9 +34,9 @@ import { MenuComponent } from './component/menu/menu.component';
 // registerLocaleData(zh);
 
 const routes: Routes = [
-  { path: '', redirectTo: '/index', pathMatch: 'full' },
-  { path: 'index', component: IndexComponent },
-  { path: 'application', component: ApplicationComponent },
+  { path: '', redirectTo: '/app/home', pathMatch: 'full' },
+  { path: 'app/home', component: IndexComponent },
+  { path: 'app/business/approve', component: ApplicationComponent },
 ];
 
 @NgModule({

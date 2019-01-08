@@ -9,12 +9,15 @@ import { HttpModule } from '@angular/http';
 import { HttpInterceptorModule } from 'ng-http-interceptor';
 import { HttpServe } from './layout/service/http-serve.service';
 
+
 import { AppComponent } from './app.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { HeaderComponent } from './components/header/header.component';
+// import { ComponentsModule } from './components/components.module';
+// import { AdminComponent } from './components/admin/admin.component';
+// import { HeaderComponent } from './components/header/header.component';
 import { IndexComponent } from './pages/index/index.component';
-import { NavComponent } from './components/nav/nav.component';
-import { MenuComponent } from './components/menu/menu.component';
+// import { NavComponent } from './components/nav/nav.component';
+// import { MenuComponent } from './components/menu/menu.component';
+// import { ResourceDirective } from './components/directive/resource.directive';
 
 
 const routes: Routes = [
@@ -25,11 +28,13 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent,
-    HeaderComponent,
+    // AdminComponent,
+    // HeaderComponent,
     IndexComponent,
-    NavComponent,
-    MenuComponent,
+    // NavComponent,
+    // MenuComponent,
+    // ResourceDirective,
+    // ComponentsModule
   ],
   imports: [
     BrowserModule,
