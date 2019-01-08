@@ -19,6 +19,11 @@ import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { NavComponent } from './nav/nav.component';
 
+const routes: Routes = [
+  // { path: '', redirectTo: '/index', pathMatch: 'full' },
+  // { path: 'index', component: IndexComponent },
+  // // { path: 'application', component: ApplicationComponent },
+];
 
 @NgModule({
   declarations: [
@@ -37,6 +42,7 @@ import { NavComponent } from './nav/nav.component';
     NgZorroAntdModule.forRoot(),
     HttpModule,
     HttpInterceptorModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [
     HttpServe
