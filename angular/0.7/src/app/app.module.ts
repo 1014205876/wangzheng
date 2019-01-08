@@ -1,9 +1,11 @@
 // 引入angular依赖
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// 引入ng-zorro
+import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 /** 注册语言包 */
@@ -11,8 +13,6 @@ import { AppComponent } from './app.component';
 // import { registerLocaleData } from '@angular/common';
 
 // 引入外部插件
-// 引入ng-zorro
-import { NgZorroAntdModule } from 'ng-zorro-antd';
 // 引入自定义ts文件
 import { HttpModule } from '@angular/http';
 import { HttpInterceptorModule } from 'ng-http-interceptor';
@@ -29,6 +29,9 @@ import { HeaderComponent } from './component/header/header.component';
 import { AdminComponent } from './component/admin/admin.component';
 import { ResourceDirective } from './component/directive/resource.directive';
 import { TrComponent } from './component/tr/tr.component';
+import { HomeComponent } from './home/home.component';
+import { HomesComponent } from './homes/homes.component';
+import { HomessComponent } from './homess/homess.component';
 import { MenuComponent } from './component/menu/menu.component';
 
 // registerLocaleData(zh);
@@ -49,17 +52,20 @@ const routes: Routes = [
     NavComponent,
     HeaderComponent,
     AdminComponent,
+    HomeComponent,
+    HomesComponent,
+    HomessComponent,
     ResourceDirective,
     TrComponent,
     MenuComponent,
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    RouterModule.forRoot(routes),
     FormsModule,
-    ReactiveFormsModule,
+    BrowserAnimationsModule,
     NgZorroAntdModule.forRoot(),
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule,
     HttpModule,
     HttpInterceptorModule,
   ],
