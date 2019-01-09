@@ -1,20 +1,15 @@
-// 引入angular依赖
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
-// 引入angular插件
 import { HttpInterceptorModule } from 'ng-http-interceptor';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
-// 引入自定义ts文件
 import { HttpModule } from '@angular/http';
 import { HttpServe } from './layout/service/http-serve.service';
 
-// 引入外部插件
-// 引入页面;
 import { AppComponent } from './app.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { HeaderComponent } from './components/header/header.component';
