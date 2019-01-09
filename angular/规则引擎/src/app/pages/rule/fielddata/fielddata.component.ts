@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpServe } from '../../../layout/service/http-serve.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-fielddata',
@@ -9,37 +11,52 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FielddataComponent implements OnInit {
 
   constructor(
-    private fb: FormBuilder
+    private http: HttpServe,
+    private fb: FormBuilder,
+    private message: NzMessageService
   ) { }
-  findForm: FormGroup;
-
-  tableData = [
+  findForm: FormGroup;//查询表单
+  page = {
+    pageNum: 1,//页码数
+    pageSize: 10,//每页条数
+    total: 500,
+  }
+  tableData = [//获取到的表格数据
     {
-      key    : '1',
-      name   : 'John Brown',
-      age    : 32,
-      address: 'New York No. 1 Lake Park',
-    }, {
-      key    : '2',
-      name   : 'Jim Green',
-      age    : 42,
-      address: 'London No. 1 Lake Park',
-    }, {
-      key    : '3',
-      name   : 'Joe Black',
-      age    : 32,
-      address: 'Sidney No. 1 Lake Park',
-    }
+      id: '11',
+      name: 'John Brown',
+    },
+    {
+      id: '12',
+      name: 'John Bjkjlkjlkjlkjlkjlkjlkjlkjlkjlhgjhhgfhgfhgfhrown',
+    },
+    {
+      id: '13',
+      name: 'John Brown',
+    },
+    {
+      id: '14',
+      name: 'John Brown',
+    },
   ];
 
+  getTable() {//获取表格数据
+    let that = this;
+    console.log(that.findForm.value)
+    console.log(that.page)
 
-  pagechange(num) {
-    console.log(num)
+    // that.message.create('success', `修改密码成功`, { nzDuration: 2000 });
+    // that.message.create('error', `修改密码失败，${res.reason}`, {});
+
+  }
+  result(e) {//查询框数据重置
+    e.preventDefault();//官网函数
+    this.findForm.get('name').setValue('')
   }
   ngOnInit() {
     let that = this;
     that.findForm = this.fb.group({
-      name: [null, [Validators.required]],
+      name: [''],
     });
   }
 

@@ -25,10 +25,10 @@ import { SeefieldComponent } from './pages/rule/fielddata/seefield/seefield.comp
 const routes: Routes = [
   { path: '', redirectTo: '/app/home', pathMatch: 'full' },
   { path: 'app/home', component: IndexComponent },
-  { path: 'app/business/approve', component: RulegroupComponent },
-  { path: 'see', component: RulegroupComponent },
-  { path: 'app/business/authorize', component: RulemanagementComponent },
-  { path: 'app/business/order', component: FielddataComponent },
+  { path: 'app/business/approve', component: FielddataComponent },
+  { path: 'see', component: SeefieldComponent },
+  { path: 'app/business/authorize', component: RulegroupComponent },
+  { path: 'app/business/order', component: RulemanagementComponent },
 ];
 @NgModule({
   declarations: [
