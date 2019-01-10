@@ -88,7 +88,19 @@ optgroup {
 .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
     background-color: #716aca;
 }
-
+/* tabs选项卡样式 */
+.ant-tabs-nav .ant-tabs-tab-active{
+    color:#716aca;
+    font-weight:400;
+}
+.ant-tabs-nav .ant-tabs-tab:hover{
+    color:#716aca;
+}
+.ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active{
+    color:#fff;
+    background-color: #716aca;
+    padding-bottom: 0px;
+}
 /* 按钮样式 */
 
 .ant-btn-primary {
@@ -142,6 +154,14 @@ optgroup {
 .ant-table-thead>tr>th,
 .ant-table-tbody>tr>td {
     text-align: center;
+}
+
+.ant-table-row-expand-icon{
+    margin-left:-21px;
+}
+
+.ant-table .ant-table-row-indent + .ant-table-row-expand-icon{
+    margin-right:0px;
 }
 
 /* 定义部分全局class名调用 */

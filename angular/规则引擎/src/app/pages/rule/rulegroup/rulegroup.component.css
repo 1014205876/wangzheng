@@ -1,0 +1,11 @@
+.selectTree{
+    position: absolute;
+    top: 100px;
+    left: 118px;
+    width: 275px;
+    border-radius: 2px;
+    z-index: 1;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    border-radius: 4px;
+}

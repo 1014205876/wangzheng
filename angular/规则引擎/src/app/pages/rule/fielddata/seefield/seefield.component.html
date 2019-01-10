@@ -1,9 +1,55 @@
 <app-menu [menu]="['规则模型','数据模型','查看字段']"></app-menu>
-<nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" (nzSelectChange)='vchange($event)'>
+<nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [(nzSelectedIndex)]='tabindex' (nzSelectChange)='tabsChange($event)'>
     <nz-tab *ngFor="let tab of tabs" [nzTitle]="tanTitle">
-        <ng-template #tanTitle>{{tab.name}}</ng-template>
+        <nz-card class="shadow" [nzTitle]="cardtitle" style='margin-top: -17px;'>
+            table
+            <!-- <nz-table #rowSelectionTable [nzData]="tableData" (nzCurrentPageDataChange)="currentPageDataChange($event)"
+                (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" [nzShowPagination]='false'>
+                <thead>
+                    <tr>
+                        <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate"
+                            (nzCheckedChange)="checkAll($event)"></th>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>默认值</th>
+                        <th>备注描述</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of rowSelectionTable.data">
+                        <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
+                        <td>{{data.fieldName}}</td>
+                        <td>{{data.fieldType}}</td>
+                        <td>0</td>
+                        <td>{{data.fieldRemark}}</td>
+                    </tr>
+                </tbody>
+            </nz-table> -->
+        </nz-card>
+        <ng-template #cardtitle>
+            <span>
+                {{tab.content}}
+            </span>
+        </ng-template>
+        <ng-template #tanTitle>
+            <span>
+                {{tab.name}}
+            </span>
+        </ng-template>
     </nz-tab>
 </nz-tabset>
-<nz-tree [(ngModel)]="nodes" [nzShowLine]="true" [nzDefaultExpandedKeys]="expandKeys" (nzExpandChange)="mouseAction('expand',$event)"
+<!-- <nz-card class="shadow" [nzTitle]="cardtitle">
+    table
+</nz-card>
+<ng-template #cardtitle>
+    <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [(nzSelectedIndex)]='tabindex' (nzSelectChange)='tabsChange($event)'>
+        <nz-tab *ngFor="let tab of tabs" [nzTitle]="tanTitle">
+            <ng-template #tanTitle>
+                {{tab.name}}
+            </ng-template>
+        </nz-tab>
+    </nz-tabset>
+</ng-template> -->
+<!-- <nz-tree [(ngModel)]="nodes" [nzShowLine]="true" [nzDefaultExpandedKeys]="expandKeys" (nzExpandChange)="mouseAction('expand',$event)"
     (nzDblClick)="mouseAction('dblclick',$event)" (nzContextMenu)="mouseAction('contextmenu', $event)" (nzClick)="mouseAction('click',$event)">
-</nz-tree>
+</nz-tree> -->
