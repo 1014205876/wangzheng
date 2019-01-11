@@ -91,11 +91,15 @@ export class HeaderComponent implements OnInit {
   choiceCancel(): void {//点击修改密码取消
     let that = this;
     that.password.modalShow = false;
-    that.passwordForm = that.fb.group({
-      oldPassword: [null, [Validators.required]],
-      newPassword: [null, [Validators.required, that.newPasswordOption]],
-      surePassword: [null, [Validators.required, that.surePasswordOption]],
-    });
+    
+    this.passwordForm.get('noldPasswordame').setValue('')
+    this.passwordForm.get('newPassword').setValue('')
+    this.passwordForm.get('surePassword').setValue('')
+    // that.passwordForm = that.fb.group({
+    //   oldPassword: [null, [Validators.required]],
+    //   newPassword: [null, [Validators.required, that.newPasswordOption]],
+    //   surePassword: [null, [Validators.required, that.surePasswordOption]],
+    // });
   }
   // 生命周期函数
   ngOnInit() {

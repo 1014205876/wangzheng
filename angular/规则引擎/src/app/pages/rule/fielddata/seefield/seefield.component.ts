@@ -60,12 +60,83 @@ export class SeefieldComponent implements OnInit {
           "fieldType": "String",
           "fieldRemark": "名称",
           "createTime": "2018-08-01 16:23:30"
-        }  
+        }
       ]
     }, 500);
   }
   expandKeys = ['1001', '10001'];
+  data = [
+    {
+      "id": "1",
+      "parentId": null,
+      "name": "分组1",
+      "status": 1,
+      "createTime": "2018-08-01 15:02:19",
+      "updateTime": "2018-08-01 15:02:19",
+      "remark": "分组一",
+      "children": [
+        {
+          "id": "2",
+          "parentId": "1",
+          "name": "分组1-分组1",
+          "status": 1,
+          "createTime": "2018-08-01 15:02:19",
+          "updateTime": "2018-08-01 15:02:19",
+          "remark": "分组1-分组1",
+          "children": null,
+        },
+      ]
+    },
+    {
+      "id": "1",
+      "parentId": null,
+      "name": "分组1",
+      "status": 1,
+      "createTime": "2018-08-01 15:02:19",
+      "updateTime": "2018-08-01 15:02:19",
+      "remark": "分组一",
+      "children": [
+        {
+          "id": "2",
+          "parentId": "1",
+          "name": "分组1-分组1",
+          "status": 1,
+          "createTime": "2018-08-01 15:02:19",
+          "updateTime": "2018-08-01 15:02:19",
+          "remark": "分组1-分组1",
+          "children": [
+            {
+              "id": "2",
+              "parentId": "1",
+              "name": "分组1-分组1",
+              "status": 1,
+              "createTime": "2018-08-01 15:02:19",
+              "updateTime": "2018-08-01 15:02:19",
+              "remark": "分组1-分组1",
+              "children": [
+                {
+                  "id": "2",
+                  "parentId": "1",
+                  "name": "分组1-分组1",
+                  "status": 1,
+                  "createTime": "2018-08-01 15:02:19",
+                  "updateTime": "2018-08-01 15:02:19",
+                  "remark": "分组1-分组1",
+                  "children": null,
+                },
+              ]
+            },
+          ]
+        },
+      ]
+    }
+  ]
+  newdata = [];
   nodes = [
+    new NzTreeNode({
+      title: '',
+      key: '',
+    }),
     new NzTreeNode({
       title: 'root1',
       key: '1001',
@@ -133,11 +204,43 @@ export class SeefieldComponent implements OnInit {
   mouseAction(name: string, e: any): void {
     console.log(name, e, e.node.title);
   }
-
+  changedata(that, data) {
+    data.forEach((item) => {
+      item.key = item.id;
+      item.title = item.name;
+      if (!!item.children) {
+        that.changedata(that, item.children)
+      }
+    })
+    // "id": "2",
+    // "parentId": "1",
+    // "name": "分组1-分组1",
+    // "status": 1,
+    // "createTime": "2018-08-01 15:02:19",
+    // "updateTime": "2018-08-01 15:02:19",
+    // "remark": "分组1-分组1",
+  }
   ngOnInit(): void {
     let that = this;
     setTimeout(() => {
       that.tabindex = 1
     }, 500);
+
+    that.data.forEach((item) => {
+      that.newdata.push({
+        ...item
+      })
+    })
+    console.log(that.newdata)
+    that.changedata(that, that.newdata)
+    console.log(that.newdata)
+    that.newdata.forEach((item) => {
+      that.nodes.push(
+        new NzTreeNode({
+          ...item
+        })
+      )
+    })
+    console.log(that.nodes)
   }
 }
