@@ -13,13 +13,16 @@ html{
 body{
 	font-family: "Microsoft YaHei","微软雅黑",Helvetica,"黑体",'SimSun',Arial,Tahoma;
 	color: #000;
-	font-size:14px;/*实际相当于14px*/
+	font-size:12px;/*实际相当于14px*/
 }
 a,a:visited{
 	text-decoration: none;
 }
 a:hover{
    text-decoration: none;
+}
+em{
+    font-style: normal;
 }
 img{
 	width: 100%;
