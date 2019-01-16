@@ -1,55 +1,46 @@
 <app-menu [menu]="['规则模型','数据模型','查看字段']"></app-menu>
 <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [(nzSelectedIndex)]='tabindex' (nzSelectChange)='tabsChange($event)'>
-    <nz-tab *ngFor="let tab of tabs" [nzTitle]="tanTitle">
-        <nz-card class="shadow" [nzTitle]="cardtitle" style='margin-top: -17px;'>
-            table
-            <!-- <nz-table #rowSelectionTable [nzData]="tableData" (nzCurrentPageDataChange)="currentPageDataChange($event)"
-                (nzPageIndexChange)="refreshStatus()" (nzPageSizeChange)="refreshStatus()" [nzShowPagination]='false'>
+    <nz-tab *ngFor="let tab of versions" [nzTitle]="tanTitle">
+        <nz-card class="shadow" [nzTitle]="cardtitle" [nzExtra]="cardExtra" style='margin-top: -17px;'>
+            <nz-table #nzTable [nzData]="tableData" [nzLoading]="loading" [nzShowPagination]="false">
                 <thead>
                     <tr>
-                        <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate"
-                            (nzCheckedChange)="checkAll($event)"></th>
-                        <th>字段名</th>
-                        <th>类型</th>
-                        <th>默认值</th>
-                        <th>备注描述</th>
+                        <th nzWidth='40%'>字段名</th>
+                        <th nzWidth='20%'>类型</th>
+                        <th nzWidth='40%'>备注描述</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let data of rowSelectionTable.data">
-                        <td nzShowCheckbox [(nzChecked)]="data.checked" [nzDisabled]="data.disabled" (nzCheckedChange)="refreshStatus()"></td>
-                        <td>{{data.fieldName}}</td>
-                        <td>{{data.fieldType}}</td>
-                        <td>0</td>
-                        <td>{{data.fieldRemark}}</td>
-                    </tr>
+                    <ng-template ngFor let-data [ngForOf]="nzTable.data">
+                        <ng-template ngFor let-item [ngForOf]="expandDataCache[data.id]">
+                            <tr *ngIf="(item.parent&&item.parent.expand)||!(item.parent)">
+                                <td [nzIndentSize]="item.level*20" [nzShowExpand]="!!item.item.children&&item.item.children.length>0" [(nzExpand)]="item.expand"
+                                    (nzExpandChange)="collapse(expandDataCache[data.id],item,$event)" style='text-align:left'>
+                                    {{item.item.fieldName}}
+                                </td>
+                                <td>{{item.item.showType}}</td>
+                                <td>{{item.item.fieldRemark}}</td>
+                            </tr>
+                        </ng-template>
+                    </ng-template>
                 </tbody>
-            </nz-table> -->
+            </nz-table>
         </nz-card>
         <ng-template #cardtitle>
             <span>
-                {{tab.content}}
+                返回字段
+            </span>
+        </ng-template>
+        <ng-template #cardExtra>
+            <span>
+                <button nz-button nzType="primary" (click)='openall()'>展开全部</button>
+                <button nz-button nzType="primary" (click)='closeall()'>收起全部</button>
             </span>
         </ng-template>
         <ng-template #tanTitle>
             <span>
-                {{tab.name}}
+                {{tab}}
             </span>
         </ng-template>
     </nz-tab>
 </nz-tabset>
-<!-- <nz-card class="shadow" [nzTitle]="cardtitle">
-    table
-</nz-card>
-<ng-template #cardtitle>
-    <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [(nzSelectedIndex)]='tabindex' (nzSelectChange)='tabsChange($event)'>
-        <nz-tab *ngFor="let tab of tabs" [nzTitle]="tanTitle">
-            <ng-template #tanTitle>
-                {{tab.name}}
-            </ng-template>
-        </nz-tab>
-    </nz-tabset>
-</ng-template> -->
-<nz-tree [(ngModel)]="nodes" [nzShowLine]="true" [nzDefaultExpandedKeys]="expandKeys" (nzExpandChange)="mouseAction('expand',$event)"
-    (nzDblClick)="mouseAction('dblclick',$event)" (nzContextMenu)="mouseAction('contextmenu', $event)" (nzClick)="mouseAction('click',$event)">
-</nz-tree>

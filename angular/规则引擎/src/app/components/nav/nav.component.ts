@@ -13,19 +13,19 @@ import { HttpServe } from '../../layout/service/http-serve.service';
 export class NavComponent implements OnInit {
   nav: any = {
     menu: [
-      {
-        icon: "icon iconfont icon-itemManage",
-        name: "项目管理",
-        state: "project",
-        type: "link",
-        url: "/index",
-      }, {
-        icon: "icon iconfont icon-renwu",
-        name: "巡检任务",
-        state: "task",
-        type: "link",
-        url: "/app/task",
-      }
+      // {
+      //   icon: "icon iconfont icon-itemManage",
+      //   name: "项目管理",
+      //   state: "project",
+      //   type: "link",
+      //   url: "/index",
+      // }, {
+      //   icon: "icon iconfont icon-renwu",
+      //   name: "巡检任务",
+      //   state: "task",
+      //   type: "link",
+      //   url: "/app/task",
+      // }
     ]
   };
   nowindex: number;

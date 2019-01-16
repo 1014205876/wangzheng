@@ -16,38 +16,28 @@ export class FielddataComponent implements OnInit {
     private message: NzMessageService
   ) { }
   findForm: FormGroup;//查询表单
-  page = {
+  find = {
     pageNum: 1,//页码数
     pageSize: 10,//每页条数
-    total: 500,
+    total: 10,
   }
-  tableData = [//获取到的表格数据
-    {
-      id: '11',
-      name: 'John Brown',
-    },
-    {
-      id: '12',
-      name: 'John Bjkjlkjlkjlkjlkjlkjlkjlkjlkjlhgjhhgfhgfhgfhrown',
-    },
-    {
-      id: '13',
-      name: 'John Brown',
-    },
-    {
-      id: '14',
-      name: 'John Brown',
-    },
-  ];
+  loading=false;
+  tableData = [
+  ];//获取到的表格数据
 
   getTable() {//获取表格数据
-    let that = this;
-    console.log(that.findForm.value)
-    console.log(that.page)
-
-    // that.message.create('success', `修改密码成功`, { nzDuration: 2000 });
-    // that.message.create('error', `修改密码失败，${res.reason}`, {});
-
+    let that=this;
+    that.loading=true
+    let pageNum=that.find.pageNum
+    let pageSize=that.find.pageSize
+    let name=that.findForm.value.name
+    that.http.getCustomHeaders(
+      `peak-decision/v1/decision/models?&name=${name}`
+    ).subscribe(res => {
+      console.log(res);
+      that.tableData=res.result
+      that.loading=false
+    })
   }
   result(e) {//查询框数据重置
     e.preventDefault();//官网函数
@@ -58,6 +48,7 @@ export class FielddataComponent implements OnInit {
     that.findForm = this.fb.group({
       name: [''],
     });
+    that.getTable()
   }
 
 }

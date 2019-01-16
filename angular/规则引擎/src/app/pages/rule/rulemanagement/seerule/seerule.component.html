@@ -1,0 +1,56 @@
+<app-menu [menu]="['规则模型','规则管理','查看规则']"></app-menu>
+<nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [(nzSelectedIndex)]='tabindex' (nzSelectChange)='tabsChange($event)'>
+  <nz-tab *ngFor="let tab of tabs" [nzTitle]="tabTitle">
+    <nz-card class="shadow mb20" [nzTitle]="'基本信息'" style='margin-top: -17px;'>
+      <nz-table #tableData [nzData]='[1]' [nzLoading]="loading" [nzShowPagination]='false' [nzBordered]='true'>
+        <tbody>
+          <tr>
+            <td style='width:25%'>规则名称</td>
+            <td style='width:25%'>{{data.name}}</td>
+            <td style='width:25%'>规则分组</td>
+            <td style='width:25%'>{{data.groupName}}</td>
+          </tr>
+          <tr>
+            <td>规则描述</td>
+            <td colspan="3">{{data.remark}}</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+    <nz-card class="shadow mb20" [nzTitle]="'规则信息'">
+      <nz-table #tableData [nzData]='[1]' [nzLoading]="loading" [nzShowPagination]='false' [nzBordered]='true'>
+        <tbody>
+          <tr>
+            <td style='width:25%'>规则id</td>
+            <td style='width:75%'>{{data.id}}</td>
+          </tr>
+          <tr>
+            <td>版本号</td>
+            <td>{{data.showVersion}}</td>
+          </tr>
+          <tr>
+            <td>规则内容</td>
+            <td>
+              {{data.rule}}
+            </td>
+          </tr>
+          <tr>
+            <td>数据模型</td>
+            <td>
+              <span *ngFor='let list of data.models;let index=index' style='cursor:pointer;padding:2px' [routerLink]="['/rule/fielddata/seefield']"
+                [queryParams]="{name: list.name,index:index}">
+                <i class="anticon anticon-file-text"></i>
+                {{list.name}}数据模型
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+    <ng-template #tabTitle>
+      <span>
+        {{tab}}
+      </span>
+    </ng-template>
+  </nz-tab>
+</nz-tabset>

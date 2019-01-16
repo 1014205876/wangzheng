@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NzFormatEmitEvent, NzTreeNode } from 'ng-zorro-antd';
+import { HttpServe } from '../../../../layout/service/http-serve.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { NzMessageService, NzFormatEmitEvent, NzTreeNode, UploadFile } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-seefield',
@@ -8,239 +10,144 @@ import { NzFormatEmitEvent, NzTreeNode } from 'ng-zorro-antd';
 })
 export class SeefieldComponent implements OnInit {
 
-  constructor() { }
-  tabindex: number = 0;
-  tabs = [//选项卡
-    {
-      name: 'Tab 1',
-      content: 'Content of Tab Pane 1'
-    },
-    {
-      name: 'Tab 2',
-      content: 'Content of Tab Pane 2'
-    },
-    {
-      name: 'Tab 3',
-      content: 'Content of Tab Pane 3'
+  constructor(
+    private http: HttpServe,
+    public route: ActivatedRoute,
+    private message: NzMessageService
+  ) {
+    this.name = this.route.snapshot.queryParams["name"];
+    let index = this.route.snapshot.queryParams["index"];
+    if (index) {
+      this.tabindex = index;
+    } else {
+      this.tabindex = 0;
     }
-  ];
-  tableData = [
-    {
-      "id": "6a968e8e-0af3-4703-a2f0-e092c9642c02",
-      "name": "工商模型",
-      "version": "v1",
-      "className": "etp",
-      "fieldName": "name",
-      "fieldType": "String",
-      "fieldRemark": "名称",
-      "createTime": "2018-08-01 16:23:30"
-    }
-  ]
-  tabsChange(e) {
-    let that = this;
-    console.log(e);
-    setTimeout(() => {
-      that.tableData = [
-        {
-          "id": "6a968e8e-0af3-4703-a2f0-e092c9642c02",
-          "name": "工商模型",
-          "version": "v1",
-          "className": "etp",
-          "fieldName": "age",
-          "fieldType": "Integer",
-          "fieldRemark": "年龄",
-          "createTime": "2018-08-01 16:23:30"
-        },
-        {
-          "id": "6a968e8e-0af3-4703-a2f0-e092c9642c02",
-          "name": "工商模型",
-          "version": "v1",
-          "className": "etp",
-          "fieldName": "name",
-          "fieldType": "String",
-          "fieldRemark": "名称",
-          "createTime": "2018-08-01 16:23:30"
-        }
-      ]
-    }, 500);
+    this.getVersion();//防止请求时间过长报错把事件提前
   }
-  expandKeys = ['1001', '10001'];
-  data = [
-    {
-      "id": "1",
-      "parentId": null,
-      "name": "分组1",
-      "status": 1,
-      "createTime": "2018-08-01 15:02:19",
-      "updateTime": "2018-08-01 15:02:19",
-      "remark": "分组一",
-      "children": [
-        {
-          "id": "2",
-          "parentId": "1",
-          "name": "分组1-分组1",
-          "status": 1,
-          "createTime": "2018-08-01 15:02:19",
-          "updateTime": "2018-08-01 15:02:19",
-          "remark": "分组1-分组1",
-          "children": null,
-        },
-      ]
-    },
-    {
-      "id": "1",
-      "parentId": null,
-      "name": "分组1",
-      "status": 1,
-      "createTime": "2018-08-01 15:02:19",
-      "updateTime": "2018-08-01 15:02:19",
-      "remark": "分组一",
-      "children": [
-        {
-          "id": "2",
-          "parentId": "1",
-          "name": "分组1-分组1",
-          "status": 1,
-          "createTime": "2018-08-01 15:02:19",
-          "updateTime": "2018-08-01 15:02:19",
-          "remark": "分组1-分组1",
-          "children": [
-            {
-              "id": "2",
-              "parentId": "1",
-              "name": "分组1-分组1",
-              "status": 1,
-              "createTime": "2018-08-01 15:02:19",
-              "updateTime": "2018-08-01 15:02:19",
-              "remark": "分组1-分组1",
-              "children": [
-                {
-                  "id": "2",
-                  "parentId": "1",
-                  "name": "分组1-分组1",
-                  "status": 1,
-                  "createTime": "2018-08-01 15:02:19",
-                  "updateTime": "2018-08-01 15:02:19",
-                  "remark": "分组1-分组1",
-                  "children": null,
-                },
-              ]
-            },
-          ]
-        },
-      ]
-    }
-  ]
-  newdata = [];
-  nodes = [
-    new NzTreeNode({
-      title: '',
-      key: '',
-    }),
-    new NzTreeNode({
-      title: 'root1',
-      key: '1001',
-      children: [
-        {
-          title: 'child1',
-          key: '10001',
-          children: [
-            {
-              title: 'child1.1',
-              key: '100011',
-              children: []
-            },
-            {
-              title: 'child1.2',
-              key: '100012',
-              children: [
-                {
-                  title: 'grandchild1.2.1',
-                  key: '1000121',
-                  isLeaf: true,
-                  disabled: true
-                },
-                {
-                  title: 'grandchild1.2.2',
-                  key: '1000122',
-                  isLeaf: true
-                }
-              ]
-            }
-          ]
-        },
-        {
-          title: 'child2',
-          key: '10002',
-          children: []
-        }
-      ]
-    }),
-    new NzTreeNode({
-      title: 'root2',
-      key: '1002',
-      children: [
-        {
-          title: 'child2.1',
-          key: '10021',
-          children: [],
-          disableCheckbox: true
-        },
-        {
-          title: 'child2.2',
-          key: '10022',
-          children: [
-            {
-              title: 'grandchild2.2.1',
-              key: '100221',
-              isLeaf: true
-            }
-          ]
-        }
-      ]
-    })
-  ];
 
-  mouseAction(name: string, e: any): void {
-    console.log(name, e, e.node.title);
+  name = ''//页面传过来的规则名称
+  tabindex: number = 0;
+  versions = [];//所有版本号选项卡
+  loading = false;
+  tableData = [//从后台获取到的原始数据
+  ];
+  expandDataCache = {};//前端根据data生成的用于树形表格的对象
+  consol(arr) {//打印函数
+    arr.forEach(item => {
+      console.log(item)
+    })
   }
-  changedata(that, data) {
-    data.forEach((item) => {
-      item.key = item.id;
-      item.title = item.name;
-      if (!!item.children) {
-        that.changedata(that, item.children)
+  getVersion() {
+    let that = this;
+    that.http.getCustomHeaders(
+      `peak-decision/v1/decision/versions/models/${that.name}`
+    ).subscribe(res => {
+      console.log(res);
+      that.versions = res.result
+      that.getTable()
+    })
+  }
+  getTable() {
+    let that = this;
+    that.loading = true
+    let name = that.name;
+    let version = that.versions[that.tabindex];
+    that.http.getCustomHeaders(
+      `peak-decision/v1/decision/models/${name}?version=${version}`
+    ).subscribe(res => {
+      console.log(res);
+      that.tableData = res.result;
+      that.getexpand(that, that.tableData, that.expandDataCache)//生成树形表格
+      that.loading = false
+    })
+  }
+  openall() {//展开全部树形表格
+    let that = this;
+    that.fordata(that, that.tableData, true)
+    that.forexpand(that, true)
+  }
+  closeall() {//收起全部树形表格
+    let that = this;
+    that.fordata(that, that.tableData, false)
+    that.forexpand(that, false)
+  }
+  fordata(that, list, status) {//修改data里所有的展开收起状态
+    for (let i = 0; i < list.length; i++) {
+      list[i].expand = status
+      if (!!list[i].children) {
+        that.fordata(that, list[i].children, status)
+      }
+    }
+  }
+  forexpand(that, status) {//修改expand里所有的展开收起状态
+    that.tableData.forEach(item => {
+      for (let i = 0; i < that.expandDataCache[item.id].length; i++) {
+        that.expandDataCache[item.id][i].expand = status
       }
     })
-    // "id": "2",
-    // "parentId": "1",
-    // "name": "分组1-分组1",
-    // "status": 1,
-    // "createTime": "2018-08-01 15:02:19",
-    // "updateTime": "2018-08-01 15:02:19",
-    // "remark": "分组1-分组1",
+  }
+  getexpand(that, data, expandDataCache) {//修改了data里面的数据时需重新生成一个expandData用于渲染页面
+    data.forEach(item => {
+      expandDataCache[item.id] = that.convertTreeToList(item);
+    });
+  }
+  tabsChange(e) {//选项卡切换触发
+    this.tabindex = e.index
+    this.getTable()
+  }
+  collapse(array, data, $event: boolean) {//树形表格展开收起切换时触发
+    if ($event === false) {
+      if (data.item.children) {
+        data.item.children.forEach(d => {
+          const target = array.find(a => a.item.id === d.id);
+          target.expand = false;
+          target.loading = false;
+          this.collapse(array, target, false);
+        });
+      } else {
+        return;
+      }
+    }
+  }
+  convertTreeToList(root: object) {//生成expandDataCache用于渲染树形表格
+    const stack = [];
+    const array = [];
+    const hashMap = {};
+    stack.push(
+      {
+        item: root,
+        level: 1,
+        expand: false,
+        loading: false,
+      }
+    );
+
+    while (stack.length !== 0) {
+      const node = stack.pop();
+      this.visitNode(node, hashMap, array);
+      if (node.item.children) {
+        for (let i = node.item.children.length - 1; i >= 0; i--) {
+          stack.push(
+            {
+              item: node.item.children[i],
+              level: node.level + 1,
+              expand: false,
+              loading: false,
+              parent: node
+            }
+          );
+        }
+      }
+    }
+    return array;
+  }
+  visitNode(node, hashMap: object, array): void {//去除重复的对象
+    if (!hashMap[node.item.id]) {
+      hashMap[node.item.id] = true;
+      array.push(node);
+    }
   }
   ngOnInit(): void {
     let that = this;
-    setTimeout(() => {
-      that.tabindex = 1
-    }, 500);
-
-    that.data.forEach((item) => {
-      that.newdata.push({
-        ...item
-      })
-    })
-    console.log(that.newdata)
-    that.changedata(that, that.newdata)
-    console.log(that.newdata)
-    that.newdata.forEach((item) => {
-      that.nodes.push(
-        new NzTreeNode({
-          ...item
-        })
-      )
-    })
-    console.log(that.nodes)
   }
 }

@@ -1,19 +1,19 @@
 <app-menu [menu]="['规则模型','数据模型']"></app-menu>
-<div class="shadow mb20 white_bg pt20 pl20 pr20 authHide" [appResource]="{authName:'get/order/query'}">
-    <!-- <div class="shadow mb20 white_bg pt20 pl20 pr20"> -->
+<!-- <div class="shadow mb20 white_bg pt20 pl20 pr20 authHide" [appResource]="{authName:'get/order/query'}"> -->
+<div class="shadow mb20 white_bg pt20 pl20 pr20">
     <form nz-form [formGroup]="findForm" class='clearfix'>
         <div nz-row [nzGutter]="30">
-            <div nz-col [nzSpan]="8" style='min-width:210px;'>
+            <div nz-col [nzSpan]="6" style='min-width:210px;'>
                 <nz-form-item nz-row>
                     <nz-form-label nz-col [nzSpan]="24" nzFor="name">模型名称:</nz-form-label>
                     <nz-form-control nz-col [nzSpan]="24">
-                        <nz-input-group [nzPrefix]="prefixUser">
+                        <nz-input-group>
                             <input formControlName="name" nz-input placeholder="模型名称" maxlength="20">
                         </nz-input-group>
                     </nz-form-control>
                 </nz-form-item>
             </div>
-            <div nz-col [nzSpan]="8" style='min-width:210px;'>
+            <div nz-col [nzSpan]="6" style='min-width:210px;'>
                 <nz-form-item nz-row style='margin-top:25px'>
                     <nz-form-control>
                         <button nz-button nzType="primary" (click)='getTable()'>
@@ -30,7 +30,7 @@
 </div>
 
 <nz-card class="shadow mb20" [nzTitle]="cardtitle">
-    <nz-table #nzTable [nzData]="tableData" [nzShowPagination]='false'>
+    <nz-table #nzTable [nzData]="tableData" [nzLoading]="loading" [nzShowPagination]='false'>
         <thead>
             <tr>
                 <th nzWidth='50%'>模型名称</th>
@@ -39,12 +39,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let data of nzTable.data">
+                <td>{{data}}</td>
                 <td>
-                    <div class="ellipsis1">{{data.name}}</div>
-                </td>
-                <td>
-                    <span style='cursor:pointer;padding:2px' [routerLink]="['/see']" [queryParams]="{id: data.id}"
-                        class="authHide" [appResource]="{authName:'get/order/id/detail'}">
+                    <!-- <span style='cursor:pointer;padding:2px' [routerLink]="['/seefield']" [queryParams]="{id: data.id}"
+                            class="authHide" [appResource]="{authName:'get/order/id/detail'}"> -->
+                    <span style='cursor:pointer;padding:2px' [routerLink]="['/rule/fielddata/seefield']" [queryParams]="{name: data}">
                         <i class="anticon anticon-file-text"></i>
                         查看字段
                     </span>
@@ -57,5 +56,5 @@
     <span>模型列表</span>
 </ng-template>
 
-<nz-pagination [nzTotal]="page.total" [(nzPageIndex)]="page.pageNum" [(nzPageSize)]="page.pageSize" [nzShowSizeChanger]='true'
-    [nzPageSizeOptions]='[5,10,15,20]' [nzShowQuickJumper]='true' (nzPageIndexChange)='getTable()' (nzPageSizeChange)='getTable()'></nz-pagination>
+<!-- <nz-pagination [nzTotal]="find.total" [(nzPageIndex)]="find.pageNum" [(nzPageSize)]="find.pageSize" [nzShowSizeChanger]='true'
+    [nzPageSizeOptions]='[5,10,15,20]' [nzShowQuickJumper]='true' (nzPageIndexChange)='getTable()' (nzPageSizeChange)='getTable()'></nz-pagination> -->

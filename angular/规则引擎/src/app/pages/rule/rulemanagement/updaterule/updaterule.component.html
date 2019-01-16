@@ -1,0 +1,66 @@
+<app-menu [menu]="['规则模型','规则管理','创建规则']"></app-menu>
+<nz-card class="shadow" [nzTitle]="'基本信息'">
+  <nz-table #tableData [nzData]='[1]' [nzShowPagination]='false' [nzBordered]='true'>
+    <tbody>
+      <tr>
+        <td style='width:25%'>规则名称</td>
+        <td style='width:25%'>{{data.name}}</td>
+        <td style='width:25%'>规则分组</td>
+        <td style='width:25%'>{{data.groupName}}</td>
+      </tr>
+      <tr>
+        <td>规则描述</td>
+        <td colspan="3">{{data.remark}}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-card>
+<nz-card class="shadow mt20" [nzTitle]="'规则信息'">
+  <div class='clearfix' nz-row>
+    <div nz-col [nzSpan]="22">
+      <div nz-row class="ant-form-item">
+        <div nz-col [nzSpan]="4" class="ant-form-item-label">规则ID:</div>
+        <div nz-col [nzSpan]="2"></div>
+        <div nz-col [nzSpan]="18" class='ant-form-item-control'>
+          <input nz-input [(ngModel)]='data.id' disabled>
+        </div>
+      </div>
+    </div>
+    <div nz-col [nzSpan]="22">
+      <div nz-row class="ant-form-item">
+        <div nz-col [nzSpan]="4" class="ant-form-item-label">规则版本:</div>
+        <div nz-col [nzSpan]="2"></div>
+        <div nz-col [nzSpan]="18" class='ant-form-item-control'>
+          <input nz-input [(ngModel)]='data.showVersion' disabled>
+        </div>
+      </div>
+    </div>
+    <div nz-col [nzSpan]="22">
+      <div nz-row class="ant-form-item">
+        <div nz-col [nzSpan]="4" class="ant-form-item-label ant-form-item-required">上传规则:</div>
+        <div nz-col [nzSpan]="2"></div>
+        <div nz-col [nzSpan]="18" class='ant-form-item-control' nz-row>
+          <!-- <div nz-col [nzSpan]="16">
+                        <input nz-input disabled [(ngModel)]='data.url'>
+                    </div> -->
+          <div nz-col [nzSpan]="24">
+            <input *ngIf='fileShow' [hidden]='true' type="file" id="file" name='file' accept=".drl" ng2FileSelect
+              [uploader]="uploader" (change)='selectedFileOnChanged($event,data)'>
+            <button nz-button nzType="primary" onclick="document.getElementById('file').click()">上传规则文件</button>
+          </div>
+          <textarea row="4" nz-input [(ngModel)]="data.rule"></textarea>
+        </div>
+      </div>
+    </div>
+    <div nz-col [nzSpan]="24" class='footer'>
+      <button nz-button nzType="default" (click)='back()'>
+        <i class="anticon anticon-close"></i>
+        返回
+      </button>
+      <button nz-button nzType="primary" [disabled]='!canSubmit' [nzLoading]='loading' (click)='submit()'>
+        <i class="anticon anticon-file"></i>
+        更新规则
+      </button>
+    </div>
+  </div>
+</nz-card>

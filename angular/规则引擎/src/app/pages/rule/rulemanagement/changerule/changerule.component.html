@@ -1,0 +1,76 @@
+<app-menu [menu]="['规则模型','规则管理','修改信息']"></app-menu>
+<nz-card class="shadow" [nzTitle]="'基本信息'">
+  <div class='clearfix' nz-row>
+    <div nz-col [nzSpan]="22">
+      <div nz-row class="ant-form-item">
+        <div nz-col [nzSpan]="4" class="ant-form-item-label ant-form-item-required">规则名称:</div>
+        <div nz-col [nzSpan]="2"></div>
+        <div nz-col [nzSpan]="18" class='ant-form-item-control'>
+          <input nz-input [(ngModel)]='data.name' placeholder="规则名称" maxlength="50">
+        </div>
+      </div>
+    </div>
+    <div nz-col [nzSpan]="22">
+      <div nz-row class="ant-form-item">
+        <div nz-col [nzSpan]="4" class="ant-form-item-label ant-form-item-required">规则分组:</div>
+        <div nz-col [nzSpan]="2"></div>
+        <div nz-col [nzSpan]="18" class='ant-form-item-control' style='display:relative' (click)='selectTreeShow=!selectTreeShow'>
+          <input class='noDisabled' [(ngModel)]='data.groupName' nz-input placeholder="规则分组" maxlength="50" disabled>
+          <div class='selectTree' style='width:100%' [hidden]='!selectTreeShow'>
+            <nz-tree [(ngModel)]="nodes" [nzShowLine]="false" [nzDraggable]="false" (nzClick)="choiceGroup($event)">
+            </nz-tree>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div nz-col [nzSpan]="22">
+      <div nz-row class="ant-form-item">
+        <div nz-col [nzSpan]="4" class="ant-form-item-label">规则描述:</div>
+        <div nz-col [nzSpan]="2"></div>
+        <div nz-col [nzSpan]="18" class='ant-form-item-control'>
+          <textarea row="4" nz-input [(ngModel)]="data.remark"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</nz-card>
+<nz-card class="shadow mt20" [nzTitle]="'规则信息'">
+  <nz-table #tableData [nzData]='[1]' [nzShowPagination]='false' [nzBordered]='true'>
+    <tbody>
+      <tr>
+        <td style='width:25%'>规则id</td>
+        <td style='width:75%'>{{data.id}}</td>
+      </tr>
+      <tr>
+        <td>版本号</td>
+        <td>{{data.showVersion}}</td>
+      </tr>
+      <tr>
+        <td>规则内容</td>
+        <td>
+          {{data.rule}}
+        </td>
+      </tr>
+      <tr>
+        <td>数据模型</td>
+        <td>
+          <span *ngFor='let list of data.models;let index=index' style='cursor:pointer;padding:2px' [routerLink]="['/rule/fielddata/seefield']"
+            [queryParams]="{name: list.name,index:index}">
+            <i class="anticon anticon-file-text"></i>
+            {{list.name}}数据模型
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <div class='footer mt20'>
+    <button nz-button nzType="default" (click)='back()'>
+      <i class="anticon anticon-close"></i>
+      取消
+    </button>
+    <button nz-button nzType="primary" [disabled]='!canSubmit' [nzLoading]='loading' (click)='submit()'>
+      <i class="anticon anticon-file"></i>
+      保存修改
+    </button>
+  </div>
+</nz-card>
