@@ -2,7 +2,7 @@
 <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [(nzSelectedIndex)]='tabindex' (nzSelectChange)='tabsChange($event)'>
     <nz-tab *ngFor="let tab of versions" [nzTitle]="tanTitle">
         <nz-card class="shadow" [nzTitle]="cardtitle" [nzExtra]="cardExtra" style='margin-top: -17px;'>
-            <nz-table #nzTable [nzData]="tableData" [nzLoading]="loading" [nzShowPagination]="false">
+            <nz-table #nzTable [nzData]="tableData" [nzLoading]="loading" [nzShowPagination]="false" [nzFrontPagination]="false">
                 <thead>
                     <tr>
                         <th nzWidth='40%'>字段名</th>

@@ -47,7 +47,7 @@
 </div>
 <nz-card class="shadow mb20" [nzTitle]="cardTitle" [nzExtra]="cardExtra">
     <nz-table #rowSelectionTable [nzData]="tableData" [nzLoading]="loading" (nzCurrentPageDataChange)="currentPageDataChange($event)"
-        [nzLoading]="loading" [nzShowPagination]="false">
+        [nzLoading]="loading" [nzShowPagination]="false" [nzFrontPagination]="false">
         <thead>
             <tr>
                 <th nzShowCheckbox [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="checkAll($event)"></th>

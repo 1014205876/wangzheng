@@ -1,6 +1,6 @@
 <app-menu [menu]="['规则模型','规则分组']"></app-menu>
 <nz-card class="shadow" [nzTitle]="cardTitle" [nzExtra]="cardExtra">
-    <nz-table #nzTable [nzData]="data" [nzLoading]="loading" [nzShowPagination]="false">
+    <nz-table #nzTable [nzData]="data" [nzLoading]="loading" [nzShowPagination]="false" [nzFrontPagination]="false">
         <thead>
             <tr>
                 <th nzWidth='40%'>产品名称</th>

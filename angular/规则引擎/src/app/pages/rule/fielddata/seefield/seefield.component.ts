@@ -90,6 +90,7 @@ export class SeefieldComponent implements OnInit {
     data.forEach(item => {
       expandDataCache[item.id] = that.convertTreeToList(item);
     });
+    console.log(expandDataCache)
   }
   tabsChange(e) {//选项卡切换触发
     this.tabindex = e.index

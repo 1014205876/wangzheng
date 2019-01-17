@@ -21,11 +21,10 @@ export class AddruleComponent implements OnInit {
     "groupId": "",
     "remark": "",//规则描述
     "rule": "",//规则文件代码
-    canSubmit: false,
-    loading: false,
-    fileShow: true,
-    url: '',
   }
+  canSubmit = false;
+  loading = false;
+  fileShow = true;
   table = [//后台获取到的树形表格对象
     // {
     //   "id": "1",
@@ -120,23 +119,23 @@ export class AddruleComponent implements OnInit {
     autoUpload: false,
   });
   selectedFileOnChanged(e, data) {//file框点击文件上传触发
-    data.fileShow = false;
-    this.uploader.queue[0].upload();
-    this.uploader.queue[0].onSuccess = (response, status, headers) => {
-      this.uploader.clearQueue();//清除文件
+    let that = this;
+    that.fileShow = false;
+    that.uploader.queue[0].upload();
+    that.uploader.queue[0].onSuccess = (response, status, headers) => {
+      that.uploader.clearQueue();//清除文件
       if (status == 200) {
-        data.url = JSON.parse(response).location
         console.log(JSON.parse(response))
         data.rule = JSON.parse(response).result
       } else {
         console.log('上传失败')
       }
-      data.fileShow = true;
+      that.fileShow = true;
     }
   };
   submit() {//点击保存规则
     let that = this;
-    console.log(that.data)
+    that.loading = true;
     that.http.postCustomHeaders(
       'peak-decision/v1/decision/rule',
       {
@@ -147,6 +146,7 @@ export class AddruleComponent implements OnInit {
       }
     ).subscribe(res => {
       console.log(res);
+      that.loading = false;
       if (res.code == '200') {
         that.message.create('success', `保存成功`, { nzDuration: 2000 });
         that.back()
@@ -180,15 +180,15 @@ export class AddruleComponent implements OnInit {
     if (this.data.name) {//如果规则名称已填写
       if (this.data.groupId) {//如果规则分组已选择
         if (this.data.rule) {//如果规则文件已上传
-          this.data.canSubmit = true
+          this.canSubmit = true
         } else {
-          this.data.canSubmit = false
+          this.canSubmit = false
         }
       } else {
-        this.data.canSubmit = false
+        this.canSubmit = false
       }
     } else {
-      this.data.canSubmit = false
+      this.canSubmit = false
     }
   }
 }

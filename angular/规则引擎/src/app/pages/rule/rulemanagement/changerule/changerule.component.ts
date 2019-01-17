@@ -23,16 +23,14 @@ export class ChangeruleComponent implements OnInit {
   versions = [];//保存所有版本号
   selectTreeShow = false;//控制树形下拉的显示隐藏
   data = {//表单对象
-    id: '',
+    "id": '',
     "name": "",
     "groupName": "",
     "groupId": "",
     "showVersion": '',//版本号
     "remark": "",//规则描述
     "rule": '',
-    models: [{
-      name: '',
-    }]
+    "models": []
   }
   canSubmit = false;
   loading = false;
@@ -210,7 +208,19 @@ export class ChangeruleComponent implements OnInit {
   ngDoCheck() {//页面监听（鼠标移动，键盘输入，触发）
     if (this.data.name) {//如果规则名称已填写
       if (this.data.groupId) {//如果规则分组已选择
-        this.canSubmit = true
+        if (this.data.id) {//如果有规则ID
+          if (this.data.showVersion) {//如果有规则版本
+            if (this.data.rule) {//如果规则文件已经上传
+              this.canSubmit = true
+            } else {
+              this.canSubmit = false
+            }
+          } else {
+            this.canSubmit = false
+          }
+        } else {
+          this.canSubmit = false
+        }
       } else {
         this.canSubmit = false
       }

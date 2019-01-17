@@ -2,7 +2,7 @@
 <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'" [(nzSelectedIndex)]='tabindex' (nzSelectChange)='tabsChange($event)'>
   <nz-tab *ngFor="let tab of tabs" [nzTitle]="tabTitle">
     <nz-card class="shadow mb20" [nzTitle]="'基本信息'" style='margin-top: -17px;'>
-      <nz-table #tableData [nzData]='[1]' [nzLoading]="loading" [nzShowPagination]='false' [nzBordered]='true'>
+      <nz-table #tableData [nzData]='[1]' [nzLoading]="loading" [nzShowPagination]='false' [nzFrontPagination]="false" [nzBordered]='true'>
         <tbody>
           <tr>
             <td style='width:25%'>规则名称</td>
@@ -18,7 +18,7 @@
       </nz-table>
     </nz-card>
     <nz-card class="shadow mb20" [nzTitle]="'规则信息'">
-      <nz-table #tableData [nzData]='[1]' [nzLoading]="loading" [nzShowPagination]='false' [nzBordered]='true'>
+      <nz-table #tableData [nzData]='[1]' [nzLoading]="loading" [nzShowPagination]='false' [nzFrontPagination]="false" [nzBordered]='true'>
         <tbody>
           <tr>
             <td style='width:25%'>规则id</td>

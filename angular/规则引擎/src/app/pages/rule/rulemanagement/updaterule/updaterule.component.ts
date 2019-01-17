@@ -25,18 +25,18 @@ export class UpdateruleComponent implements OnInit {
   canSubmit = false;
   loading = false;
   fileShow = true;
-  versions=[];//保存所有版本号
+  versions = [];//保存所有版本号
   data = {//表单对象
-    "id": "5de0bdef-7858-4d0d-8620-27b93951e2e4",
-    "name": "规则1",
-    "version": 3,
-    "groupId": "111",
-    "rule": "package com.xu.drools\r\n\r\nimport com.masspick.peak.decision.model.Person;\r\nimport com.masspick.peak.decision.model.Human;\r\n\r\n\r\n",
-    "remark": "规则1",
-    "createTime": "2019-01-14T07:05:31.000+0000",
-    "updateTime": "2019-01-14T07:05:31.000+0000",
-    "groupName": "分组1",
-    "showVersion": "v3",
+    "id": "",
+    "name": "",
+    "version": 1,
+    "groupId": "",
+    "rule": "",
+    "remark": "",
+    "createTime": "",
+    "updateTime": "",
+    "groupName": "",
+    "showVersion": "",
   }
 
   consol(arr) {//打印函数
@@ -76,7 +76,7 @@ export class UpdateruleComponent implements OnInit {
   });
   selectedFileOnChanged(e, data) {//file框点击文件上传触发
     let that = this;
-    data.fileShow = false;
+    that.fileShow = false;
     that.uploader.queue[0].upload();
     that.uploader.queue[0].onSuccess = (response, status, headers) => {
       that.uploader.clearQueue();//清除文件
@@ -91,6 +91,7 @@ export class UpdateruleComponent implements OnInit {
   };
   submit() {//点击更新规则
     let that = this;
+    that.loading = true;
     that.http.postCustomHeaders(
       `peak-decision/v1/decision/updateRule/${that.data.id}`,
       {
@@ -98,6 +99,7 @@ export class UpdateruleComponent implements OnInit {
       }
     ).subscribe(res => {
       console.log(res);
+      that.loading = false;
       if (res.code == '200') {
         that.back()
         that.message.create('success', `更新成功`, { nzDuration: 2000 });
@@ -111,8 +113,16 @@ export class UpdateruleComponent implements OnInit {
     let that = this;
   }
   ngDoCheck() {//页面监听（鼠标移动，键盘输入，触发）
-    if (this.data.rule) {//如果规则文件已经上传
-      this.canSubmit = true
+    if (this.data.id) {//如果有规则ID
+      if (this.data.showVersion) {//如果有规则版本
+        if (this.data.rule) {//如果规则文件已经上传
+          this.canSubmit = true
+        } else {
+          this.canSubmit = false
+        }
+      } else {
+        this.canSubmit = false
+      }
     } else {
       this.canSubmit = false
     }
