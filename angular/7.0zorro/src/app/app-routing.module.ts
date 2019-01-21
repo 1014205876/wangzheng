@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'table', component: TableComponent },
   { path: 'echart', component: EchartComponent },
+  { path: 'model', loadChildren: './pages/model/model.module#ModelModule' },
   // {
   //   path: 'pages2', component: Pages02Component,
   //   children: [

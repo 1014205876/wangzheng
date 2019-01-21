@@ -23,7 +23,7 @@ registerLocaleData(zh);
     HomeComponent,
     TableComponent,
     EchartComponent,
-    NavComponent
+    NavComponent,
   ],
   imports: [
     BrowserModule,
