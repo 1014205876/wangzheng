@@ -10,36 +10,36 @@ export class TableComponent implements OnInit {
   constructor() { }
   loading = false;
   data = [
-    // {
-    //   key: 1,
-    //   status: 1,
-    //   name: 'John Brown sr.',
-    //   age: 60,
-    //   address: 'New York No. 1 Lake Park',
-    //   children: [
-    //     {
-    //       key: 11,
-    //       status: 0,
-    //       name: 'John Brown',
-    //       age: 42,
-    //       address: 'New York No. 2 Lake Park'
-    //     },
-    //     {
-    //       key: 12,
-    //       status: 1,
-    //       name: 'John Brown jr.',
-    //       age: 30,
-    //       address: 'New York No. 3 Lake Park',
-    //       children: [{
-    //         key: 121,
-    //         status: 0,
-    //         name: 'Jimmy Brown',
-    //         age: 16,
-    //         address: 'New York No. 3 Lake Park'
-    //       }]
-    //     },
-    //   ]
-    // }
+    {
+      key: 1,
+      status: 1,
+      name: 'John Brown sr.',
+      age: 60,
+      address: 'New York No. 1 Lake Park',
+      children: [
+        {
+          key: 11,
+          status: 0,
+          name: 'John Brown',
+          age: 42,
+          address: 'New York No. 2 Lake Park'
+        },
+        {
+          key: 12,
+          status: 1,
+          name: 'John Brown jr.',
+          age: 30,
+          address: 'New York No. 3 Lake Park',
+          children: [{
+            key: 121,
+            status: 0,
+            name: 'Jimmy Brown',
+            age: 16,
+            address: 'New York No. 3 Lake Park'
+          }]
+        },
+      ]
+    }
   ];
   data1 = [
     {

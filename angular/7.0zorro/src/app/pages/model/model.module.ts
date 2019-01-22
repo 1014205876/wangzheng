@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+
+import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 
 import { ModelComponent } from './model.component';
 import { OneComponent } from './one/one.component'
@@ -18,12 +18,14 @@ const routes: Routes = [
     OneComponent
   ],
   imports: [
-    FormsModule,
-    HttpClientModule,
-    RouterModule.forChild(routes)
+    NgZorroAntdModule,
+    RouterModule.forChild(routes),
   ],
   providers: [
-
+    {
+      provide: NZ_I18N,
+      useValue: zh_CN
+    }
   ],
 })
 export class ModelModule { }
