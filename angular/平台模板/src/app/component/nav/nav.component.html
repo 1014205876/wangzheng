@@ -1,0 +1,34 @@
+<ul nz-menu [nzMode]="'inline'" [nzTheme]="'dark'" style='min-height:100%;font-size:16px;'>
+  <ng-container *ngFor='let list of nav.menu;let index=index'>
+    <li nz-menu-item *ngIf="list.type === 'link'" [routerLink]='list.url'>
+      <span hidden>
+        <i class="anticon anticon-file-text"></i>
+        <i class="anticon anticon-area-chart"></i>
+      </span>
+      <span title>
+        <!-- 首页,规则,数据,分析 -->
+        <!-- <i class="iconfont icon-weibiaoti--"></i>
+        <i class="iconfont icon-guizezujian"></i>
+        <i class="iconfont icon-shuju"></i>
+        <i class="iconfont icon-72"></i> -->
+        <i class="{{list.icon}}"></i>
+        <!-- 使用图标库为阿里巴巴矢量图标库 -->
+        {{list.name}}
+      </span>
+    </li>
+    <li nz-submenu *ngIf="list.type === 'sub'" [(nzOpen)]="index==nowindex" (nzOpenChange)="openChange(index)">
+      <span title>
+        <i class="{{list.icon}}"></i>
+        {{list.name}}
+      </span>
+      <ul>
+        <li nz-menu-item *ngFor='let item of list.children' [routerLink]='item.url'>
+          <span class='title'>
+            <i class="anticon anticon-minus"></i>
+            {{item.name}}
+          </span>
+        </li>
+      </ul>
+    </li>
+  </ng-container>
+</ul>

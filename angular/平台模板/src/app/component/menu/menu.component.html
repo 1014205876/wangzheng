@@ -1,0 +1,8 @@
+<nz-breadcrumb [nzSeparator]="icon" style='font-size: 13px;height: 50px;line-height: 50px;'>
+  <nz-breadcrumb-item>
+    我的位置
+  </nz-breadcrumb-item>
+  <nz-breadcrumb-item *ngFor='let list of menu'>
+    {{list}}
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
