@@ -18,7 +18,7 @@ export class NavComponent implements OnInit {
         name: "首页",
         state: "project",
         type: "link",
-        url: "/pages",
+        url: "/home",
       },
       {
         icon: "icon iconfont icon-itemManage",
@@ -31,13 +31,13 @@ export class NavComponent implements OnInit {
             name: "当前流程",
             state: "curFlow",
             type: "link",
-            url: "/pages/model",
+            url: "/model",
           },
           {
             name: "form",
             state: "curFlow",
             type: "link",
-            url: "/pages/form",
+            url: "/form",
           },
         ]
       },
@@ -55,8 +55,8 @@ export class NavComponent implements OnInit {
     this.http.getCustomHeaders("/peak-resource/api/resource/user/permission").subscribe(res => {
       console.log(res);
       // this.nav = res.result
-      resource.ResourceItems = res.result.resource;
-      resource.menu = res.result.menu;
+      // resource.ResourceItems = res.result.resource;
+      // resource.menu = res.result.menu;
     })
   }
 

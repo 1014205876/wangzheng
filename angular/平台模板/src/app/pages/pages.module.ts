@@ -21,9 +21,10 @@ import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
   {
-    path: 'pages',
+    path: '',
     children: [
-      { path: '', component: IndexComponent },
+      { path: '', redirectTo: '/home', pathMatch: 'full' },
+      { path: 'home', component: IndexComponent },
       { path: 'form', component: FormComponent },
       { path: 'model', loadChildren: './model/model.module#ModelModule' },
     ]

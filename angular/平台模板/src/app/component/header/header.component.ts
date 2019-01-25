@@ -15,10 +15,20 @@ export class HeaderComponent implements OnInit {
   ) {
   }
 
-  public nav: any;//其他平台页面跳转数据
+  public nav: any = [//其他平台页面跳转数据
+    {
+      appName: '其他平台1',
+      appAddress: 'www.baidu.com',
+    },
+    {
+      appName: '其他平台2',
+      appAddress: 'www.baidu.com',
+    }
+  ];
+
   public userInfor: any = {//用户信息
     name: '未登录',
-    account: ''
+    account: 'no'
   };//用户信息
   public password: any = {//修改密码弹窗
     popoverShow: false,
@@ -104,12 +114,12 @@ export class HeaderComponent implements OnInit {
     //登录状态信息
     this.http.getCustomHeaders("peak-resource/v1/resource/apps/permission").subscribe(res => {
       console.log(res)
-      this.nav = res.result
+      // this.nav = res.result
     })
     //其他巅峰平台链接跳转
     this.http.getCustomHeaders("peak-resource/v1/resource/user/info").subscribe(res => {
       console.log(res)
-      this.userInfor = res.result
+      // this.userInfor = res.result
     })
     this.passwordForm = this.fb.group({
       oldPassword: [null, [Validators.required]],

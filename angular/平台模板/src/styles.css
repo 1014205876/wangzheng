@@ -86,7 +86,24 @@ optgroup {
 
 .ant-menu.ant-menu-dark .ant-menu-item-selected,
 .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+    background-color: transparent;
+}
+
+.ant-menu-dark.ant-menu-inline .ant-menu-item.active,
+.ant-menu-dark.ant-menu-inline .ant-menu-submenu-title.active {
     background-color: #716aca;
+}
+
+.ant-menu-dark .ant-menu-item,
+.ant-menu-dark .ant-menu-item-group-title,
+.ant-menu-dark .ant-menu-item>a {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.ant-menu-dark .ant-menu-item.active,
+.ant-menu-dark .ant-menu-item-group-title.active,
+.ant-menu-dark .ant-menu-item.active>a {
+    color: #fff;
 }
 
 /* tabs选项卡样式 */

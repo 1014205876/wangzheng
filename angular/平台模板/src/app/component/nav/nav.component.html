@@ -1,6 +1,6 @@
 <ul nz-menu [nzMode]="'inline'" [nzTheme]="'dark'" style='min-height:100%;font-size:16px;'>
   <ng-container *ngFor='let list of nav.menu;let index=index'>
-    <li nz-menu-item *ngIf="list.type === 'link'" [routerLink]='list.url'>
+    <li nz-menu-item *ngIf="list.type === 'link'" [routerLink]='list.url' [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
       <span hidden>
         <i class="anticon anticon-file-text"></i>
         <i class="anticon anticon-area-chart"></i>
@@ -22,7 +22,7 @@
         {{list.name}}
       </span>
       <ul>
-        <li nz-menu-item *ngFor='let item of list.children' [routerLink]='item.url'>
+        <li nz-menu-item *ngFor='let item of list.children' [routerLink]='item.url' [routerLinkActive]="['active']">
           <span class='title'>
             <i class="anticon anticon-minus"></i>
             {{item.name}}
