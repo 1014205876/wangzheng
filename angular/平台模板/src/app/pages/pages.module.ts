@@ -23,8 +23,8 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      { path: '', redirectTo: '/home', pathMatch: 'full' },
-      { path: 'home', component: IndexComponent },
+      { path: '', redirectTo: '/index', pathMatch: 'full' },
+      { path: 'index', component: IndexComponent },
       { path: 'form', component: FormComponent },
       { path: 'model', loadChildren: './model/model.module#ModelModule' },
     ]
