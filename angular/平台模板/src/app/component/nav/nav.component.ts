@@ -39,6 +39,12 @@ export class NavComponent implements OnInit {
             type: "link",
             url: "/form",
           },
+          {
+            name: "switch",
+            state: "curFlow",
+            type: "link",
+            url: "/switch",
+          },
         ]
       },
     ]
