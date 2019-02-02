@@ -1,3 +1,11 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "files.associations": {
+        "*.vue":"html"
+    },
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.includeLanguages": {
+        "vue-html":"html",
+        "vue":"html"
+    }
 }

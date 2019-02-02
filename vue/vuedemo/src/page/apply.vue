@@ -1,18 +1,37 @@
 <template>
   <div class="apply">
     <div class="tanimate" style="z-index:21">
-      <back></back>
+      <back>
+        <span slot="title">
+          父级传入的title
+        </span>
+        <span slot="more">
+          父级传入的
+          <span style="color:yellow">
+            更多
+          </span>
+        </span>
+        <template scope="prop">
+          <p>{{prop.msg}}</p>
+        </template>
+      </back>
       <div>{{name}}申请页面</div>
       <div>申请额度{{minQuota}}-{{maxQuota}}万</div>
       <div>当前时间{{date|formData}}</div>
+      string:<input type="number" v-model.string="num">
+      <br>
+      number:<input type="number" v-model.number="num">
+      <br>
+      有空格:<input type="text" v-model="num">
+      <br>
+      无空格:<input type="text" v-model.trim="num">
+      <div>num为{{num}}类型为{{typeof(num)}}</div>
+      <div>过滤器{{num|getnum(2)|getnum(3)|getnum(0.2)}}</div>
       <div>
-        过滤器{{num|getnum(2)|getnum(3)|getnum(0.2)}}
+        原始属性number：{{number}}
+        <br>
+        计算属性prices：{{prices}}
       </div>
-      <div>
-          原始属性number：{{number}}
-          <br>
-          计算属性prices：{{prices}}
-      </div>   
       <button @click="number=number+100">number添加100</button>
       <button @click="prices=prices+100">prices添加100</button>
       <span style="font-size:1rem;color:red">
@@ -21,6 +40,8 @@
       <button v-on:click="reload">刷新</button>
       <el-button v-on:click="tohistory">历史记录</el-button>
       <button v-on:click="shenqing">立即申请</button>
+      <button v-on:click="changedata(xiala)">修改数据</button>
+      <button v-on:click="changesee(xiala)">修改视图</button>
       <ul class="xiala">
         <li v-for="list in xiala" :key="list.id">
           <div class="xianshi">
@@ -77,7 +98,8 @@
   import numroll from "@/components/numroll";
   export default {
     name: "Apply",
-    data() {//页面数据声明
+    data() {
+      //页面数据声明
       return {
         date: new Date(),
         num: 3,
@@ -192,7 +214,8 @@
         ]
       };
     },
-    filters: {//过滤器
+    filters: {
+      //过滤器
       formData(value) {
         let date = new Date(value);
         let year = date.getFullYear();
@@ -201,28 +224,31 @@
         let hour = date.getHours();
         let m = date.getMinutes();
         let s = date.getSeconds();
-        return year + '/' + month + '/' + day + ' ' + hour + ':' + m + ':' + s
+        return year + "/" + month + "/" + day + " " + hour + ":" + m + ":" + s;
       },
       getnum(value, num) {
-        return value * num
+        return value * num;
       }
     },
-    computed: {//计算属性
+    computed: {
+      //计算属性
       prices: {
         get() {
           let price = this.number;
-          return price
+          return price;
         },
         set(newValue) {
           console.log(newValue);
         }
       }
     },
-    components: {//组件引用
+    components: {
+      //组件引用
       back: Back,
       numroll
     },
-    methods: {//自定义函数存放
+    methods: {
+      //自定义函数存放
       back() {
         this.$router.go(-1);
       },
@@ -234,6 +260,17 @@
       },
       shenqing() {
         this.$router.push("/shenqing");
+      },
+      changedata(data) {
+        data[3] = {
+          xianshi: "显示",
+          yincang: ["隐藏1", "隐藏2", "隐藏3"]
+        };
+        console.log(this.xiala);
+      },
+      changesee(data) {
+        data[2].xianshi = "显示";
+        console.log(this.xiala);
       },
       open(index) {
         this.xiala[index].kaiguan = !this.xiala[index].kaiguan;
@@ -253,7 +290,8 @@
         $(".apply .right").removeClass("active");
       }
     },
-    created() {//页面初始化之后调用在mounted之前
+    created() {
+      //页面初始化之后调用在mounted之前
       // this.$http.get('https://fanyi.baidu.com/pcnewcollection?req=check&fanyi_src=w&direction=en2zh&_=1548837982956').then((data) =>{
       //  console.log(date)
       // })
@@ -261,7 +299,8 @@
       this.minQuota = this.$route.query.minQuota;
       this.maxQuota = this.$route.query.maxQuota;
     },
-    mounted() {//页面初始化之后调用在created之后在
+    mounted() {
+      //页面初始化之后调用在created之后在
       $(".apply .tanimate .xiala li .xianshi").click(function () {
         if (
           $(this)
@@ -287,7 +326,7 @@
       });
       // $(".apply").css("min-height", $(window).height());
       // $(".apply .banimate").css("height", $(window).height());
-    },
+    }
   };
 </script>
 
@@ -310,6 +349,7 @@
       z-index: 10;
       width: 100%;
       height: 100%;
+      overflow: auto;
       background: burlywood;
       -moz-box-sizing: border-box;
       /*Firefox3.5+*/
@@ -330,7 +370,7 @@
       /* Safari and Chrome */
       .start {
         position: absolute;
-        bottom: 0rem;
+        // bottom: 0rem;
         width: 100%;
         height: 1rem;
         font-size: 0.4rem;

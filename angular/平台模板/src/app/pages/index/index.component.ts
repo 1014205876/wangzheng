@@ -8,7 +8,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
-
+input;
   constructor(private fb: FormBuilder) {
   }
 
