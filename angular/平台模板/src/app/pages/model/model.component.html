@@ -1,4 +1,19 @@
 <p *ngIf="1">
   model works!
 </p>
-<button nz-button nzType="primary" [routerLink]="'/model/index'">Primary</button>
+<button nz-button nzType="primary" [routerLink]="'/pages/model/index'">Primary</button>
+
+<app-box #appbox>
+  <div class="app-box-head">
+    头部
+  </div>
+  <div class="app-box-body">
+    中间
+  </div>
+  <div class="app-box-foot">
+    <button (click)="appbox.full()">全屏</button>
+    <button (click)="appbox.width='100px'">变短</button>
+    <button (click)="appbox.width=input+'px'">选择</button>
+    <button (click)="appbox.width=null">复位</button>
+  </div>
+</app-box>

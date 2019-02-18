@@ -1,30 +1,28 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { Routes, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';//ngif，ngfor等
+// import { BrowserModule } from '@angular/platform-browser';//ngif，ngfor等
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';//动画
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';//表单
+import { HttpClientModule } from '@angular/common/http';//http
+import { Routes, RouterModule } from '@angular/router';//路由
 
-
-// import { HttpModule } from '@angular/http';
-// import { HttpServe } from '../layout/service/http-serve.service';
-
-import { HttpInterceptorModule } from 'ng-http-interceptor';
+// 引入插件
 import { NgZorroAntdModule, NZ_I18N, zh_CN, } from 'ng-zorro-antd';
 
+// 引入组件页面
 import { IndexComponent } from './index/index.component';
 import { FormComponent } from './form/form.component';
 import { SwitchComponent } from './switch/switch.component';
 
-// import { registerLocaleData } from '@angular/common';
-// import zh from '@angular/common/locales/zh';
-// registerLocaleData(zh);
+// 引入模块
+import { ComponentModule } from '../component/component.module';
 
 const routes: Routes = [
+  // { path: '', redirectTo: 'pages', pathMatch: 'full' },
   {
-    path: '',
+    path: 'pages',
     children: [
-      { path: '', redirectTo: '/index', pathMatch: 'full' },
+      { path: '', redirectTo: 'index', pathMatch: 'full' },
       { path: 'index', component: IndexComponent },
       { path: 'form', component: FormComponent },
       { path: 'switch', component: SwitchComponent },
@@ -40,7 +38,6 @@ const routes: Routes = [
     SwitchComponent,
   ],
   providers: [
-    // HttpServe,
     {
       provide: NZ_I18N,
       useValue: zh_CN
@@ -48,13 +45,13 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    // BrowserModule,
     // BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forChild(routes),
-    // HttpModule,
-    HttpInterceptorModule,
+    ComponentModule,
     NgZorroAntdModule.forRoot(),
   ],
   exports: [

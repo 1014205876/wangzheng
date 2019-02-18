@@ -1,0 +1,12 @@
+<div style="background:red" [ngStyle]="{'width':width?width:'300px'}">
+  <div class="head">
+    <!-- <slot>vue</slot> -->
+    <ng-content select=".app-box-head"></ng-content>
+  </div>
+  <div class="body">
+    <ng-content select=".app-box-body"></ng-content>
+  </div>
+  <div class="foot">
+    <ng-content select=".app-box-foot"></ng-content>
+  </div>
+</div>

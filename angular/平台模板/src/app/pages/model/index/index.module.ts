@@ -1,33 +1,25 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';//ngif，ngfor
+import { CommonModule } from '@angular/common';
 // import { BrowserModule } from '@angular/platform-browser';//ngif，ngfor等
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';//动画
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';//表单
-import { HttpClientModule } from '@angular/common/http';//http
-import { Routes, RouterModule } from '@angular/router';//路由
 
-// 引入插件
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { Routes, RouterModule } from '@angular/router';
+
+import { HttpInterceptorModule } from 'ng-http-interceptor';
 import { NgZorroAntdModule, NZ_I18N, zh_CN, } from 'ng-zorro-antd';
 
-// 引入组件页面
-import { ModelComponent } from './model.component';
+import { IndexComponent } from '../index/index.component';
 
-// 引入模块
-import { IndexModule } from './index/index.module';
-import { ComponentModule } from '../../component/component.module';
 
 const routes: Routes = [
-  {
-    path: '',
-    children: [
-      { path: '', component: ModelComponent },
-    ]
-  }
+  { path: 'index', component: IndexComponent },
 ];
 
 @NgModule({
   declarations: [
-    ModelComponent,
+    IndexComponent
   ],
   providers: [
     {
@@ -43,11 +35,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forChild(routes),
+    HttpInterceptorModule,
     NgZorroAntdModule.forRoot(),
-    IndexModule,
-    ComponentModule
   ],
   exports: [
   ]
 })
-export class ModelModule { }
+export class IndexModule { }
