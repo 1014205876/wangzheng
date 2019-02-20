@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 
 @Component({
     selector: 'app-signed',
@@ -6,13 +6,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
     styleUrls: ['./signed.component.css']
 })
 export class SignedComponent implements OnInit {
-    constructor() { }
+    constructor(
+        private el: ElementRef,
+        private rederer2: Renderer2
+    ) { }
     canImg;
     ngOnInit() {
         let that = this;
-        var oCanvas: HTMLCanvasElement = document.querySelector("#signed");
-        var clearCanvas: HTMLImageElement = document.querySelector("#clear");
-        var saveImg: HTMLImageElement = document.querySelector("#save");
+        var oCanvas = this.el.nativeElement.querySelector("#signed");
+        var clearCanvas = this.el.nativeElement.querySelector("#clear");
+        var saveImg = this.el.nativeElement.querySelector("#save");
         oCanvas.width = 800;
         oCanvas.height = 200;
         var cxt = oCanvas.getContext("2d");
@@ -59,8 +62,7 @@ export class SignedComponent implements OnInit {
             console.log(b64)
         }
         clearCanvas.onclick = function () {
-            cxt = oCanvas.getContext("2d");
-            
+            cxt.clearRect(0, 0, oCanvas.width, oCanvas.height);
         }
     }
 
