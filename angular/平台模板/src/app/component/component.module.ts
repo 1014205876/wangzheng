@@ -17,6 +17,7 @@ import { MenuComponent } from './menu/menu.component';
 import { NavComponent } from './nav/nav.component';
 import { BoxComponent } from './box/box.component';
 import { ForDirective } from './for/for.directive';
+import { SignedComponent } from './signed/signed.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ForDirective } from './for/for.directive';
     NavComponent,
     BoxComponent,
     ForDirective,
+    SignedComponent,
   ],
   providers: [
     HttpServe,
@@ -50,6 +52,7 @@ import { ForDirective } from './for/for.directive';
     NavComponent,
     BoxComponent,
     ForDirective,
+    SignedComponent,
   ],
 })
 export class ComponentModule { }
