@@ -1,0 +1,28 @@
+.holder{
+  text-align: center;
+}
+.holder img{
+  width: 100%;
+  display: block;
+}
+.box{
+  padding: 2rem 1rem;
+  text-align: center;
+}
+.txt_group{
+  padding: 0.8rem 0 2.1rem 0;
+  display: block;
+  font-size: 0.9rem;
+  color: #333;
+}
+button {
+  width: 100%;
+  display: block;
+  border-radius: 5px;
+}
+.btnBox{
+  display: block;
+  margin-top: 1rem;
+  height: 3rem;
+  line-height: 3rem;
+}

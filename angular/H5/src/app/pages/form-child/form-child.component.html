@@ -1,0 +1,7 @@
+<app-header title="{{config.label}}" backIcon=1 backTxt="返回" hasBack="true"></app-header>
+<div class="has_win">
+  <div class="box">
+    <dynamic-form [config]="ItemConfig" [childBtn]="true" (submitted)="submitted($event)"></dynamic-form>
+  </div>
+</div>
+<loading [txt]="'请稍后...'" *ngIf='loading'></loading>

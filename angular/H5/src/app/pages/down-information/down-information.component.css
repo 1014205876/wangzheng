@@ -1,0 +1,174 @@
+.nav {
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+}
+.nav li {
+  display: inline-block;
+  width: 48%;
+  font-size: 1rem;
+  position: relative;
+}
+.nav li.active::after{
+  content: '';
+  position: absolute;
+  width: 6rem;
+  height: 2px;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  background-color: #dbb272;
+}
+.nav li.active {
+  color: #dbb272;
+}
+
+.swiperBox {
+  height: calc(100% - 3rem);
+  padding: 1rem;
+  overflow: hidden;
+}
+.contentBox {
+  width: calc(100% + 2rem);
+  padding-right: 2rem;
+  height: calc(100% - 4rem);
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.contentBox .title {
+  font-size: 1rem;
+  color: #333;
+  height: 2rem;
+  line-height: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.authorizeId {
+  color: #e64340;
+  text-align: right;
+  line-height: 2rem;
+  display: block;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+.content {
+  font-size: 0.8rem;
+}
+.pt40{padding-top: 1.3rem;}
+.content>div{line-height: 1.5rem;}
+.pl5em{padding-left: 5em;}
+.em2{text-indent: 2em;}
+.text_right{text-align: right;}
+.font-w{font-weight: bold;}
+.content input {
+  font-size: 0.9rem;
+  line-height: 1.7rem;
+  color: #666;
+}
+.btn {  
+  width: 100%;
+  display: flex;  
+  flex-direction: row;  
+  align-items: center;  
+  justify-content: space-between;
+  box-sizing: border-box;  
+  /* background-color: white; */
+  /* border-top: 1px solid #e2e2e2; */
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+}  
+
+.btn button{
+  border-radius: 0.5rem;
+  line-height: 3rem;
+  display: block;
+  width: 100%;
+  background: none;
+}
+
+.btn button::after{
+  border: none;
+}
+.btn button.filling, .btn button.btnBox {
+  display: block;
+  font-size:1rem;
+  background:#dbb272;
+  color:#fff;
+}
+
+.mask_layer {  
+  width: 100%;  
+  height: 100%;  
+  position: fixed;  
+  z-index: 1000;  
+  background: rgba(0,0,0,0.5); 
+  overflow: hidden;  
+  left: 0;
+  top: 0;
+}  
+.modal_box {
+  width: 76%;  
+  overflow: hidden;  
+  position: fixed;  
+  top: 50%;  
+  left: 0;  
+  z-index: 1001;  
+  background: #fafafa;  
+  margin: -5rem 12% 0 12%;  
+  border-radius: 3px;  
+  padding-top: 1.3rem;
+}  
+  
+.modal_box .title {
+  color: #333;
+  text-align: center;
+  font-size: 1.2rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  font-weight: bold;
+}
+.modal_box .btn button {
+  border-top: 1px solid #e2e2e2;
+  border-radius: 0;
+}
+  
+.content1 {  
+  overflow-y: scroll; 
+  /* padding-bottom: 0.7rem; */
+  text-align: center;
+}
+
+.content1 input{
+  width: 80%;
+  margin: 0 auto;
+  font-size: 0.9rem;
+  height: 2.4rem;
+  border: 1px solid #e2e2e2;
+  text-align: center;
+}
+
+
+
+.cancel {  
+  width: 100%;  
+  text-align: center;  
+  font-size: 1.2rem;
+}  
+  
+.Sure {  
+  width: 100%;  
+  text-align: center;
+  border-left: 1px solid #e2e2e2;
+  font-size: 1.2rem;
+  color: #dbb272;
+}  
+
+.modalMsg {  
+  text-align: center;
+  display: block;  
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5rem;
+}  

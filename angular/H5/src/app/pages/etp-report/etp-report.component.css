@@ -1,0 +1,206 @@
+
+  
+  .box {
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  
+  .tit {
+    padding: 1.866666rem 0 1rem;
+    display: block;
+    text-align: center;
+    color: #fff;
+    font-size: 1.2rem;
+    line-height: 1.933333rem;
+  }
+  
+  .camera_row{
+    position: relative;
+    background-color: rgba(255,255,255,0.5);
+    box-sizing: border-box;
+    padding:1rem;
+    height: calc(100% - 4rem);
+  }
+  /* .camera_row cover-img{
+    position: absolute;
+    width: 1.333333rem;
+    height: 1.466666rem;
+  } */
+  .camera_row cover-view{
+    text-align: center;
+    width: 100%;
+    font-size:1.066666rem;
+    color: #dbb272;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 100;
+  }
+  .camera_box {
+    position: fixed;
+    top: 4rem;
+    right: 0;
+    width: 100%;
+    height: calc(100% - 8rem);
+  }
+  
+  .camera_box cover-img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .camera_box .camera_con {
+    opacity: 0.7;
+    position: absolute;
+    left: 0;
+    bottom: 4rem;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 1rem;
+  }
+  
+  .camera_box .camera_con cover-view {
+    line-height: 1.6rem;
+    color: #dbb272;
+    font-size: 8rem;
+    white-space: normal;
+    text-align: left;
+  }
+  
+  /* .camera_box cover-view text{
+    line-height: 48rpx;
+  } */
+  
+  .camera {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .tip, .h6, .step_tip {
+    display: block;
+    padding: 0 1rem;
+  }
+  
+  .h6 {
+    font-weight: bold;
+  }
+  
+  .h6, .step_tip {
+    color: #fff;
+  }
+  
+  .preview-tips {
+    margin: 0.666666rem 0;
+  }
+  
+  .page-body {
+    
+  }
+  
+  .page-body .page-body-wrapper {
+    position: relative;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+  }
+  
+  .btn-area {
+    width: 50%;
+    padding: 1rem 1rem;
+  }
+  
+  .btn-area button {
+    display: block;
+  }
+  
+  .btn-area button.btnBox {
+    border: none;
+    background-color: #e2e2e2;
+    color: #333;
+    height: 2.933333rem;
+    line-height: 2.933333rem;
+  }
+  .btn-area p{
+    font-size: 1rem;
+    color: #fff;
+  }
+  
+.cameraBtn {
+    padding-top: 3.2rem;
+    position: relative;
+  }
+  .cameraBtn img {
+    width: 2.733333rem;
+    height: 2.133333rem;
+    margin: auto;
+    display: block;
+  }
+  .cameraBtn p {
+    font-size: 1rem;
+    color: #dbb272;
+    margin: 0.666666rem;
+    line-height: 1.333333rem;
+    text-align: center;
+    display: block;
+  }
+  .imgList {
+    width: 100%;
+    padding: 0 4%;
+    height: calc(100% - 12rem);
+    overflow: hidden;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+  }
+  .scrollBox {
+    width: 100%;
+    height: 100%;
+    padding: 1rem 0;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  .imgList .imgbox {
+    float: left;
+    width: 28%;
+    background: #fff;
+    margin-right: 4%;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .imgList .imgbox:nth-child(3n) {
+    margin-right: 0;
+  }
+  .imgList .imgbox .img {
+    width: 100%;
+    height: 4rem;
+    display: block;
+  }
+  .deleteImg {
+    position: absolute;
+    top: -0.333333rem;
+    right: -0.333333rem;
+    width: 1.666666rem;
+    height: 1.666666rem;
+    cursor: pointer;
+  }
+  .deleteImg img {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .ts {
+    color: #fff;
+    font-size: 0.8rem;
+    display: block;
+    text-align: center;
+    line-height: 1rem;
+    padding: 0.666666rem;
+  }
+  .cameraBtn input{width: 100%;height: calc(100% - 3.2rem);position: absolute;left: 0;top: 3.2rem;z-index: 9;opacity: 0;}

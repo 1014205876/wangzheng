@@ -1,0 +1,14 @@
+<div class="cur_item" [formGroup]="group" (click)="show=true">
+  <div class="left">{{config.controlName}}</div>
+  <img src="../../../../assets/images/arr_toR_03.png" alt="" >
+  <div class="right"><input type="text" placeholder="{{config.placeInfo}}" [(ngModel)]="config.value"
+    [formControlName]="config.controlKey" readOnly></div>
+</div>
+<div class="mask" *ngIf="show"></div>
+<div class="box" *ngIf="show">
+  <p-calendar class="calendar" [inputStyle]="'width:100%;'" [(ngModel)]="value" [inline]="true" dateFormat="'mm/dd/yy'" [locale]="en"></p-calendar>
+  <div class="btn_row">
+    <button class='btnBox' (click)='reselect();show=false;'>取消</button>
+    <button class='filling' (click)='sure();show=false;'>确定</button>
+  </div>
+</div>

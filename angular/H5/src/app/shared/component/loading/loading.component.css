@@ -1,0 +1,12 @@
+/* loading */
+.loading{position: fixed;left: 0;top: 0;z-index: 9998; width: 100%;height: 100%;background-color: rgba(0, 0, 0, 0.2);}
+.loading_box{position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);}
+.loading_box>h6{text-align: center; font-size: 0.6rem;color: #fff;}
+.loding_con{min-width: 5rem;padding: 0 0.5rem; height: 6rem;padding-top: 1rem; border-radius: 0.5rem; background-color:rgba(0, 0, 0, .3);text-align: center;}
+.loding_con>img{animation: 3s linear loading infinite;}
+.loding_con>span{color: #fff;font-size: 0.8rem;display: block;padding-top: 1rem;}
+
+@keyframes loading {
+    form {transform:rotate(0deg);}
+    to{transform:rotate(359deg);}
+}

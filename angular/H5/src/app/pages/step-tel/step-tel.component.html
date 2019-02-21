@@ -1,0 +1,18 @@
+<app-header title="手机号码验证" backIcon=1 backTxt="返回" hasBack="false"></app-header>
+<div class="has_win">
+  <form #newForm="ngForm" (ngSubmit)='formSubmit(newForm)'>
+    <div class='input'>
+      <img src='../../assets/images/form_icon1_03.png' style='margin:0.666666rem .6rem 0 0;width:0.866666rem;height:1.2rem;'>
+      <input placeholder="请输入您的电话号码" maxlength='11' type='text' name="tel" bindinput="getTel" [(ngModel)]='tel' />
+    </div>
+    <div class='input'>
+      <img src='../../assets/images/form_icon2_03.png' style='margin:0.666666rem 0.333333rem 0 0;width:1.133333rem;height:1.133333rem;'>
+      <input placeholder="请输入您收到的验证码" name="code" maxlength='6' type='text' class='code_input' [(ngModel)]='code'/>
+      <p (click)='sendCode()' *ngIf="canSendCode" style='background-color: transparent;color: #dbb272;'>发送验证码</p>
+      <p *ngIf="!canSendCode">{{sendCd}}s后重新获取</p>
+    </div>
+    <div class="btn-area">
+      <button formType="submit" class='priBtn'>立即验证</button>
+    </div>
+  </form>
+</div>

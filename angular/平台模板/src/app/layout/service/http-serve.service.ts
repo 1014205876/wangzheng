@@ -56,4 +56,11 @@ export class HttpServe {
       .map(res => res.json());
   }
 
+  upload(url: string, data: any) {
+    // let headers: Headers = new Headers({ 'AUTH_USER': this.auth.getAuthorization("Template"), 'Content-Type': 'application/json' })
+    let headers: Headers = new Headers({ 'Content-Type': 'application/json' })
+    return this.http.post(url, data, { headers: headers })
+      .map(res => res.json())
+  }
+
 }

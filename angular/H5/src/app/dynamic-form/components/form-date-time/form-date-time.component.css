@@ -1,0 +1,9 @@
+@import url('../../dynamic-form.css');
+.time {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    background: #fff;
+    color: #333;
+}

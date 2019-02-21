@@ -1,0 +1,24 @@
+.header{padding: 0 .6rem;height: 2.933333rem;line-height: 2.933333rem;overflow: hidden;}
+.header>img{margin:0.933333rem 0.733333rem 0 0;  width:1.066666rem;height:1.066666rem;}
+.header>p,.get-camera>p{font-size: 1rem;}
+.get-camera,.camera_box{position: relative;}
+.get-camera>img{margin: 0.933333rem 0 0 0.2rem; width: 1.266666rem;height: 1.066666rem;}
+.get-camera>input,.get-camera>div,.camera_box>.no_img>input{position: absolute;left: 0;top: 0;width: 100%;height: 100%;opacity: 0;z-index: 99;}
+.body{padding: 0.666666rem 1rem;border-top: 1px solid #e2e2e2;}
+.camera_box>.no_img{background-color: #e2e2e2;height: 9.333333rem;line-height: 9.333333rem;text-align: center;color: #fff;font-size: .8rem;}
+.camera_box>.has_img{text-align: center;}
+.camera_box>.has_img>img{height: 9.333333rem;}
+.img_info p,.img_info div{display: block;font-size: .8rem;line-height: 1.533333rem;}
+.canRecive .input{float: left;width: 15em; font-size: .8rem;display: block;}
+.canRecive{overflow: hidden;}
+.canRecive p{float: left;}
+.canRecive .revice{float: right;}
+.canRecive input{float: left; width: 15em; font-size: .8rem;height: 1.533333rem;line-height:1.533333rem;box-sizing: border-box;min-height: 0;}
+
+.mask{position: fixed;left: 0;top: 0;width: 100%;height: 100%;background-color: rgba(0, 0, 0, 0.8);z-index: 99;}
+.alert{position: fixed;left: 50%;top: 50%;z-index: 100;width: calc(100% - 2rem);padding: 1rem 2rem 0; background-color: #fff;border-radius: 0.2rem;transform: translate(-50%,-50%);text-align: center;font-size: 1.2rem;}
+.code{font-size: 2rem;color: #dbb272;padding-top: 1rem;}
+
+.btn_row{width: 100%;}
+.btn_row button{width: 50%;float: left;background-color: transparent;font-size: 1.2rem;height: 3rem;line-height: 3rem;}
+.sure{color: #09bb07}

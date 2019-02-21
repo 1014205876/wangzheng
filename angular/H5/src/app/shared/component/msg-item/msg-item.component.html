@@ -1,0 +1,13 @@
+<div class="item">
+  <div (touchstart)="touchS($event)" (touchmove)="touchM($event)" (touchend)="touchE($event)" (click)='reading(obj.content)' [ngStyle]="{left:txtStyle/30+'rem'}" class="inner txt">
+    <div class='txt_con'>
+      <p>{{obj.content}}</p>
+      <div class='read_tip' *ngIf="obj.status=='0'?true:false"></div>
+    </div>
+    <div class='date'>
+      <p>{{obj.sendTime}}</p>
+    </div>
+  </div>
+  <div class="inner del" (click)='delItem()'>删除</div>
+  <div class="inner readed" (click)='read()'>标为已读</div>
+</div>

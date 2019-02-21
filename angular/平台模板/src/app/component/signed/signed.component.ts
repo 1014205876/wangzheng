@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { HttpServe } from '../../layout/service/http-serve.service';
 
 @Component({
     selector: 'app-signed',
@@ -7,6 +8,7 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 })
 export class SignedComponent implements OnInit {
     constructor(
+        private http: HttpServe,
         private el: ElementRef,
         private rederer2: Renderer2
     ) { }
@@ -60,6 +62,12 @@ export class SignedComponent implements OnInit {
             var b64 = image.substring(22);
             console.log(image)
             console.log(b64)
+            // that.http.upload(
+            //     '/upload',
+            //     { file: image }
+            // ).subscribe(res => {
+            //     console.log(res)
+            // })
         }
         clearCanvas.onclick = function () {
             cxt.clearRect(0, 0, oCanvas.width, oCanvas.height);

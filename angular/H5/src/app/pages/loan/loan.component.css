@@ -1,0 +1,52 @@
+.cur_item{
+  position: relative;
+}
+.cur_item>img,.cur_item .right img{
+  float: right;
+  height: 1rem;
+  vertical-align: top;
+  margin: 1rem 0 0 0.5rem;
+}
+.cur_item .right {
+  height: 100%;
+  width: 60%;
+  position: relative;
+  overflow: hidden;
+  font-size: 1rem;
+}
+.cur_item .right .picker {
+  float: right;
+  font-size: 2rem;
+  color: #333;
+}
+.cur_item .right input {
+  font-size: 1rem;
+  height: 100%;
+  width: 100%;
+  color: #333;
+  float: right;
+  text-align: right;
+}
+.cur_item .right input::-webkit-input-placeholder{
+  color: #999;
+}
+.cur_item .right.amount {
+  padding-right: 2.2em;
+}
+.cur_item .right span {
+  float: right;
+}
+.priBtn {
+  width: calc(100% - 2rem);
+  margin: 2rem auto;
+}
+
+.cur_item .select{
+  opacity: 0;
+  color: #333;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 99;
+}
+option{color: #333;}

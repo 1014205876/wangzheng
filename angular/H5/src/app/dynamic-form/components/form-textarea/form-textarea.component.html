@@ -1,0 +1,10 @@
+<div class="multi_item" [formGroup]="group">
+  <div class="cur_item">
+    <div class="left">{{config.controlName}}</div>
+    <img src="../../../../assets/images/arr_toR_03.png" alt="" >
+  </div>
+  <div class="textBox">
+    <textarea rows="6" placeholder="{{config.placeInfo}}" [(ngModel)]="config.value" [formControlName]="config.controlKey" (blur)="setValue()"></textarea>
+  </div>
+</div>
+

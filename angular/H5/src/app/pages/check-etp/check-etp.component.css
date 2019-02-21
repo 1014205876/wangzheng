@@ -1,0 +1,125 @@
+.box {
+  padding: 1rem 0;
+}
+.orderList .item {
+  background-color: #fff;
+  margin-bottom: 0.666666rem;
+  padding: 0 1rem .666666rem;
+}
+
+.orderList .item .left {
+  float: left;
+}
+
+.orderList .item .right {
+  float: right;
+}
+
+.orderList .item .line {
+  height:2.933333rem;
+  line-height: 2.933333rem;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.orderList .item .line .left {
+  font-size: 1rem;
+  color: #333;
+  max-width: calc(100% - 4rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.orderList .item .line .right {
+  width: .6rem;
+  height: 1.133333rem;
+  vertical-align: top;
+  margin: .933333rem 0 0 .666666rem;
+}
+
+.orderList .item .orderCon {
+  padding-top: .666666rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.orderList .item .orderCon .left {
+  display: flex;
+  flex-direction: column;
+}
+
+.orderList .item .orderCon .left p {
+  font-size: .933333rem;
+  color: #666;
+  line-height: 1.666666rem;
+}
+
+.orderList .item .orderCon .right {
+  position: absolute;
+  right: 0;
+  bottom: 0.5rem;
+}
+
+.orderList .item .orderCon .right .btnBox {
+  height: 1.733333rem;
+  background: none;
+  line-height: 1.666666rem;
+  font-size: .8rem;
+  cursor: pointer;
+  padding: 0 .833333rem;
+  border-radius: 1.866666rem;
+  border: 1px solid #dbb272;
+  color: #dbb272;
+}
+
+.add_btn {
+  background-color: #fff;
+  padding: 0 1rem;
+  height: 2.933333rem;
+  line-height: 2.933333rem;
+}
+
+.add_btn p {
+  float: left;
+  font-size: 1rem;
+  color: #dbb272;
+}
+
+.add_btn img {
+  float: right;
+  margin-top: .866666rem;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.void_list{
+  text-align: center;
+  height: 100%;
+  padding: 23.333332rem 1rem 0;
+  background: url(../../../assets/images/void_list_03.png) no-repeat;
+  background-size: 21.2rem 21.333332rem;
+  background-position: center 2.666666rem;
+}
+
+.void_list image{
+  width: 10.6rem;
+  height: 10.666666rem;
+}
+
+.void_list p{
+  margin: 2rem 0;
+  display: block;
+  font-size: 1.2rem;
+  color: #333;
+  height: 1.8rem;
+  line-height: 1.8rem;
+}
+
+.void_list button{
+  display: block;
+  width: 100%;
+}
+
+.void_list{
+  
+}

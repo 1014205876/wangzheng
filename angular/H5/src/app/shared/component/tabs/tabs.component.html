@@ -1,0 +1,6 @@
+<div class="tabs-null"></div>
+<div class="tabs">
+  <a id="home" [routerLink]="['/home']" [routerLinkActive]="['active']">首页</a>
+  <a id="msg" [routerLink]="['/msg']" [routerLinkActive]="['active']">信息<span class="tip" *ngIf='hasMsg'></span></a>
+  <a id="mine" [routerLink]="['/mine']" [routerLinkActive]="['active']">我的</a>
+</div>

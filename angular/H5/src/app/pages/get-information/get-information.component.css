@@ -1,0 +1,34 @@
+.box{padding: 1rem;}
+.header{padding: 0 1rem; height: 2.933333rem;line-height: 2.933333rem;border-bottom: 1px solid #e2e2e2;background-color: #fff;overflow: hidden;white-space: nowrap;word-break: break-all;text-overflow: ellipsis;}
+.header>img{margin: .933333rem .933333rem 0 0; width: 1.066666rem;height: 1.066666rem;}
+.header>p{font-size: 1rem;}
+.get-camera,.camera_box{position: relative;}
+.get-camera>img{margin: 0.933333rem 0 0 0.666666rem; height: 1.066666rem;}
+.get-camera,.camera_box{position: relative;}
+.get-camera>input,.get-camera>div,.camera_box>.no_img>input{position: absolute;left: 0;top: 0;width: 100%;height: 100%;opacity: 0;z-index: 99;}
+.downloadText {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.downloadText p {
+  margin-bottom: 0.666666rem;
+  font-size: .933333rem;
+  line-height: 1.2rem;
+}
+.downloadText .dwnLink {
+  color: #dbb272;
+  font-size: .8rem;
+  cursor: pointer;
+}
+.camera_box{background-color: #fff;padding: 0.666666rem 1rem}
+.camera_box>.has_img{text-align: center;}
+.camera_box>.has_img img{height: 9.333333rem;}
+.btn-area .priBtn{
+    color: #fff;
+  display: block;
+  background-color: #dbb272;
+  width: 100%;
+  height: 2.933333rem;
+  line-height: 2.933333rem;
+}

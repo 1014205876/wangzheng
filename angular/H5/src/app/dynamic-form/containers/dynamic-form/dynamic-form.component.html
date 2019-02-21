@@ -1,0 +1,28 @@
+<form [formGroup]="form" *ngIf='config'>
+  <div *ngFor="let group of config" class="group" id="{{group.groupKey}}">
+    <div class="row clearfix" *ngIf="group.groupShow=='0'">
+      <ng-container *ngFor="let field of group.controlList;" dynamicField [config]="field" [group]="form">
+      </ng-container>
+    </div>
+    <div class="row clearfix" *ngIf="group.groupShow=='1'&&group.controlList&&group.controlList.length>0">
+      <div class="cur_item" [routerLink]="['/form-child']" [queryParams]="{'config': group.strConfig}">
+        <div class="left">{{group.label}}</div>
+        <img src="../../../../assets/images/arr_toR_03.png" alt="">
+      </div>
+    </div>
+    <div class="row clearfix" *ngIf="!group.controlList">
+        <!-- <ng-container *ngFor="let field of config;" dynamicField [config]="field" [group]="form">
+        </ng-container> -->
+        <ng-container dynamicField [config]="group" [group]="form">
+        </ng-container>
+    </div>
+  </div>
+  <!-- <div class="row clearfix">
+    <ng-container *ngFor="let field of config;" dynamicField [config]="field" [group]="form">
+    </ng-container>
+  </div> -->
+  <div class="priBtn" *ngIf="!childBtn"><button class="col-10 btn" (click)="submitted.emit(form);cal(form)">提交申请</button></div>
+  <div class="priBtn" *ngIf="childBtn"><button class="col-10 btn" (click)="submitted.emit(form);cal()">提交</button></div>
+</form>
+
+<loading [txt]="'请稍后...'" *ngIf='loading'></loading>

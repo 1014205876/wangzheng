@@ -1,0 +1,9 @@
+<div class="cur_item" [formGroup]="group" [routerLink]="['/calendar']" [queryParams]="{'id':pageState.id,'name': pageState.name, 'key': config.controlKey, 'time': config.value, 'title': config.controlName}">
+  <div class="left">{{config.controlName}}</div>
+  <img src="../../../../assets/images/arr_toR_03.png" alt="">
+  <div class="right">
+    <input type="text" placeholder="{{config.placeInfo}}" [(ngModel)]="config.value" [formControlName]="config.controlKey" (change)='timechange()'
+      [readOnly]="config.readOnly" *ngIf="!config.value">
+    <div class="time" *ngIf="config.value">{{newdate}}</div>
+  </div>
+</div>

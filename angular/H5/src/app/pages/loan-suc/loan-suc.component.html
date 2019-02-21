@@ -1,0 +1,12 @@
+<app-header title="贷款申请" backIcon=1 backTxt="返回" hasBack="true"></app-header>
+<div class="has_win">
+  <div class="box">
+    <div class="holder">
+      <img src="../../../assets/images/authoritySuc_03.png" alt="">
+    </div>
+    <div class="txt_group">贵公司{{etpName}}的贷款申请已通过，稍后会有工作人员与您联系具体时间,请保持电话畅通！</div>
+    <button class='filling' style='display:block;' bindtap='order' [routerLink]="['/mine']" [queryParams]="{'orderId':pageState.orderId}">查看订单详情</button>
+    <button class='btnBox' [routerLink]="['/home']">返回首页</button>
+  </div>
+</div>
+<!-- <a [routerLink]="['/loan-suc']">loan-suc</a> -->
