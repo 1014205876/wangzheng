@@ -5,7 +5,7 @@ import { HttpService } from '../../shared/service/http-serve.service';
 @Component({
   selector: 'app-contract-model',
   templateUrl: './contract-model.component.html',
-  styleUrls: ['./contract-model.component.css']
+  styleUrls: ['./contract-model.component.less']
 })
 export class ContractModelComponent implements OnInit {
 

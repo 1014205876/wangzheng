@@ -31,7 +31,7 @@
     text-align: center;
     width: 100%;
     font-size:1.066666rem;
-    color: #dbb272;
+    color: #5D87F3;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -63,7 +63,7 @@
   
   .camera_box .camera_con cover-view {
     line-height: 1.6rem;
-    color: #dbb272;
+    color: #5D87F3;
     font-size: 8rem;
     white-space: normal;
     text-align: left;
@@ -142,7 +142,7 @@
   }
   .cameraBtn p {
     font-size: 1rem;
-    color: #dbb272;
+    color: #5D87F3;
     margin: 0.666666rem;
     line-height: 1.333333rem;
     text-align: center;

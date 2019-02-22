@@ -27,7 +27,6 @@ import { RealControllerComponent } from './pages/real-controller/real-controller
 import { RepayInfoComponent } from './pages/repay-info/repay-info.component';
 import { ReportInfoComponent } from './pages/report-info/report-info.component';
 import { RequireAuthorizationComponent } from './pages/require-authorization/require-authorization.component';
-import { StartUpComponent } from './pages/start-up/start-up.component';
 import { StepTelComponent } from './pages/step-tel/step-tel.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
 
@@ -42,14 +41,15 @@ import { RegisterSuccessComponent } from './pages/register-success/register-succ
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: "full" },
-  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },//登录页面
-  { path: 'contract-model', component: ContractModelComponent },
-  { path: 'contract-detail', component: ContractDetailComponent },
-  { path: 'product', component: ProductComponent },
-  { path: 'start-up', component: StartUpComponent },
   { path: 'register', component: RegisterComponent },//注册页面
   { path: 'register-success', component: RegisterSuccessComponent },//注册成功页面
+  { path: 'home', component: HomeComponent },//首页
+  { path: 'product', component: ProductComponent },//贷款申请页面
+  { path: 'loan', component: LoanComponent, canActivate: [HasLoginGuard] },
+  { path: 'loan-suc', component: LoanSucComponent, canActivate: [HasLoginGuard] },
+  { path: 'contract-model', component: ContractModelComponent },
+  { path: 'contract-detail', component: ContractDetailComponent },
   { path: 'banner/:id', component: BannerComponent, canActivate: [HasLoginGuard] },
   { path: 'msg', component: MsgComponent, canActivate: [HasLoginGuard] },
   { path: 'mine', component: MineComponent, canActivate: [HasLoginGuard] },
@@ -62,8 +62,6 @@ const routes: Routes = [
   { path: 'check-etp', component: CheckEtpComponent, canActivate: [HasLoginGuard] },
   { path: 'down-information', component: DownInformationComponent, canActivate: [HasLoginGuard] },
   { path: 'etp-list', component: EtpListComponent, canActivate: [HasLoginGuard] },
-  { path: 'loan', component: LoanComponent, canActivate: [HasLoginGuard] },
-  { path: 'loan-suc', component: LoanSucComponent, canActivate: [HasLoginGuard] },
   { path: 'order-detail', component: OrderDetailComponent, canActivate: [HasLoginGuard] },
   { path: 'order-lists', component: OrderListsComponent, canActivate: [HasLoginGuard] },
   { path: 'per-report', component: PerReportComponent, canActivate: [HasLoginGuard] },

@@ -5,5 +5,5 @@
 .msg_tabs li{float: left;width: 33.333333%;text-align: center;}
 .msg_tabs li>a{height: 3rem;line-height: 3rem;display: inline-block;position: relative;color: #333;}
 .msg_tabs li>a .tip{width: .466666rem;height: .466666rem;position: absolute;background-color: #e94f4f;border-radius: 50%;position: absolute;top: 0.5rem;left: 50%; transform: translateX(2em);}
-.msg_tabs li.active>a{color: #dbb272;}
-.msg_tabs li.active>a::after{content: '';width:2rem;height: 2px;position: absolute;left: 50%;bottom: 2px;margin-left: -1rem; background-color: #dbb272;}
+.msg_tabs li.active>a{color: #5D87F3;}
+.msg_tabs li.active>a::after{content: '';width:2rem;height: 2px;position: absolute;left: 50%;bottom: 2px;margin-left: -1rem; background-color: #5D87F3;}

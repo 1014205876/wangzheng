@@ -8,7 +8,7 @@
     <div class='input'>
       <img src='../../assets/images/form_icon2_03.png' style='margin:0.666666rem 0.333333rem 0 0;width:1.133333rem;height:1.133333rem;'>
       <input placeholder="请输入您收到的验证码" name="code" maxlength='6' type='text' class='code_input' [(ngModel)]='code'/>
-      <p (click)='sendCode()' *ngIf="canSendCode" style='background-color: transparent;color: #dbb272;'>发送验证码</p>
+      <p (click)='sendCode()' *ngIf="canSendCode" style='background-color: transparent;color: #5D87F3;'>发送验证码</p>
       <p *ngIf="!canSendCode">{{sendCd}}s后重新获取</p>
     </div>
     <div class="btn-area">

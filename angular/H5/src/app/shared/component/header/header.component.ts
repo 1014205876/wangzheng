@@ -11,8 +11,8 @@ export class HeaderComponent implements OnInit {
   @Output() ownBack=new EventEmitter();
 
   @Input() hasMsg=false;
-  @Input() bg = "#dbb272";
-  @Input() holderBg = "#dbb272";
+  @Input() bg = "#5D87F3";
+  @Input() holderBg = "#5D87F3";
   @Input() backTxt: string;
   @Input() title: string;
   @Input() titColor: string;

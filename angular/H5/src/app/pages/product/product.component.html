@@ -1,42 +1,52 @@
-<app-header [title]="pageState.name" [backIcon]=1 [backTxt]="'返回'" [hasBack]="true" [hasRightBtn]="true" [rightTxt]="'申请资料'"
-  [rightRoute]="{'route':'/contract-model','paramsName':'index','paramsValue':pageState.index}" bg='#d6ad6b'>
+<app-header [title]="pageState.name" [backIcon]=1 [backTxt]="'返回'" [hasBack]="true" [hasRightBtn]="true"
+    [rightTxt]="'申请资料'" [rightRoute]="{'route':'/contract-model','paramsName':'index','paramsValue':0}"
+    bg='#5D87F3'>
 </app-header>
 <div class="has_win" *ngIf="product">
-  <div class="content" style="margin-bottom: 4rem;">
-    <div class="limit">
-      <img src="../../../assets/images/proBg_01.jpg" alt="">
-      <dl class="top">
-        <dt class="larger_txt text">{{product.minAmount}}-{{product.maxAmount}}万</dt>
-        <dd class="text">申请额度</dd>
-      </dl>
-      <div class="bot">
-        <img src="../../../assets/images/line_bg_05.png" alt="">
-        <div>
-          <span>{{product.minTerm}}-{{product.maxTerm}}个月</span>
-          <span>可申请期限</span>
+    <div class="content" style="margin-bottom: 4rem;">
+        <div class="limit">
+            <img src="../../../assets/images/proBg_01.png" alt="">
+            <div class="name">{{product.name}}</div>
+            <div class="advantage">纯信用无抵押 · 以水定额 · 智能风控 · 快速放款</div>
+            <ul class="data">
+                <img src="../../../assets/images/proBg_02.png" alt="">
+                <li>
+                    <div class="top">
+                        申请额度
+                    </div>
+                    <div class="bottom">
+                        申请额度
+                    </div>
+                </li>
+                <li>
+                    <div class="top">
+                        申请额度
+                    </div>
+                    <div class="bottom">
+                        申请额度
+                    </div>
+                </li>
+                <li>
+                    <div class="top">
+                        申请额度
+                    </div>
+                    <div class="bottom">
+                        申请额度
+                    </div>
+                </li>
+            </ul>
         </div>
-        <div>
-          <span>{{product.minRate}}-{{product.maxRate}}%</span>
-          <span>年综合费率</span>
+        <div class='box'>
+            <div class="scrollBox">
+                <div class='pro_tit' *ngIf="product.productIntroduction">
+                    <div style="overflow: hidden" [innerHtml]="product.productIntroduction"></div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-    <div class='box'>
-      <div class="scrollBox">
-        <div class='white_bg' *ngIf="product.productIntroduction">
-          <div class='pro_tit'>产品介绍
-            <!-- <a [routerLink]="['../contract-model']" [queryParams]="{'index': pageState.index}" class='seeContract'>合同范本</a> -->
-          </div>
-          <div style="overflow: hidden" [innerHtml]="product.productIntroduction"></div>
+    <div class='btn_row'>
+        <div class="priBtn" style="margin-bottom: 1rem;">
+            <button (click)="sure()" class="cur_btn btn" bindtap='loan'>立即申请</button>
         </div>
-      </div>
-      
-    </div>
-  </div>
-  <div class='btn_row'>
-      <div class="priBtn" style="margin-bottom: 1rem;">
-        <button (click)="sure()" class='cur_btn btn'
-          style='display:block;' bindtap='loan'>立即申请</button>
-      </div>
     </div>
 </div>

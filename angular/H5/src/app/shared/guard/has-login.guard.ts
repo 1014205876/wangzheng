@@ -12,7 +12,7 @@ export class HasLoginGuard implements CanActivate {
 
   }
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    console.log(this.auth.getAuthorization("Template"))
+    // console.log(this.auth.getAuthorization("Template"))
     if (this.auth.getAuthorization("Template")) {
       return true;
     }

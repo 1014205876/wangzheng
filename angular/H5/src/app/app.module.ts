@@ -41,7 +41,6 @@ import { RealControllerComponent } from './pages/real-controller/real-controller
 import { RepayInfoComponent } from './pages/repay-info/repay-info.component';
 import { ReportInfoComponent } from './pages/report-info/report-info.component';
 import { RequireAuthorizationComponent } from './pages/require-authorization/require-authorization.component';
-import { StartUpComponent } from './pages/start-up/start-up.component';
 import { StepTelComponent } from './pages/step-tel/step-tel.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
 import { FormMultiPicComponent } from './pages/form-multi-pic/form-multi-pic.component';
@@ -91,7 +90,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     RepayInfoComponent,
     ReportInfoComponent,
     RequireAuthorizationComponent,
-    StartUpComponent,
     StepTelComponent,
     BannerComponent,
     CalendarComponent,

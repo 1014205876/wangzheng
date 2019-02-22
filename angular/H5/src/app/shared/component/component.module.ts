@@ -15,6 +15,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { ScalableImgComponent } from './scalable-img/scalable-img.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { MenuComponent } from './menu/menu.component';
+import { SignedComponent } from './signed/signed.component';
 
 import { AppRoutingModule } from './../../app-routing.module';
 
@@ -37,7 +38,8 @@ import { AppRoutingModule } from './../../app-routing.module';
     TabsComponent,
     ToastComponent,
     ValidateBoxComponent,
-    MenuComponent
+    MenuComponent,
+    SignedComponent
   ],
   exports: [
     CalendarComponent,
@@ -48,7 +50,8 @@ import { AppRoutingModule } from './../../app-routing.module';
     TabsComponent,
     ToastComponent,
     ValidateBoxComponent,
-    MenuComponent
+    MenuComponent,
+    SignedComponent
   ]
 })
 export class ComponentModule { }

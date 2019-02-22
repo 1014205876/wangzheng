@@ -4,12 +4,12 @@
 .header>img{margin: 0.933333rem 0 0 0; width: 1.066666rem;height: 1.066666rem; float: left;}
 .header>p{font-size: 1rem; float: left;}
 .header>input{font-size: 1rem; float: left; height: 1.933333rem; margin: 0.5rem 0; width: 6.666666rem;background-color: transparent;}
-.textBtn {color: #dbb272; text-align: right; font-size: 1rem; line-height: 1.333333rem; padding: 0.666666rem 1rem;}
-.textBtn p {color: #dbb272; font-size: 1rem;}
+.textBtn {color: #5D87F3; text-align: right; font-size: 1rem; line-height: 1.333333rem; padding: 0.666666rem 1rem;}
+.textBtn p {color: #5D87F3; font-size: 1rem;}
 .priBtn{
     color: #fff;
   display: block;
-  background-color: #dbb272;
+  background-color: #5D87F3;
   width: 100%;
   height: 2.933333rem;
   line-height: 2.933333rem;

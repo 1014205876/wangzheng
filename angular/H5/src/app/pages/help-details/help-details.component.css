@@ -38,7 +38,7 @@
     bottom: 0;
     color: #fff;
     font-size: 1rem;
-    border: 1px solid #DBB272;
+    border: 1px solid #5D87F3;
     border-radius: 0.2rem;
     overflow: hidden;
     display: flex;
@@ -51,11 +51,11 @@
     height: 100%;
     text-align: center;
     line-height: 2.6rem;
-    color: #DBB272;
+    color: #5D87F3;
 }
 
 .solve .active {
-    background: #DBB272;
+    background: #5D87F3;
     color: #fff;
 }
 

@@ -6,7 +6,7 @@ import { HttpService } from '../../shared/service/http-serve.service';
 @Component({
   selector: 'app-loan',
   templateUrl: './loan.component.html',
-  styleUrls: ['./loan.component.css']
+  styleUrls: ['./loan.component.less']
 })
 export class LoanComponent implements OnInit {
   @HostListener('window:popstate', ['$event'])

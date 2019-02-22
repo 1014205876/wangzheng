@@ -36,7 +36,7 @@
   background-size: 2rem;
 }
 .tabs a.active {
-  color: #dbb272;
+  color: #5D87F3;
 }
 .tabs a.active:nth-child(1){
   background: url(../../../../assets/images/icon_home_act_03.png) top center no-repeat;

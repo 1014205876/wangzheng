@@ -1,0 +1,85 @@
+.limit {
+    position: relative;
+    box-sizing: border-box;
+    height: 12.5rem;
+    color: #fff;
+    font-size: 1rem;
+    img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+    .name {
+        position: absolute;
+        top: 1.66rem;
+        width: 100%;
+        font-size: 1.4rem;
+        color: #fff;
+        text-align: center;
+    }
+    .advantage {
+        position: absolute;
+        top: 4rem;
+        width: 100%;
+        font-size: 0.86rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+    }
+    .data {
+        position: absolute;
+        top: 7rem;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        display: flex;
+        justify-content: center;
+        width: 23rem;
+        margin: auto;
+        padding: 0.3rem 1rem;
+        >img {
+            z-index: -5;
+        }
+        >li {
+            flex: 1;
+            text-align: center;
+            .top {
+                color: #999;
+                font-size: 0.8rem;
+                line-height: 2rem;
+            }
+            .bottom {
+                color: #333;
+                font-size: 1.06rem;
+                line-height: 2.33rem;
+            }
+        }
+    }
+}
+
+.box {
+    overflow: hidden;
+    height: calc(100% - 17rem);
+    box-sizing: border-box;
+    padding-top: 1rem;
+    .scrollBox {
+        height: 100%;
+        overflow-y: auto;
+    }
+    .pro_tit {
+        padding: 0 1rem;
+    }
+}
+
+.btn_row {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0rem;
+    padding:0.66rem 1rem;
+    background-color: #fff;
+    .cur_btn {
+        display: block;
+        width: 100%;
+    }
+}

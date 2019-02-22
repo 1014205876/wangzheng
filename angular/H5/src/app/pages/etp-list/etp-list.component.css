@@ -86,7 +86,7 @@
 .add_btn p {
 	float: left;
 	font-size: 1rem;
-	color: #dbb272;
+	color: #5D87F3;
 }
 
 .add_btn img {
@@ -109,8 +109,8 @@
 	color: #666;
 }
 button.btnBox {
-	border: 1px solid #dbb272;
-	color: #dbb272;
+	border: 1px solid #5D87F3;
+	color: #5D87F3;
 	font-size: 1rem;
 }
 .btnBox {

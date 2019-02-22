@@ -1,10 +1,22 @@
-<app-header title="{{pageState.title}}" backIcon=1 backTxt="返回" hasBack="false"></app-header>
+<app-header title="{{pageState.title}}" backIcon=1 backTxt="è¿”å›ž" hasBack="false"></app-header>
 <div class="has_win">
   <div class="box" *ngIf="product">
-    <div class="cur_item" *ngFor="let item of product.productMaterial;let index=index" (click)="routeDetail(item,pageState.index,index)">
-      {{item.name}}
-      <img src="../../../assets/images/arr_toR_03.png" alt="" class="rightImg">
-    </div>
+        <div class="cur_item" *ngFor="let item of product.productMaterial;let index=index" (click)="routeDetail(item,pageState.index,index)">
+          {{item.name}}
+          <img src="../../../assets/images/arr_toR_03.png" alt="" class="rightImg">
+        </div>
+        <div class="cur_item" *ngFor="let item of product.productMaterial;let index=index" (click)="routeDetail(item,pageState.index,index)">
+          {{item.name}}
+          <img src="../../../assets/images/arr_toR_03.png" alt="" class="rightImg">
+        </div>
+        <div class="cur_item" *ngFor="let item of product.productMaterial;let index=index" (click)="routeDetail(item,pageState.index,index)">
+          {{item.name}}
+          <img src="../../../assets/images/arr_toR_03.png" alt="" class="rightImg">
+        </div>
+        <div class="cur_item" *ngFor="let item of product.productMaterial;let index=index" (click)="routeDetail(item,pageState.index,index)">
+          {{item.name}}
+          <img src="../../../assets/images/arr_toR_03.png" alt="" class="rightImg">
+        </div>
   </div>
   <!-- <pre class="box" *ngIf="product">{{product.contractModel}}</pre> -->
 </div>

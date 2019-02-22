@@ -1,5 +1,5 @@
 <template>
-  <div class="drag" @mousemove='mousemove' @mouseup='mouseup'>
+  <div class="drag" @mousemove='mousemove' @mouseup='mouseup' style='padding-top:100px;'>
     <!-- <button @click='totree'>模板页面</button> -->
     <div class="left">
       组件选择
@@ -359,6 +359,8 @@ export default {
         that.absolute.top = e.clientY - 10 + "px";
         that.absolute.left = e.clientX - 30 + "px";
         let topY = e.pageY;
+        console.log(topY)
+        console.log($(e.path[0]).closest(".component").offset().top)
         that.find($(e.path[0]).closest(".component"), topY, that);
       }
     },
