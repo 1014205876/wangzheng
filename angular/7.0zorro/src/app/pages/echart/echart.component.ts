@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-echart',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./echart.component.less']
 })
 export class EchartComponent implements OnInit {
+    value=1
   chartOption = {
     title: {
       text: '堆叠区域图'
