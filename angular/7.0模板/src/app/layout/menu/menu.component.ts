@@ -35,12 +35,12 @@ export class MenuComponent implements OnInit {
                         type: "link",
                         url: "/module/form",
                     },
-                    //   {
-                    //     name: "switch",
-                    //     state: "curFlow",
-                    //     type: "link",
-                    //     url: "/module/switch",
-                    //   },
+                    {
+                        name: "switch",
+                        state: "curFlow",
+                        type: "link",
+                        url: "/module/switch",
+                    },
                 ]
             },
         ]
@@ -54,14 +54,9 @@ export class MenuComponent implements OnInit {
     }
     ngOnInit() {
         //左导航栏导航
-        // this.http.get("peak-resource/api/resource/user/permission").extractData((res) => {
-        //     console.log(res);
-        //       this.nav = res['result'];
-        // }, function (err) {
-        //     console.log(err)
-        // })
-        this.http.get('peak-resource/api/resource/user/permission', {}, res => {
+        this.http.get('peak-resource/api/resource/user/permission', res => {
             console.log(res);
+            // this.nav.menu = res.result.menu;
         });
     }
 }

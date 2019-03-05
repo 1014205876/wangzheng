@@ -1,68 +1,58 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class selfHttp {
     public restServer;
     public http;
+    public header
+    // let headers: Headers = new Headers({ 'Content-Type': 'application/json' })
 
-    constructor(Http: HttpClient) {
+    constructor(
+        Http: HttpClient,
+        // header: HttpHandler,
+    ) {
         this.http = Http;
         this.restServer = '/api/';
+        this.header = new HttpHeaders().set('Content-Type', 'application/json')
     }
 
-    public get(url, params?: Object, cb?: Function) {
-        let httpParams = new HttpParams();
-        console.log('get开始请求');
+    public get(url, cb?: Function, options?: Object) {
         const vm = this;
-        if (params) {
-            for (const key in params) {
-                if (params[key] === false || params[key]) {
-                    httpParams = httpParams.set(key, params[key]);
-                }
-            }
-        }
-        vm.http.get(vm.restServer + url, { params: httpParams })
+        vm.http.get(vm.restServer + url, { header: vm.header })
             .subscribe(data => {
-                console.log('get请求结束', data);
                 cb(data);
             });
     }
 
-    public post(url, data?: Object, cb?: Function, options?: Object) {
-        console.log('post开始请求');
+    public post(url, data: Object, cb: Function, options?: Object) {
         const vm = this;
-        vm.http.post(vm.restServer + url, data, options)
+        vm.http.post(vm.restServer + url, data, { header: vm.header })
             .subscribe(res => {
-                console.log('post请求结束', res);
                 cb(res);
             });
     }
 
-    public put(url, data?: Object, cb?: Function, options?: Object) {
-        console.log('put开始请求');
+    public patch(url, data: Object, cb: Function, options?: Object) {
         const vm = this;
-        vm.http.put(vm.restServer + url, data, options)
+        vm.http.patch(vm.restServer + url, data, { header: vm.header })
             .subscribe(res => {
-                console.log('put请求结束', res);
                 cb(res);
             });
     }
 
-    public delete(url, params?: Object, cb?: Function) {
-        let httpParams = new HttpParams();
-        console.log('delete开始请求');
+    public put(url, data: Object, cb: Function, options?: Object) {
         const vm = this;
-        if (params) {
-            for (const key in params) {
-                if (params[key]) {
-                    httpParams = httpParams.set(key, params[key]);
-                }
-            }
-        }
-        vm.http.delete(vm.restServer + url, { params: httpParams })
+        vm.http.put(vm.restServer + url, data, { header: vm.header })
+            .subscribe(res => {
+                cb(res);
+            });
+    }
+
+    public delete(url, cb: Function, options?: Object) {
+        const vm = this;
+        vm.http.delete(vm.restServer + url, { header: vm.header })
             .subscribe(data => {
-                console.log('delete请求结束', data);
                 cb(data);
             });
     }
