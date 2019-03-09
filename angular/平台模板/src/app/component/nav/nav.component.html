@@ -22,7 +22,7 @@
         {{list.name}}
       </span>
       <ul>
-        <li nz-menu-item *ngFor='let item of list.children' [routerLink]='item.url' [routerLinkActive]="['active']">
+        <li nz-menu-item *ngFor='let item of list.children' [routerLink]='item.url' [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}">
           <span class='title'>
             <i class="anticon anticon-minus"></i>
             {{item.name}}

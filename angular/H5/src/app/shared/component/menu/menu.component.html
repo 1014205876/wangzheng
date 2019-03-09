@@ -1,0 +1,25 @@
+<div class="menu">
+  <img src="../../../../assets/images/menu.png" alt="" (click)=tagshow()>
+  <div class="tabs" [ngClass]='{active:show}'>
+    <a id="home" [routerLink]="['/home']" [routerLinkActive]="['active']">
+      <img src="../../../../assets/images/icon_home_04.png" alt="">
+      平台首页<span class="tip"></span>
+    </a>
+    <a id="mine" [routerLink]="['/mine']" [routerLinkActive]="['active']">
+      <img src="../../../../assets/images/icon_mine_06.png" alt="">
+      个人中心<span class="tip"></span>
+    </a>
+    <a id="mine" [routerLink]="['/order-lists']" [routerLinkActive]="['active']">
+      <img src="../../../../assets/images/icon_loan.png" alt="">
+      我的贷款<span class="tip"></span>
+    </a>
+    <a id="mine" [routerLink]="['/etp-list']" [routerLinkActive]="['active']">
+      <img src="../../../../assets/images/icon_enterprise.png" alt="">
+      我的企业<span class="tip"></span>
+    </a>
+    <a id="msg" [routerLink]="['/msg']" [routerLinkActive]="['active']">
+      <img src="../../../../assets/images/icon_msg_06.png" alt="">
+      我的消息<span class="tip" [ngClass]='{active:hasMsg}'></span>
+    </a>
+  </div>
+</div>

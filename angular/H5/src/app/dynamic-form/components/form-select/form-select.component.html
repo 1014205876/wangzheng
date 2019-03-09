@@ -1,0 +1,11 @@
+<div class="cur_item" [formGroup]="group">
+  <div class="left">{{config.controlName}}</div>
+  <img *ngIf="!config.value" src="../../../../assets/images/arr_toR_03.png" alt="">
+  <div class="right" (click)="setValue()" *ngIf="!config.value">{{config.placeInfo}}</div>
+  <select class="right select" [(ngModel)]="config.value" [formControlName]="config.controlKey" (change)="setValue()">
+      <option value="{{item.value}}" *ngFor="let item of config.option">{{item.value}}</option>
+  </select>
+  <div class="right" *ngIf="config.value" style='color:#333;' (click)="setValue()">
+    {{config.value}}
+  </div>
+</div>

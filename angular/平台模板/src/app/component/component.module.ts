@@ -1,21 +1,23 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';//ngif，ngfor
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';//表单
+import { RouterModule } from '@angular/router';//路由
 
-import { HttpInterceptorModule } from 'ng-http-interceptor';
-import { NgZorroAntdModule, NZ_I18N, zh_CN, } from 'ng-zorro-antd';
+// 引入插件
+import { NgZorroAntdModule, NZ_I18N, zh_CN, } from 'ng-zorro-antd';//ng-zerro
 
-import { HttpModule } from '@angular/http';
+// 引入自定义ts组件
 import { HttpServe } from '../layout/service/http-serve.service';
 
+// 引入自定义组件
 import { AdminComponent } from './admin/admin.component';
 import { ResourceDirective } from './directive/resource.directive';
 import { HeaderComponent } from './header/header.component';
 import { MenuComponent } from './menu/menu.component';
 import { NavComponent } from './nav/nav.component';
+import { BoxComponent } from './box/box.component';
+import { ForDirective } from './for/for.directive';
+import { SignedComponent } from './signed/signed.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,9 @@ import { NavComponent } from './nav/nav.component';
     HeaderComponent,
     MenuComponent,
     NavComponent,
+    BoxComponent,
+    ForDirective,
+    SignedComponent,
   ],
   providers: [
     HttpServe,
@@ -34,13 +39,9 @@ import { NavComponent } from './nav/nav.component';
   ],
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
     RouterModule,
-    HttpModule,
-    HttpInterceptorModule,
     NgZorroAntdModule.forRoot(),
   ],
   exports: [
@@ -49,6 +50,9 @@ import { NavComponent } from './nav/nav.component';
     HeaderComponent,
     MenuComponent,
     NavComponent,
+    BoxComponent,
+    ForDirective,
+    SignedComponent,
   ],
 })
 export class ComponentModule { }

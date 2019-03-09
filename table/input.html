@@ -1,94 +1,170 @@
 <!DOCTYPE html>
-    <html lang="zh-CN">
+<html lang="zh-CN">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>input</title>
-        <style>
-            *{
-                margin:0;
-                padding:0;
-            }
-            html{
-                width:100%;
-                height:100%;
-                /* background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548050807071&di=120c5572ef7a50bdfc424ba7b60c17cc&imgtype=0&src=http%3A%2F%2Fpic2.ooopic.com%2F11%2F01%2F44%2F47b1OOOPIC41.jpg") no-repeat center; */
-                background: url("./img/input.jpg") no-repeat center;
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-            }
-            .form {
-                width: 900px;
-                margin: 0px auto;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .logo{
-                display:block;
-                width:160px;
-                margin:200px auto 20px;
-            }
-            .input {
-                font-variant: tabular-nums;
-                box-sizing: border-box;
-                margin: 0;
-                margin-right: 5px;
-                padding: 4px 11px;
-                list-style: none;
-                display: inline-block;
-                width: 300px;
-                height: 32px;
-                font-size: 14px;
-                line-height: 1.5;
-                color: rgba(0, 0, 0, .65);
-                background-color: #fff;
-                border: 1px solid #d9d9d9;
-                border-radius: 4px;
-                transition: all .3s;
-                touch-action: manipulation;
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: none;
+        }
 
-            .btn {
-                line-height: 1.499;
-                display: inline-block;
-                font-weight: 400;
-                text-align: center;
-                touch-action: manipulation;
-                cursor: pointer;
-                background-image: none;
-                border: 1px solid #d9d9d9;
-                white-space: nowrap;
-                padding: 0 15px;
-                font-size: 14px;
-                border-radius: 4px;
-                height: 32px;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-                transition: all .3s cubic-bezier(.645, .045, .355, 1);
-                position: relative;
-                box-shadow: 0 2px 0 rgba(0, 0, 0, .015);
-                color: #fff;
-                background-color: #1890ff;
-                border-color: #1890ff;
-                text-shadow: 0 -1px 0 rgba(0, 0, 0, .12);
-                box-shadow: 0 2px 0 rgba(0, 0, 0, .045);
+        html {
+            width: 100%;
+            height: 100%;
+            background: url("./img/bgimg.png") no-repeat center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+
+        .logo {
+            position: absolute;
+            top: 50px;
+            left: 80px;
+            display: flex;
+            font-size: 48px;
+            color: #fff;
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+        }
+
+        .form {
+            position: absolute;
+            top: 360px;
+            right: 400px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 5px;
+        }
+
+        .form p {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .form li {
+            margin-top: 30px;
+        }
+
+        .form .form-item {
+            display: flex;
+            align-items: center;
+            border: 1px solid #E2E2E2;
+            height: 42px;
+            border-radius: 5px;
+        }
+
+        .form .form-item img {
+            width: 16px;
+            margin: 0 10px;
+        }
+
+        .form .form-item #see,
+        .form .form-item #nosee {
+            width: 20px;
+        }
+
+        .form .form-item input {
+            border: none;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        .form .form-item input:focus {
+            outline: none;
+        }
+
+        .form li #submit {
+            width: 100%;
+            height: 42px;
+            line-height: 42px;
+            background-color: #716ACA;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        .copyright {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+        <img src="./img/logo.png" alt="">
+        盘古后台管理系统
+    </div>
+    <form action="###">
+        <ul class="form">
+            <p>
+                欢迎登录
+            </p>
+            <li class='form-item'>
+                <img src="./img/icon-user.png" alt="用户名字体图标">
+                <input id="user" type="text" placeholder="请输入用户名">
+            </li>
+            <li class='form-item'>
+                <img src="./img/icon-password.png" alt="密码名字体图标">
+                <input id="password" type="password" placeholder="请输入密码">
+                <img id="see" hiddden=true src="./img/icon-see.png" alt="点击密码可见">
+                <img id="nosee" hidden=false src="./img/icon-nosee.png" alt="点击密码不可见">
+            </li>
+            <li>
+                <input id="submit" type="submit" value="登录">
+            </li>
+        </ul>
+    </form>
+    <div class="copyright">版权所有©深圳市众镐网联数据科技有限公司</div>
+</body>
+<script>
+    let user = document.getElementById('user');
+    let password = document.getElementById('password');
+    let see = document.getElementById('see');
+    let nosee = document.getElementById('nosee');
+    let submit = document.getElementById('submit');
+    see.onclick = function () {
+        password.type = 'text';
+        see.hidden = true
+        nosee.hidden = false
+    }
+    nosee.onclick = function () {
+        password.type = 'password';
+        nosee.hidden = true
+        see.hidden = false
+    }
+    submit.onclick = function () {
+        if (user.value) {
+            if (password.value) {
+                console.log(
+                    '提交成功',
+                    {
+                        user: user.value,
+                        password: password.value
+                    }
+                )
+            } else {
+                alert('请输入密码')
             }
-        </style>
-    </head>
+        } else {
+            alert('请输入用户名')
+        }
+    }
+</script>
 
-    <body>
-        <form action="">
-            <img src="./img/logo.png" alt="logo" class="logo">
-            <div class="form">
-                <input type="text" class='input'>
-                <input type="submit" value="搜索" class="btn">
-            </div>
-        </form>
-    </body>
-
-    </html>
+</html>

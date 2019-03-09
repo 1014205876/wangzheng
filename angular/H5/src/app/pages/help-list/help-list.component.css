@@ -1,0 +1,21 @@
+.tel{
+    width:20rem;
+    height:2.6rem;
+    margin:0.7rem auto;
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    background:#5D87F3;
+    color:#fff;
+    font-size:1rem;
+    border-radius:0.2rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.tel img{
+    width:1.5rem;
+    height:1.5rem;
+    margin-right:1rem;
+}

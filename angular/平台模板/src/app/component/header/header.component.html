@@ -20,15 +20,16 @@
           <i class="anticon anticon-down" style='font-size:18px'></i>
         </div>
         <ng-template #nzTemplate style='box-shadow: 0 0 20px 0 rgba(0,0,0,.3);border-radius: 5px;cursor:pointer'>
-          <div style='cursor:pointer;padding-right:60px;' (click)="password.popoverShow=false;password.modalShow=true;paddr()">
+          <div style='cursor:pointer;padding-right:60px;'
+            (click)="password.popoverShow=false;password.modalShow=true;paddr()">
             <i class="anticon anticon-lock" style='font-size:18px;margin:0px 10px'></i>
             修改密码
           </div>
         </ng-template>
       </nz-popover>
       <!-- 修改密码表单弹窗 -->
-      <nz-modal [(nzVisible)]="password.modalShow" [nzTitle]="modelTitle" [nzContent]='modelContent' [nzFooter]='modelFooter'
-        (nzOnCancel)='choiceCancel()'>
+      <nz-modal [(nzVisible)]="password.modalShow" [nzTitle]="modelTitle" [nzContent]='modelContent'
+        [nzFooter]='modelFooter' (nzOnCancel)='choiceCancel()'>
       </nz-modal>
       <!-- 弹窗标题 -->
       <ng-template #modelTitle>
@@ -42,7 +43,10 @@
             <nz-form-control [nzSm]="14" [nzXs]="24">
               <input nz-input type="password" id="oldPassword" formControlName="oldPassword" placeholder="请输入原始密码"
                 maxlength="16" autocomplete='password'>
-              <nz-form-explain *ngIf="passwordForm.get('oldPassword').dirty && passwordForm.get('oldPassword').errors">请输入原始密码!</nz-form-explain>
+              <!-- <input nz-input type="password" formControlName="oldPassword" placeholder="请输入原始密码" maxlength="16"
+                autocomplete='password' [(ngModel)]="passwordForm.oldPassword"> -->
+              <nz-form-explain *ngIf="passwordForm.get('oldPassword').dirty && passwordForm.get('oldPassword').errors">
+                请输入原始密码!</nz-form-explain>
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
@@ -65,7 +69,8 @@
             <nz-form-control [nzSm]="14" [nzXs]="24">
               <input nz-input type="password" id="surePassword" formControlName="surePassword" placeholder="确认新密码"
                 maxlength="16" autocomplete='password'>
-              <nz-form-explain *ngIf="passwordForm.get('surePassword').dirty && passwordForm.get('surePassword').errors">
+              <nz-form-explain
+                *ngIf="passwordForm.get('surePassword').dirty && passwordForm.get('surePassword').errors">
                 <ng-container *ngIf="passwordForm.get('surePassword').hasError('required')">
                   确认新密码不能为空!
                 </ng-container>
@@ -81,7 +86,8 @@
       <ng-template #modelFooter>
         <nz-form-control style='text-align: right'>
           <button nz-button nzType="default" (click)="choiceCancel()">取消</button>
-          <button nz-button nzType="primary" [disabled]="!passwordForm.valid" (click)='choiceOk()' [nzLoading]='password.modalLoading'>确定</button>
+          <button nz-button nzType="primary" [disabled]="!passwordForm.valid" (click)='choiceOk()'
+            [nzLoading]='password.modalLoading'>确定</button>
         </nz-form-control>
       </ng-template>
     </li>

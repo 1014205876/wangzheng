@@ -1,0 +1,28 @@
+<div class="has_win">
+  <app-header title="帮助详情" backIcon=1 backTxt="返回" hasBack="false"></app-header>
+  <div class="helpDetCon">
+    <div class="helpTitle" *ngIf="pageState.title">{{pageState.title}}</div>
+    <div class="helpText" *ngIf="pageState.answer">
+      <div [innerHTML]='pageState.answer'></div>
+    </div>
+  </div>
+  <ul class="solve">
+    <li (click)='solve()'>
+      已解决
+    </li>
+    <li class='active' (click)='show();nosolve()'>
+      未解决
+    </li>
+  </ul>
+  <div class="mengban" [hidden]='!mengbanshow'>
+    <div class="alert">
+      <div class="data">
+        非常抱歉未能解决您的疑问，您的反馈我们已经记录，是否需要联系人工客服？
+      </div>
+      <ul class="btn">
+        <li (click)='hidden()'>取消</li>
+        <li><a [href]="'tel:'+tel">联系客服</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<app-header title="选择我的企业" backIcon=1 backTxt="返回" hasBack="false"></app-header>
+<div class='has_win'>
+  <div class='box' *ngIf='list.length>0'>
+    <div class='orderList'>
+      <div class='item' *ngFor='let item of list'>
+        <div class='line' (click)='info(item)'>
+          <p class='left'>{{item.etpName}}</p>
+          <img class='right' src='../../assets/images/arr_toR_03.png'>
+        </div>
+        <div class='orderCon'>
+          <div class='left'>
+            <p>法人代表姓名：{{item.legalName}}</p>
+            <p>法人手机号码：{{item.mobile}}</p>
+            <p>企业绑定时间：{{item.createDate}}</p>
+          </div>
+          <div class='right'>
+            <button class='btnBox' (click)='check(item)'>确认使用</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='add_btn' bindtap='toAdd' [routerLink]="['/etpc-certification']">
+      <p>绑定我的企业</p>
+      <img src='../../assets/images/add_06.png'>
+    </div>
+  </div>
+  <div class='box' *ngIf='list.length<=0' style="padding-bottom: 1rem;height:100%;">
+    <div class='void_list'>
+      <p>对不起，您还未绑定企业</p>
+      <button class='filling' bindtap='toAdd' [routerLink]="['/etpc-certification']">绑定我的企业</button>
+    </div>
+  </div>
+</div>

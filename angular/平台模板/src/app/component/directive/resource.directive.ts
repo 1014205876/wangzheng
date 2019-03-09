@@ -19,7 +19,7 @@ export class ResourceDirective implements OnInit {
   getAuth(): void {
     if(this.resource.length>0){
       for(var i =0; i<this.resource.length; i++){
-        if( this.config.authName==this.resource[i].state ) { 
+        if( this.config.authName==this.resource[i].state ) {
           this.isHovering = true;
         }
       }

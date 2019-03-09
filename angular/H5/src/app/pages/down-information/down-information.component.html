@@ -1,0 +1,122 @@
+<app-header title="授权书下载" backIcon=1 backTxt="返回" hasBack="true"></app-header>
+<div class="has_win">
+  <ul class="nav">
+    <li id=0 [ngClass]="{'active': currentTab==0}" (click)="swichNav($event)">企业信息采集授权书</li>
+    <li id=1 [ngClass]="{'active': currentTab==1}" (click)="swichNav($event)">个人征信查询授权书</li>
+  </ul>
+  <div class="swiperBox">
+    <div class="contentBox" *ngIf="currentTab==0">
+      <div class="title">企业信息采集授权书</div>
+      <div class="authorizeId">授权书编号：{{infoAuthNum}}</div>
+      <div class="content">
+        <div class="em2">
+          <span class="font-w">第一条</span> 本单位同意并不可撤销的授权：贵公司及合作的第三 方信息服务机构（见下文被授权人）按照国家相关规定采集并向金融信用基础数据库和中国人民银行企业信用信息基础数据库提供本单位的基本信息和信贷信息及包括不良信息在内的信用信息。
+        </div>
+        <div class="em2">
+          <span class="font-w">第二条</span>本单位同意并不可撤销的授权：贵公司及合作的第三 方信息服务机构（见下文被授权人）自本授权书签署之日至约定用 途的业务结清之日通过金融信用信息基础数据库和中国人民银行企 业信用信息基础数据库及第三方数据来源等其他渠道查询、打印、
+          保存、使用本单位的企业信用报告（含人行征信报告）、经营信息、 财产信息和其他企业信息。约定用途为：
+        </div>
+        <div class='em2'>
+          1. 作为审核本单位授信业务的依据；
+        </div>
+        <div class='em2'>
+          2. 作为审核本单位用信申请的依据；
+        </div>
+        <div class='em2'>
+          3. 作为审核本单位作为担保人的依据；
+        </div>
+        <div class='em2'>
+          4. 作为本单位进行风险管理的依据；
+        </div>
+        <div class='em2'>
+          5. 涉及本单位关联人的用信、贷后管理或担保业务，需要查询 本单位信用状况的依据；
+        </div>
+        <div class='em2'>
+          6. 其他贵公司认定需要查询本单位信用状况的依据；
+        </div>
+        <div class='em2'>
+          <span class='font-w'>第三条</span> 企业声明
+        </div>
+        <div>
+          被授权人已依法向本单位提示了上述条款（特别是字体加粗的条款） ，应本单位要求对相关概念、内容及法律效果做了说明。本单位已 经知悉并理解上述条款。对于被授权人超出上述授权范围使用本单 位信息的行为，本单位有权依法追究起责任。无论前述业务申请是
+          否获得批准，本单位均同意被授权人继续保留本授权书、信用报告 等资料，同意被授权人以纸质过电子档案形式留存金融信用信息基 础数据库和中国人民银行企业信用信息基础数据库及其他渠道查询 结果，同意被授权人向上述信用数据库和其他渠道报送本单位信息。
+          以上授权书确系授权人本单位出具，如有不实本单位愿意承担法律 责任。
+        </div>
+        <div class='pt40'>
+          <span>授权单位（盖章）：</span>
+        </div>
+        <div class='pt40'>
+          <span>法定代表人（签字）：</span>
+        </div>
+        <div class='pt40'>
+          <span>被授权人：</span>江西省博汇九洲金融服务有限公司
+        </div>
+        <div class='pl5em'>
+          <span></span>南昌市红谷滩新区博能小额贷款有限公司
+        </div>
+        <div class='pl5em'>
+          <span></span>上海卫诚企业征信有限公司
+        </div>
+        <div class='text_right pt40'>
+          授权日:___________年_____月_____日
+        </div>
+      </div>
+    </div>
+    <div class="contentBox" *ngIf="currentTab==1">
+      <div class="title">个人征信查询授权书</div>
+      <div class="authorizeId">授权书编号：{{infoAuthNum}}</div>
+      <div class="content">
+        <div class="em2" style='text-indent: 0;'>
+          <span class="font-w">重要提示：</span>
+        </div>
+        <div class="em2">
+          <span class="font-w">尊敬的客户:为了维护您的利益,在您签署本授权书之前,仔细阅读本授权书各条款(特别是黑体字条款),关注您在授权书中的权利、义务。若有任何疑问,可向经办人员咨询。</span>
+        </div>
+        <div class="em2">
+          <span class="font-w">江西省博汇九洲金融服务有限公司</span>
+        </div>
+        <div class='em2'>
+          本人同意并不可撤销的授权:
+          <span class='font-w'>贵公司(包括贵公司分支机构)可以依据国家相关规定自行或委托第三方合作机构（见下文合作机构名录）采集并向金融信用信息基础数据库、中国人民银行企业信用信息基础数据库以及其他依法设立的征信机构提供符合相关规定的本人相关个人信息和包括借贷信息在内的信用信息(包括本人在贵公司办理业务过
+            程中产生的不良信息)。</span>
+        </div>
+        <div class='em2'>
+          本人同意并不可撤销的授权:
+          <span class='font-w'>贵公司(包括贵公司分支机构)可以依据国家相关规 定自行或委托第三方合作机构（见下文合作机构名录）通过金融信用信息基础数据库、中国人民银行企业信用信息基础数据库以及其他依法设立的征信机构和相关依法成立 的信息数据提供机构,查询、打印、保存及对外提供符合相关规定的本人相关个人信息和
+            包括信贷信息在内的信用信息。</span>
+        </div>
+        <div class='em2' style='text-indent: 0;'>约定用途如下：</div>
+        <div class='em2' style='text-indent: 0;'>(一)、审核本人或配偶借款申请的;</div>
+        <div class='em2' style='text-indent: 0;'>(二)、审核本 人或配偶作为担保人的;</div>
+        <div class='em2' style='text-indent: 0;'>(三)、受理本人担任法定代表人、负责人或出资人的法人或其他组 织的借款申请的;</div>
+        <div class='em2' style='text-indent: 0;'>(四)、受理本人担任法定代表人、负责人或出资人的法人或其他组织作为 担保人的。</div>
+        <div class="em2" style='text-indent: 0;'>
+          <span class="font-w">合作机构名录：</span>
+        </div>
+        <div class='em2' style='text-indent: 0;'>南昌市红谷滩新区博能小额贷款有限公司</div>
+        <div class='text_right pt40' style='margin-right: 8rem;'>申请人（授权人）签名：</div>
+        <div class='text_right' style='margin-right: 12rem;'>身份证号码：</div>
+        <div class='text_right'>
+          日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;年
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日
+        </div>
+      </div>
+    </div>
+    <div class="btn">
+      <button class='filling' (click)="modalHidden=true;">发送到邮箱</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="modalHidden">
+  <div class='mask_layer'>
+  <div class='modal_box'>
+    <!-- <div class="title">发送邮箱</div> -->
+    <div class='content1'>
+      <input placeholder='请输入电子邮箱' [(ngModel)]="email">
+    </div>
+    <div class='btn'>
+      <button class='cancel' (click)="modalHidden=false;">取消</button>
+      <button class='Sure' (click)="sendMail()">确认发送</button>
+    </div>
+  </div>
+</div>

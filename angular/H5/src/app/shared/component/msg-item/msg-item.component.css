@@ -1,0 +1,68 @@
+.item{overflow: hidden;position: relative;height: 4.333333rem;}
+.txt {
+    background-color: #fff;
+    width: 100%;
+    z-index: 5;
+    transition: left 0.2s ease-in-out;
+    position: absolute;
+  }
+.txt_con {
+    height: 4.333333rem;
+    padding: 0.666666rem 3.333333rem 0.666666rem 1rem;
+    width:75%;
+    float: left;
+    position: relative;
+  }
+  .txt_con p{
+    font-size: 0.933333rem;
+    color: #666;
+    line-height: 1.5rem;
+  }
+
+  .inner.del {
+      position: absolute;
+    background-color: #e64340;
+    width: 4rem;
+    text-align: center;
+    z-index: 4;
+    right: 0;
+    color: #fff;
+    height: 100%;
+    line-height: 4.333333rem;
+  }
+  
+  .inner.readed {
+    position: absolute;
+    background-color: #c2c2c2;
+    width: 6.666666rem;
+    text-align: center;
+    z-index: 4;
+    right: 4rem;
+    color: #fff;
+    height: 100%;
+    line-height: 4.333333rem;
+  }
+
+.read_tip{
+    background-color: #e64340;
+    width: 0.466666rem;
+    height: 0.466666rem;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+  .date{
+    padding: 0.933333rem 1rem 0 0;
+    width: 25%;
+    float: left;
+  }
+  .date p{
+    display: block;
+    font-size: 0.8rem;
+    color: #999;
+    text-align: right;
+    height: 1.2rem;
+    line-height: 1.2rem;
+  }

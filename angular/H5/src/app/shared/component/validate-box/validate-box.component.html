@@ -1,0 +1,55 @@
+<div class="header white_bg" [ngStyle]="{'border-top':itemtxt?'':'1px solid #e2e2e2'}">
+  <img class="fl" [src]="validate?'../../../assets/images/validate_03.png':'../../../assets/images/unverified_03.png'" alt="">
+  <p class="fl" style="color:#333;" [ngStyle]="{'opacity':validate?1:.2}">{{title}}</p>
+  <div class="get-camera fr" *ngIf="!obj.status||obj.status!='1'">
+    <input *ngIf='!video' (change)="previewImg($event)" accept="image/*" capture="camera" type="file" />
+    <input *ngIf='video' accept="video/*" capture="camcorder" type="file" style="z-index:-1;" #videoInput id="videoInput" />
+    <div *ngIf='video' (click)='previewVideo(videoInput)'></div>
+    <p class="yel_txt fl">{{!video?'拍照验证':'视频验证'}}</p>
+    <img class="fl" src="../../../assets/images/camera_03.png" alt="">
+  </div>
+  <div class='getCamera fr' *ngIf="obj.status&&obj.status=='1'">
+    <p style='color:#333;'>已认证</p>
+  </div>
+</div>
+<div class="body white_bg" *ngIf='itemtxt'>
+  <div class="img_info" *ngIf='hasPro'>
+    <div class='canRecive' *ngIf="obj.legalName||!legalNameDis||obj.creditCode">
+      <p>法人代表：</p>
+      <input type="text" [ngStyle]="{'display':!legalNameDis?'block':'none'}" [ngModel]="obj.legalName" (ngModelChange)='obj.legalName=$event;objChange.emit(obj)'
+        id="legalName" />
+      <p class='input' *ngIf='legalNameDis'>{{obj.legalName}}</p>
+      <p class='revice' (click)='reviceLegalName()' *ngIf="legalNameDis&&(!obj.status||obj.status!='1')">修改</p>
+      <p class='revice' (click)='reviceLegalName()' *ngIf="!legalNameDis&&(!obj.status||obj.status!='1')">确定</p>
+    </div>
+    <div class='canRecive' *ngIf="obj.etpName||!etpNameDis||obj.creditCode">
+      <p>企业名称：</p>
+      <input type="p" [ngStyle]="{'display':!etpNameDis?'block':'none'}" [ngModel]="obj.etpName" (ngModelChange)='obj.etpName=$event;objChange.emit(obj)'
+        id='etpName' />
+      <p class='input' *ngIf='etpNameDis'>{{obj.etpName}}</p>
+      <p class='revice' (click)='reviceEtpName()' *ngIf="etpNameDis&&(!obj.status||obj.status!='1')">修改</p>
+      <p class='revice' (click)='reviceEtpName()' *ngIf="!etpNameDis&&(!obj.status||obj.status!='1')">确定</p>
+    </div>
+    <p *ngIf="obj.creditCode">信用代码：{{obj.creditCode}}</p>
+    <p *ngIf="obj.address&&obj.name">住址：{{obj.address}}</p>
+    <p *ngIf="obj.name">姓名：{{obj.name}}</p>
+    <p *ngIf="obj.sex">性别：{{obj.sex}}</p>
+    <p *ngIf="obj.nation">民族：{{obj.nation}}</p>
+    <p *ngIf="obj.birth">出生日期：{{obj.birth}}</p>
+    <p *ngIf="obj.idCode">身份证号码：{{obj.idCode}}</p>
+    <p *ngIf="obj.issuingAgency">签发机关：{{obj.issuingAgency}}</p>
+    <p *ngIf="obj.validityPeriod">有效期限：{{obj.validityPeriod}}</p>
+  </div>
+  <div class="camera_box">
+    <!-- <p>{{img}}</p> -->
+    <div class="no_img" *ngIf='!img'>
+      <input *ngIf='!video' (change)="previewImg($event)" accept="image/*" capture="camera" type="file" />
+      <input *ngIf='video' (change)="previewVideo($event)" accept="video/*" capture="camcorder" type="file" />
+      <p>{{itemtxt}}</p>
+    </div>
+    <div class="has_img" *ngIf='img'>
+      <scalable-img [img]='img'></scalable-img>
+    </div>
+  </div>
+</div>
+<loading [txt]="'请稍后...'" *ngIf='loading'></loading>

@@ -1,0 +1,23 @@
+<app-header title="消息列表" backIcon=1 backTxt="返回" hasBack="false" [hasMsg]='hasMsg'></app-header>
+<div class="has_win">
+  <div class="msg_tabs">
+    <ul>
+      <li [ngClass]="{'active':curPage==0}" (click)='curPage=0'><a href="javascript:;">系统消息<div class='tip' *ngIf="list1_status"></div></a></li>
+      <li [ngClass]="{'active':curPage==1}" (click)='curPage=1'><a href="javascript:;">借款消息<div class='tip' *ngIf="list2_status"></div></a></li>
+      <li [ngClass]="{'active':curPage==2}" (click)='curPage=2'><a href="javascript:;">还款消息<div class='tip' *ngIf="list3_status"></div></a></li>
+    </ul>
+  </div>
+  <div class="null"></div>
+  <div class="msg_list">
+    <ng-container *ngIf='curPage==0'>
+      <msg-item *ngFor="let item of list1" [obj]='item' (del)='del(item)' (readed)='read(item)'></msg-item>
+    </ng-container>
+    <ng-container *ngIf='curPage==1'>
+      <msg-item *ngFor="let item of list2" [obj]='item' (del)='del(item)' (readed)='read(item)'></msg-item>
+    </ng-container>
+    <ng-container *ngIf='curPage==2'>
+      <msg-item *ngFor="let item of list3" [obj]='item' (del)='del(item)' (readed)='read(item)'></msg-item>
+    </ng-container>
+  </div>
+</div>
+<!-- <app-tabs [hasMsg]='hasMsg'></app-tabs> -->

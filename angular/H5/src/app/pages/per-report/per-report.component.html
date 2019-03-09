@@ -1,0 +1,32 @@
+<app-header title="大股东/实际控制人征信报告" backIcon=1 backTxt="返回" hasBack="true"></app-header>
+
+<div class='has_win'>
+  <div class="box">
+    <div class='camera_row'>
+      <div class='camera' style='background-color:#555;'>
+        <div class='cameraBtn'>
+          <input (change)="previewImg($event)" accept="image/*" capture="camera" type="file" />
+          <img src='../../assets/images/camera_04.png'>
+          <p>点击拍摄大股东/实际控制人征信报告照片！</p>
+        </div>
+        <div class='imgList'>
+          <div class='scrollBox'>
+            <div class='imgbox' *ngFor="let item of imgList">
+              <img class='img' src='{{item}}' alt='' >
+              <div class='deleteImg' (click)='deleteImg(item)'>
+                <img src='../../assets/images/deleteImg.png'>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class='ts'>注：请确保征信报告清晰可见，最多上传20张照片</p>
+      </div>
+    </div>
+    <div class="page-body">
+      <div class="page-body-wrapper">
+        <div (click)='sure()' style='position: absolute;top:50%;transform: translateY(-50%);right:1rem;color:#fff;font-size:1rem;'>保存</div>
+      </div>
+    </div>
+  </div>
+</div>
+<loading [txt]="'请稍后...'" *ngIf='loading'></loading>

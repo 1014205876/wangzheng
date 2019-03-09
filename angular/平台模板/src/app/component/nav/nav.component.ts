@@ -18,7 +18,7 @@ export class NavComponent implements OnInit {
         name: "首页",
         state: "project",
         type: "link",
-        url: "/home",
+        url: "/pages",
       },
       {
         icon: "icon iconfont icon-itemManage",
@@ -31,19 +31,19 @@ export class NavComponent implements OnInit {
             name: "当前流程",
             state: "curFlow",
             type: "link",
-            url: "/model",
+            url: "/pages/model",
           },
           {
             name: "form",
             state: "curFlow",
             type: "link",
-            url: "/form",
+            url: "/pages/form",
           },
           {
             name: "switch",
             state: "curFlow",
             type: "link",
-            url: "/switch",
+            url: "/pages/switch",
           },
         ]
       },

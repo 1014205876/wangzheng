@@ -1,0 +1,59 @@
+<app-header [title]="title" backIcon=1 backTxt="返回" hasBack="true" (ownBack)='back()'></app-header>
+<div class="box">
+  <validate-box [title]="'营业执照信息'" [type]="'bus'" [validate]="busCer.legalName&&busCer.etpName" [obj]='busCer' [img]='busCer.busUrl' [itemtxt]="'营业执照上传件'"
+    (objChange)='busCerChange($event)'></validate-box>
+  <validate-box [title]="'法人身份证正面信息'" [validate]='idMobileCer.name' [itemtxt]="'身份证正面上传件'" [obj]='idMobileCer' [img]='idMobileCer.idUrl' (objChange)='idMobileCerChange($event)'
+    [type]="'id'" [side]='0'></validate-box>
+  <validate-box [title]="'法人身份证反面信息'" [validate]='idMobileCer.idBack.issuingAgency' [itemtxt]="'身份证反面上传件'" [obj]='idMobileCer.idBack' [img]='idMobileCer.idBack.idBackUrl' (objChange)='idBackChange($event)'
+    [type]="'id'" [side]='1'></validate-box>
+  <div class="header white_bg" (click)='getMobile()'>
+    <img class="fl" [src]="idMobileCer.mobile?'../../../assets/images/validate_03.png':'../../../assets/images/unverified_03.png'"
+      alt="">
+    <p class="fl" style="color:#333;" [ngStyle]="{'opacity':idMobileCer.mobile?1:.2}">法人手机号码</p>
+    <div class="get-camera fr" *ngIf="!idMobileCer.status||idMobileCer.status!='1'">
+      <img *ngIf='!idMobileCer.mobile' class="fl" src="../../../assets/images/arr_toR_03.png" alt="">
+      <p *ngIf='idMobileCer.mobile'>{{idMobileCer.mobile}}</p>
+    </div>
+    <div class='getCamera fr' *ngIf="idMobileCer.status&&idMobileCer.status=='1'">
+      <p style='color:#333;'>{{idMobileCer.mobile}}</p>
+    </div>
+  </div>
+  <div class="header white_bg">
+    <img class="fl" [src]="cerId?'../../../assets/images/validate_03.png':'../../../assets/images/unverified_03.png'"
+      alt="">
+    <p class="fl" style="color:#333;" [ngStyle]="{'opacity':cerId?1:.2}">人证一致校验</p>
+    <div class="get-camera fr" *ngIf='!cerId'>
+      <input accept="video/*" capture="camcorder" type="file" style="z-index:-1;" #videoInput id="videoInput" />
+      <div (click)='previewVideo()'></div>
+      <p class="yel_txt fl">视频验证</p>
+      <img class="fl" src="../../../assets/images/camera_03.png" alt="">
+    </div>
+    <div class='getCamera fr' *ngIf='cerId'>
+      <p style='color:#333;'>已认证</p>
+    </div>
+  </div>
+  <div class="header white_bg" (click)='getRealCtrl()' style="margin-bottom:1rem;">
+    <img class="fl" [src]="controllerCer.name?'../../../assets/images/validate_03.png':'../../../assets/images/unverified_03.png'"
+      alt="">
+    <p class="fl" style="color:#333;" [ngStyle]="{'opacity':controllerCer.name?1:.2}">大股东/实际控制人校验</p>
+    <div class="get-camera fr" *ngIf='!controllerCer.name'>
+      <img *ngIf="!controllerCer.name" style='float:right;width:18rpx;height:34rpx;clear: both;' src="../../../assets/images/arr_toR_03.png">
+    </div>
+    <div class='getCamera fr' *ngIf="controllerCer.status || controllerCer.status == '1'||controllerCer.name">
+      <p style='color:#333;'>查看</p>
+    </div>
+  </div>
+  <div class="btn-area" *ngIf='!idMobileCer.status'>
+      <button (click)='etpCer()' class='priBtn'>提交绑定</button>
+    </div>
+</div>
+<loading [txt]="'请稍后...'" *ngIf='loading'></loading>
+<div class="mask" *ngIf='alert'></div>
+<div class="alert" *ngIf='alert'>
+  <p>录制视频读出以下数字</p>
+  <p class="code">{{code}}</p>
+  <div class="btn_row">
+    <button (click)="getVideo()" class="sure">确定</button>
+    <button (click)="alert=false">取消</button>
+  </div>
+</div>

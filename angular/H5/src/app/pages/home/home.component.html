@@ -1,0 +1,67 @@
+<div class="banner">
+  <!-- <header>
+    <span>方舟企业贷款申请平台</span>
+  </header> -->
+  <div class='menu'>
+    <app-menu [hasMsg]='hasMsg'></app-menu>
+  </div>
+  <div class="city" *ngIf="city">
+    <img src="../../../assets/images/position.png" alt=""> {{city}}
+  </div>
+  <div class="swiper-container" [swiper]='config'>
+    <div class="swiper-wrapper">
+      <div *ngFor='let list of banner;let index=index' class="swiper-slide" [routerLink]='["/banner",list.id]'>
+        <div class='bannerimg' [ngStyle]="{'background-image': 'url('+list.mediaUrl+')'}">
+          <!-- <img [src]="list.mediaUrl" alt=""> -->
+        </div>
+      </div>
+      <!-- <div class="swiper-slide" [routerLink]="['/banner']">
+        <img src="../../../assets/images/banner1@2x.png" alt="">
+      </div> -->
+      <!-- <div class="swiper-slide" [routerLink]="['/banner']">
+        <img src="../../../assets/images/banner2@2x.png" alt="">
+      </div> -->
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+<!-- 提示 -->
+<div class="prompt" id="prompt" *ngIf="promptShow">
+  <span class="promptIcon"></span>
+  <span class="close" (click)="closePrompt()"></span>
+  <marquee>{{prompt}}</marquee>
+</div>
+<div class="products" [ngClass]="{'promptHide': !promptShow}">
+  <div class="item" *ngFor="let item of products;let i=index;">
+    <div class="white_bg" style="padding-left: 1rem;">
+      <div class="title">
+        <p class="text">{{item.name}} <span>新</span></p>
+        <div class="btnRight">
+          <button [routerLink]="['/product']" [queryParams]="{'index':i,'name':item.name,'id':item.id}" class="cur_btn">申请贷款</button>
+        </div>
+      </div>
+      <div class="limit">
+        <dl>
+          <dt class="orange_txt">{{item.minAmount}}-{{item.maxAmount}}万</dt>
+          <dd>额度</dd>
+        </dl>
+        <dl>
+          <dt>{{item.minTerm}}-{{item.maxTerm}}个月</dt>
+          <dd>期限</dd>
+        </dl>
+        <dl>
+          <dt>{{item.minRate}}%-{{item.maxRate}}%</dt>
+          <dd>费率</dd>
+        </dl>
+      </div>
+      <div class="introduction">
+        <p>{{item.remark}}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- <app-tabs [hasMsg]='hasMsg'></app-tabs> -->
