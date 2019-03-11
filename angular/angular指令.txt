@@ -1,0 +1,16 @@
+ng serve --open启动服务
+ng generate component hero生成名为hero的组件
+*ngFor="let hero of heroes" 循环
+*ngIf="item.picurl" if指令（不可与for混用）
+<ng-container></ng-container>帮助混用
+(click)="onSelect(hero)" 点击事件
+[class.class名字]="hero === selectedHero" 
+[ngClass]="{'class名字': person.country === 'CN'}"绑定class名
+[(ngModel)]="selectedHero.name" 双向数据绑定
+启用less 在angular.json中修改
+npm install less --save-dev
+"schematics": {
+    "@schematics/angular:component": {
+        "styleext": "less"
+    }
+}

@@ -1,0 +1,14 @@
+修改标题
+npm install vue-wechat-title --save
+import VueWechatTitle from 'vue-wechat-title'
+Vue.use(VueWechatTitle)
+<router-view v-wechat-title='$route.meta.title'></router-view>
+https://www.jb51.net/article/127809.htm
+引入less
+npm install less less-loader --save
+引入swiper
+npm install swiper --save-dev
+引入jq
+npm install jquery --save-dev
+引入echarts
+npm install echarts --save-dev
