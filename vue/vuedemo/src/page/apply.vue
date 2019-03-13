@@ -96,6 +96,7 @@
     import Back from "@/components/back";
     // 引入数字滚动组件
     import numroll from "@/components/numroll";
+    import { dateTime } from "@/shared/componrnt";
     export default {
         name: "Apply",
         data() {
@@ -230,6 +231,7 @@
                 return value * num;
             }
         },
+        // mixins:[timeFormat],
         computed: {
             //计算属性
             prices: {
@@ -300,6 +302,9 @@
             this.maxQuota = this.$route.query.maxQuota;
         },
         mounted() {
+            console.log(
+                dateTime("yyyy-MM-dd hh:mm:ss", new Date())
+            )
             //页面初始化之后调用在created之后在
             $(".apply .tanimate .xiala li .xianshi").click(function () {
                 if (
