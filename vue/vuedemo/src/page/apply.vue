@@ -15,6 +15,9 @@
                     <p>{{prop.msg}}</p>
                 </template>
             </back>
+
+
+
             <div>{{name}}申请页面</div>
             <div>申请额度{{minQuota}}-{{maxQuota}}万</div>
             <div>当前时间{{date|formData}}</div>
@@ -39,6 +42,12 @@
             </span>
             <button v-on:click="reload">刷新</button>
             <el-button v-on:click="tohistory">历史记录</el-button>
+            <el-form label-width="100px" :model="form">
+                <el-form-item label="年龄" prop="number" :rules="[{ required: true, message: '由于trigger无法触发，所以此处可不写', trigger: '无法触发'}]" :show-message="true">
+                    <el-input type="number" v-model="form.number" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+
             <button v-on:click="shenqing">立即申请</button>
             <button v-on:click="changedata(xiala)">修改数据</button>
             <button v-on:click="changesee(xiala)">修改视图</button>
@@ -104,6 +113,9 @@
                 date: new Date(),
                 num: 3,
                 number: 10000,
+                form:{
+                    number:'',
+                },
                 time: 2,
                 name: "公司名",
                 minQuota: "最小",

@@ -1,10 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+
+import {BackComponent} from './back/back.component'
 
 @NgModule({
-    declarations: [],
+    declarations: [
+        BackComponent
+    ],
     imports: [
-        CommonModule
+        CommonModule,
+        IonicModule
+    ],
+    exports:[
+        BackComponent
     ]
 })
 export class ComponentModule { }
