@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>弹窗</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+    <ion-button [routerLink]="['/back']">back</ion-button>
+    <ion-button [routerLink]="['/tab']">tab</ion-button>
+    <ion-button (click)="presentActionSheet()">底部菜单</ion-button>
+    <ion-button (click)="presentAlertConfirm()">普通弹窗</ion-button>
+    <ion-button (click)="presentAlertPrompt()">表单弹窗</ion-button>
+    <ion-button (click)="presentAlertRadio()">单选弹窗</ion-button>
+    <ion-button (click)="presentAlertCheckbox()">多选弹窗</ion-button>
+</ion-content>

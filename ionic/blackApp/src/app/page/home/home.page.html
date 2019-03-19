@@ -1,14 +1,18 @@
-<ion-header>
-    <ion-toolbar>
-        <app-back></app-back>
-        <ion-title>Back Button</ion-title>
-    </ion-toolbar>
-</ion-header>
-<ion-content padding>
-    <ion-button [routerLink]="['/login']">跳转</ion-button>
-    <ion-button (click)="presentActionSheet()">底部菜单</ion-button>
-    <ion-button (click)="presentAlertConfirm()">普通弹窗</ion-button>
-    <ion-button (click)="presentAlertPrompt()">表单弹窗</ion-button>
-    <ion-button (click)="presentAlertRadio()">单选弹窗</ion-button>
-    <ion-button (click)="presentAlertCheckbox()">多选弹窗</ion-button>
-</ion-content>
+<ion-split-pane>
+    <ion-menu id='menu1' side="start" swipe-gesture="true" type="overlay">
+        <ion-header translucent>
+            <ion-toolbar>
+                <ion-title>Menu</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-menu-toggle>
+                <ion-list>
+                    <ion-item [routerLink]="['/home/home1']">home1</ion-item>
+                    <ion-item [routerLink]="['/home/home2']">home2</ion-item>
+                </ion-list>
+            </ion-menu-toggle>
+        </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+</ion-split-pane>

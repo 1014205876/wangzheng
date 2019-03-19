@@ -3,7 +3,7 @@ import { NavController } from '@ionic/angular';
 
 
 @Component({
-    selector: 'app-back',
+    selector: 'app-back-button',
     templateUrl: './back.component.html',
     styleUrls: ['./back.component.scss'],
 })
