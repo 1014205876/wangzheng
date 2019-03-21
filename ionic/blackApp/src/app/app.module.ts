@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -10,6 +11,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+
+import { selfHttp } from './shared/service/http-service';
 
 import { ComponentModule } from './component/component.module';
 
@@ -43,12 +46,14 @@ import { Tab4Page } from './page/tab/tab4/tab4.page';
     entryComponents: [],
     imports: [
         BrowserModule,
+        HttpClientModule,
         IonicModule.forRoot(),
         FormsModule,
         AppRoutingModule,
         ComponentModule
     ],
     providers: [
+        selfHttp,
         StatusBar,
         SplashScreen,
         {

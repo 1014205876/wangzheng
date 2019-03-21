@@ -4,6 +4,7 @@ import {
     ActionSheetController,
     NavController
 } from '@ionic/angular';
+import { selfHttp } from '../../../shared/service/http-service';
 
 @Component({
     selector: 'app-home1',
@@ -14,7 +15,8 @@ export class Home1Page implements OnInit {
     constructor(
         public alertController: AlertController,
         public actionSheetController: ActionSheetController,
-        public nav: NavController
+        public nav: NavController,
+        private http: selfHttp,
     ) {
     }
 
@@ -284,6 +286,9 @@ export class Home1Page implements OnInit {
     }
 
     ngOnInit() {
+        this.http.get('kalanchoe-sys-admin/api/resource/user/permission', res => {
+            console.log(res);
+        });
     }
   
     ionViewWillLeave() {

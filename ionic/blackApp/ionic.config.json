@@ -4,8 +4,8 @@
   "type": "angular",
   "proxies": [
     {
-      "path":"/api",
-      "proxyUrl": "http://192.168.111.221:8040"
+      "path": "/api/",
+      "proxyUrl": "http://192.168.111.217:8040/"
     }
   ]
 }
