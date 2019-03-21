@@ -25,7 +25,7 @@ export class selfHttp {
             });
     }
 
-    public post(url, data: Object, cb: Function, options?: Object) {
+    public post(url, data: Object, cb?: Function, options?: Object) {
         const vm = this;
         vm.http.post(vm.restServer + url, data, { header: vm.header })
             .subscribe(res => {
@@ -33,7 +33,7 @@ export class selfHttp {
             });
     }
 
-    public patch(url, data: Object, cb: Function, options?: Object) {
+    public patch(url, data: Object, cb?: Function, options?: Object) {
         const vm = this;
         vm.http.patch(vm.restServer + url, data, { header: vm.header })
             .subscribe(res => {
@@ -41,7 +41,7 @@ export class selfHttp {
             });
     }
 
-    public put(url, data: Object, cb: Function, options?: Object) {
+    public put(url, data: Object, cb?: Function, options?: Object) {
         const vm = this;
         vm.http.put(vm.restServer + url, data, { header: vm.header })
             .subscribe(res => {
@@ -49,7 +49,7 @@ export class selfHttp {
             });
     }
 
-    public delete(url, cb: Function, options?: Object) {
+    public delete(url, cb?: Function, options?: Object) {
         const vm = this;
         vm.http.delete(vm.restServer + url, { header: vm.header })
             .subscribe(data => {
