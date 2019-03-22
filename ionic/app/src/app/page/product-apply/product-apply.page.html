@@ -1,0 +1,44 @@
+<div class="box">
+    <p class="prompt">您的好友 {{insStaffNum.inviteMobile.substring(0,3)+"****"+insStaffNum.inviteMobile.substring(7,11)}}
+        向您推荐了一个贷款产品</p>
+    <div class="message">
+        <p>
+            <span>产品类型：</span>
+            <span>{{productMes.productTypeName}}</span>
+        </p>
+        <p>
+            <span>贷款金额：</span>
+            <span>{{productMes.minAmount}}~{{productMes.maxAmount}}万元</span>
+        </p>
+        <p>
+            <span>贷款期限：</span>
+            <span>{{productMes.minTerm}}——{{productMes.maxTerm}}个月</span>
+        </p>
+        <p>
+            <span>贷款利率：</span>
+            <span>{{productMes.minRate}}%——{{productMes.maxRate}}%（年化）</span>
+        </p>
+    </div>
+    <div class="loginForm">
+        <div class="input">
+            <div class="ipt mobile">
+                <input type="number" placeholder="请输入手机号码" required [(ngModel)]="items.mobile">
+            </div>
+        </div>
+        <div class="input yzm">
+            <div class="ipt yzmIpt">
+                <input type="number" placeholder="请输入验证码" id="yzm" minlength="6" maxlength="6" required
+                    [(ngModel)]="items.yzm">
+            </div>
+            <div class="priBtn" *ngIf="!yzm" (click)="getYzm()">
+                <a class="btn">发送验证码</a>
+            </div>
+            <div class="priBtn" *ngIf="yzm">
+                <a class="btn">{{sendCd}}s后可重发</a>
+            </div>
+        </div>
+        <div class="applyBtn">
+            <button class="col-10 btn" (click)="checkYzm()">立即申请</button>
+        </div>
+    </div>
+</div>

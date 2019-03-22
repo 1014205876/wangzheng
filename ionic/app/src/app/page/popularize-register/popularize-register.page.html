@@ -1,0 +1,27 @@
+<div class="box">
+    <div class="prompt">
+        请输入手机号码
+    </div>
+    <div class="loginForm">
+        <div class="input">
+            <img class="icon" src="../../../assets/images/pr-mobile-logo.png" alt="" srcset="">
+            <div class="ipt">
+                <input type="text" placeholder="请输入手机号码" id="mobile" required [(ngModel)]="items.mobile">
+            </div>
+        </div>
+        <div class="input yzm">
+            <img class="icon" src="../../../assets/images/pr-yzm-logo.png" alt="" srcset="">
+            <div class="ipt">
+                <input type="text" placeholder="请输入验证码" id="yzm" minlength="6" maxlength="6" required
+                    [(ngModel)]="items.yzm">
+            </div>
+            <div class="priBtn" *ngIf="!yzm" (click)="getYzm()"><a class="btn">发送验证码</a></div>
+            <div class="priBtn" *ngIf="yzm"><a class="btn">{{sendCd}}s后可重发</a></div>
+        </div>
+        <div class="zcBtn">
+            <button type="submit" class="col-10 btn" (click)="checkYzm()">注册</button>
+        </div>
+        <p class="inviteMobile">此邀请来自您的好友
+            {{insStaffNum.inviteMobile.substring(0,3)+"****"+insStaffNum.inviteMobile.substring(7,11)}}</p>
+    </div>
+</div>

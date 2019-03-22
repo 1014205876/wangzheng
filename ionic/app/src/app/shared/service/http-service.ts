@@ -5,53 +5,66 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class selfHttp {
     public restServer;
     public http;
-    public header
-    // let headers: Headers = new Headers({ 'Content-Type': 'application/json' })
-
+    public header = new HttpHeaders().set('Content-Type', 'application/json');
     constructor(
         Http: HttpClient,
-        // header: HttpHandler,
     ) {
         this.http = Http;
-        this.restServer = '/api/';
-        this.header = new HttpHeaders().set('Content-Type', 'application/json')
+        this.restServer = '/api';
+    }
+
+    getToken() {
+        return JSON.parse(localStorage.getItem('token'))
+    }
+
+    public login(url, data: Object, cb?: Function, options?: Object) {
+        const that = this;
+        that.http.post(that.restServer + url, data, { header: that.header })
+            .subscribe(res => {
+                cb(res);
+            });
     }
 
     public get(url, cb?: Function, options?: Object) {
-        const vm = this;
-        vm.http.get(vm.restServer + url, { header: vm.header })
+        const that = this;
+        let header = that.header.set('Authorization', that.getToken())
+        that.http.get(that.restServer + url, { header: header })
             .subscribe(data => {
                 cb(data);
             });
     }
 
     public post(url, data: Object, cb?: Function, options?: Object) {
-        const vm = this;
-        vm.http.post(vm.restServer + url, data, { header: vm.header })
+        const that = this;
+        let header = that.header.set('Authorization', that.getToken())
+        that.http.post(that.restServer + url, data, { header: that.header })
             .subscribe(res => {
                 cb(res);
             });
     }
 
     public patch(url, data: Object, cb?: Function, options?: Object) {
-        const vm = this;
-        vm.http.patch(vm.restServer + url, data, { header: vm.header })
+        const that = this;
+        let header = that.header.set('Authorization', that.getToken())
+        that.http.patch(that.restServer + url, data, { header: that.header })
             .subscribe(res => {
                 cb(res);
             });
     }
 
     public put(url, data: Object, cb?: Function, options?: Object) {
-        const vm = this;
-        vm.http.put(vm.restServer + url, data, { header: vm.header })
+        const that = this;
+        let header = that.header.set('Authorization', that.getToken())
+        that.http.put(that.restServer + url, data, { header: that.header })
             .subscribe(res => {
                 cb(res);
             });
     }
 
     public delete(url, cb?: Function, options?: Object) {
-        const vm = this;
-        vm.http.delete(vm.restServer + url, { header: vm.header })
+        const that = this;
+        let header = that.header.set('Authorization', that.getToken())
+        that.http.delete(that.restServer + url, { header: that.header })
             .subscribe(data => {
                 cb(data);
             });

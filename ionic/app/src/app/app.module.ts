@@ -13,14 +13,16 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { selfHttp } from './shared/service/http-service';
 
-import { LoginPage } from './page/login/login.page';
 import { HomePage } from './page/home/home.page';
+import { ProductApplyPage } from './page/product-apply/product-apply.page';
+import { PopularizeRegisterPage } from './page/popularize-register/popularize-register.page';
 
 @NgModule({
     declarations: [
         AppComponent,
-        LoginPage,
-        HomePage
+        HomePage,
+        ProductApplyPage,
+        PopularizeRegisterPage
     ],
     entryComponents: [],
     imports: [
