@@ -17,6 +17,15 @@ import { HomePage } from './page/home/home.page';
 import { ProductApplyPage } from './page/product-apply/product-apply.page';
 import { PopularizeRegisterPage } from './page/popularize-register/popularize-register.page';
 
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+    direction: 'horizontal',
+    slidesPerView: 'auto'
+};
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -30,7 +39,8 @@ import { PopularizeRegisterPage } from './page/popularize-register/popularize-re
         HttpClientModule,
         FormsModule,
         IonicModule.forRoot(),
-        AppRoutingModule
+        AppRoutingModule,
+        SwiperModule
     ],
     providers: [
         StatusBar,
@@ -39,6 +49,10 @@ import { PopularizeRegisterPage } from './page/popularize-register/popularize-re
         {
             provide: RouteReuseStrategy,
             useClass: IonicRouteStrategy
+        },
+        {
+            provide: SWIPER_CONFIG,
+            useValue: DEFAULT_SWIPER_CONFIG
         }
     ],
     bootstrap: [AppComponent]

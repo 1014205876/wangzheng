@@ -1,1 +1,50 @@
-<ion-button [routerLink]="['/login']">login</ion-button>
+<div style="min-height:100%;background-color:#f5f5f5">
+    <div class="banner">
+        <div class="swiper-container" [swiper]='config'>
+            <div class="swiper-wrapper">
+                <div *ngFor='let list of banner;let index=index' class="swiper-slide">
+                    <div class='bannerimg' [ngStyle]="{'background-image': 'url('+list.mediaUrl+')'}">
+                        <!-- <img [src]="list.mediaUrl" alt=""> -->
+                    </div>
+                </div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <!-- 提示 -->
+    <div class="prompt" id="prompt" *ngIf="promptShow">
+        <span class="promptIcon"></span>
+        <span class="close" (click)="closePrompt()"></span>
+        <marquee>{{prompt}}</marquee>
+    </div>
+    <div class="products" [ngClass]="{'promptHide': !promptShow}">
+        <div class="item" *ngFor="let item of products;let i=index;">
+            <div class="white_bg">
+                <div class="title">
+                    <p class="text">{{item.name}} <span>新</span></p>
+                    <div class="btnRight">
+                        <a [href]="'https://www.baidu.com'+'?name='+item.name+'&id='+'item.id'" class="cur_btn">申请贷款</a>
+                    </div>
+                </div>
+                <div class="limit">
+                    <dl>
+                        <dt class="orange_txt">{{item.minAmount}}-{{item.maxAmount}}万</dt>
+                        <dd>额度</dd>
+                    </dl>
+                    <dl>
+                        <dt>{{item.minTerm}}-{{item.maxTerm}}个月</dt>
+                        <dd>期限</dd>
+                    </dl>
+                    <dl>
+                        <dt>{{item.minRate}}%-{{item.maxRate}}%</dt>
+                        <dd>费率</dd>
+                    </dl>
+                </div>
+                <div class="introduction">
+                    <p>{{item.remark}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

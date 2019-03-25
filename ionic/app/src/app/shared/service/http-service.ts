@@ -3,14 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class selfHttp {
-    public restServer;
+    public api='/api';
     public http;
     public header = new HttpHeaders().set('Content-Type', 'application/json');
     constructor(
         Http: HttpClient,
     ) {
         this.http = Http;
-        this.restServer = '/api';
     }
 
     getToken() {
@@ -19,7 +18,7 @@ export class selfHttp {
 
     public login(url, data: Object, cb?: Function, options?: Object) {
         const that = this;
-        that.http.post(that.restServer + url, data, { header: that.header })
+        that.http.post(that.api + url, data, { headers: that.header })
             .subscribe(res => {
                 cb(res);
             });
@@ -28,7 +27,7 @@ export class selfHttp {
     public get(url, cb?: Function, options?: Object) {
         const that = this;
         let header = that.header.set('Authorization', that.getToken())
-        that.http.get(that.restServer + url, { header: header })
+        that.http.get(that.api + url, { headers: header })
             .subscribe(data => {
                 cb(data);
             });
@@ -37,7 +36,7 @@ export class selfHttp {
     public post(url, data: Object, cb?: Function, options?: Object) {
         const that = this;
         let header = that.header.set('Authorization', that.getToken())
-        that.http.post(that.restServer + url, data, { header: that.header })
+        that.http.post(that.api + url, data, { headers: header })
             .subscribe(res => {
                 cb(res);
             });
@@ -46,7 +45,7 @@ export class selfHttp {
     public patch(url, data: Object, cb?: Function, options?: Object) {
         const that = this;
         let header = that.header.set('Authorization', that.getToken())
-        that.http.patch(that.restServer + url, data, { header: that.header })
+        that.http.patch(that.api + url, data, { headers: that.header })
             .subscribe(res => {
                 cb(res);
             });
@@ -55,7 +54,7 @@ export class selfHttp {
     public put(url, data: Object, cb?: Function, options?: Object) {
         const that = this;
         let header = that.header.set('Authorization', that.getToken())
-        that.http.put(that.restServer + url, data, { header: that.header })
+        that.http.put(that.api + url, data, { headers: that.header })
             .subscribe(res => {
                 cb(res);
             });
@@ -64,7 +63,7 @@ export class selfHttp {
     public delete(url, cb?: Function, options?: Object) {
         const that = this;
         let header = that.header.set('Authorization', that.getToken())
-        that.http.delete(that.restServer + url, { header: that.header })
+        that.http.delete(that.api + url, { headers: that.header })
             .subscribe(data => {
                 cb(data);
             });
