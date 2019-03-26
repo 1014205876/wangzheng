@@ -40,7 +40,6 @@ const autoplayInterface: SwiperAutoplayInterface = {
 })
 export class HomePage implements OnInit {
     hasMsg;
-    // swiper config
     config: SwiperConfigInterface = {
         observer: true, // 修改swiper自己或子元素时，自动初始化swiper
         observeParents: true,   // 修改swiper父元素时，自动初始化swiper

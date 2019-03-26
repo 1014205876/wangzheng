@@ -93,7 +93,7 @@ export class ProductApplyPage implements OnInit {
                         id: that.insStaffNum.productId,
                         name: that.productMes.name
                     })
-                    that.router.navigate([ '/home' ], {
+                    that.router.navigate(['/home'], {
                         queryParams: {
                             id: that.insStaffNum.productId,
                             name: that.productMes.name
