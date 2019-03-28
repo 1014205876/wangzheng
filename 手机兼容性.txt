@@ -1,5 +1,5 @@
 每次h5开发，总会遇到一些兼容性bug，现在总结下，供大家参考。
-撤销
+
 1)定位问题：ios
 2)写背景图时最好加上top left 或者0 0 不然写运动效果时容易出现跳
 3)防止手机中网页放大和缩小:<meta name="viewport" content="user-scalable=0" />
