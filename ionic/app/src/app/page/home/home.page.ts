@@ -80,13 +80,13 @@ export class HomePage implements OnInit {
             }
         );
         this.http.get(//获取banner信息
-            '/guest-client//v2/app/pre/users',
+            '/guest-client/v2/app/pre/users',
             res => {
                 console.log(res);
             }
         );
         this.http.get(//获取banner信息
-            '/guest-client//v2/app/pre/banners?number=5',
+            '/guest-client/v2/app/pre/banners?number=5',
             res => {
                 console.log(res);
                 this.banner = res.result;
@@ -100,7 +100,7 @@ export class HomePage implements OnInit {
 
     getProduct() {
         this.http.get(//获取banner信息
-            '/guest-client//v2/app/pre/products',
+            '/guest-client/v2/app/pre/products',
             res => {
                 console.log(res);
                 this.products = res.result;
