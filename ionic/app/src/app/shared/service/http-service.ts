@@ -3,23 +3,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class selfHttp {
-    public api = '/api';
+    public api='/api';
     public http;
     public header = new HttpHeaders().set('Content-Type', 'application/json');
     constructor(
         Http: HttpClient,
     ) {
         this.http = Http;
-        console.log(this.header)
     }
 
     getToken() {
-        console.log(localStorage.getItem('token'))
-        if (JSON.parse(localStorage.getItem('token'))) {
-            return JSON.parse(localStorage.getItem('token'))
-        } else {
-            return ''
-        }
+        return JSON.parse(localStorage.getItem('token'))
     }
 
     public login(url, data: Object, cb?: Function, options?: Object) {
@@ -33,7 +27,6 @@ export class selfHttp {
     public get(url, cb?: Function, options?: Object) {
         const that = this;
         let header = that.header.set('Authorization', that.getToken())
-        console.log(header)
         that.http.get(that.api + url, { headers: header })
             .subscribe(data => {
                 cb(data);

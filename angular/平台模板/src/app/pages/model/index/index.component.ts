@@ -1,29 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-index',
-    templateUrl: './index.component.html',
-    styleUrls: ['./index.component.css']
+  selector: 'app-index',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
 
-    constructor() { }
+  constructor() { }
 
-    change(e) {
-        console.log(e)
-        let arr = e.fileList;
-        if (e.type == 'start') {
-            console.log('start')
-        }
-        if (e.type == 'success') {
-            console.log(arr)
-            console.log(arr[arr.length - 1].response)
-        }
+  change(e){
+    console.log(e)
+    let arr=e.fileList;
+    if(e.type=='start'){
+      console.log('start')
     }
-    get(e) {
-        console.log(e)
+    if(e.type=='success'){
+      console.log(arr)
+      console.log(arr[arr.length-1].response)
     }
-    ngOnInit() {
-    }
+  }
+  get(e){
+    console.log(e)
+  }
+  ngOnInit() {
+  }
 
 }
