@@ -33,7 +33,7 @@
                         ],
                         "styles": [
                             {
-                                "input": "src/assets/css/swiper.min.css"
+                                "input": "src/assets/css/swiper-3.4.2.min.css"
                             },
                             {
                                 "input": "src/assets/css/reset.css"
@@ -81,8 +81,7 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "app:build",
-                        "proxyConfig": "proxy.conf.json"
+                        "browserTarget": "app:build"
                     },
                     "configurations": {
                         "production": {
