@@ -76,6 +76,10 @@ export class PopularizeRegisterPage implements OnInit {
             alert('请输入正确的手机号')
             return
         }
+        if (!this.items.yzm) {
+            alert('请输入验证码')
+            return
+        }
         let params = { smsCode: this.items.yzm, mobile: this.items.mobile }
         params = Object.assign({}, this.insStaffNum, params)
         this.http.login(
@@ -89,6 +93,8 @@ export class PopularizeRegisterPage implements OnInit {
                             queryParams: that.insStaffNum
                         }
                     )
+                }else{
+                    alert(res.reason)
                 }
             }
         );

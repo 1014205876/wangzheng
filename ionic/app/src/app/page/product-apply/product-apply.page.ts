@@ -81,6 +81,10 @@ export class ProductApplyPage implements OnInit {
             alert('请输入正确的手机号')
             return
         }
+        if (!this.items.yzm) {
+            alert('请输入验证码')
+            return
+        }
         let insStaffNum = this.insStaffNum ? this.insStaffNum : {}
         let params = { smsCode: this.items.yzm, mobile: this.items.mobile }
         params = Object.assign({}, insStaffNum, params)
@@ -90,7 +94,9 @@ export class ProductApplyPage implements OnInit {
             res => {
                 if (res.code == '200') {
                     localStorage.setItem('token', JSON.stringify(res.result.token))
-                    window.location.href = that.productMes.productUrl + '?mobile=' + insStaffNum.mobile + '&code=' + insStaffNum.code
+                    window.location.href = that.productMes.productUrl + '?productId='+insStaffNum.productId+'&mobile=' + insStaffNum.mobile + '&code=' + insStaffNum.code
+                }else{
+                    alert(res.reason)
                 }
             }
         );

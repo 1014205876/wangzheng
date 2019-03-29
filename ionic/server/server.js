@@ -9,8 +9,8 @@ const proxy = require('http-proxy-middleware');
 const app = express();
 const http = require('http');
 // const qs = require('querystring');
-const server = app.listen(3201);
-// const server = app.listen(process.env.NODE_PORT);
+// const server = app.listen(3200);
+const server = app.listen(process.env.NODE_PORT);
 
 app.use(bodyParser.json({
     limit: '50mb'
@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.post('/api/auth/login', function (appReq, res) {
-    console.log(123)
+    
     userInfos = appReq.body
     var content = JSON.stringify(userInfos);
     var options = {
@@ -73,7 +73,7 @@ app.post('/api/auth/login', function (appReq, res) {
 
 app.all('/api\*', function (req, res) {
     // let appId = process.env.AUTH_ID;
-    console.log(123)
+    
     // let token = req.headers.cookie
     // let arr = token.split(';')
     // let account = arr[0].split('=')
@@ -92,13 +92,10 @@ app.all('/api\*', function (req, res) {
         'Content-Type': 'application/json;charset=UTF-8'
     });
     let path = req.path.replace('/api', '');
-    let url = "192.168.111.217:8040" + path;
-    // let url = process.env.ZUUL_URL + path;
-    console.log('headers', req.headers)
+    // let url = "192.168.111.217:8040" + path;
+    let url = process.env.ZUUL_URL + path;
     console.log('Authorization', req.headers.Authorization)
     console.log('authorization', req.headers.authorization)
-    console.log('token', token)
-    console.log('auth_user', auth_user)
     var sreq;
     if (req.method == 'GET') {
         sreq = superagent.get(url);
