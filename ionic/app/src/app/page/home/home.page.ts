@@ -89,7 +89,7 @@ export class HomePage implements OnInit {
         this.http.get(//获取产品信息
             '/kalanchoe-manager/v2/app/pre/product',
             res => {
-                this.products = res.data;
+                // this.products = res.data;
             }
         );
     }
