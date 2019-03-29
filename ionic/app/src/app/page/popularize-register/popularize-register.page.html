@@ -21,7 +21,7 @@
         <div class="zcBtn">
             <button type="submit" class="col-10 btn" (click)="checkYzm()">注册</button>
         </div>
-        <p class="inviteMobile">此邀请来自您的好友
-            {{insStaffNum.inviteMobile.substring(0,3)+"****"+insStaffNum.inviteMobile.substring(7,11)}}</p>
+        <p class="inviteMobile" *ngIf="insStaffNum.mobile">此邀请来自您的好友
+            {{insStaffNum.mobile.substring(0,3)+"****"+insStaffNum.mobile.substring(7,11)}}</p>
     </div>
 </div>

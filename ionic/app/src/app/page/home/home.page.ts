@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { selfHttp } from '../../shared/service/http-service';
+import { ActivatedRoute } from '@angular/router';
 
 import {
     SwiperConfigInterface,
     SwiperCoverflowEffectInterface,
-    SwiperComponent,
-    SwiperNavigationInterface,
     SwiperPaginationInterface,
     SwiperAutoplayInterface
 } from 'ngx-swiper-wrapper';
@@ -24,8 +23,6 @@ const paginationConfig: SwiperPaginationInterface = {
     el: '.swiper-pagination',
     type: 'bullets',
     bulletElement: 'li'
-    // disabledClass?: string;  
-    // hiddenClass?: string;
 };
 
 const autoplayInterface: SwiperAutoplayInterface = {
@@ -38,21 +35,9 @@ const autoplayInterface: SwiperAutoplayInterface = {
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
 })
+
 export class HomePage implements OnInit {
-    hasMsg;
-    config: SwiperConfigInterface = {
-        observer: true, // 修改swiper自己或子元素时，自动初始化swiper
-        observeParents: true,   // 修改swiper父元素时，自动初始化swiper
-        direction: 'horizontal',// 开启鼠标的抓手状态      
-        grabCursor: true,// 被选中的滑块居中，默认居左      
-        centeredSlides: true,
-        loop: false,
-        slidesPerView: 'auto',
-        autoplay: autoplayInterface,
-        speed: 1000,
-        coverflowEffect: coverflowEffectConfig,
-        pagination: paginationConfig
-    };
+    config: SwiperConfigInterface
 
     promptShow = false;
     prompt = '尊敬的用户！在我们正式通知您获得贷款之前，请勿支付任何费用';
@@ -62,34 +47,36 @@ export class HomePage implements OnInit {
 
     banner = [];
 
-    constructor(private http: selfHttp) { }
+    public insStaffNum: any//邀请信息
+
+    constructor(
+        private http: selfHttp,
+        private activeRoute: ActivatedRoute
+    ) {
+        this.activeRoute.queryParams.subscribe((e) => {
+            this.insStaffNum = e || {}
+        })
+    }
 
     ngOnInit() {
         let that = this;
         this.http.get(//获取banner信息
-            '/guest-client/v2/app/pre/messages',
+            '/kalanchoe-manager/v1/app/pre/banners/banners?number=5',
             res => {
-                console.log(res);
-                this.hasMsg = false;
-                for (let i = 0; i < res.result.length; i++) {
-                    if (res.result[i].status == '0') {
-                        that.hasMsg = true;
-                        break;
-                    }
-                }
-            }
-        );
-        this.http.get(//获取banner信息
-            '/guest-client/v2/app/pre/users',
-            res => {
-                console.log(res);
-            }
-        );
-        this.http.get(//获取banner信息
-            '/guest-client/v2/app/pre/banners?number=5',
-            res => {
-                console.log(res);
-                this.banner = res.result;
+                that.banner = res.data;
+                that.config = {
+                    observer: true, // 修改swiper自己或子元素时，自动初始化swiper
+                    observeParents: true,   // 修改swiper父元素时，自动初始化swiper
+                    direction: 'horizontal',// 开启鼠标的抓手状态      
+                    grabCursor: true,// 被选中的滑块居中，默认居左      
+                    centeredSlides: true,
+                    loop: false,
+                    slidesPerView: 'auto',
+                    autoplay: autoplayInterface,
+                    speed: 1000,
+                    coverflowEffect: coverflowEffectConfig,
+                    pagination: paginationConfig
+                };
             }
         );
         this.getProduct()
@@ -99,11 +86,10 @@ export class HomePage implements OnInit {
     }
 
     getProduct() {
-        this.http.get(//获取banner信息
-            '/guest-client/v2/app/pre/products',
+        this.http.get(//获取产品信息
+            '/kalanchoe-manager/v2/app/pre/product',
             res => {
-                console.log(res);
-                this.products = res.result;
+                this.products = res.data;
             }
         );
     }

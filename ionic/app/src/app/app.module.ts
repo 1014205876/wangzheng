@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { selfHttp } from './shared/service/http-service';
+import { HasLoginGuard } from './shared/guard/has-login.guard';
 
 import { HomePage } from './page/home/home.page';
 import { ProductApplyPage } from './page/product-apply/product-apply.page';
@@ -45,6 +46,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     providers: [
         StatusBar,
         selfHttp,
+        HasLoginGuard,
         SplashScreen,
         {
             provide: RouteReuseStrategy,

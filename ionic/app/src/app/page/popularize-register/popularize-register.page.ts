@@ -11,14 +11,12 @@ export class PopularizeRegisterPage implements OnInit {
 
     public yzm = false
     public sendCd = 60
-    public insStaffNum
+    public insStaffNum: any//邀请人
 
     items = {
         mobile: '',
         yzm: ''
     }
-    inviteMobile
-    productId
 
     constructor(
         private http: selfHttp,
@@ -26,7 +24,7 @@ export class PopularizeRegisterPage implements OnInit {
         private activeRoute: ActivatedRoute
     ) {
         this.activeRoute.queryParams.subscribe((e) => {
-            this.insStaffNum = e
+            this.insStaffNum = e || {}
         })
     }
 
@@ -49,7 +47,7 @@ export class PopularizeRegisterPage implements OnInit {
         this.sendCd
         this.yzm = true
         this.http.get(
-            '/guest-client/v2/app/pre/smsCode?mobile=' + this.items.mobile,
+            '/interface/v1/smsCode/' + this.items.mobile,
             res => {
                 if (res.code == 200) {
                     let timeId = setInterval(function () {
@@ -78,16 +76,19 @@ export class PopularizeRegisterPage implements OnInit {
             alert('请输入正确的手机号')
             return
         }
-        let insStaffNum = this.insStaffNum ? this.insStaffNum : {}
         let params = { smsCode: this.items.yzm, mobile: this.items.mobile }
-        params = Object.assign({}, insStaffNum, params)
+        params = Object.assign({}, this.insStaffNum, params)
         this.http.login(
             '/auth/login',
             params,
             res => {
                 if (res.code == '200') {
                     localStorage.setItem('token', JSON.stringify(res.result.token))
-                    that.router.navigate(['/home'])
+                    that.router.navigate(['/home'],
+                        {
+                            queryParams: that.insStaffNum
+                        }
+                    )
                 }
             }
         );

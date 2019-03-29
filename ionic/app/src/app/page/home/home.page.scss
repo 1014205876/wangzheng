@@ -2,21 +2,22 @@
     margin: -16px;
     height: calc(100% + 32px);
     background-color: #f5f5f5;
+
     .banner {
         background: #dbb272;
         display: block;
+
         .swiper-container {
-            /* margin-top: -3rem; */
         }
+
         .swiper-slide .bannerimg {
             width: 100%;
             height: 10rem;
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
-            /* position:relative; */
-            /* overflow: hidden; */
         }
+
         .swiper-slide .bannerimg img {
             min-width: 100%;
             min-height: 10rem;
@@ -27,13 +28,16 @@
             bottom: 0;
             margin: auto;
         }
+
         .swiper-pagination .swiper-pagination-bullet {
             background: #fff;
         }
+
         .swiper-pagination .swiper-pagination-bullet-active {
             background: #fff;
         }
     }
+
     .prompt {
         width: 100%;
         font-size: 0.9rem;
@@ -42,6 +46,7 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         position: relative;
+
         .promptIcon::before {
             content: '';
             position: absolute;
@@ -52,6 +57,7 @@
             background: url(../../../assets/images/promptIcon.png) left center no-repeat;
             background-size: 1rem auto;
         }
+
         .close::after {
             content: '\2716';
             position: absolute;
@@ -61,67 +67,100 @@
             height: 1.5rem;
             cursor: pointer;
         }
+
         marquee {
             display: block;
             line-height: 1.5rem;
             padding: 0.5rem 0rem;
-            color: #dbb272;
         }
     }
+
     .products {
         &.promptHide {
             margin-top: 0.7rem;
         }
-        .item {
+
+        >li {
             margin-bottom: 0.7rem;
+
             .white_bg {
                 background: #fff;
+                padding:0 1rem 1.2rem;
+
                 .title {
                     color: #000;
                     display: flex;
                     display: -webkit-flex;
                     justify-content: space-between;
-                    border-bottom: 1px solid #f5f5f5;
-                    padding: 0 1rem;
+
                     .text {
-                        height: 3rem;
-                        line-height: 3rem;
-                        position: relative;
+                        height: 4rem;
+                        display: flex;
+                        align-items: center;
                         font-size: 1rem;
                         color: #333;
+
                         span {
-                            font-size: 0.6rem;
-                            background: #09bb07;
+                            background: #FFBC37;
+                            padding: 0.1rem;
                             color: #fff;
-                            padding: 0 0.2rem;
-                            border-radius: 2px;
+                            font-size: 0.8rem;
+                            margin-right: 0.6rem;
                         }
                     }
-                    .cur_btn {
-                        display: inline-block;
-                        margin: 0.6rem 0;
-                        height: 1.8rem;
-                        line-height: 1.8rem;
-                        padding: 0 1rem;
-                        border-radius: 1rem;
-                        font-size: 0.9rem;
-                        background-color: #dbb272;
-                        color: #fff;
-                    }
+
                 }
+
                 .limit {
                     display: flex;
-                    display: -webkit-flex;
-                    justify-content: space-around;
+                    justify-content: space-between;
                     align-items: center;
-                    padding: 1rem 0;
-                    text-align: center;
-                    line-height: 2rem;
-                    font-size: 1rem;
+
+                    .left {
+                        width:7rem;
+                        .top {
+                            font-size: 0.8rem;
+                            color: #999;
+                            line-height: 1.2rem;
+                        }
+
+                        .bottom {
+                            font-size: 0.8rem;
+                            color: #666;
+
+                            span {
+                                font-size: 1.4rem;
+                                color: #FF3C55
+                            }
+                        }
+                    }
+
+                    .center {
+                        width:10rem;
+                        >div {
+                            line-height: 1.5rem;
+                            font-size:1rem;
+                        }
+                    }
+
+                    .right {
+                        .cur_btn {
+                            display: block;
+                            height: 2rem;
+                            line-height: 2rem;
+                            padding: 0 1rem;
+                            border-radius: 2rem;
+                            font-size: 1rem;
+                            background-color: #5D87F3;
+                            color: #fff;
+                        }
+                    }
                 }
+
                 .introduction {
                     border-top: 1px solid #f5f5f5;
                     padding: 0 1rem;
+
                     >p {
                         height: 2rem;
                         line-height: 2rem;

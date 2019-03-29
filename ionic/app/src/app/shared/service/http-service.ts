@@ -10,11 +10,9 @@ export class selfHttp {
         Http: HttpClient,
     ) {
         this.http = Http;
-        console.log(this.header)
     }
 
     getToken() {
-        console.log(localStorage.getItem('token'))
         if (JSON.parse(localStorage.getItem('token'))) {
             return JSON.parse(localStorage.getItem('token'))
         } else {
@@ -22,7 +20,7 @@ export class selfHttp {
         }
     }
 
-    public login(url, data: Object, cb?: Function, options?: Object) {
+    public login(url, data: Object, cb?: Function) {
         const that = this;
         that.http.post(that.api + url, data, { headers: that.header })
             .subscribe(res => {
@@ -30,17 +28,16 @@ export class selfHttp {
             });
     }
 
-    public get(url, cb?: Function, options?: Object) {
+    public get(url, cb?: Function) {
         const that = this;
         let header = that.header.set('Authorization', that.getToken())
-        console.log(header)
         that.http.get(that.api + url, { headers: header })
             .subscribe(data => {
                 cb(data);
             });
     }
 
-    public post(url, data: Object, cb?: Function, options?: Object) {
+    public post(url, data: Object, cb?: Function) {
         const that = this;
         let header = that.header.set('Authorization', that.getToken())
         that.http.post(that.api + url, data, { headers: header })
@@ -49,28 +46,28 @@ export class selfHttp {
             });
     }
 
-    public patch(url, data: Object, cb?: Function, options?: Object) {
+    public patch(url, data: Object, cb?: Function) {
         const that = this;
         let header = that.header.set('Authorization', that.getToken())
-        that.http.patch(that.api + url, data, { headers: that.header })
+        that.http.patch(that.api + url, data, { headers: header })
             .subscribe(res => {
                 cb(res);
             });
     }
 
-    public put(url, data: Object, cb?: Function, options?: Object) {
+    public put(url, data: Object, cb?: Function) {
         const that = this;
         let header = that.header.set('Authorization', that.getToken())
-        that.http.put(that.api + url, data, { headers: that.header })
+        that.http.put(that.api + url, data, { headers: header })
             .subscribe(res => {
                 cb(res);
             });
     }
 
-    public delete(url, cb?: Function, options?: Object) {
+    public delete(url, cb?: Function) {
         const that = this;
         let header = that.header.set('Authorization', that.getToken())
-        that.http.delete(that.api + url, { headers: that.header })
+        that.http.delete(that.api + url, { headers: header })
             .subscribe(data => {
                 cb(data);
             });

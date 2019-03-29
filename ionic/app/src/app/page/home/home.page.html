@@ -19,35 +19,32 @@
             <span class="close" (click)="closePrompt()"></span>
             <marquee>{{prompt}}</marquee>
         </div>
-        <div class="products" [ngClass]="{'promptHide': !promptShow}">
-            <div class="item" *ngFor="let item of products;let i=index;">
+        <ul class="products" [ngClass]="{'promptHide': !promptShow}">
+            <li *ngFor="let item of products;let i=index;">
                 <div class="white_bg">
                     <div class="title">
-                        <p class="text">{{item.name}} <span>新</span></p>
+                        <p class="text"><span>热门</span>{{item.name}}</p>
                         <div class="btnRight">
-                            <a [href]="'https://www.baidu.com'+'?name='+item.name+'&id='+'item.id'"
-                                class="cur_btn">申请贷款</a>
                         </div>
                     </div>
                     <div class="limit">
-                        <dl>
-                            <dt class="orange_txt">{{item.minAmount}}-{{item.maxAmount}}万</dt>
-                            <dd>额度</dd>
-                        </dl>
-                        <dl>
-                            <dt>{{item.minTerm}}-{{item.maxTerm}}个月</dt>
-                            <dd>期限</dd>
-                        </dl>
-                        <dl>
-                            <dt>{{item.minRate}}%-{{item.maxRate}}%</dt>
-                            <dd>费率</dd>
-                        </dl>
-                    </div>
-                    <div class="introduction">
-                        <p>{{item.remark}}</p>
+                        <div class='left'>
+                            <div class='top'>申请额度</div>
+                            <div class="bottom">
+                                <span>{{item.minAmount}}-{{item.maxAmount}}</span>万
+                            </div>
+                        </div>
+                        <div class='center'>
+                            <div>期限： {{item.minTerm}}-{{item.maxTerm}}个月</div>
+                            <div>费率： {{item.minRate}}%-{{item.maxRate}}%</div>
+                        </div>
+                        <div class='right'>
+                            <a [href]="item.productUrl+'?mobile='+insStaffNum.inviteMobile+'&code='+inviteCode"
+                                class="cur_btn">申请贷款</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </li>
+        </ul>
     </div>
 </ion-content>

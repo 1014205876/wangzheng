@@ -15,7 +15,8 @@ export class ProductApplyPage implements OnInit {
         minTerm: '',
         maxTerm: '',
         minRate: '',
-        maxRate: ''
+        maxRate: '',
+        productUrl: '',//跳转链接
     }
     items = {//form表单
         mobile: '',
@@ -51,7 +52,7 @@ export class ProductApplyPage implements OnInit {
         this.sendCd
         this.yzm = true
         this.http.get(
-            '/guest-client/v2/app/pre/smsCode?mobile=' + this.items.mobile,
+            '/interface/v1/smsCode/' + this.items.mobile,
             res => {
                 if (res.code == 200) {
                     let timeId = setInterval(function () {
@@ -89,16 +90,7 @@ export class ProductApplyPage implements OnInit {
             res => {
                 if (res.code == '200') {
                     localStorage.setItem('token', JSON.stringify(res.result.token))
-                    console.log({
-                        id: that.insStaffNum.productId,
-                        name: that.productMes.name
-                    })
-                    that.router.navigate(['/home'], {
-                        queryParams: {
-                            id: that.insStaffNum.productId,
-                            name: that.productMes.name
-                        }
-                    })
+                    window.location.href = that.productMes.productUrl + '?mobile=' + insStaffNum.mobile + '&code=' + insStaffNum.code
                 }
             }
         );
@@ -107,9 +99,10 @@ export class ProductApplyPage implements OnInit {
     ngOnInit() {
         let that = this;
         this.http.get(//获取产品信息
-            '/guest-client/v2/app/pre/product/' + this.insStaffNum.productId,
+            '/kalanchoe-manager/v2/app/pre/product/' + this.insStaffNum.productId,
             res => {
-                that.productMes = res.result
+                console.log(res)
+                that.productMes = res.data
             }
         );
     }
