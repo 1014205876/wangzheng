@@ -1,0 +1,28 @@
+.config_form {
+    display: flex;
+    position: relative;
+
+    .move_com {
+        position: absolute;
+        z-index: 10;
+    }
+
+    .left {
+        flex: 1;
+
+        .fixed {
+position:fixed;
+            button {
+                display: block;
+            }
+        }
+    }
+
+    .center {
+        flex: 3;
+    }
+
+    .right {
+        flex: 1;
+    }
+}
