@@ -1,16 +1,16 @@
 <nz-layout class="layout">
-    <nz-header>
+    <nz-header class="header">
         <!-- 头部 -->
-        <app-header style="overflow: auto; width: 100%; position: fixed; top: 0;"></app-header>
+        <app-header></app-header>
     </nz-header>
     <nz-layout>
-        <nz-sider style="overflow: auto; height: 100vh; position: fixed; left: 0;">
+        <nz-sider [nzWidth]="'250px'" class="menu">
             <!-- 左导航 -->
             <app-menu></app-menu>
         </nz-sider>
-        <nz-layout style="margin-left: 200px;">
-            <nz-content style="background-color:#f5f5f5">
-                <!-- 内容 -->
+        <nz-layout>
+            <nz-content class="content">
+                <!-- 内容 --> 
                 <router-outlet></router-outlet>
             </nz-content>
         </nz-layout>

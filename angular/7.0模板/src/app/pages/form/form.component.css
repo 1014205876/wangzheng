@@ -1,0 +1,23 @@
+.config_form {
+  display: flex;
+  position: relative;
+}
+.config_form .move_com {
+  position: absolute;
+  z-index: 10;
+}
+.config_form .left {
+  flex: 1;
+}
+.config_form .left .fixed {
+  position: fixed;
+}
+.config_form .left .fixed button {
+  display: block;
+}
+.config_form .center {
+  flex: 3;
+}
+.config_form .right {
+  flex: 1;
+}

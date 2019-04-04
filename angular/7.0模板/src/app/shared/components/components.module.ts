@@ -8,16 +8,14 @@ import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 /** 注册语言包 */
 import zh from '@angular/common/locales/zh';
 import { registerLocaleData } from '@angular/common';
-import { FormComponentComponent } from './form-component/form-component.component';
-import { FormInputComponent } from './form-input/form-input.component';
+import { RowComponent } from './form-component/row/row.component';
 registerLocaleData(zh);
 
 // 引入组件
 
 @NgModule({
     declarations: [
-        FormComponentComponent,
-        FormInputComponent
+        RowComponent
     ],
     imports: [
         CommonModule,
@@ -33,8 +31,7 @@ registerLocaleData(zh);
         }
     ],
     exports: [
-        FormComponentComponent,
-        FormInputComponent
+        RowComponent
     ]
 })
 export class ComponentsModule { }

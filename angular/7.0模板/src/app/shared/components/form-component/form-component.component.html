@@ -1,8 +1,0 @@
-<div class="component" *ngFor="let list of formData.children;let index=index">
-    <div class="top" style="text-align:right">
-        <button nz-button>拖拽</button>
-        <button nz-button>删除</button>
-    </div>
-    <app-form-component *ngIf="list.type=='component'" [formData]="list"></app-form-component>
-    <input nz-input *ngIf="list.type=='input'" type="text">
-</div>
