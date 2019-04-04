@@ -32,7 +32,7 @@
               }
             ],
             "styles": [
-              "src/styles.less"
+              "src/assets/css/theme.less"
             ],
             "scripts": [],
             "es5BrowserSupport": true
