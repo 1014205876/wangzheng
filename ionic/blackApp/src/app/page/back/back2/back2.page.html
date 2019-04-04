@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <app-back-button></app-back-button>
+        </ion-buttons>
+        <ion-buttons slot="start">
+            <ion-back-button color="black" text="返回" icon="arrow-back"></ion-back-button>
+        </ion-buttons>
+        <ion-title>back2</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-button [routerLink]="['/back/back1']">back1</ion-button>
+    <ion-button [routerLink]="['/home']">home</ion-button>
+    <ion-button [routerLink]="['/tab']">tab</ion-button>
+
+</ion-content>

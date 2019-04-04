@@ -1,0 +1,50 @@
+<ion-content padding>
+    <div class='reset'>
+        <div class="banner">
+            <div class="swiper-container" [swiper]='config'>
+                <div class="swiper-wrapper">
+                    <div *ngFor='let list of banner;let index=index' class="swiper-slide">
+                        <div class='bannerimg' [ngStyle]="{'background-image': 'url('+list.mediaUrl+')'}">
+                            <!-- <img [src]="list.mediaUrl" alt=""> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- 如果需要分页器 -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <!-- 提示 -->
+        <div class="prompt" id="prompt" *ngIf="promptShow">
+            <span class="promptIcon"></span>
+            <span class="close" (click)="closePrompt()"></span>
+            <marquee>{{prompt}}</marquee>
+        </div>
+        <ul class="products" [ngClass]="{'promptHide': !promptShow}">
+            <li *ngFor="let item of products;let i=index;">
+                <div class="white_bg">
+                    <div class="title">
+                        <p class="text"><span>热门</span>{{item.name}}</p>
+                        <div class="btnRight">
+                        </div>
+                    </div>
+                    <div class="limit">
+                        <div class='left'>
+                            <div class='top'>申请额度</div>
+                            <div class="bottom">
+                                <span>{{item.minAmount}}-{{item.maxAmount}}</span>万
+                            </div>
+                        </div>
+                        <div class='center'>
+                            <div>期限： {{item.minTerm}}-{{item.maxTerm}}个月</div>
+                            <div>费率： {{item.minRate}}%-{{item.maxRate}}%</div>
+                        </div>
+                        <div class='right'>
+                            <a [href]="item.productUrl+'?productId='+item.id+'&mobile='+insStaffNum.inviteMobile+'&code='+insStaffNum.inviteCode"
+                                class="cur_btn">申请贷款</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</ion-content>

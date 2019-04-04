@@ -1,3 +1,17 @@
-<p>
-  form works!
-</p>
+<div id="config_form" class="config_form" (mousemove)="mousemove($event)" (mouseup)="mouseup($event)">
+    <div id="move_com" class="move_com" [ngStyle]="absolute">拖拽中</div>
+    <div class="left">
+        <div class="fixed">
+
+            <!-- <input nz-input type="text"> -->
+            <button nz-button (mousedown)="mousedown($event)">布局框</button>
+            <button nz-button>输入框</button>
+        </div>
+    </div>
+    <div class="center">
+        <app-form-component [formData]="formData"></app-form-component>
+    </div>
+    <div class="right">
+        右边
+    </div>
+</div>

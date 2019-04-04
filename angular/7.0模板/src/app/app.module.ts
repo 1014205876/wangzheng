@@ -17,6 +17,8 @@ registerLocaleData(zh);
 import { LayoutModule } from './layout/layout.module';
 import { ComponentsModule } from './shared/components/components.module';
 import { selfHttp } from './shared/service/http-service';
+// import { BaseInterceptor } from './shared/service/base-interceptor';
+import { httpInterceptorProviders } from './shared/service/index';
 
 // 引入页面
 import { HomeComponent } from './pages/home/home.component';
@@ -43,6 +45,7 @@ import { FormComponent } from './pages/form/form.component';
     ],
     providers: [
         selfHttp,
+        httpInterceptorProviders,
         {
             provide: NZ_I18N,
             useValue: zh_CN

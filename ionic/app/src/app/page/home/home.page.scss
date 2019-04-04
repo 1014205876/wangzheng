@@ -1,0 +1,177 @@
+.reset {
+    margin: -16px;
+    min-height: calc(100% + 32px);
+    background-color: #f5f5f5;
+
+    .banner {
+        background: #dbb272;
+        display: block;
+
+        .swiper-container {
+        }
+
+        .swiper-slide .bannerimg {
+            width: 100%;
+            height: 10rem;
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .swiper-slide .bannerimg img {
+            min-width: 100%;
+            min-height: 10rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .swiper-pagination .swiper-pagination-bullet {
+            background: #fff;
+        }
+
+        .swiper-pagination .swiper-pagination-bullet-active {
+            background: #fff;
+        }
+    }
+
+    .prompt {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 0 2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        position: relative;
+
+        .promptIcon::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1.5rem;
+            background: url(../../../assets/images/promptIcon.png) left center no-repeat;
+            background-size: 1rem auto;
+        }
+
+        .close::after {
+            content: '\2716';
+            position: absolute;
+            right: 0.5rem;
+            top: 0.5rem;
+            width: 1rem;
+            height: 1.5rem;
+            cursor: pointer;
+        }
+
+        marquee {
+            display: block;
+            line-height: 1.5rem;
+            padding: 0.5rem 0rem;
+        }
+    }
+
+    .products {
+        &.promptHide {
+            margin-top: 0.7rem;
+        }
+
+        >li {
+            margin-bottom: 0.7rem;
+
+            .white_bg {
+                background: #fff;
+                padding:0 1rem 1.2rem;
+
+                .title {
+                    color: #000;
+                    display: flex;
+                    display: -webkit-flex;
+                    justify-content: space-between;
+
+                    .text {
+                        height: 4rem;
+                        display: flex;
+                        align-items: center;
+                        font-size: 1rem;
+                        color: #333;
+
+                        span {
+                            background: #FFBC37;
+                            padding: 0.1rem;
+                            color: #fff;
+                            font-size: 0.8rem;
+                            margin-right: 0.6rem;
+                        }
+                    }
+
+                }
+
+                .limit {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .left {
+                        width:7rem;
+                        .top {
+                            font-size: 0.8rem;
+                            color: #999;
+                            line-height: 1.2rem;
+                        }
+
+                        .bottom {
+                            font-size: 0.8rem;
+                            color: #666;
+
+                            span {
+                                font-size: 1.4rem;
+                                color: #FF3C55
+                            }
+                        }
+                    }
+
+                    .center {
+                        width:10rem;
+                        >div {
+                            line-height: 1.5rem;
+                            font-size:1rem;
+                        }
+                    }
+
+                    .right {
+                        .cur_btn {
+                            display: block;
+                            height: 2rem;
+                            line-height: 2rem;
+                            padding: 0 1rem;
+                            border-radius: 2rem;
+                            font-size: 1rem;
+                            background-color: #5D87F3;
+                            color: #fff;
+                        }
+                    }
+                }
+
+                .introduction {
+                    border-top: 1px solid #f5f5f5;
+                    padding: 0 1rem;
+
+                    >p {
+                        height: 2rem;
+                        line-height: 2rem;
+                        font-size: 0.8rem;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        color: #999;
+                    }
+                }
+            }
+        }
+    }
+}

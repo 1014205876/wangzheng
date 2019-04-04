@@ -11,9 +11,10 @@
         <div class="main">
             <div class='com' *ngFor='let list of form;let index=index' [ngStyle]='{width:(list.width/12*100+"%")}'>
                 <app-component [form]='list' [index]='index' [mouse]='mouse' [data]='data' [placeindex]='placeindex'
-                    (mouseover)='stop($event)' (mouseout)='stop($event)' (mouseup)='stop($event)' (changemouse)='mouseup($event)'
-                    (removeindex)='remove($event)' (look)='look($event)' (copy)='copy($event)' (typechange)='mousedown($event)'
-                    (setup01)='setup($event)' (fathermouseup)='mouseup($event)'></app-component>
+                    (mouseover)='stop($event)' (mouseout)='stop($event)' (mouseup)='stop($event)'
+                    (changemouse)='mouseup($event)' (removeindex)='remove($event)' (look)='look($event)'
+                    (copy)='copy($event)' (typechange)='mousedown($event)' (setup01)='setup($event)'
+                    (fathermouseup)='mouseup($event)'></app-component>
                 <div class='place' [hidden]='!(show&&mouse&&placeindex==index-0+1)'></div>
             </div>
         </div>

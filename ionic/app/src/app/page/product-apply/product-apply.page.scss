@@ -1,0 +1,131 @@
+.box {
+    position: fixed;
+    bottom:0;
+    width: 100%;
+    height: 100%;
+    background: url(../../../assets/images/pa-bg.jpg) left top no-repeat;
+    background-size: 100%;
+    min-height: 38rem;
+}
+
+.prompt {
+    width: 20rem;
+    height: 1.4rem;
+    line-height: 1.3rem;
+    text-align: center;
+    color: #fff;
+    font-size: 0.8rem;
+    position: absolute;
+    top: 15.5rem;
+    left: 50%;
+    margin-left: -10rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 0.7rem;
+}
+
+.message {
+    width: 15.2rem;
+    height: 6.5rem;
+    position: absolute;
+    top: 17.9rem;
+    left: 50%;
+    margin-left: -7.6rem;
+    padding: 1rem 0 0 1.2rem;
+}
+
+.message p {
+    overflow: hidden;
+    margin-bottom: 0.1rem;
+}
+
+.message p span {
+    float: left;
+    color: #482b9a;
+    font-size: 0.8rem;
+}
+
+.loginForm {
+    width: 80%;
+    position: absolute;
+    top: 25.9rem;
+    left: 10%;
+}
+
+.loginForm .input {
+    width: 100%;
+    margin-bottom: 0.67rem;
+    position: relative;
+    height: 2.65rem;
+}
+
+.loginForm .ipt {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #cecece;
+    background: #fff;
+}
+
+.loginForm .input input {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding-left: 1.2rem;
+    outline: none;
+    border: 0;
+    background: none;
+    font-size: 0.9rem;
+}
+
+.loginForm .mobile {
+    border-radius: 1.25rem;
+}
+
+.loginForm .yzmIpt {
+    border-top-left-radius: 1.25rem;
+    border-bottom-left-radius: 1.25rem;
+}
+
+.loginForm .yzm .ipt {
+    width: calc(100% - 6.7rem);
+}
+
+.priBtn {
+    background: url(../../../assets/images/pa-yzm-btn.png) left top no-repeat;
+    background-size: 100%;
+    width: 6.7rem;
+    height: 2.7rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 0;
+}
+
+.loginForm .yzm .priBtn .btn {
+    display: block;
+    padding: 0.5rem 0.5rem;
+    text-align: center;
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 1.7rem;
+    border: 0;
+    background: none;
+    outline: none;
+}
+
+.col-10 {
+    width: 100%;
+}
+
+.applyBtn {
+    width: 100%;
+    height: 3rem;
+}
+
+.applyBtn button {
+    width: 100%;
+    height: 100%;
+    background: url(../../../assets/images/zc-btn.png) left top no-repeat;
+    background-size: 100%;
+    font-size: 1.2rem;
+    color: #fff;
+}
