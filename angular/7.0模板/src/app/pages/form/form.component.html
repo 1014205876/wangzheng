@@ -1,11 +1,9 @@
-<div id="config_form" class="config_form" (mousemove)="mousemove($event)" (mouseup)="mouseup($event)">
+<div id="config_form" class="config_form" (mousemove)="mousemove($event)" (mouseup)="mouseup($event)" (mouseleave)="mouseout($event)">
     <div id="move_com" class="move_com" [ngStyle]="absolute">拖拽中</div>
     <div class="left">
         <div class="fixed">
-
-            <!-- <input nz-input type="text"> -->
             <button nz-button (mousedown)="mousedown($event)">布局框</button>
-            <button nz-button>输入框</button>
+            <button nz-button (mousedown)="mousedown($event)">输入框</button>
         </div>
     </div>
     <div class="center">

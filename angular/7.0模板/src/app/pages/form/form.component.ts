@@ -22,78 +22,6 @@ export class FormComponent implements OnInit {
     formData = {
         type: 'component',
         children: [
-            {
-                type: 'component',
-                children: [
-                    {
-                        type: 'component',
-                        children: [
-                            {
-                                type: 'component',
-                                children: [
-                                    {
-                                        type: 'input'
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        type: 'input'
-                    }
-                ]
-            },
-            {
-                type: 'input'
-            },
-            {
-                type: 'component',
-                children: [
-                    {
-                        type: 'component',
-                        children: [
-                            {
-                                type: 'component',
-                                children: [
-                                    {
-                                        type: 'input'
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        type: 'input'
-                    }
-                ]
-            },
-            {
-                type: 'input'
-            },
-            {
-                type: 'component',
-                children: [
-                    {
-                        type: 'component',
-                        children: [
-                            {
-                                type: 'component',
-                                children: [
-                                    {
-                                        type: 'input'
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        type: 'input'
-                    }
-                ]
-            },
-            {
-                type: 'input'
-            }
         ]
     }
 
@@ -108,6 +36,9 @@ export class FormComponent implements OnInit {
         this.absolute.left = event.pageX - this.configForm.offsetLeft + 'px'
     }
     mouseup(event) {
+        this.absolute.display = 'none'
+    }
+    mouseout(event) {
         this.absolute.display = 'none'
     }
 
