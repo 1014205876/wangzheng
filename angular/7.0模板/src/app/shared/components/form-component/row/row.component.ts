@@ -14,4 +14,7 @@ export class RowComponent implements OnInit {
   ngOnInit() {
   }
 
+  deleteCom(arr,index){
+    arr.splice(index, 1); 
+  }
 }

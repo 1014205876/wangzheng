@@ -22,6 +22,46 @@ export class FormComponent implements OnInit {
     formData = {
         type: 'component',
         children: [
+            {
+                type: 'table',
+                tr: [
+                    {
+                        td: [
+                            {
+                                type: 'component',
+                                children: [
+                                    {
+                                        type: 'input',
+                                        value:''
+                                    },
+                                    {
+                                        type: 'input',
+                                        value:''
+                                    },
+                                ]
+                            },
+                            {
+                                type: 'component',
+                                children: [
+                                    {
+                                        type: 'component',
+                                        children: [
+                                            {
+                                                type: 'input',
+                                                value:''
+                                            },
+                                        ]
+                                    },
+                                    {
+                                        type: 'input',
+                                        value:''
+                                    },
+                                ]
+                            }
+                        ]
+                    },
+                ]
+            }
         ]
     }
 
@@ -61,9 +101,6 @@ export class FormComponent implements OnInit {
         let that = this;
         that.configForm = this.el.nativeElement.querySelector("#config_form");
         that.moveCom = this.el.nativeElement.querySelector("#move_com");
-        console.log(that.configForm)
-        console.log(that.configForm.offsetTop)
-        console.log(that.configForm.offsetLeft)
     }
 
 }

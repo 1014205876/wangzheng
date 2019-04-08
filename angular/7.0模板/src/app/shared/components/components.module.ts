@@ -9,13 +9,17 @@ import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import zh from '@angular/common/locales/zh';
 import { registerLocaleData } from '@angular/common';
 import { RowComponent } from './form-component/row/row.component';
+import { TableComponent } from './form-component/table/table.component';
+import { InputComponent } from './form-component/input/input.component';
 registerLocaleData(zh);
 
 // 引入组件
 
 @NgModule({
     declarations: [
-        RowComponent
+        RowComponent,
+        TableComponent,
+        InputComponent
     ],
     imports: [
         CommonModule,

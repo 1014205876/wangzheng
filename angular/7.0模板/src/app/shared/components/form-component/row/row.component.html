@@ -1,8 +1,20 @@
+<div class="top" style="text-align:right">
+  <button nz-button>拖拽</button>
+  <button nz-button (click)="deleteCom(formData.children,index)">删除</button>
+</div>
 <div class="component" *ngFor="let list of formData.children;let index=index">
-  <div class="top" style="text-align:right">
-      <button nz-button>拖拽</button>
-      <button nz-button>删除</button>
+  <div class="hiddenShow">
+    <span hidden>用于显示需要新建的组建的位置，类似于每个li组建的matgin-top</span>
+    <input nz-input type="text">
   </div>
-  <app-row *ngIf="list.type=='component'" [formData]="list"></app-row>
-  <input nz-input *ngIf="list.type=='input'" type="text">
+  <div class="main shadow radius">
+    <app-row *ngIf="list.type=='component'" [formData]="list"></app-row>
+    <app-table *ngIf="list.type=='table'" [formData]="list"></app-table>
+    <app-input *ngIf="list.type=='input'" [formData]="list"></app-input>
+  </div>
+</div>
+
+<div class="hiddenShow">
+  <span hidden>用于显示需要新建的组建的位置，类似于每个ul组建的padding-bottom</span>
+  <input nz-input type="text">
 </div>
