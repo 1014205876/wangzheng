@@ -1,4 +1,4 @@
-修改标题
+修改标题(弃用)
 npm install vue-wechat-title --save
 import VueWechatTitle from 'vue-wechat-title'
 Vue.use(VueWechatTitle)
