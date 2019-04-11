@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>websocket</title>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <input type="text" id="speak"><button id="sub">说话</button>
+    <ul id="see">
+
+    </ul>
+
+
+    <script type="text/javascript">
+
+
+        let speak = document.getElementById('speak');
+        let see = document.getElementById('see');
+        let sub = document.getElementById('sub');
+
+        sub.onclick = function () {
+            console.log('发送给后台的数据');
+            console.log(speak.value);
+            socket.send(speak.value);
+        }
+
+
+
+
+
+
+        var onOpen = function () {
+            console.log("onOpen");
+        }
+        var onClose = function () {
+            console.log("onClose");
+        }
+        var onMessage = function (data) {
+            console.log("从后台获取到的数据");
+            console.log(data.data);
+            see.innerHTML = data.data
+        }
+        var onError = function () {
+            console.log("onError");
+        }
+        var socket = new WebSocket("ws://127.0.0.1:8080/");
+        socket.onopen = onOpen;
+        socket.onclose = onClose;
+        socket.onerror = onError;
+        socket.onmessage = onMessage;
+    </script>
+</body>
+
+</html>

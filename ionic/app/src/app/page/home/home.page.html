@@ -1,50 +1,76 @@
-<ion-content padding>
-    <div class='reset'>
-        <div class="banner">
-            <div class="swiper-container" [swiper]='config'>
-                <div class="swiper-wrapper">
-                    <div *ngFor='let list of banner;let index=index' class="swiper-slide">
-                        <div class='bannerimg' [ngStyle]="{'background-image': 'url('+list.mediaUrl+')'}">
-                            <!-- <img [src]="list.mediaUrl" alt=""> -->
-                        </div>
-                    </div>
-                </div>
-                <!-- 如果需要分页器 -->
-                <div class="swiper-pagination"></div>
+<div class="box">
+    <div id="win"></div>
+    <div class="formBox">
+        <img src="../../../assets/images/picture/jxbureau.png" class="logo" />
+        <h2 class="dzswj"
+            style="width: 100px;display: inline-block;margin-left: 6px;font-size: 14px;border: none;color: #666666;font-weight: normal;margin-left: 10px;">
+            电子税务局登录</h2>
+        <h2 class="jbrk" style="width: 128px;display: inline-block;margin-left: 5px;font-weight: bold;">旧版网上办税入口</h2>
+        <div class="clearFive"></div>
+        <div class="inputBox">
+            <img src="../../../assets/images/picture/icon_user.png" class="litteIcon" />
+            <span class="line"></span>
+            <input type="text" name="nsrsbh" id="nsrsbh" value="" placeholder="纳税人识别号" />
+        </div>
+        <div class="clearFive"></div>
+        <div class="inputBox">
+            <img src="../../../assets/images/picture/icon_password.png" class="litteIcon" />
+            <span class="line"></span>
+            <input type="password" name="password" id="password" value="" placeholder="密码" />
+        </div>
+        <div class="clearFive"></div>
+        <div class="inputBox leiIeInput">
+            <div class="codeBox">
+                <input type="text" name="valiteCode" id="valiteCode" value="" placeholder="请输入验证码" />
+            </div>
+            <div class="valideCode" id="getValiteCode">
+                <img src="../../../assets/images/picture/f3bc428843624493ac6a054c828e0f93.gif">
             </div>
         </div>
-        <!-- 提示 -->
-        <div class="prompt" id="prompt" *ngIf="promptShow">
-            <span class="promptIcon"></span>
-            <span class="close" (click)="closePrompt()"></span>
-            <marquee>{{prompt}}</marquee>
+        <div class="clear"></div>
+        <div class="authDial">
+            <input type="checkbox" name="sqs" id="sqs" value="read" />
+            请阅读<span (click)="agreement=true">《金融授权服务协议》</span>
         </div>
-        <ul class="products" [ngClass]="{'promptHide': !promptShow}">
-            <li *ngFor="let item of products;let i=index;">
-                <div class="white_bg">
-                    <div class="title">
-                        <p class="text"><span>热门</span>{{item.name}}</p>
-                        <div class="btnRight">
-                        </div>
-                    </div>
-                    <div class="limit">
-                        <div class='left'>
-                            <div class='top'>申请额度</div>
-                            <div class="bottom">
-                                <span>{{item.minAmount}}-{{item.maxAmount}}</span>万
-                            </div>
-                        </div>
-                        <div class='center'>
-                            <div>期限： {{item.minTerm}}-{{item.maxTerm}}个月</div>
-                            <div>费率： {{item.minRate}}%-{{item.maxRate}}%</div>
-                        </div>
-                        <div class='right'>
-                            <a [href]="item.productUrl+'?productId='+item.id+'&mobile='+insStaffNum.inviteMobile+'&code='+insStaffNum.inviteCode"
-                                class="cur_btn">申请贷款</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
+        <button id="loginButton" [routerLink]="['/authorized']" [queryParams]="{
+                'etpId':insStaffNum.etpId,
+                'productId':insStaffNum.productId,
+                'productName':insStaffNum.productName,
+                'preApproval':insStaffNum.preApproval
+            }">登录</button>
+        <p class="tips"><span>提示：</span>密码为“国家税务总局江西省税务局网上办税服务平台”登录密码
+            <a id="forgetPassword" href="javascript:void(0)">忘记密码？点此找回</a>
+        </p>
     </div>
-</ion-content>
+    <div class="dialMask" [hidden]="!agreement">
+        <div class="content">
+            <div class="scrollBox">
+                <h4>《金融授权服务协议》</h4>
+                一、本人承诺在签署本协议前，本人已是中国籍年满18周岁且具有完全民事行为能力的自然人或已经在工商行政管理局登记注册并有效存续的企业法人。
+                <br />二、本人代表公司同意并不可撤销地授权江西银税互动服务平台（平台（http://wsbs.jxgs.gov.cn:7038/syhd,以下简称以下简称“平台”）按照国家相关规定代本公司收集在使用平台服务中涉及的公司信息和包括信贷信息在内的信用信息、涉税信息包括近年纳税人资格信息、信用等级、税务登记、非正常户认定、注销、存款账户账号、税收违法行为、行政处罚、欠税、申报、缴税、财务报表等信息。本人/本公司对自身提供的所有信息真实性、完整性、准确性承担全部责任。
+                <br />三、在贷款实际发生后，本人代表公司同意并不可撤销地授权平台按照国家相关规定代本公司收集在使用平台服务中涉及的公司信息和包括信贷信息在内的信用信息、涉税信息。在与贷款方结清剩余应还款项之前，平台有权将授权平台收集的动态变更数据提供给贷款方，直至借贷关系解除或终止。
+                <br />四、本人同意并不可撤销地授权平台有权根据国家有关规定，在办理涉及本人或公司所申请的业务时，在经过本人或公司对所递交所有材料进行确认并同意后，有权使用、打印、保存本人的信用信息，并用于以下用途：
+                <br />（一）审核本人或公司贷款申请；
+                <br />（二）审核本人或本公司作为提出贷款申请或特约商户申请的个人、组织或机构的负责人、法定代表人、出资人、担保人、企业经营者、实际控制人；
+                <br />（三）对已向本人或本人担任法人、出资人、担保人、企业经营者、实际控制人的个人、机构或组织发放的贷款进行贷后风险管理；
+                <br />（四）向本人或本公司提供的其他平台合法经营范围内的业务。
+                <br />五、平台不得超出本服务协议范围进行数据报送和查询使用。本服务协议有效期至本人业务结清之日止。
+                <br />六、若本人在平台所办理的业务未获批准办理，本服务协议及本人信用报告等资料无须退回本人。
+                <br />七、本人或本公司承诺，在使用平台过程中实施的所有行为均遵守国家法律、法规及平台的各项规则，不违背社会公共利益或公共道德，不损害他人的合法权益。不发布国家禁止发布的信息，不发布其它涉嫌违法或违反本协议及各类规则的信息等。不对平台上的任何数据作商业性利用，包括但不限于在平台事先书面同意的情况下，以复制、传播等任何方式使用平台上展示的资料。
+                <br />八、本人或本公司同意平台提供服务过程中涉及的所有内容（包括但不限于网页、文字、图片、音频、视频、图表等）的知识产权归平台所有。除另有特别声明外，平台提供相关服务时所依托软件的著作权、专利权及其他知识产权均归平台所有。
+                <br />九、本人或本公司同意平台有权根据需要适时的修改本协议及平台规则，并在平台上公示。本人或本公司同意本人继续使用平台服务，即表示本人或本公司无条件、不可撤销地理解并接受新修订的协议和规则。
+                <br />十、本人或本公司无条件、不可撤销地承诺，当本人或本公司的行为涉嫌违反法律法规或违反本协议或平台规则的，平台有权采取相应措施，包括但不限于直接屏蔽、删除侵权信息，或直接停止提供服务。如本人或本公司的行为使平台遭受任何损失的（包括但不限于受到第三方的索赔、受到行政管理部门的处罚等），本人或本公司还应当赔偿或补偿平台遭受的全部损失及（或）发生的全部费用，包括但不限于诉讼费、律师费、保全费等。
+                <br />十一、本人或本公司自愿接收平台向本人或本公司提供的持续短信通知服务（通知的信息包括但不限于平台服务信息、产品信息等）。如对本人或本公司的日常经营造成影响的，本人或本公司可自行通过短信方式取消订阅。本人或本公司无条件、不可撤销地承诺不会因此向税务部门、银行、平台投诉或主张任何补偿。
+                <br />十二、本人或本公司通过平台发起贷款时授权相应银行查看使用本公司涉税数据及经营数据的权利义务。
+                <br />本人声明：本人已仔细阅读上述所有条款。平台已应本人要求对相关条款予以明确说明。本人对所有条款的含义及相应的法律后果已全部通晓并充分理解，本人自愿作出上述授权、承诺和声明。
+            </div>
+            <img src="../../../assets/images/picture/closebtn.png" id="closeDial" (click)="agreement=false" alt="关闭按钮">
+        </div>
+    </div>
+    <div class="loading" [hidden]="!login">
+        <img src="../../../assets/images/picture/loading-0.gif" />
+    </div>
+    <div class="bottomImgBox">
+        <img src="../../../assets/images/picture/top_img.png" />
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿.choosePhoneMask {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+.centerBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.choosePhoneMask ul {
+    list-style: none;
+    background: #FFFFFF;
+}
+
+.choosePhoneMask ul li,
+.choosePhoneMask ul h2 {
+    width: 220px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    border-bottom: 1px solid #F2F2F2;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.choosePhoneMask ul li:active {
+    background: #F2F2F2;
+}
+
+.codeInput,
+.reSendBox {
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    background: #FFFFFF;
+    display: none;
+}
+
+.reSendBox {
+    text-align: center;
+    font-size: 14px;
+}
+
+.inputOfCode input {
+    width: 100%;
+    height: 32px;
+    border: none;
+    outline: none;
+    text-align: center;
+    display: none;
+}
+
+#confirmToSubmitAll {
+    width: 100%;
+    height: 36px;
+    background: skyblue;
+    border: none;
+    color: #FFFFFF;
+    display: none;
+    outline: none;
+}
+
+#closeTeleChoose {
+    display: block;
+    margin: 10px auto;
+}

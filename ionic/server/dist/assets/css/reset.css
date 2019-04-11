@@ -1,88 +1,51 @@
 @charset "utf-8";
 
+/* @import 'main.css';
+@import 'taxbureauauth_jx.css';
+@import 'taxbureauauth_jx_extra.css';
+ */
+
 /*css reset start*/
-*{
-	padding:0;
-	margin:0;
-	list-style:none;
-	border:0;
-}
-html{
-	font-size: 100px;
-}
-body{
-	font-family: "Microsoft YaHei","微软雅黑",Helvetica,"黑体",'SimSun',Arial,Tahoma;
-	color: #000;
-	font-size:0.14rem;/*实际相当于14px*/
-}
-a,a:visited{
-	text-decoration: none;
-}
-a:hover{
-   text-decoration: none;
-}
-img{
-	vertical-align: middle;
-}
-button, select,input,textarea,option,optgroup{
-    font-family: inherit;
-    font-size: 100%;
-	outline: none;
-	/*把默认样式去掉*/
-	appearance:none;
-	-webkit-appearance:none;
-	-o-appearance:none;
-	-moz-appearance:none;
-	border-radius:0;
-	/*把默认样式去掉 end*/
-    margin: 0px;
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border: 0;
 }
 
-.clearfix:after{
-  content: "020"; 
-  display: block; 
-  height: 0; 
-  clear: both; 
-  visibility: hidden;  
-  }
+html {
+    font-size: 100px;
+}
+
+body {
+    font-family: "Microsoft YaHei", "微软雅黑", Helvetica, "黑体", 'SimSun', Arial, Tahoma;
+    color: #000;
+    font-size: 0.14rem;
+    /*实际相当于14px*/
+}
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.clearfix:after {
+    content: "020";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
 
 .clearfix {
-  /* 触发 hasLayout */ 
-  zoom: 1; 
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /* 触发 hasLayout */
+    zoom: 1;
+}

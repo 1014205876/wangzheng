@@ -1,10 +1,10 @@
 {
   "/api": {
-    "target": "http://192.168.111.217:7440",
+    "target": "http://192.168.111.217:7530",
     "secure": false
   },
   "/upload": {
-    "target": "http://192.168.111.217:7440",
+    "target": "http://192.168.111.217:7530",
     "secure": false
   }
 }

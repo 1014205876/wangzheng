@@ -12,11 +12,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { selfHttp } from './shared/service/http-service';
-import { HasLoginGuard } from './shared/guard/has-login.guard';
 
 import { HomePage } from './page/home/home.page';
-import { ProductApplyPage } from './page/product-apply/product-apply.page';
-import { PopularizeRegisterPage } from './page/popularize-register/popularize-register.page';
+import { AuthorizedPage } from './page/authorized/authorized.page';
 
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
@@ -31,8 +29,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     declarations: [
         AppComponent,
         HomePage,
-        ProductApplyPage,
-        PopularizeRegisterPage
+        AuthorizedPage
     ],
     entryComponents: [],
     imports: [
@@ -46,7 +43,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     providers: [
         StatusBar,
         selfHttp,
-        HasLoginGuard,
         SplashScreen,
         {
             provide: RouteReuseStrategy,
