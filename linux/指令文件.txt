@@ -10,7 +10,7 @@ ls              查看当前目录下的所有文件
 }
 cd              跳转到指定文件路径（以/开头的为绝对路径）
 passwd          修改密码
-use -m xxx      创建新用户
+useradd -m xxx  创建新用户
 userdel xxx     删除用户
 rm -rf xxx      需要删除的文件夹
 su xxx          切换用户（切换到root不需带名字）
