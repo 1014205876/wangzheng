@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 import zh from '@angular/common/locales/zh';
 registerLocaleData(zh);
@@ -35,6 +36,7 @@ import { FormComponent } from './pages/form/form.component';
     ],
     imports: [
         BrowserModule,
+        NgxEchartsModule,
         AppRoutingModule,
         NgZorroAntdModule,
         FormsModule,

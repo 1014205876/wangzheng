@@ -22,6 +22,7 @@ const history = resolve => require(['@/page/history'], resolve);
 const formjson = resolve => require(['@/page/formjson'], resolve);
 const drag = resolve => require(['@/page/drag'], resolve);
 const tree = resolve => require(['@/page/tree'], resolve);
+const MapPage = resolve => require(['@/page/mapPage'], resolve);
 // 引入次级页面路由
 const Index = resolve => require(['@/page/index'], resolve);
 const News = resolve => require(['@/page/news'], resolve);
@@ -147,6 +148,15 @@ export default new Router({
         index: 15,
         auth: true,
         title: '模板页面'
+      },
+    },
+    {
+      path: '/mapPage',
+      component: MapPage,
+      meta: {
+        index: 16,
+        auth: true,
+        title: '地图页面'
       },
     },
   ],

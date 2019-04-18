@@ -25,6 +25,7 @@
         <div id="myChart" class='mychart'></div>
 
         <button v-on:click='toform' style='display:block;width:70%;margin:0 auto;padding:0.15rem 0'>创建表单</button>
+        <button v-on:click='tomap' style='display:block;width:70%;margin:0 auto;padding:0.15rem 0'>地图页面</button>
     </div>
 </template>
 
@@ -214,6 +215,9 @@
             },
             toform() {
                 this.$router.push({ path: "/form" });
+            },
+            tomap() {
+                this.$router.push({ path: "/mapPage" });
             }
         },
         mounted() {

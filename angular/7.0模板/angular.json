@@ -34,7 +34,10 @@
             "styles": [
               "src/assets/css/theme.less"
             ],
-            "scripts": [],
+            "scripts": [
+                "src/assets/js/echarts.min.js",
+                "src/assets/js/jiangxi.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
