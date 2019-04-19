@@ -1,5 +1,14 @@
 <div class="map">
-    <div id="map">
-        <div id="container" style="width:100%;height:500px"></div>
-    </div>
+        <div class="today_change">
+            <div class='echart' echarts [options]="todayChange"></div>
+        </div>
+        <div class="today_change">
+            <div class='echart' echarts [options]="riskRadar"></div>
+        </div>
+        <div class="today_change">
+            <div class='echart' echarts [options]="entGrade"></div>
+        </div>
+        <div class="today_change">
+            <div class='echart' echarts [options]="busGrade"></div>
+        </div>
 </div>
