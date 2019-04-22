@@ -1,14 +1,202 @@
-.map {
-    padding-bottom: 500px;
+.mt20 {
+    margin-top: 20px;
+}
+
+.ml20 {
+    margin-left: 20px;
+}
+
+.bg_white {
+    background: #fff;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: 0;
+}
+
+.etp {
+    padding: 25px;
+
+    .head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .left {
+            display: flex;
+            align-items: center;
+
+            .etp_name {
+                font-size: 24px;
+                font-weight: bold;
+                color: #15325C;
+            }
+
+            .user_before {
+                margin-top: 8px;
+                margin-left: 12px;
+                font-size: 14px;
+                color: #999999;
+            }
+
+            .see_etp {
+                cursor: pointer;
+                margin-left: 54px;
+                width: 110px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                border-radius: 2px;
+                border: 1px solid #46A3FF;
+                font-size: 15px;
+                color: #46A3FF;
+            }
+        }
+
+        .monitot_time {
+            font-size: 14px;
+            color: #999999;
+        }
+    }
+
+    .etp_infor {
+        display: flex;
+        align-items: center;
+        height: 50px;
+
+        >li {
+            list-style: none;
+            font-size: 15px;
+            color: #666666;
+            padding: 0 20px;
+            line-height: 20px;
+            border-left: 1px solid #D8D8D8;
+
+            &:first-child {
+                padding-left: 0;
+                border-left: none;
+            }
+        }
+    }
+
+    .authorization {
+        display: flex;
+        margin-top: 10px;
+
+        >li {
+            margin-right: 32px;
+            list-style: none;
+            font-size: 15px;
+            color: #131313;
+
+            img {
+                width: 18px;
+                margin-right: 6px;
+            }
+        }
+    }
+}
+
+.grade {
+    background: #46A3FF;
+    height: 260px;
+
+    .head {
+        padding: 10px 15px 0;
+        font-size: 18px;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+
+        .monitot_time {
+
+            font-size: 14px;
+            color: #fff;
+        }
+    }
+
+    .left {
+        height: 200px;
+        float: left;
+        width: 50%;
+        border-right: 1px solid rgba(255, 255, 255, 0.4);
+        text-align: center;
+
+        .main {
+            line-height: 170px;
+            font-size: 80px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .score {
+            line-height: 20px;
+            font-size: 16px;
+            color: #fff;
+
+            span {
+                font-size: 18px;
+            }
+        }
+
+    }
+
+    .right {
+        width: 50%;
+        float: right;
+        padding-top: 50px;
+        text-align: center;
+
+        .main {
+            font-size: 20px;
+            color: #fff;
+            line-height: 52px;
+            padding-bottom: 10px;
+
+            img {
+                width: 47px;
+                height: 37px;
+                display: block;
+                margin: 0 auto;
+            }
+
+        }
+
+        .score {
+            line-height: 28px;
+            font-size: 16px;
+            color: #fff;
+
+            span {
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+.card {
+    padding-top: 10px;
+
+    .title {
+        line-height: 26px;
+        border-left: 3px solid #46A3FF;
+        padding: 0px 12px;
+        font-size: 18px;
+        color: #555555;
+    }
+
+    .echart {
+        width: 100%;
+        height: 100%;
+    }
 
     .today_change {
-        width: 800px;
-        height: 500px;
-        background: #fff;
+        height: 224px;
+    }
 
-        .echart {
-            width: 100%;
-            height: 100%;
-        }
+    .risk_radar{
+        height:370px;
     }
 }

@@ -1,14 +1,263 @@
-<div class="map">
-        <div class="today_change">
-            <div class='echart' echarts [options]="todayChange"></div>
+<div nz-row nzGutter="20">
+    <div nz-col class="gutter-row" nzSpan="24">
+        <div class="gutter-box etp bg_white">
+            <div class="head">
+                <div class="left">
+                    <div class="etp_name">江西省飞鱼公司</div>
+                    <div class="user_before">（曾用名：江西省飞鱼）</div>
+                    <div class="see_etp">查看基本信息</div>
+                </div>
+                <div class="monitot_time">监控时间 18/01/14</div>
+            </div>
+            <ul class="etp_infor">
+                <li>
+                    法定代表人：
+                </li>
+                <li>
+                    统一企业识别码：209829834989
+                </li>
+                <li>
+                    统一企业识别码：209829834989
+                </li>
+            </ul>
+            <ul class="authorization">
+                <li>
+                    <img src="../../../assets/images/icon/open.png" alt="">
+                    个人征信授权
+                </li>
+                <li>
+                    <img src="../../../assets/images/icon/open.png" alt="">
+                    个人征信授权
+                </li>
+                <li>
+                    <img src="../../../assets/images/icon/open.png" alt="">
+                    个人征信授权
+                </li>
+            </ul>
         </div>
-        <div class="today_change">
-            <div class='echart' echarts [options]="riskRadar"></div>
-        </div>
-        <div class="today_change">
-            <div class='echart' echarts [options]="entGrade"></div>
-        </div>
-        <div class="today_change">
-            <div class='echart' echarts [options]="busGrade"></div>
-        </div>
+    </div>
 </div>
+
+<div nz-row [nzGutter]="20" class="mt20">
+    <div nz-col class="gutter-row" nzSpan="8">
+        <div class="gutter-box grade">
+            <div class="head">
+                企业评级
+                <div class="time">
+                    检测时间 18/01/14
+                </div>
+            </div>
+            <div class="left">
+                <div class="main">
+                    C
+                </div>
+                <div class="score">
+                企业风险评分900
+                </div>
+            </div>
+            <div class="right">
+                <div class="main">
+                    <img src="../../../assets/images/icon/open.png" alt="">
+                    风险未变动
+                </div>
+                <div class="score">
+                    等级A>B
+                </div>
+                <div class="score">
+                    评分90
+                </div>
+            </div>
+        </div>
+    </div>
+    <div nz-col class="gutter-row" nzSpan="8">
+        <div class="gutter-box bg_white card">
+            <div class="title">
+                今日变化
+            </div>
+            <div class="today_change">
+                <div class='echart' echarts [options]="todayChange"></div>
+            </div>
+        </div>
+    </div>
+    <div nz-col class="gutter-row" nzSpan="8">
+        <div class="gutter-box bg_white card">
+            <div class="title">
+                累积变化
+            </div>
+            <div class="today_change">
+                <div class='echart' echarts [options]="allChange"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div nz-row [nzGutter]="20" class="mt20">
+    <div nz-col class="gutter-row" nzSpan="8">
+        <div class="gutter-box bg_white card">
+            <div class="title">
+                风险雷达图
+            </div>
+            <div class="risk_radar">
+                <div class='echart' echarts [options]="riskRadar"></div>
+            </div>
+        </div>
+    </div>
+    <div nz-col class="gutter-row" nzSpan="16">
+        <div class="gutter-box bg_white card">
+            <div class="title">
+                企业评级变化历史
+            </div>
+            <div class="risk_radar">
+                <div class='echart' echarts [options]="entGrade"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div nz-row [nzGutter]="20" class="mt20">
+    <div nz-col class="gutter-row" nzSpan="8">
+        <div class="gutter-box bg_white card">
+            <div class="title">
+                风险矩阵图
+            </div>
+            <div class="gutter-example">
+                <div nz-row nzGutter="10">
+                    <div nz-col class="gutter-row" nzSpan="8">
+                        <div class="gutter-box">col-6</div>
+                    </div>
+                    <div nz-col class="gutter-row" nzSpan="8">
+                        <div class="gutter-box">col-6</div>
+                    </div>
+                    <div nz-col class="gutter-row" nzSpan="8">
+                        <div class="gutter-box">col-6</div>
+                    </div>
+                </div>
+                <div nz-row nzGutter="10">
+                    <div nz-col class="gutter-row" nzSpan="8">
+                        <div class="gutter-box">col-6</div>
+                    </div>
+                    <div nz-col class="gutter-row" nzSpan="8">
+                        <div class="gutter-box">col-6</div>
+                    </div>
+                    <div nz-col class="gutter-row" nzSpan="8">
+                        <div class="gutter-box">
+                            <div class="">管理稳定性</div>
+                            <div class="">资质等级能力</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div nz-col class="gutter-row" nzSpan="16">
+        <div class="gutter-box bg_white card">
+            <div class="title">
+                风险变化历史
+                <div style="float:right">
+                    <nz-pagination [(nzPageIndex)]="riskChangePage" [nzTotal]="riskChangeTotal" [nzSize]="'small'">
+                    </nz-pagination>
+                </div>
+            </div>
+            <nz-table #basicTable1 [nzData]="riskChangeHistory">
+                <thead>
+                    <tr>
+                        <th>变化事件</th>
+                        <th>风险等级</th>
+                        <th>日期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of basicTable1.data">
+                        <td>{{data.name}}</td>
+                        <td>{{data.newGread}} → {{data.newGread}}</td>
+                        <td>{{data.date}}</td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+</div>
+
+<div nz-row class="mt20">
+    <div nz-col class="gutter-row" nzSpan="24">
+        <div class="gutter-box bg_white card">
+            <div class="title">
+                企业五分位属性
+            </div>
+            <nz-table #basicTable2 [nzData]="[1,2,3]">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of basicTable2.data">
+                        <td>{{data.name}}</td>
+                        <td>{{data.age}}</td>
+                        <td>{{data.address}}</td>
+                        <td>
+                            <a>Action 一 {{data.name}}</a>
+                            <nz-divider nzType="vertical"></nz-divider>
+                            <a>Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+</div>
+
+<div nz-row class="mt20">
+    <div nz-col class="gutter-row" nzSpan="24">
+        <div class="gutter-box bg_white card">
+            <div class="title">
+                关联企业风险矩阵
+            </div>
+            <nz-table #basicTable3 [nzData]="[1,2,3]">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of basicTable3.data">
+                        <td>{{data.name}}</td>
+                        <td>{{data.age}}</td>
+                        <td>{{data.address}}</td>
+                        <td>
+                            <a>Action 一 {{data.name}}</a>
+                            <nz-divider nzType="vertical"></nz-divider>
+                            <a>Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+</div>
+
+<ul class="risk_matrix_infor">
+    <li>
+        <div class="name">一，业务状况</div>
+
+        <div nz-row class="mt20">
+            <div nz-col class="gutter-row" nzSpan="24">
+                <div class="gutter-box bg_white card">
+                    <div class="title">
+                        业务状况评级变化历史
+                    </div>
+                    <div class="notes">业务状况监控模块当前评级为</div>
+                    <div class="today_change">
+                        <div class='echart' echarts [options]="busGrade"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>

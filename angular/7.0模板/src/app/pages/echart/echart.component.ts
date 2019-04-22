@@ -12,30 +12,39 @@ export class EchartComponent implements OnInit {
     }
 
     todayChange;//今日变化表格数据
+    allChange;//累积变化表格数据
     riskRadar;//风险数据
     entGrade;//企业评级数据
     busGrade;//业务评级数据
 
-
+    letterArr = ['', 'E', 'D', 'C', 'B', 'A'];
+    /** 
+     * echart表格option模板
+    */
     ringOption = {//圆环option
+        color: [//调色盘
+            '#FB963C',//橙
+            '#FFD324',//黄
+            '#46A3FF',//蓝
+        ],
         title: {
-            text: 9,
+            text: '主标题',
             textStyle: {
                 color: '#15325C',
                 fontStyle: 'normal',
                 fontWeight: 'bold',
-                fontFamily: 'Arial',
-                fontSize: 60,
-                lineHeight: 40,
+                fontFamily: 'ImpactMTStd',
+                fontSize: 40,
+                lineHeight: 20,
             },
-            subtext: '今日变更事件',
+            subtext: '副标题',
             subtextStyle: {
-                color: '#868686',
+                color: '#6B6B6B',
                 fontStyle: 'normal',
                 fontWeight: 'normal',
-                fontFamily: 'Arial',
-                fontSize: 16,
-                lineHeight: 20,
+                fontFamily: 'MicrosoftYaHeiUI',
+                fontSize: 12,
+                lineHeight: 15,
             },
             x: 'center',
             y: 'center',
@@ -47,12 +56,13 @@ export class EchartComponent implements OnInit {
             {
                 type: 'pie',
                 hoverAnimation: false,
-                radius: ['50%', '70%'],//圆环边距离圆心的位置，
+                // startAngle:270,//偏转角度（0-360）
+                radius: ['59%', '75%'],//圆环边距离圆心的位置，
                 avoidLabelOverlap: true,
                 silent: true,//是否不触发鼠标事件
                 label: {//标注
                     show: true,
-                    color: '#D6DCE4',
+                    color: '#8B97A7',
                     position: 'outside'
 
                 },
@@ -64,21 +74,28 @@ export class EchartComponent implements OnInit {
                     }
                 },
                 itemStyle: {//内容的样式
-                    borderWidth: 5, //设置border的宽度有多大
-                    borderColor: '#fff',
-                    color: function (params) {//定义一个输出颜色的函数
-                        let colorList = [
-                            '#46A3FF',//蓝
-                            '#FB963C',//橙
-                            '#FFD324'//黄
-                        ];
-                        return colorList[params.dataIndex]
-                    },
+                    borderWidth: 4, //设置border的宽度有多大
+                    borderColor: '#fff'
                 },
+                data: [0, 0, 0]
             }
         ]
     }
     radarOption = {//风险雷达option
+        title: {
+            text: '主标题',
+            textStyle: {
+                color: '#131313',
+                fontStyle: 'normal',
+                fontWeight: 'bold',
+                fontFamily: 'MicrosoftYaHeiUI',
+                fontSize: 15,
+                lineHeight: 60,
+            },
+            padding:[0,22],
+            x: 'left',
+            y: 'top',
+        },
         radar: {
             name: {
                 textStyle: {
@@ -125,6 +142,9 @@ export class EchartComponent implements OnInit {
                 color: '#6BB5FF',
                 option: 0.6
             },
+            data: {
+                value: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            }
         }]
     }
     lineOption = {//企业评级变化option
@@ -174,7 +194,7 @@ export class EchartComponent implements OnInit {
             ],
         },
         yAxis: {
-            type: 'value',
+            type: 'category',
             boundaryGap: false, //坐标轴2端留白
             min: 0,
             max: 5,
@@ -189,10 +209,6 @@ export class EchartComponent implements OnInit {
                 show: false
             },
             axisLabel: {//坐标轴文字相关
-                formatter: function (value, index) {
-                    let letterArr = [' ', 'E', 'D', 'C', 'B', 'A'];//字母数字，用于把拿到的数字转换成字母
-                    return letterArr[value]
-                },
                 fontStyle: 'italic',//文字样式（斜体）
             },
             splitLine: {//网格线
@@ -202,6 +218,7 @@ export class EchartComponent implements OnInit {
                     type: 'dotted'
                 },
             },
+            data: this.letterArr
         },
         series: [{
             type: 'line',
@@ -213,19 +230,33 @@ export class EchartComponent implements OnInit {
             lineStyle: {//折线样式
                 color: '#46A3FF'
             },
-            itemStyle: {
+            itemStyle: {//折线拐点样式
                 normal: {
                     color: '#46A3FF',
                     borderWidth: 2,
                 }
             },
-            areaStyle: {
+            areaStyle: {//填充区样式
                 color: '#EDF6FF',
                 option: 0.6,
             },
+            data: [0, 0, 0]
         }]
     }
     barOption = {//业务评级变化option
+        title: {
+            text: '主标题',
+            textStyle: {
+                color: '#15325C',
+                fontStyle: 'normal',
+                fontWeight: 'bold',
+                fontFamily: 'Arial',
+                fontSize: 60,
+                lineHeight: 40,
+            },
+            x: 'left',
+            y: 'top',
+        },
         xAxis: {
             type: 'category',
             boundaryGap: true, //坐标轴2端留白
@@ -259,7 +290,7 @@ export class EchartComponent implements OnInit {
             ],
         },
         yAxis: {
-            type: 'value',
+            type: 'category',
             boundaryGap: false, //坐标轴2端留白
             min: 0,
             max: 5,
@@ -274,10 +305,6 @@ export class EchartComponent implements OnInit {
                 show: false
             },
             axisLabel: {//坐标轴文字相关
-                formatter: function (value, index) {
-                    let letterArr = [' ', 'E', 'D', 'C', 'B', 'A'];//字母数字，用于把拿到的数字转换成字母
-                    return letterArr[value]
-                },
                 fontStyle: 'italic',//文字样式（斜体）
             },
             splitLine: {//网格线
@@ -287,45 +314,54 @@ export class EchartComponent implements OnInit {
                     type: 'dotted'
                 },
             },
+            data: this.letterArr
         },
         series: [{
             type: 'bar',
-            symbolSize: 10,
-            showSymbol: false,//是否在平常状态下显示拐点
-            hoverAnimation: true,//是否开启拐点动画
-            lineStyle: {//折线样式
-                color: '#46A3FF'
-            },
-            itemStyle: {
+            itemStyle: {//柱状条样式
                 normal: {
                     color: '#46A3FF',
                     borderWidth: 2,
                 }
             },
-            areaStyle: {
-                color: '#EDF6FF',
-                option: 0.6,
-            },
+            data: [0, 0, 0]
         }]
     }
 
     ngOnInit() {
-        this.todayChange = this.ringOption
-        this.todayChange.series[0].data = [
-            { value: 2, name: '正向变更' + 2 + '件' },
-            { value: 3, name: '平向变更' + 2 + '件' },
-            { value: 5, name: '负向变更' + 2 + '件' },
+
+
+        this.todayChange = JSON.parse(JSON.stringify(this.ringOption));//今日变化图表样式
+        this.todayChange.title.text = '9';//今日变化主标题
+        this.todayChange.title.subtext = '今日变更事件';//今日变化副标题
+        this.todayChange.series[0].data = [//今日变化图表数据
+            { value: 0, name: '正向变更' + 0 + '件' },
+            { value: 0, name: '平向变更' + 0 + '件' },
+            { value: 0, name: '负向变更' + 0 + '件' },
         ];
-        this.riskRadar = this.radarOption
-        this.riskRadar.series[0].data = [
+
+        this.allChange = JSON.parse(JSON.stringify(this.ringOption));//累积变化图表样式
+        this.allChange.title.text = '25';//累积变更主标题
+        this.allChange.title.subtext = '累积变更事件';//累计变更副标题
+        this.allChange.series[0].data = [//累积变化图表数据
+            { value: 25, name: '正向变更' + 22 + '件' },
+            { value: 23, name: '平向变更' + 24 + '件' },
+            { value: 47, name: '负向变更' + 28 + '件' },
+        ];
+
+        this.riskRadar = JSON.parse(JSON.stringify(this.radarOption));//风险雷达图表样式
+        this.riskRadar.title.text = '2018年8月';
+        this.riskRadar.series[0].data = [//风险雷达图表数据
             {
-                value: [1, 2, 3, 4, 2, 1, 3, 4, 5, 1],
-                name: '各项指标'
+                value: [1, 2, 3, 4, 2, 1, 3, 4, 5, 1]
             }
         ]
-        this.entGrade = this.lineOption;
-        this.entGrade.series[0].data = [2, 2, 3, 1, 1, 1, 2, 2, 2, 3, 1, 1, 1, 1];
-        this.busGrade = this.barOption;
-        this.busGrade.series[0].data = [2, 2, 3, 1, 1, 1, 2, 2, 2, 3, 1, 1, 1, 1];
+
+        this.entGrade = JSON.parse(JSON.stringify(this.lineOption));//企业评级图表样式
+        this.entGrade.series[0].data = ['A', 2, 3, 1, 1, 1, 2, 2, 2, 3, 1, 1, 1, 1];//企业评级图表数据
+
+        this.busGrade = JSON.parse(JSON.stringify(this.barOption));//业务状况图表样式
+        this.busGrade.series[0].data = [2, 2, 3, 1, 1, 1, 2, 2, 2, 3, 1, 1, 1, 1];//业务状况图表数据
+
     }
 }
