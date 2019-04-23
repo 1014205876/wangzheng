@@ -1,3 +1,7 @@
+.mt10 {
+    margin-top: 10px;
+}
+
 .mt20 {
     margin-top: 20px;
 }
@@ -10,193 +14,335 @@
     background: #fff;
 }
 
+.ta_left {
+    text-align: left;
+}
+
+.ta_center {
+    text-align: center;
+}
+
+.bg_none {
+    background: #C6C6C6;
+}
+
+.bg_A {
+    background: #83C0FF;
+}
+
+.bg_B {
+    background: #46A3FF;
+}
+
+.bg_C {
+    background: #0171E0;
+}
+
+.bg_D {
+    background: #FB963C;
+}
+
+.bg_E {
+    background: #EA414B;
+}
+
 ul {
     margin: 0;
     padding: 0;
     list-style: 0;
 }
 
-.etp {
-    padding: 25px;
+::ng-deep,
+:host ::ng-deep,
+:root,
+:host /deep/ {
+    // 添加4种前缀用于修改ng-zerro的默认样式
 
-    .head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    .etp {
+        padding: 25px;
 
-        .left {
+        .head {
             display: flex;
             align-items: center;
+            justify-content: space-between;
 
-            .etp_name {
-                font-size: 24px;
-                font-weight: bold;
-                color: #15325C;
+            .left {
+                display: flex;
+                align-items: center;
+
+                .etp_name {
+                    font-size: 24px;
+                    font-weight: bold;
+                    color: #15325C;
+                }
+
+                .user_before {
+                    margin-top: 8px;
+                    margin-left: 12px;
+                    font-size: 14px;
+                    color: #999999;
+                }
+
+                .see_etp {
+                    cursor: pointer;
+                    margin-left: 54px;
+                    width: 110px;
+                    height: 30px;
+                    line-height: 30px;
+                    text-align: center;
+                    border-radius: 2px;
+                    border: 1px solid #46A3FF;
+                    font-size: 15px;
+                    color: #46A3FF;
+                }
             }
 
-            .user_before {
-                margin-top: 8px;
-                margin-left: 12px;
+            .monitot_time {
                 font-size: 14px;
                 color: #999999;
             }
+        }
 
-            .see_etp {
-                cursor: pointer;
-                margin-left: 54px;
-                width: 110px;
-                height: 30px;
-                line-height: 30px;
-                text-align: center;
-                border-radius: 2px;
-                border: 1px solid #46A3FF;
+        .etp_infor {
+            display: flex;
+            align-items: center;
+            height: 50px;
+
+            >li {
+                list-style: none;
                 font-size: 15px;
-                color: #46A3FF;
+                color: #666666;
+                padding: 0 20px;
+                line-height: 20px;
+                border-left: 1px solid #D8D8D8;
+
+                &:first-child {
+                    padding-left: 0;
+                    border-left: none;
+                }
             }
         }
 
-        .monitot_time {
-            font-size: 14px;
-            color: #999999;
+        .authorization {
+            display: flex;
+            margin-top: 10px;
+
+            >li {
+                margin-right: 32px;
+                list-style: none;
+                font-size: 15px;
+                color: #131313;
+
+                img {
+                    width: 18px;
+                    margin-right: 6px;
+                }
+            }
         }
     }
 
-    .etp_infor {
+    .grade {
+        background: #46A3FF;
+        height: 260px;
+
+        .head {
+            padding: 10px 15px 0;
+            font-size: 18px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+
+            .monitot_time {
+
+                font-size: 14px;
+                color: #fff;
+            }
+        }
+
+        .left {
+            height: 200px;
+            float: left;
+            width: 50%;
+            border-right: 1px solid rgba(255, 255, 255, 0.4);
+            text-align: center;
+
+            .main {
+                line-height: 170px;
+                font-size: 80px;
+                font-weight: bold;
+                color: #fff;
+            }
+
+            .score {
+                line-height: 20px;
+                font-size: 16px;
+                color: #fff;
+
+                span {
+                    font-size: 18px;
+                }
+            }
+
+        }
+
+        .right {
+            width: 50%;
+            float: right;
+            padding-top: 50px;
+            text-align: center;
+
+            .main {
+                font-size: 20px;
+                color: #fff;
+                line-height: 52px;
+                padding-bottom: 10px;
+
+                img {
+                    width: 47px;
+                    height: 37px;
+                    display: block;
+                    margin: 0 auto;
+                }
+
+            }
+
+            .score {
+                line-height: 28px;
+                font-size: 16px;
+                color: #fff;
+
+                span {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+    .card {
+        padding-top: 10px;
+
+        .title {
+            line-height: 26px;
+            border-left: 3px solid #46A3FF;
+            padding: 0px 12px;
+            font-size: 18px;
+            color: #555555;
+        }
+
+        .echart {
+            width: 100%;
+            height: 100%;
+        }
+
+        .today_change {
+            height: 224px;
+        }
+
+        .risk_radar {
+            height: 360px;
+        }
+
+        .risk_matrix {
+            padding: 44px 20px 0;
+            height: 366px;
+            display: flex;
+            justify-content: space-between;
+
+            .left {
+                width: 401px;
+                text-align: center;
+                color: #fff;
+                font-size: 14px;
+
+                .matrix_tall {
+                    height: 88px;
+                    line-height: 88px;
+                }
+
+                .matrix_short {
+                    height: 39px;
+                    line-height: 39px;
+                }
+            }
+
+            .right {
+                margin-top: -4px;
+
+                >li {
+                    height: 22px;
+                    display: flex;
+                    align-items: center;
+
+                    .color_template {
+                        width: 15px;
+                        height: 8px;
+                        margin-right: 5px;
+                    }
+                }
+            }
+        }
+
+        .risk_change {
+            margin-top: 10px;
+            border-top: 1px solid #E9EEF9;
+            padding: 20px 25px;
+            height: 356px;
+
+            thead {
+                >tr {
+                    >th {
+                        border-top-left-radius: 0;
+                        padding: 0px 13px;
+                        height: 30px;
+                        border-bottom: none;
+                        color: #666666;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            tbody {
+                >tr {
+
+
+                    >td {
+                        padding: 0px 28px;
+                        height: 44px;
+                        color: #131313;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+
+    .nav {
+        height: 78px;
+        padding:0 20px;
         display: flex;
-        align-items: center;
-        height: 50px;
+        align-items:center;
+        list-style:none;
 
         >li {
-            list-style: none;
-            font-size: 15px;
-            color: #666666;
-            padding: 0 20px;
-            line-height: 20px;
-            border-left: 1px solid #D8D8D8;
-
-            &:first-child {
-                padding-left: 0;
-                border-left: none;
+            width: 130px;
+            height: 38px;
+            margin-left:10px;
+            line-height: 38px;
+            text-align: center;
+            color:#fff;
+            font-size:14px;
+            font-weight:bold;
+            a{
+                display:block;
+                width:100%;
+                height:100%;
             }
         }
-    }
-
-    .authorization {
-        display: flex;
-        margin-top: 10px;
-
-        >li {
-            margin-right: 32px;
-            list-style: none;
-            font-size: 15px;
-            color: #131313;
-
-            img {
-                width: 18px;
-                margin-right: 6px;
-            }
+        &.fixed{
+            width:100%;
+            position:fixed;
+            top:0;
+            z-index:100;
         }
-    }
-}
-
-.grade {
-    background: #46A3FF;
-    height: 260px;
-
-    .head {
-        padding: 10px 15px 0;
-        font-size: 18px;
-        color: #fff;
-        display: flex;
-        justify-content: space-between;
-
-        .monitot_time {
-
-            font-size: 14px;
-            color: #fff;
-        }
-    }
-
-    .left {
-        height: 200px;
-        float: left;
-        width: 50%;
-        border-right: 1px solid rgba(255, 255, 255, 0.4);
-        text-align: center;
-
-        .main {
-            line-height: 170px;
-            font-size: 80px;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .score {
-            line-height: 20px;
-            font-size: 16px;
-            color: #fff;
-
-            span {
-                font-size: 18px;
-            }
-        }
-
-    }
-
-    .right {
-        width: 50%;
-        float: right;
-        padding-top: 50px;
-        text-align: center;
-
-        .main {
-            font-size: 20px;
-            color: #fff;
-            line-height: 52px;
-            padding-bottom: 10px;
-
-            img {
-                width: 47px;
-                height: 37px;
-                display: block;
-                margin: 0 auto;
-            }
-
-        }
-
-        .score {
-            line-height: 28px;
-            font-size: 16px;
-            color: #fff;
-
-            span {
-                font-size: 18px;
-            }
-        }
-    }
-}
-
-.card {
-    padding-top: 10px;
-
-    .title {
-        line-height: 26px;
-        border-left: 3px solid #46A3FF;
-        padding: 0px 12px;
-        font-size: 18px;
-        color: #555555;
-    }
-
-    .echart {
-        width: 100%;
-        height: 100%;
-    }
-
-    .today_change {
-        height: 224px;
-    }
-
-    .risk_radar{
-        height:370px;
     }
 }

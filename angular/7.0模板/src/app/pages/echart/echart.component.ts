@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import './../../../assets/js/china.js'
 
 @Component({
     selector: 'app-echart',
@@ -18,6 +17,7 @@ export class EchartComponent implements OnInit {
     busGrade;//业务评级数据
 
     letterArr = ['', 'E', 'D', 'C', 'B', 'A'];
+    colorClassArr = ['bg_none', 'bg_E', 'bg_D', 'bg_C', 'bg_B', 'bg_A'];//控制背景颜色的class名的数组
     /** 
      * echart表格option模板
     */
@@ -92,7 +92,7 @@ export class EchartComponent implements OnInit {
                 fontSize: 15,
                 lineHeight: 60,
             },
-            padding:[0,22],
+            padding: [0, 22],
             x: 'left',
             y: 'top',
         },
@@ -156,7 +156,7 @@ export class EchartComponent implements OnInit {
                 snap: false,
                 lineStyle: {
                     color: '#64B2FF',
-                    type: 'dashed'
+                    type: 'dooted'
                 }
             },
             showContent: false,//是否显示title
@@ -218,7 +218,7 @@ export class EchartComponent implements OnInit {
                     type: 'dotted'
                 },
             },
-            data: this.letterArr
+            data: ['', 'E', 'D', 'C', 'B', 'A'],
         },
         series: [{
             type: 'line',
@@ -314,7 +314,7 @@ export class EchartComponent implements OnInit {
                     type: 'dotted'
                 },
             },
-            data: this.letterArr
+            data: ['', 'E', 'D', 'C', 'B', 'A'],
         },
         series: [{
             type: 'bar',
@@ -327,8 +327,47 @@ export class EchartComponent implements OnInit {
             data: [0, 0, 0]
         }]
     }
+    riskChangeHistory = {
+        page: 1,
+        total: 50,
+        table: [
+            { name: '1', newGread: '2', oldGread: '3', date: '4' }
+        ]
+    }
+
+    riskArr = [
+        { name: '业务状况', value: 1, href: 'one' },
+        { name: '业务状况', value: 3, href: 'two' },
+        { name: '业务状况', value: 3, href: 'three' },
+        { name: '业务状况', value: 0, href: 'four' },
+        { name: '业务状况', value: 5, href: 'five' },
+        { name: '业务状况', value: 1, href: 'six' },
+        { name: '业务状况', value: 3, href: 'seven' },
+        { name: '业务状况', value: 3, href: 'eight' },
+        { name: '业务状况', value: 0, href: 'nine' },
+        { name: '业务状况', value: 5, href: 'ten' },
+    ]
+    navShow=false;
+    link(href) {
+        document.getElementById(href).scrollIntoView();
+    }
+    con($event) {
+        console.log($event.pageY)
+        let scrollTop=document.documentElement.scrollTop;
+        console.log(scrollTop)
+    }
+
+
 
     ngOnInit() {
+        document.onscroll = function Reference(){
+            console.log(document.documentElement.scrollTop)
+        }
+
+
+
+
+
 
 
         this.todayChange = JSON.parse(JSON.stringify(this.ringOption));//今日变化图表样式
@@ -351,16 +390,60 @@ export class EchartComponent implements OnInit {
 
         this.riskRadar = JSON.parse(JSON.stringify(this.radarOption));//风险雷达图表样式
         this.riskRadar.title.text = '2018年8月';
+        this.riskRadar.radar.indicator = [//雷达指标
+            { name: '盈利指标1', max: 5 },
+            { name: '盈利指标2', max: 5 },
+            { name: '盈利指标3', max: 5 },
+            { name: '盈利指标4', max: 5 },
+            { name: '盈利指标5', max: 5 },
+            { name: '盈利指标6', max: 5 },
+            { name: '盈利指标7', max: 5 },
+            { name: '盈利指标8', max: 5 },
+            { name: '盈利指标9', max: 5 },
+            { name: '盈利指标10', max: 5 }
+        ];
         this.riskRadar.series[0].data = [//风险雷达图表数据
-            {
-                value: [1, 2, 3, 4, 2, 1, 3, 4, 5, 1]
-            }
+            { value: [1, 2, 3, 4, 2, 1, 3, 4, 5, 1] }
         ]
 
         this.entGrade = JSON.parse(JSON.stringify(this.lineOption));//企业评级图表样式
+        this.entGrade.xAxis.data = [//企业评级图表横坐标数值
+            '2009/6/12',
+            '2009/6/13',
+            '2009/6/14',
+            '2009/6/15',
+            '2009/6/16',
+            '2009/6/17',
+            '2009/6/18',
+            '2009/6/19',
+            '2009/6/20',
+            '2009/6/21',
+            '2009/6/22',
+            '2009/6/23',
+            '2009/6/24',
+            '2009/6/25'
+        ];
+        this.entGrade.yAxis.data = ['', 'E', 'D', 'C', 'B', 'A'];//企业评级图表纵坐标数值
         this.entGrade.series[0].data = ['A', 2, 3, 1, 1, 1, 2, 2, 2, 3, 1, 1, 1, 1];//企业评级图表数据
 
         this.busGrade = JSON.parse(JSON.stringify(this.barOption));//业务状况图表样式
+        this.entGrade.xAxis.data = [//业务状况图表横坐标数值
+            '2009/6/12',
+            '2009/6/13',
+            '2009/6/14',
+            '2009/6/15',
+            '2009/6/16',
+            '2009/6/17',
+            '2009/6/18',
+            '2009/6/19',
+            '2009/6/20',
+            '2009/6/21',
+            '2009/6/22',
+            '2009/6/23',
+            '2009/6/24',
+            '2009/6/25'
+        ];
+        this.entGrade.yAxis.data = ['', 'E', 'D', 'C', 'B', 'A'];//业务状况图表纵坐标数值
         this.busGrade.series[0].data = [2, 2, 3, 1, 1, 1, 2, 2, 2, 3, 1, 1, 1, 1];//业务状况图表数据
 
     }

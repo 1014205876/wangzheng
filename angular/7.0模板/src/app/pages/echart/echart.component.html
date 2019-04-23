@@ -52,7 +52,7 @@
                     C
                 </div>
                 <div class="score">
-                企业风险评分900
+                    企业风险评分900
                 </div>
             </div>
             <div class="right">
@@ -120,32 +120,104 @@
             <div class="title">
                 风险矩阵图
             </div>
-            <div class="gutter-example">
-                <div nz-row nzGutter="10">
-                    <div nz-col class="gutter-row" nzSpan="8">
-                        <div class="gutter-box">col-6</div>
+            <div class="risk_matrix">
+                <div class="left">
+                    <div nz-row nzGutter="10">
+                        <div nz-col class="gutter-row" nzSpan="8">
+                            <div class="gutter-box">
+                                <div class="matrix_tall" [ngClass]="colorClassArr[riskArr[0].value]">
+                                    企业个人资产
+                                </div>
+                            </div>
+                        </div>
+                        <div nz-col class="gutter-row" nzSpan="8">
+                            <div class="gutter-box">
+                                <div class="matrix_tall" [ngClass]="colorClassArr[riskArr[1].value]">
+                                    企业个人资产
+                                </div>
+                            </div>
+                        </div>
+                        <div nz-col class="gutter-row" nzSpan="8">
+                            <div class="gutter-box">
+                                <div class="matrix_tall" [ngClass]="colorClassArr[riskArr[2].value]">
+                                    企业个人资产
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div nz-col class="gutter-row" nzSpan="8">
-                        <div class="gutter-box">col-6</div>
+                    <div nz-row nzGutter="10" class="mt10">
+                        <div nz-col class="gutter-row" nzSpan="8">
+                            <div class="gutter-box">
+                                <div class="matrix_tall" [ngClass]="colorClassArr[riskArr[3].value]">
+                                    企业个人资产
+                                </div>
+                            </div>
+                        </div>
+                        <div nz-col class="gutter-row" nzSpan="8">
+                            <div class="gutter-box">
+                                <div class="matrix_tall " [ngClass]="colorClassArr[riskArr[4].value]">
+                                    企业个人资产
+                                </div>
+                            </div>
+                        </div>
+                        <div nz-col class="gutter-row" nzSpan="8">
+                            <div class="gutter-box">
+                                <div class="matrix_short" [ngClass]="colorClassArr[riskArr[5].value]">
+                                    管理稳定性
+                                </div>
+                                <div class="matrix_short mt10" [ngClass]="colorClassArr[riskArr[5].value]">
+                                    资质等级能力
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div nz-col class="gutter-row" nzSpan="8">
-                        <div class="gutter-box">col-6</div>
-                    </div>
-                </div>
-                <div nz-row nzGutter="10">
-                    <div nz-col class="gutter-row" nzSpan="8">
-                        <div class="gutter-box">col-6</div>
-                    </div>
-                    <div nz-col class="gutter-row" nzSpan="8">
-                        <div class="gutter-box">col-6</div>
-                    </div>
-                    <div nz-col class="gutter-row" nzSpan="8">
-                        <div class="gutter-box">
-                            <div class="">管理稳定性</div>
-                            <div class="">资质等级能力</div>
+                    <div nz-row nzGutter="10" class="mt10">
+                        <div nz-col class="gutter-row" nzSpan="8">
+                            <div class="gutter-box">
+                                <div class="matrix_tall" [ngClass]="colorClassArr[riskArr[6].value]">
+                                    企业个人资产
+                                </div>
+                            </div>
+                        </div>
+                        <div nz-col class="gutter-row" nzSpan="8">
+                            <div class="gutter-box">
+                                <div class="matrix_tall" [ngClass]="colorClassArr[riskArr[7].value]">
+                                    企业个人资产
+                                </div>
+                            </div>
+                        </div>
+                        <div nz-col class="gutter-row" nzSpan="8">
+                            <div class="gutter-box">
+                                <div class="matrix_short" [ngClass]="colorClassArr[riskArr[8].value]">
+                                    管理稳定性
+                                </div>
+                                <div class="matrix_short mt10" [ngClass]="colorClassArr[riskArr[9].value]">
+                                    资质等级能力
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <ul class="right">
+                    <li>
+                        <div class="color_template bg_none"></div>暂未披露
+                    </li>
+                    <li>
+                        <div class="color_template bg_A"></div>A
+                    </li>
+                    <li>
+                        <div class="color_template bg_B"></div>B
+                    </li>
+                    <li>
+                        <div class="color_template bg_C"></div>C
+                    </li>
+                    <li>
+                        <div class="color_template bg_D"></div>D
+                    </li>
+                    <li>
+                        <div class="color_template bg_E"></div>E
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -154,31 +226,47 @@
             <div class="title">
                 风险变化历史
                 <div style="float:right">
-                    <nz-pagination [(nzPageIndex)]="riskChangePage" [nzTotal]="riskChangeTotal" [nzSize]="'small'">
+                    <nz-pagination [(nzPageIndex)]="riskChangeHistory.page" [nzTotal]="riskChangeHistory.total"
+                        [nzSize]="'small'">
                     </nz-pagination>
                 </div>
             </div>
-            <nz-table #basicTable1 [nzData]="riskChangeHistory">
-                <thead>
-                    <tr>
-                        <th>变化事件</th>
-                        <th>风险等级</th>
-                        <th>日期</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let data of basicTable1.data">
-                        <td>{{data.name}}</td>
-                        <td>{{data.newGread}} → {{data.newGread}}</td>
-                        <td>{{data.date}}</td>
-                    </tr>
-                </tbody>
-            </nz-table>
+            <div class="risk_change">
+                <nz-table #basicTable1 [nzData]="riskChangeHistory.table" [nzBordered]="false"
+                    [nzShowPagination]="false">
+                    <thead>
+                        <tr>
+                            <th nzWidth="60%">变化事件</th>
+                            <th nzWidth="20%" class="ta_center">风险等级</th>
+                            <th nzWidth="20%" class="ta_center">日期</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of basicTable1.data">
+                            <td>{{data.name}}</td>
+                            <td class="ta_center" style="font-weight:bold">{{data.newGread}} → {{data.oldGread}}</td>
+                            <td class="ta_center">{{data.date}}</td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </div>
+
         </div>
     </div>
 </div>
 
-<div nz-row class="mt20">
+<ul class="nav bg_white mt20">
+    <li *ngFor="let list of riskArr;let index=index" [ngClass]="colorClassArr[list.value]" (click)="link(list.href)">
+        {{list.name}}
+    </li>
+</ul>
+<ul class="nav bg_white fixed" [hidden]="navShow">
+    <li *ngFor="let list of riskArr;let index=index" [ngClass]="colorClassArr[list.value]" (click)="link(list.href)">
+        {{list.name}}
+    </li>
+</ul>
+
+<div nz-row class="mt20" (click)="con($event)">
     <div nz-col class="gutter-row" nzSpan="24">
         <div class="gutter-box bg_white card">
             <div class="title">
@@ -212,7 +300,7 @@
 
 <div nz-row class="mt20">
     <div nz-col class="gutter-row" nzSpan="24">
-        <div class="gutter-box bg_white card">
+        <div class="gutter-box bg_white card ">
             <div class="title">
                 关联企业风险矩阵
             </div>
