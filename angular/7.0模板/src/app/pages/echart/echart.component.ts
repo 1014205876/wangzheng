@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import map from 'src/assets/js/map';
+// import map from '../../../../src/assets/js/map';
+declare var AMap
 
 @Component({
     selector: 'app-echart',
@@ -10,6 +11,97 @@ export class EchartComponent implements OnInit {
 
     constructor() {
     }
+
+
+    amap: any;
+    leaveArr=['A','B','C','D','E']
+    leaveColorObj = {
+        A: 'red',
+        B: 'orange',
+        C: 'yellow',
+        D: 'green',
+        E: 'blue'
+    }
+    mapEtpData = [
+        {
+            top: (Math.random() * 3 + 114),
+            left: (Math.random() * 3 + 25),
+            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
+            id:Math.random()+''
+        },
+        {
+            top: (Math.random() * 3 + 114),
+            left: (Math.random() * 3 + 25),
+            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
+            id:Math.random()+''
+        },
+        {
+            top: (Math.random() * 3 + 114),
+            left: (Math.random() * 3 + 25),
+            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
+            id:Math.random()+''
+        },
+        {
+            top: (Math.random() * 3 + 114),
+            left: (Math.random() * 3 + 25),
+            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
+            id:Math.random()+''
+        },
+        {
+            top: (Math.random() * 3 + 114),
+            left: (Math.random() * 3 + 25),
+            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
+            id:Math.random()+''
+        },
+        {
+            top: (Math.random() * 3 + 114),
+            left: (Math.random() * 3 + 25),
+            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
+            id:Math.random()+''
+        },
+        {
+            top: (Math.random() * 3 + 114),
+            left: (Math.random() * 3 + 25),
+            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
+            id:Math.random()+''
+        },
+        {
+            top: (Math.random() * 3 + 114),
+            left: (Math.random() * 3 + 25),
+            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
+            id:Math.random()+''
+        },
+        {
+            top: (Math.random() * 3 + 114),
+            left: (Math.random() * 3 + 25),
+            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
+            id:Math.random()+''
+        },
+        {
+            top: (Math.random() * 3 + 114),
+            left: (Math.random() * 3 + 25),
+            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
+            id:Math.random()+''
+        },
+        {
+            top: (Math.random() * 3 + 114),
+            left: (Math.random() * 3 + 25),
+            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
+            id:Math.random()+''
+        },
+        {
+            top: (Math.random() * 3 + 114),
+            left: (Math.random() * 3 + 25),
+            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
+            id:Math.random()+''
+        },
+        {
+            top: (Math.random() * 3 + 114),
+            left: (Math.random() * 3 + 25),
+            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
+            id:Math.random()+''
+        },
+    ];//地图中的公司定位
 
     todayChange;//今日变化表格数据
     allChange;//累积变化表格数据
@@ -432,14 +524,8 @@ export class EchartComponent implements OnInit {
 
     ngOnInit() {
         document.onscroll = function Reference() {
-            console.log(document.documentElement.scrollTop)
+            // console.log(document.documentElement.scrollTop)
         }
-
-
-
-
-
-
 
         this.todayChange = JSON.parse(JSON.stringify(this.ringOption));//今日变化图表样式
         this.todayChange.title.text = '9';//今日变化主标题
@@ -516,6 +602,56 @@ export class EchartComponent implements OnInit {
         ];
         this.entGrade.yAxis.data = ['', 'E', 'D', 'C', 'B', 'A'];//业务状况图表纵坐标数值
         this.busGrade.series[0].data = [2, 2, 3, 1, 1, 1, 2, 2, 2, 3, 1, 1, 1, 1];//业务状况图表数据
+
+        this.amap = new AMap.Map('map', {//绘制地图（第一个参数为标签id）
+            resizeEnable: true,
+            center: [115.7689, 27.4822],//中心点坐标
+            zoom: 8,//缩放
+            mapStyle: 'amap://styles/whitesmoke',//地图样式
+        })
+        this.amap.on('click', function (ev) {
+            // console.log(ev)
+        })
+        this.setMapBorder()
+        this.setMapMaker()
+    }
+
+    setMapBorder() {//绘制地图边线
+        let that = this
+        AMap.plugin('AMap.DistrictLayer', function () {
+            let code = '360000'
+            let disProvince = new AMap.DistrictLayer.Province({
+                zIndex: 1,
+                adcode: [code],
+                depth: 0,
+                styles: {
+                    'province-stroke': '#58A9F8',
+                    'fill': 'rgba(255,255,255,0.3)'
+                }
+            });
+            disProvince.setMap(that.amap);
+        })
+    }
+    setMapMaker() {//绘制地图上的点
+        this.mapEtpData.forEach((item) => {
+            console.log(item.top, item.left, this.leaveColorObj[item.leave])
+            let circleMarker = new AMap.CircleMarker({
+                center: new AMap.LngLat(item.top, item.left),  // 圆心位置
+                bubble: true,
+                radius: 6, // 圆半径，单位：米
+                fillColor: this.leaveColorObj[item.leave],//圆形填充颜色
+                fillOpacity: 1,//圆形透明度
+                strokeColor: '#fff',	//线条颜色，使用16进制颜色代码赋值。默认值为#006600
+                strokeOpacity: 0.1,//轮廓线透明度
+                strokeWeight: 1,//轮廓线宽度
+                strokeStyle: 'solid',//轮库线样式
+                extData:item,
+            });
+            circleMarker.on('click',function(ev){
+                console.log(circleMarker.getExtData())
+            })
+            this.amap.add(circleMarker);
+        })
 
     }
 }
