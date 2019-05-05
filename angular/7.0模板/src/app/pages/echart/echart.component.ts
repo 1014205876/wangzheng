@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import map from 'src/assets/js/map';
 
 @Component({
     selector: 'app-echart',
@@ -21,6 +22,76 @@ export class EchartComponent implements OnInit {
     /** 
      * echart表格option模板
     */
+
+    res = {
+        "business ": {
+            "eventLevel": "A",
+            "riskRates": [
+                {
+                    "riskLevel ": "A",
+                    "riskScore ": "20",
+                    "ruleKey ": " zchj ",
+                    "ruleParentKey": "business ",
+                    "name": "资产合计"
+                },
+                {
+                    "riskLevel ": "A",
+                    "riskScore ": "21",
+                    "ruleKey ": " fzl ",
+                    "ruleParentKey": "business ",
+                    "name": "负债率"
+                }
+            ],
+            "riskEvents": [
+                {
+                    "eventLevel": "A",
+                    "eventSocre": "20",
+                    "ruleKey ": " business ",
+                    "name": "资产合计",
+                    "createTime": "2019-09-09"
+                },
+                {
+                    "riskLevel ": "A",
+                    "riskScore ": "21",
+                    "ruleKey ": " business ",
+                    "name": "负债率",
+                    "createTime": "2019-09-09",
+                }
+            ]
+        },
+        "major": {
+            "eventLevel": "B",
+            "riskRates": [
+                {
+                    "riskLevel ": "A",
+                    "riskScore ": "20",
+                    "ruleKey ": " zchj ",
+                    "ruleParentKey": "business",
+                    "name": "资产合计",
+                },
+                {
+                    "riskLevel ": "A",
+                    "riskScore ": "21",
+                    "ruleKey ": " fzl ",
+                    "ruleParentKey": "business ",
+                    "name": "负债率"
+                }
+            ]
+
+
+        },
+        "finance ": "B",
+        "credit": "B",
+        "assets": "A",
+        "commercial": "B",
+        "manage": "B",
+        "industry": "A",
+        "area": "B",
+        "relate": "A"
+    }
+
+
+
     ringOption = {//圆环option
         color: [//调色盘
             '#FB963C',//橙
@@ -347,20 +418,20 @@ export class EchartComponent implements OnInit {
         { name: '业务状况', value: 0, href: 'nine' },
         { name: '业务状况', value: 5, href: 'ten' },
     ]
-    navShow=false;
+    navShow = false;
     link(href) {
         document.getElementById(href).scrollIntoView();
     }
     con($event) {
         console.log($event.pageY)
-        let scrollTop=document.documentElement.scrollTop;
+        let scrollTop = document.documentElement.scrollTop;
         console.log(scrollTop)
     }
 
 
 
     ngOnInit() {
-        document.onscroll = function Reference(){
+        document.onscroll = function Reference() {
             console.log(document.documentElement.scrollTop)
         }
 
