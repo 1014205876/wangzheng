@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'; //导入router服务
 // import map from '../../../../src/assets/js/map';
 declare var AMap
 
@@ -9,12 +10,13 @@ declare var AMap
 })
 export class EchartComponent implements OnInit {
 
-    constructor() {
+    constructor(
+        private router: Router,
+    ) {
     }
 
-
     amap: any;
-    leaveArr=['A','B','C','D','E']
+    leaveArr = ['A', 'B', 'C', 'D', 'E']
     leaveColorObj = {
         A: 'red',
         B: 'orange',
@@ -22,86 +24,21 @@ export class EchartComponent implements OnInit {
         D: 'green',
         E: 'blue'
     }
-    mapEtpData = [
-        {
-            top: (Math.random() * 3 + 114),
-            left: (Math.random() * 3 + 25),
-            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
-            id:Math.random()+''
-        },
-        {
-            top: (Math.random() * 3 + 114),
-            left: (Math.random() * 3 + 25),
-            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
-            id:Math.random()+''
-        },
-        {
-            top: (Math.random() * 3 + 114),
-            left: (Math.random() * 3 + 25),
-            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
-            id:Math.random()+''
-        },
-        {
-            top: (Math.random() * 3 + 114),
-            left: (Math.random() * 3 + 25),
-            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
-            id:Math.random()+''
-        },
-        {
-            top: (Math.random() * 3 + 114),
-            left: (Math.random() * 3 + 25),
-            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
-            id:Math.random()+''
-        },
-        {
-            top: (Math.random() * 3 + 114),
-            left: (Math.random() * 3 + 25),
-            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
-            id:Math.random()+''
-        },
-        {
-            top: (Math.random() * 3 + 114),
-            left: (Math.random() * 3 + 25),
-            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
-            id:Math.random()+''
-        },
-        {
-            top: (Math.random() * 3 + 114),
-            left: (Math.random() * 3 + 25),
-            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
-            id:Math.random()+''
-        },
-        {
-            top: (Math.random() * 3 + 114),
-            left: (Math.random() * 3 + 25),
-            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
-            id:Math.random()+''
-        },
-        {
-            top: (Math.random() * 3 + 114),
-            left: (Math.random() * 3 + 25),
-            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
-            id:Math.random()+''
-        },
-        {
-            top: (Math.random() * 3 + 114),
-            left: (Math.random() * 3 + 25),
-            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
-            id:Math.random()+''
-        },
-        {
-            top: (Math.random() * 3 + 114),
-            left: (Math.random() * 3 + 25),
-            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
-            id:Math.random()+''
-        },
-        {
-            top: (Math.random() * 3 + 114),
-            left: (Math.random() * 3 + 25),
-            leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
-            id:Math.random()+''
-        },
-    ];//地图中的公司定位
+
+    mapEtpData = function () {
+        let arr = [];
+        for (let i = 0; i < 20; i++) {
+            arr.push(
+                {
+                    top: (Math.random() * 3 + 114),
+                    left: (Math.random() * 3 + 25),
+                    leave: this.leaveArr[parseInt(Math.random() * 5 + '')],
+                    id: Math.random() + ''
+                }
+            )
+        }
+        return arr
+    };//地图中的公司定位
 
     todayChange;//今日变化表格数据
     allChange;//累积变化表格数据
@@ -619,38 +556,43 @@ export class EchartComponent implements OnInit {
     setMapBorder() {//绘制地图边线
         let that = this
         AMap.plugin('AMap.DistrictLayer', function () {
-            let code = '360000'
+            let adCode = '360000';//绘制省市区地图对应的编码（类似邮箱）
             let disProvince = new AMap.DistrictLayer.Province({
                 zIndex: 1,
-                adcode: [code],
-                depth: 0,
+                adcode: ['360200'],
+                // citycode:['0791',],
+                depth: 2,
                 styles: {
-                    'province-stroke': '#58A9F8',
-                    'fill': 'rgba(255,255,255,0.3)'
+                    'province-stroke': 'blue',//边线条颜色
+                    'fill': 'rgba(225,225,225,0.7)',//填充颜色
                 }
             });
             disProvince.setMap(that.amap);
         })
     }
     setMapMaker() {//绘制地图上的点
-        this.mapEtpData.forEach((item) => {
-            console.log(item.top, item.left, this.leaveColorObj[item.leave])
+        let that = this;
+        console.log(that.mapEtpData)
+        that.mapEtpData().forEach((item) => {
+            console.log(item.top, item.left, that.leaveColorObj[item.leave])
             let circleMarker = new AMap.CircleMarker({
                 center: new AMap.LngLat(item.top, item.left),  // 圆心位置
                 bubble: true,
                 radius: 6, // 圆半径，单位：米
-                fillColor: this.leaveColorObj[item.leave],//圆形填充颜色
+                fillColor: that.leaveColorObj[item.leave],//圆形填充颜色
                 fillOpacity: 1,//圆形透明度
                 strokeColor: '#fff',	//线条颜色，使用16进制颜色代码赋值。默认值为#006600
                 strokeOpacity: 0.1,//轮廓线透明度
                 strokeWeight: 1,//轮廓线宽度
                 strokeStyle: 'solid',//轮库线样式
-                extData:item,
+                extData: item,
+                cursor: 'pointer',
             });
-            circleMarker.on('click',function(ev){
+            circleMarker.on('click', function (ev) {
                 console.log(circleMarker.getExtData())
+                that.router.navigateByUrl("module/form")
             })
-            this.amap.add(circleMarker);
+            that.amap.add(circleMarker);
         })
 
     }

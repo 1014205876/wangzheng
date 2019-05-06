@@ -25,6 +25,7 @@ import { httpInterceptorProviders } from './shared/service/index';
 import { HomeComponent } from './pages/home/home.component';
 import { EchartComponent } from './pages/echart/echart.component';
 import { FormComponent } from './pages/form/form.component';
+import { AnimateComponent } from './pages/animate/animate.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { FormComponent } from './pages/form/form.component';
         HomeComponent,
         EchartComponent,
         FormComponent,
+        AnimateComponent,
     ],
     imports: [
         BrowserModule,
