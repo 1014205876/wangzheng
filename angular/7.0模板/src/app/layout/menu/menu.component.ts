@@ -54,9 +54,9 @@ export class MenuComponent implements OnInit {
     }
     ngOnInit() {
         //左导航栏导航
-        // this.http.get('peak-resource/api/resource/user/permission', res => {
-        //     console.log(res);
-        //     // this.nav.menu = res.result.menu;
-        // });
+        this.http.get('peak-resource/api/resource/user/permission', res => {
+            console.log(res);
+            // this.nav.menu = res.result.menu;
+        });
     }
 }

@@ -13,7 +13,7 @@ passwd          修改密码
 useradd -m xxx  创建新用户
 userdel xxx     删除用户
 rm -rf xxx      需要删除的文件夹
-su xxx          切换用户（切换到root不需带名字）
+su xxx          切换用户（切换到root不需带名字）ls
 su - xxx        切换用户
 （ctrl+d)       退出用户（一般用于删除前退出）
 
@@ -60,7 +60,7 @@ file xxx        查看文件类型
 ~               home/user目录（）
 /               根目录（home父级）
 cd -            跳转到上个目录
-权限字母意义{
+权限字母意
     r       可以使用ls查看到这个文件
     w       可以使用touch在内部新建文件
     x       可以使用cd进入这个文件
@@ -111,6 +111,7 @@ a(i)                开始编辑这个文件
 esc                 退出编辑
 :                   转到末行
 wq                  保存
+q!                  不保存强制退出
 
 10
 在文件编辑页面
