@@ -6,6 +6,7 @@ ng generate component hero生成名为hero的组件
 (click)="onSelect(hero)" 点击事件
 [class.class名字]="hero === selectedHero" 
 [ngClass]="{'class名字': person.country === 'CN'}"绑定class名
+<div [ngStyle]="{'background-color': 'green'}"></div>
 [(ngModel)]="selectedHero.name" 双向数据绑定
 启用less 在angular.json中修改
 npm install less --save-dev

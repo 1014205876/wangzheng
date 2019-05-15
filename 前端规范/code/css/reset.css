@@ -27,10 +27,10 @@ td {
 }
 
 body {
-    font-size: 12px;
+    font-size: 14px;
     color: #666;
-    font-family: Microsoft YaHei, SimSun;
-    background: #f6f6f6;
+    font-family: Microsoft YaHei,SimSun;
+    background: #fff;
     line-height: 2;
 }
 
@@ -47,8 +47,17 @@ img {
 ol,
 ul {
     list-style: none;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
 }
 
 em {
@@ -131,7 +140,9 @@ button,
 select {
     text-transform: none;
 }
-
+p{
+    text-indent: 0;
+}
 textarea {
     overflow: auto;
 }
