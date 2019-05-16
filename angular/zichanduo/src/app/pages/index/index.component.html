@@ -30,10 +30,12 @@
     赶紧加入我们。
     成为创客！
 </div>
-<div class="line_tit" id="introduce">
-    <div class="mask"></div>
-    <div class="title">资产多平台介绍</div>
-    <div class="english">Platform introduction</div>
+<div class="line_tit_wrap" id="introduce">
+    <div class="line_tit" style="background-image: url('../../../assets/image/line_tit_1.png')">
+        <div class="mask"></div>
+        <div class="title">资产多平台介绍</div>
+        <div class="english">Platform introduction</div>
+    </div>
 </div>
 <div class="special_wrap">
     <div class="column">
@@ -66,70 +68,113 @@
     </ul>
     <div class="tag">方法2</div>
     <ul class="method method2">
-        <li *ngFor="let item of method1">
+        <li *ngFor="let item of method2">
             <img [src]="item.url" alt="">
             <p>{{item.main}}</p>
         </li>
     </ul>
 </div>
-<div class="line_tit" id="cooperation">
-    <div class="title">商务合作</div>
-    <div class="english">alskdjlfk</div>
+<div class="line_tit_wrap" id="cooperation">
+    <div class="line_tit" style="background-image: url('../../../assets/image/line_tit_2.png')">
+        <div class="mask"></div>
+        <div class="title">商务合作</div>
+        <div class="english">Business Cooperation</div>
+    </div>
 </div>
-<div class="column">
-    <div class="name">我们的服务</div>
-    <div class="english">alskdjl</div>
-    <img src="../../../assets/image/logo.png" alt="">
+<div class="service_wrap">
+    <div class="column">
+        <div class="name">我们的服务</div>
+        <div class="english">Business Cooperation</div>
+        <img src="../../../assets/image/underline.png" alt="">
+    </div>
+    <ul class="service">
+        <div class="border"></div>
+        <li *ngFor="let item of service">
+            <img [src]="item.url" alt="">
+            <div class="mask">
+                <h2>
+                    <span>{{item.title}}</span>
+                </h2>
+                <h4>{{item.main}}</h4>
+            </div>
+        </li>
+    </ul>
 </div>
-<div class="our_service">
-    <img src="../../../assets/image/logo.png" alt="">
+<div class="advantage_wrap">
+    <div class="column">
+        <div class="name">我们的优势</div>
+        <div class="english">Business Cooperation</div>
+        <img src="../../../assets/image/underline.png" alt="">
+    </div>
+    <ul class="advantage">
+        <li *ngFor="let item of advantage">
+            <img class="img" [src]="item.url" alt="">
+            <img class="hover_img" [src]="item.hoverUrl" alt="">
+            <div class="title">{{item.title}}</div>
+            <p>{{item.main}}</p>
+        </li>
+    </ul>
 </div>
-<div class="column">
-    <div class="name">我们的优势</div>
-    <div class="english">alskdjl</div>
-    <img src="../../../assets/image/logo.png" alt="">
+<div class="tel">
+    <img src="../../../assets/image/tel.png" alt="">
+    <span>VIP LINE-</span>
+    <strong>{{businessTel}}</strong>
 </div>
-<ul class="our_advantage">
-    <li *ngFor="let item of method1">
-        <img [src]="item.url" alt="">
-        <div class="title">{{item.title}}</div>
-        <p>{{item.main}}</p>
-    </li>
-</ul>
 <div class="about" id="about">
-    <div class="title">商务合作</div>
-    <div class="english">alskdjlfk</div>
+
+    <div class="line_tit_wrap">
+        <div class="line_tit">
+            <div class="title">关于我们</div>
+            <div class="english">Business Cooperation</div>
+        </div>
+    </div>
+
     <div class="main">
         <div class="left">
             <h3>公司介绍</h3>
-            <p>阿里斯顿会计分录看</p>
-        </div>
-        <div class="right">
-            <img src="" alt="">
-        </div>
-    </div>
-    <div class="main">
-        <div class="left">
-            <h3>联系我们</h3>
             <p>
-                拉克丝讲道理副科级
+                资多多（北京）网络科技有限公司，
+                成立于2015年，
+                致力于通过大数据、
+                智能信息聚合等技术为广大行业从业者提供高效便捷的推广运营管理平台。
+                凭借多年行业经验，
+                资多多通过大数据和人工智能技术平台，
+                实现多元化获客方式，
+                撬动遍布全国各地的实体销售网络，
+                为金融机构客户和商业合作伙伴输出包括在线风险评估、
+                金融产品营销以及数据系统分析等科技赋能服务，
+                满足个人和中小微企业金融消费、
+                信用贷款等金融产品和服务需求。
+            </p>
+            <h3 style="margin-top:40px;">联系我们</h3>
+            <p>
+                客服电话：9239232323
                 <br>
-                拉看手机端
+                copyright&nbsp;
+                资多多（北京）网络科技公司版权所有&nbsp;
+                备案号：
             </p>
         </div>
+        <div class="right">
+            <img src="../../../assets/image/about_right_img.png" alt="">
+        </div>
     </div>
 </div>
 
 
-<div class="topTap" *ngIf="toTop" (click)="link('banner')">
-    回到顶部
+<div class="to_top" *ngIf="toTop" (click)="link('banner')">
+    <img src="../../../assets/image/to_top.png" alt="">
 </div>
-<div class="model" [ngClass]="{active:modelShow}">
-    <div class="alert">
-        <div class="title">拉靠的就是福利卡技术大佬</div>
-        <img src="../../../assets/image/logo.png" alt="">
-        <div class="bottom">
-            <div class="btn"></div>
+<div class="model" [ngClass]="{active:modelShow}" (click)="modelShow=false">
+    <div class="alert radius" (click)="preventDefault($event)">
+        <div class="model_header">
+            您可以打开微信扫描下方二位码或者微信搜索并关注”资产多“公众号，进行账号注册
+        </div>
+        <div class="model_main">
+            <img src="../../../assets/image/qrcode.png" alt="">
+        </div>
+        <div class="model_footer">
+            <button class="radius" (click)="modelShow=false">确定</button>
         </div>
     </div>
 </div>

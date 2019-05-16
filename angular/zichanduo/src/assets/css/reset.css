@@ -29,7 +29,7 @@ td {
 body {
     font-size: 14px;
     color: #666;
-    font-family: Microsoft YaHei,SimSun;
+    font-family: Microsoft YaHei, SimSun;
     background: #fff;
     line-height: 2;
 }
@@ -39,7 +39,8 @@ html {
     -webkit-text-size-adjust: 100%;
 }
 
-img {
+img,
+button {
     border: 0;
     border-style: none;
 }
@@ -116,8 +117,7 @@ section {
 
 b,
 strong {
-    font-weight: inherit;
-    font-weight: bolder;
+    font-weight: normal;
 }
 
 button,
@@ -140,9 +140,11 @@ button,
 select {
     text-transform: none;
 }
-p{
+
+p {
     text-indent: 0;
 }
+
 textarea {
     overflow: auto;
 }

@@ -9,8 +9,8 @@ export class IndexComponent implements OnInit {
 
     constructor() { }
 
-    toTop=false;//控制回到顶部按钮的显示隐藏
-    modelShow=false;//控制弹窗的显示隐藏
+    toTop = false;//控制回到顶部按钮的显示隐藏
+    modelShow = false;//控制弹窗的显示隐藏
     time1;//控制页面滚动的定时器
     specialArr = [//平台特点
         {
@@ -46,58 +46,124 @@ export class IndexComponent implements OnInit {
     ];
     method1 = [//方法1
         {
-            url: '../../../assets/image/logo.png',
-            main: '关注公众号'
+            url: '../../../assets/image/method1_icon1.png',
+            main: '关注资产多公众号'
         },
         {
-            url: '../../../assets/image/logo.png',
-            main: '关注公众号'
+            url: '../../../assets/image/method1_icon2.png',
+            main: '点击公众号资产多 菜单进入资产多平台'
         },
         {
-            url: '../../../assets/image/logo.png',
-            main: '关注公众号'
+            url: '../../../assets/image/method1_icon3.png',
+            main: '点击底部悬浮菜单选择个人中心-进入页面点击注册按钮'
         },
         {
-            url: '../../../assets/image/logo.png',
-            main: '关注公众号'
+            url: '../../../assets/image/method1_icon4.png',
+            main: '输入您的手机号码，短信验证码、密码、推荐码完成注册'
         },
         {
-            url: '../../../assets/image/logo.png',
-            main: '关注公众号'
-        },
-        {
-            url: '../../../assets/image/logo.png',
-            main: '关注公众号'
+            url: '../../../assets/image/method1_icon5.png',
+            main: '开启学习赚钱之旅'
         },
     ]
     method2 = [//方法2
         {
-            url: '../../../assets/image/logo.png',
-            main: '关注公众号'
-        }
-    ]
-    our_advantage=[//我们的优势
+            url: '../../../assets/image/method2_icon1.png',
+            main: '识别朋友分享的海报中的二维码'
+        },
         {
-            url: '../../../assets/image/logo.png',
-            title: '快',
-            main: '金轩金融好靓'
+            url: '../../../assets/image/method2_icon2.png',
+            main: '点击朋友分享的链接'
+        },
+        {
+            url: '../../../assets/image/method2_icon3.png',
+            main: '当面扫朋友的二维码'
+        },
+        {
+            url: '../../../assets/image/method2_icon4.png',
+            main: '进入快速注册页面，填写手机号码。手机验证码注册'
+        },
+        {
+            url: '../../../assets/image/method2_icon5.png',
+            main: '识别二维码关注 资产多公众号'
+        },
+        {
+            url: '../../../assets/image/method2_icon6.png',
+            main: '进入资产多平台'
         },
     ]
+    service = [
+        {
+            url: '../../../assets/image/serve_img1.png',
+            title: '01',
+            main: '金融大数据提供、数据挖掘分析产品建模设、计咨询，县域金融风险、产经分析等服务'
+        },
+        {
+            url: '../../../assets/image/serve_img2.png',
+            title: '02',
+            main: '金融大数据提供、数据挖掘分析产品建模设、计咨询，县域金融风险、产经分析等服务'
+        },
+        {
+            url: '../../../assets/image/serve_img3.png',
+            title: '03',
+            main: '金融大数据提供、数据挖掘分析产品建模设、计咨询，县域金融风险、产经分析等服务'
+        },
+        {
+            url: '../../../assets/image/serve_img4.png',
+            title: '04',
+            main: '金融大数据提供、数据挖掘分析产品建模设、计咨询，县域金融风险、产经分析等服务'
+        },
+    ]
+    advantage = [//我们的优势
+        {
+            url: '../../../assets/image/aviantage_img1.png',
+            hoverUrl: '../../../assets/image/aviantage_img1_hover.png',
+            title: '快',
+            main: '相较传统营销方式获客成费用本低，扩散速度快'
+        },
+        {
+            url: '../../../assets/image/aviantage_img2.png',
+            hoverUrl: '../../../assets/image/aviantage_img2_hover.png',
+            title: '细致服务',
+            main: '线上+线下全流程的细致服务从服务到平台产品多样化'
+        },
+        {
+            url: '../../../assets/image/aviantage_img3.png',
+            hoverUrl: '../../../assets/image/aviantage_img3_hover.png',
+            title: '全面的数据',
+            main: '拥有全量的金融相关数据，可构建复合客户产品特色的用户画像，精准定位客户群体'
+        },
+        {
+            url: '../../../assets/image/aviantage_img4.png',
+            hoverUrl: '../../../assets/image/aviantage_img4_hover.png',
+            title: '监控能力',
+            main: '拥有基于区域、行业、企业等属性构建产品准入、决策、贷后模型及分析监控的能力'
+        }
+    ]
+    businessTel = '136 7065 3210';//商务电话
 
     link(href) {//锚点跳转点击跳转到指定id
-        let startTop=document.documentElement.scrollTop||document.body.scrollTop
-        let getTop=document.getElementById(href).offsetTop
-        let times=0;
-        this.time1=setInterval(() => {
-        let nowTop=document.documentElement.scrollTop||document.body.scrollTop
-            if(times>50){//滚动50次后停止
+        let startTop = document.documentElement.scrollTop || document.body.scrollTop
+        let getTop = document.getElementById(href).offsetTop
+        console.log(startTop,getTop,)
+        let times = 0;
+        this.time1 = setInterval(() => {
+            let nowTop = document.documentElement.scrollTop || document.body.scrollTop
+            nowTop = document.documentElement.scrollTop - (startTop - getTop) / 50
+            document.documentElement.scrollTop = nowTop
+            document.body.scrollTop = nowTop
+            times++
+            if (times > 50) {//滚动50次后停止
+                nowTop=getTop
+                document.documentElement.scrollTop = nowTop
+                document.body.scrollTop = nowTop
                 clearInterval(this.time1)
             }
-            nowTop=document.documentElement.scrollTop-(startTop-getTop)/50
-            document.documentElement.scrollTop=nowTop
-            document.body.scrollTop=nowTop
-            times++
         }, 10);
+    }
+
+    preventDefault(e){
+        e.preventDefault()
     }
 
     ngOnInit() {
@@ -112,6 +178,7 @@ export class IndexComponent implements OnInit {
             }
         }
     }
+    
     ngOnDestroy() {
         document.onscroll = null;
         clearInterval(this.time1);
