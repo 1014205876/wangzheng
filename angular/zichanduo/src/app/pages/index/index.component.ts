@@ -59,7 +59,7 @@ export class IndexComponent implements OnInit {
         },
         {
             url: '../../../assets/image/method1_icon4.png',
-            main: '输入您的手机号码，短信验证码、密码、推荐码完成注册'
+            main: '输入您的手机号码,短信验证码、密码、推荐码完成注册'
         },
         {
             url: '../../../assets/image/method1_icon5.png',
@@ -81,11 +81,11 @@ export class IndexComponent implements OnInit {
         },
         {
             url: '../../../assets/image/method2_icon4.png',
-            main: '进入快速注册页面，填写手机号码。手机验证码注册'
+            main: '进入快速注册页面,填写手机号码。手机验证码注册'
         },
         {
             url: '../../../assets/image/method2_icon5.png',
-            main: '识别二维码关注 资产多公众号'
+            main: '识别二维码关注资产多公众号'
         },
         {
             url: '../../../assets/image/method2_icon6.png',

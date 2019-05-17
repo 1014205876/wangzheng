@@ -76,12 +76,6 @@ textarea {
     resize: none;
 }
 
-p {
-    text-align: justify;
-    text-justify: distribute;
-    text-indent: 2em;
-    word-wrap: break-word
-}
 
 a {
     color: inherit;
