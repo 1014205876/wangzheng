@@ -174,3 +174,19 @@ textarea {
     /* 触发 hasLayout */
     zoom: 1;
 }
+
+@font-face {
+    font-family: 'Bodoni';
+    /* 这个名字可以自己定义 */
+    src: url('../fonts/Bodoni.ttf');
+}
+
+@font-face {
+    font-family: 'fontnameRegular';
+    src: url('../fonts/fontname.ttf');
+    /* src: local('fontname Regular'),
+        local('fontname'),
+        url('../fonts/fontname.woff') format('woff'),
+        url('../fonts/fontname.ttf') format('truetype'),
+        url('../fonts/fontname.svg#fontname') format('svg'); */
+}

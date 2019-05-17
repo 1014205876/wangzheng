@@ -51,7 +51,7 @@ export class IndexComponent implements OnInit {
         },
         {
             url: '../../../assets/image/method1_icon2.png',
-            main: '点击公众号资产多 菜单进入资产多平台'
+            main: '点击公众号资产多菜单进入资产多平台'
         },
         {
             url: '../../../assets/image/method1_icon3.png',
@@ -59,7 +59,7 @@ export class IndexComponent implements OnInit {
         },
         {
             url: '../../../assets/image/method1_icon4.png',
-            main: '输入您的手机号码,短信验证码、密码、推荐码完成注册'
+            main: '输入您的手机号码、短信验证码、密码、推荐码完成注册'
         },
         {
             url: '../../../assets/image/method1_icon5.png',
@@ -101,17 +101,17 @@ export class IndexComponent implements OnInit {
         {
             url: '../../../assets/image/serve_img2.png',
             title: '02',
-            main: '金融大数据提供、数据挖掘分析产品建模设、计咨询，县域金融风险、产经分析等服务'
+            main: '打造智能推广营销管理平台，为行业从业者提供高效开拓、管理及运营线上、线下客户资源与渠道的工具。'
         },
         {
             url: '../../../assets/image/serve_img3.png',
             title: '03',
-            main: '金融大数据提供、数据挖掘分析产品建模设、计咨询，县域金融风险、产经分析等服务'
+            main: '致力于为合作的金融及其他商业机构提供更精准、优质的客源推荐服务。基于智能科技的链接，资产多平台将帮助有融资需求的个人消费者和中小微企业高效便捷地找到适合自己的产品。'
         },
         {
             url: '../../../assets/image/serve_img4.png',
             title: '04',
-            main: '金融大数据提供、数据挖掘分析产品建模设、计咨询，县域金融风险、产经分析等服务'
+            main: '为金融机构客户和商业合作伙伴输出包括在线风险评估、金融产品营销以及数据系统分析等科技赋能服务。'
         },
     ]
     advantage = [//我们的优势
@@ -149,7 +149,7 @@ export class IndexComponent implements OnInit {
         let times = 0;
         this.time1 = setInterval(() => {
             let nowTop = document.documentElement.scrollTop || document.body.scrollTop
-            nowTop = document.documentElement.scrollTop - (startTop - getTop) / 50
+            nowTop = nowTop - (startTop - getTop) / 50
             document.documentElement.scrollTop = nowTop
             document.body.scrollTop = nowTop
             times++
@@ -168,7 +168,7 @@ export class IndexComponent implements OnInit {
 
     ngOnInit() {
         document.onscroll = () => {//滚动监听，控制nav栏的显示隐藏
-            let scrollTop = document.documentElement.scrollTop
+            let scrollTop = document.documentElement.scrollTop|| document.body.scrollTop
             if (!!document.getElementById('msg')) {
                 if (scrollTop > document.getElementById('msg').offsetTop) {
                     this.toTop = true
