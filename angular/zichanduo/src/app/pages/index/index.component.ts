@@ -145,8 +145,8 @@ export class IndexComponent implements OnInit {
     link(href) {//锚点跳转点击跳转到指定id
         let startTop = document.documentElement.scrollTop || document.body.scrollTop
         let getTop = document.getElementById(href).offsetTop
-        console.log(startTop,getTop,)
         let times = 0;
+        clearInterval(this.time1)
         this.time1 = setInterval(() => {
             let nowTop = document.documentElement.scrollTop || document.body.scrollTop
             nowTop = nowTop - (startTop - getTop) / 50
