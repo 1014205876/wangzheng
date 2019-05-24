@@ -162,8 +162,8 @@ export class IndexComponent implements OnInit {
         }, 10);
     }
 
-    preventDefault(e){
-        e.preventDefault()
+    stopPropagation(e){
+        e.stopPropagation()
     }
 
     ngOnInit() {

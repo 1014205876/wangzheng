@@ -1,4 +1,4 @@
-<div class="banner" id="banner">
+<div class="banner" id="banner" style="background: url('../../../assets/image/banner.png') no-repeat center;">
     <div class="header">
         <div class="logo">
             <img src="../../../assets/image/logo.png" alt="">
@@ -162,7 +162,7 @@
     <img src="../../../assets/image/to_top.png" alt="">
 </div>
 <div class="model" [ngClass]="{active:modelShow}" (click)="modelShow=false">
-    <div class="alert radius" (click)="preventDefault($event)">
+    <div class="alert radius" (click)="stopPropagation($event)">
         <div class="model_header">
             您可以打开微信扫描下方二位码或者微信搜索并关注”资产多“公众号，进行账号注册
         </div>
