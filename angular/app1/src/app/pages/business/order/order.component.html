@@ -1,0 +1,128 @@
+<app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
+<nz-card class="card search-card" [appResource]="{authName: 'get/order/query'}">
+  <div nz-row>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>手机账号</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="请输入手机账号" [(ngModel)]="searchItems.regMobile">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>公司名称</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="请输入公司名称" [(ngModel)]="searchItems.etpName">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>订单号</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="请输入订单号" [(ngModel)]="searchItems.no">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>订单状态</nz-form-label>
+        <nz-form-control>
+          <nz-select style="width: 100%;" [(ngModel)]="searchItems.type" [nzPlaceHolder]="'请选择订单状态'">
+            <nz-option [nzLabel]="'全部'" [nzValue]="''"></nz-option>
+            <nz-option [nzLabel]="'处理中'" [nzValue]="0"></nz-option>
+            <nz-option [nzLabel]="'已终止'" [nzValue]="1"></nz-option>
+            <nz-option [nzLabel]="'处理完成'" [nzValue]="2"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>提交时间</nz-form-label>
+        <nz-form-control>
+          <nz-range-picker [nzFormat]="'yyyy-MM-dd'" style="width: 100%;" [nzStyle]="{'width': '100%'}"
+            [nzPlaceHolder]="['开始时间', '结束时间']" (ngModelChange)="regDateChange($event)" [(ngModel)]="date">
+          </nz-range-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>贷款期限</nz-form-label>
+        <nz-form-control>
+          <div nz-row>
+            <div nz-col nzSpan="11">
+              <nz-input-number style="width: 100%;" [nzPlaceHolder]="'请输入最小贷款期限'" [(ngModel)]="searchItems.minTerm"
+                [nzMin]="0" [nzMax]="searchItems.maxTerm" [nzStep]="1"></nz-input-number>
+            </div>
+            <div nz-col nzSpan="2" class="text-center">~</div>
+            <div nz-col nzSpan="11">
+              <nz-input-number style="width: 100%;" [nzPlaceHolder]="'请输入最大贷款期限'" [(ngModel)]="searchItems.maxTerm"
+                [nzMin]="searchItems.minTerm" [nzStep]="1"></nz-input-number>
+            </div>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="4">
+      <nz-form-item>
+        <nz-form-label>&nbsp;</nz-form-label>
+        <nz-form-control>
+          <button class="m-r-20" nz-button nzType="primary" (click)="search(1)"><i
+              class="anticon anticon-search"></i>查询</button>
+          <button nz-button nzType="default" (click)="reset()"><i class="anticon anticon-close"></i>重置</button>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</nz-card>
+<nz-card class="card" [nzTitle]="'订单列表'">
+  <nz-table class="data-table" #nzTable [nzData]="rows" [nzLoading]="loading" [nzSize]="'small'"
+    [nzShowPagination]="false" [nzFrontPagination]="false">
+    <thead>
+      <tr>
+        <th>订单号</th>
+        <th>公司名称</th>
+        <th>手机账号</th>
+        <th>申请产品</th>
+        <th>申请金额（万元）</th>
+        <th>贷款期限（月）</th>
+        <th>推广机构</th>
+        <th>推广人员</th>
+        <th>订单提交时间</th>
+        <th>订单状态</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of nzTable.data">
+        <td>{{item.no}}</td>
+        <td>{{item.etpName}}</td>
+        <td>{{item.regMobile}}</td>
+        <td>{{item.productName}}</td>
+        <td>{{item.amount}}</td>
+        <td>{{item.term}}</td>
+        <td>{{item.insName}}</td>
+        <td>{{item.insStaffName}}</td>
+        <td>{{item.createDate}}</td>
+        <td>
+          <span *ngIf="item.status=='0'">处理中</span>
+          <span *ngIf="item.status=='1'">已终止</span>
+          <span *ngIf="item.status=='2'">已完成</span>
+        </td>
+        <td>
+          <button class="table-btn" nz-button nzType="'default'" [routerLink]="'/app/business/order/info'"
+            [queryParams]="{'id': item.id}"><i class="anticon anticon-file-text"></i>查看详情</button>
+          <button class="table-btn" *ngIf="item.status=='0'&&!item.processSwitch"
+            [appResource]="{authName: 'get/order/id/result'}" nz-button nzType="'default'"
+            [routerLink]="'/app/business/order/result'" [queryParams]="{'id': item.id,'productId': item.productId}">
+            <i class="anticon anticon-file-text"></i>结果录入</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <app-page-nav [total]="page.total" [totalPage]="page.totalPage" [pageNum]="page.pageNum"
+    (getCurrentPage)="changePage($event)"></app-page-nav>
+</nz-card>

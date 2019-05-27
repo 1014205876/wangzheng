@@ -1,0 +1,141 @@
+<app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
+<nz-card class="card" [nzTitle]="'营业执照信息'" *ngIf="rows">
+  <nz-table class="picture-table" [nzData]="[1,2]" nzBordered [nzShowPagination]="false" [nzFrontPagination]="false" [nzSize]="'small'">
+    <tr>
+      <td>企业名称</td>
+      <td>{{rows.busCer.etpName}}</td>
+      <td>营业期限</td>
+      <td>{{rows.busCer.busTerm}}</td>
+    </tr>
+    <tr>
+      <td>法定代表人</td>
+      <td>{{rows.busCer.legalName}}</td>
+      <td>统一社会信用代码</td>
+      <td>{{rows.busCer.creditCode}}</td>
+    </tr>
+    <tr>
+      <td>住所</td>
+      <td colspan="3">{{rows.busCer.address}}</td>
+    </tr>
+    <tr>
+      <td>营业执照上传件</td>
+      <td class="picture">
+        <img src="{{rows.busCer.busUrl}}" alt="点击放大查看" class="cur_img" (click)="imgScale(rows.busCer.busUrl)">
+      </td>
+    </tr>
+  </nz-table>
+</nz-card>
+<nz-card class="card" [nzTitle]="'法人代表身份信息'" *ngIf="rows">
+  <nz-table class="picture-table" [nzData]="[1,2]" nzBordered [nzShowPagination]="false" [nzFrontPagination]="false" [nzSize]="'small'">
+    <tr>
+      <td>姓名</td>
+      <td>{{rows.idMobileCer.name}}</td>
+      <td>性别</td>
+      <td>
+        <span class="value" *ngIf="(rows.idMobileCer.sex=='0')||(rows.idMobileCer.sex=='男')">男</span>
+        <span class="value" *ngIf="(rows.idMobileCer.sex=='1')||(rows.idMobileCer.sex=='女')">女</span>
+      </td>
+    </tr>
+    <tr>
+      <td>民族</td>
+      <td>{{rows.idMobileCer.nation}}</td>
+      <td>出生时间</td>
+      <td>{{rows.idMobileCer.birth}}</td>
+    </tr>
+    <tr>
+      <td>身份证号码</td>
+      <td>{{rows.idMobileCer.idCode}}</td>
+      <td>有效期</td>
+      <td>{{rows.idMobileCer.validityPeriod}}</td>
+    </tr>
+    <tr>
+      <td>发证机关</td>
+      <td colspan="3">{{rows.idMobileCer.issuingAgency}}</td>
+    </tr>
+    <tr>
+      <td>地址</td>
+      <td colspan="3">{{rows.idMobileCer.address}}</td>
+    </tr>
+    <tr>
+      <td>身份证正面</td>
+      <td class="picture">
+        <img src="{{rows.idMobileCer.idUrl}}" alt="点击放大查看" (click)="imgScale(rows.idMobileCer.idUrl)">
+      </td>
+      <td>身份证反面</td>
+      <td class="picture">
+        <img src="{{rows.idMobileCer.idBackUrl}}" alt="点击放大查看" (click)="imgScale(rows.idMobileCer.idBackUrl)">
+      </td>
+    </tr>
+    <tr>
+      <td>法人手机号码</td>
+      <td>{{rows.idMobileCer.mobile}}</td>
+      <td>手机号码状态</td>
+      <td>认证通过</td>
+    </tr>
+    <tr>
+      <td>人证一致性验证</td>
+      <td>认证通过</td>
+    </tr>
+  </nz-table>
+</nz-card>
+<nz-card class="card" [nzTitle]="'大股东/实际控制人身份信息'" *ngIf="rows">
+  <nz-table class="picture-table" [nzData]="[1,2]" nzBordered [nzShowPagination]="false" [nzFrontPagination]="false" [nzSize]="'small'">
+    <tr>
+      <td>姓名</td>
+      <td>{{rows.controllerCer.name}}</td>
+      <td>性别</td>
+      <td>
+        <span *ngIf="(rows.controllerCer.sex=='0')||(rows.controllerCer.sex=='男')">男</span>
+        <span *ngIf="(rows.controllerCer.sex=='1')||(rows.controllerCer.sex=='女')">女</span>
+      </td>
+    </tr>
+    <tr>
+      <td>民族</td>
+      <td>{{rows.controllerCer.nation}}</td>
+      <td>出生时间</td>
+      <td>{{rows.controllerCer.birth}}</td>
+    </tr>
+    <tr>
+      <td>身份证号码</td>
+      <td>{{rows.controllerCer.idCode}}</td>
+      <td>有效期</td>
+      <td>{{rows.controllerCer.validityPeriod}}</td>
+    </tr>
+    <tr>
+      <td>发证机关</td>
+      <td colspan="3">{{rows.controllerCer.issuingAgency}}</td>
+    </tr>
+    <tr>
+      <td>地址</td>
+      <td colspan="3">{{rows.controllerCer.address}}</td>
+    </tr>
+    <tr>
+      <td>手机号码</td>
+      <td colspan="3">{{rows.controllerCer.mobile}}</td>
+    </tr>
+    <tr>
+      <td>身份证正面</td>
+      <td class="picture">
+        <img src="{{rows.controllerCer.idUrl}}" alt="点击放大查看" (click)="imgScale(rows.controllerCer.idUrl)">
+      </td>
+      <td>身份证反面</td>
+      <td class="picture">
+        <img src="{{rows.controllerCer.idBackUrl}}" alt="点击放大查看" (click)="imgScale(rows.controllerCer.idBackUrl)">
+      </td>
+    </tr>
+  </nz-table>
+</nz-card>
+<nz-card class="card" [nzTitle]="'绑定信息'" *ngIf="rows">
+  <nz-table [nzData]="[1,2]" nzBordered [nzShowPagination]="false" [nzFrontPagination]="false" [nzSize]="'small'">
+    <tr>
+      <td>绑定时间</td>
+      <td>{{rows.etpCer.authDate}}</td>
+      <td>绑定状态</td>
+      <td>{{rows.controllerCer.status==='1'?'正常':'已失效'}}</td>
+    </tr>
+  </nz-table>
+</nz-card>
+
+<div class="mask" *ngIf="active">
+  <pic-scale class="picBox" [ImgUrl]="imgUrl" (closeImg)="close($event)"></pic-scale>
+</div>

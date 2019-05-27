@@ -1,0 +1,24 @@
+<app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
+<nz-card class="card" [nzTitle]="'用户详情'" *ngIf="info">
+  <nz-table class="picture-table" [nzData]="[1,2]" nzBordered [nzShowPagination]="false" [nzFrontPagination]="false"
+    [nzSize]="'small'">
+    <tr>
+      <td>手机账户</td>
+      <td>{{info.mobile}}</td>
+      <td>推广机构</td>
+      <td>{{info.insName}}</td>
+    </tr>
+    <tr>
+      <td>推广人员</td>
+      <td>{{info.insStaffName}}</td>
+      <td>客户头像</td>
+      <td class="picture"><img src="{{info.headPort}}" alt="客户头像" style="height: 40px;"></td>
+    </tr>
+    <tr>
+      <td>注册来源</td>
+      <td>{{info.registSource}}</td>
+      <td>注册时间</td>
+      <td>{{info.regDate}}</td>
+    </tr>
+  </nz-table>
+</nz-card>

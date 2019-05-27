@@ -1,0 +1,95 @@
+<app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
+<nz-card class="card search-card" [appResource]="{authName: 'get/auth/etp/query'}">
+  <div nz-row>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>所属用户</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="请输入所属用户" [(ngModel)]="searchItems.regMobile">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>法人手机号码</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="请输入法人手机号码" [(ngModel)]="searchItems.mobile">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>统一社会信息代码</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="请输入统一社会信息代码" [(ngModel)]="searchItems.creditCode">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>企业名称</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="请输入企业名称" [(ngModel)]="searchItems.etpName">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>姓名</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="请输入姓名" [(ngModel)]="searchItems.legalName">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>&nbsp;</nz-form-label>
+        <nz-form-control>
+          <button class="m-r-20" nz-button nzType="primary" (click)="search(1)"><i
+              class="anticon anticon-search"></i>查询</button>
+          <button nz-button nzType="default" (click)="reset()"><i class="anticon anticon-close"></i>重置</button>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</nz-card>
+<nz-card class="card" [nzTitle]="'企业客户列表'">
+  <nz-table class="data-table" #nzTable [nzData]="rows" [nzLoading]="loading" [nzSize]="'small'"
+    [nzShowPagination]="false" [nzFrontPagination]="false">
+    <thead>
+      <tr>
+        <th>企业名称</th>
+        <th>所属用户</th>
+        <th>法人姓名</th>
+        <th>统一社会信用代码</th>
+        <th>法人身份证号</th>
+        <th>状态</th>
+        <th>法人手机号码</th>
+        <th>绑定时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of nzTable.data">
+        <td>{{item.etpName}}</td>
+        <td>{{item.regMobile}}</td>
+        <td>{{item.legalName}}</td>
+        <td>{{item.creditCode}}</td>
+        <td>{{item.idCardNum}}</td>
+        <td>
+          <span *ngIf="item.status == '0'">已失效</span>
+          <span *ngIf="item.status == '1'">正常</span>
+        </td>
+        <td>{{item.mobile}}</td>
+        <td>{{item.authDate}}</td>
+        <td>
+          <button class="table-btn" nz-button nzType="'default'" [routerLink]="'/app/business/approve/info'"
+            [queryParams]="{'id': item.id}" [appResource]="{authName: 'get/auth/etp/authId/detail'}"><i
+              class="anticon anticon-file-text"></i>绑定信息详情</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <app-page-nav [total]="page.total" [totalPage]="page.totalPage" [pageNum]="page.pageNum"
+    (getCurrentPage)="changePage($event)"></app-page-nav>
+</nz-card>

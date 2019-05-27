@@ -1,0 +1,92 @@
+<app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
+<nz-card class="card search-card" [appResource]="{authName: 'get/business/publishproduct'}">
+  <div nz-row>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>产品编号</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="请输入产品编号" [(ngModel)]="data.find.number">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>状态</nz-form-label>
+        <nz-form-control>
+          <nz-select style="width: 100%;" [(ngModel)]="data.find.status" [nzPlaceHolder]="'请选择产品状态'">
+            <nz-option nzLabel="全部" [nzValue]="''"></nz-option>
+            <nz-option nzLabel="待审核" [nzValue]="0"></nz-option>
+            <nz-option nzLabel="审核不通过" [nzValue]="1"></nz-option>
+            <nz-option nzLabel="已发布" [nzValue]="2"></nz-option>
+            <nz-option nzLabel="已下架" [nzValue]="3"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="4">
+      <nz-form-item>
+        <nz-form-label>&nbsp;</nz-form-label>
+        <nz-form-control>
+          <button class="m-r-20" nz-button nzType="primary" (click)="gettable(page.pageNum,data.find)"><i
+              class="anticon anticon-search"></i>查询</button>
+          <button nz-button nzType="default" (click)="reset()"><i class="anticon anticon-close"></i>重置</button>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</nz-card>
+<nz-card class="card" [nzTitle]="'查询结果'" [nzExtra]="extraTemplate">
+  <ng-template #extraTemplate>
+    <button [appResource]="{authName:'post/business/products'}" [routerLink]="['/app/business/product/publish']"
+      [queryParams]="{'type': 'new'}" nz-button nzType="primary">发布产品</button>
+  </ng-template>
+  <nz-table class="data-table" #nzTable [nzData]="data.table" [nzLoading]="loading" [nzSize]="'small'"
+    [nzShowPagination]="false" [nzFrontPagination]="false">
+    <thead>
+      <tr>
+        <th>产品名称</th>
+        <th>产品编号</th>
+        <th>产品类型</th>
+        <th>状态</th>
+        <th>更新时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of nzTable.data">
+        <td>{{item.productName}}</td>
+        <td>{{item.number}}</td>
+        <td>{{item.productType}}</td>
+        <td>
+          <span *ngIf='item.status==0'>待审核</span>
+          <span *ngIf='item.status==1'>审核不通过</span>
+          <span *ngIf='item.status==2'>已发布</span>
+          <span *ngIf='item.status==3'>已下架</span>
+        </td>
+        <td>{{item.updateDate}}</td>
+        <td>
+          <button class="table-btn" nz-button nzType="'default'"
+            [appResource]="{authName:'patch/business/publishproduct'}" *ngIf='item.status==2'
+            (click)='saleshow(item)'><i class="anticon anticon-file-text"></i>下架</button>
+          <button class="table-btn" nz-button nzType="'default'" [appResource]="{authName:'put/business/products'}"
+            *ngIf='item.status==0||item.status==1||item.status==3' [routerLink]="['/app/business/product/publish']"
+            [queryParams]="{'productId': item.productId,'type': 'edit'}">
+            <i class="anticon anticon-file-text"></i>编辑</button>
+          <button class="table-btn" nz-button nzType="'default'" [appResource]="{authName:'patch/business/products'}"
+            *ngIf='item.status==0' [routerLink]="['/app/business/product/look']"
+            [queryParams]="{'productId': item.productId, 'type':'examine'}"><i
+              class="anticon anticon-file-text"></i>审核</button>
+          <button class="table-btn" *ngIf="item.status=='0'&&!item.processSwitch"
+            [appResource]="{authName: 'get/business/products'}" nz-button nzType="'default'"
+            [routerLink]="['/app/business/product/look']" [queryParams]="{'productId': item.productId, 'type':'look'}">
+            <i class="anticon anticon-file-text"></i>查看</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <app-page-nav [total]="page.total" [totalPage]="page.totalPage" [pageNum]="page.pageNum"
+    (getCurrentPage)="changePage($event)"></app-page-nav>
+</nz-card>
+<nz-modal [(nzVisible)]="data.mengbanshow" nzTitle="系统提示" (nzOnCancel)="hidden()" (nzOnOk)="fromsale()">
+  <p>您确定要下架名为 “{{data.modalTitle}}” 的吗？下架后申请端将不显示此产品。</p>
+</nz-modal>
