@@ -6,7 +6,7 @@ ssh-keygen -t rsa -C "email"
 > 生成的秘钥在 **C:/用户/xxx/.ssh** 文件下面
 拷贝**id_rsa.pub**文件的内容，到Gogs的用户设置 生成SSH秘钥
 
-![信息设置>生成秘钥](http://github.e-masspick.com/limin/util-images/raw/master/gogs%e7%a7%98%e9%92%a5%e7%94%9f%e6%88%90.jpg)
+![信息设置>生成秘钥](./说明图片/gogs秘钥生成.png)
 
 > 在**C:/用户/xxx/.ssh** 新建config文件（无任何尾缀）并把如下内容拷贝到config文件中
 ```
@@ -46,4 +46,4 @@ git clone -b ${version} git@github.e-masspick.com:xxx/xxxx.git
 ```
 
 ## idea用SSH+秘钥模式提交
-![idea设置](http://github.e-masspick.com/limin/util-images/raw/master/idea%e5%9c%a8SSH%e6%a8%a1%e5%bc%8f%e4%b8%8b%e6%8f%90%e4%ba%a4.png)
+![idea设置](./说明图片/idea在SSH模式下提交.png)
