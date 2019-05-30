@@ -17,9 +17,9 @@ git push origin dev-1.7.0
 ```
 > 推送分支之前注意事项
 1. 修改maven对应的版本
-![maven版本确认](http://github.e-masspick.com/limin/util-images/raw/master/maven%e7%89%88%e6%9c%ac%e4%bf%ae%e6%94%b9.png)
+![maven版本确认](./说明图片/maven版本修改.png)
 2. 修改Jenkins对应的版本
-![Jenkins版本确认](http://github.e-masspick.com/limin/util-images/raw/master/jenkins%e7%89%88%e6%9c%ac.png)
+![Jenkins版本确认](./说明图片/jenkins版本.png)
 
 
 > 拉取指定分支
