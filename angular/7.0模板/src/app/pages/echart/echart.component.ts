@@ -558,13 +558,14 @@ export class EchartComponent implements OnInit {
         AMap.plugin('AMap.DistrictLayer', function () {
             let adCode = '360000';//绘制省市区地图对应的编码（类似邮箱）
             let disProvince = new AMap.DistrictLayer.Province({
-                zIndex: 1,
-                adcode: ['360200'],
+                zIndex: 10000000,
+                adcode: ['360000'],
                 // citycode:['0791',],
-                depth: 2,
+    strokeWeight: 30, //线宽
+                depth: 0,
                 styles: {
                     'province-stroke': 'blue',//边线条颜色
-                    'fill': 'rgba(225,225,225,0.7)',//填充颜色
+                    'fill': 'rgba(255,255,255,0.5)',//填充颜色
                 }
             });
             disProvince.setMap(that.amap);

@@ -1,100 +1,104 @@
 <div class="header">
     <!-- logo -->
     <div class="logo">
-      <img src="../../../assets/images/logo.png" alt="">
+        <img src="../../../assets/images/logo.png" alt="">
     </div>
     <!-- 巅峰导航 -->
     <ul class='nav-right'>
-      <li *ngFor='let list of nav'>
-        <a [href]='list.appAddress'>{{list.appName}}</a>
-      </li>
+        <li *ngFor='let list of nav'>
+            <a [href]='list.appAddress'>{{list.appName}}</a>
+        </li>
     </ul>
     <ul class="user">
-      <!-- 登录信息 -->
-      <li class="infor">
-        <!-- 修改密码气泡确认框 -->
-        <nz-popover [(nzVisible)]="password.popoverShow" [nzTrigger]="'click'" [nzPlacement]="'bottomRight'">
-          <div nz-popover>
-            <i class="anticon anticon-user" style='font-size:18px;'></i>
-            {{userInfor.name}}
-            <i class="anticon anticon-down" style='font-size:18px'></i>
-          </div>
-          <ng-template #nzTemplate style='box-shadow: 0 0 20px 0 rgba(0,0,0,.3);border-radius: 5px;cursor:pointer'>
-            <div style='cursor:pointer;padding-right:60px;'
-              (click)="password.popoverShow=false;password.modalShow=true;paddr()">
-              <i class="anticon anticon-lock" style='font-size:18px;margin:0px 10px'></i>
-              修改密码
-            </div>
-          </ng-template>
-        </nz-popover>
-        <!-- 修改密码表单弹窗 -->
-        <nz-modal [(nzVisible)]="password.modalShow" [nzTitle]="modelTitle" [nzContent]='modelContent'
-          [nzFooter]='modelFooter' (nzOnCancel)='choiceCancel()'>
-        </nz-modal>
-        <!-- 弹窗标题 -->
-        <ng-template #modelTitle>
-          修改密码
-        </ng-template>
-        <!-- 弹窗内容 -->
-        <ng-template #modelContent>
-          <form nz-form [formGroup]="passwordForm">
-            <nz-form-item>
-              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="oldPassword" nzRequired>原始密码</nz-form-label>
-              <nz-form-control [nzSm]="14" [nzXs]="24">
-                <input nz-input type="password" id="oldPassword" formControlName="oldPassword" placeholder="请输入原始密码"
-                  maxlength="16" autocomplete='password'>
-                <!-- <input nz-input type="password" formControlName="oldPassword" placeholder="请输入原始密码" maxlength="16"
+        <!-- 登录信息 -->
+        <li class="infor">
+            <!-- 修改密码气泡确认框 -->
+            <nz-popover [(nzVisible)]="password.popoverShow" [nzTrigger]="'click'" [nzPlacement]="'bottomRight'">
+                <div nz-popover>
+                    <i class="anticon anticon-user" style='font-size:18px;'></i>
+                    {{userInfor.name}}
+                    <i class="anticon anticon-down" style='font-size:18px'></i>
+                </div>
+                <ng-template #nzTemplate
+                    style='box-shadow: 0 0 20px 0 rgba(0,0,0,.3);border-radius: 5px;cursor:pointer'>
+                    <div style='cursor:pointer;padding-right:60px;'
+                        (click)="password.popoverShow=false;password.modalShow=true;paddr()">
+                        <i class="anticon anticon-lock" style='font-size:18px;margin:0px 10px'></i>
+                        修改密码
+                    </div>
+                </ng-template>
+            </nz-popover>
+            <!-- 修改密码表单弹窗 -->
+            <nz-modal [(nzVisible)]="password.modalShow" [nzTitle]="modelTitle" [nzContent]='modelContent'
+                [nzFooter]='modelFooter' (nzOnCancel)='choiceCancel()'>
+            </nz-modal>
+            <!-- 弹窗标题 -->
+            <ng-template #modelTitle>
+                修改密码
+            </ng-template>
+            <!-- 弹窗内容 -->
+            <ng-template #modelContent>
+                <form nz-form [formGroup]="passwordForm">
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="oldPassword" nzRequired>原始密码</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24">
+                            <input nz-input type="password" id="oldPassword" formControlName="oldPassword"
+                                placeholder="请输入原始密码" maxlength="16" autocomplete='password'>
+                            <!-- <input nz-input type="password" formControlName="oldPassword" placeholder="请输入原始密码" maxlength="16"
                   autocomplete='password' [(ngModel)]="passwordForm.oldPassword"> -->
-                <nz-form-explain *ngIf="passwordForm.get('oldPassword').dirty && passwordForm.get('oldPassword').errors">
-                  请输入原始密码!</nz-form-explain>
-              </nz-form-control>
-            </nz-form-item>
-            <nz-form-item>
-              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="newPassword" nzRequired>新密码</nz-form-label>
-              <nz-form-control [nzSm]="14" [nzXs]="24">
-                <input nz-input type="password" id="newPassword" formControlName="newPassword" placeholder="请输入新密码"
-                  (ngModelChange)="changePassword()" maxlength="16" autocomplete='password'>
-                <nz-form-explain *ngIf="passwordForm.get('newPassword').dirty && passwordForm.get('newPassword').errors">
-                  <ng-container *ngIf="passwordForm.get('newPassword').hasError('required')">
-                    请输入新密码!
-                  </ng-container>
-                  <ng-container *ngIf="passwordForm.get('newPassword').hasError('pattern')">
-                    密码由字母+数字组成，长度为6至16!
-                  </ng-container>
-                </nz-form-explain>
-              </nz-form-control>
-            </nz-form-item>
-            <nz-form-item>
-              <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="surePassword" nzRequired>确认新密码</nz-form-label>
-              <nz-form-control [nzSm]="14" [nzXs]="24">
-                <input nz-input type="password" id="surePassword" formControlName="surePassword" placeholder="确认新密码"
-                  maxlength="16" autocomplete='password'>
-                <nz-form-explain
-                  *ngIf="passwordForm.get('surePassword').dirty && passwordForm.get('surePassword').errors">
-                  <ng-container *ngIf="passwordForm.get('surePassword').hasError('required')">
-                    确认新密码不能为空!
-                  </ng-container>
-                  <ng-container *ngIf="passwordForm.get('surePassword').hasError('confirm')">
-                    两次输入的密码不一致!
-                  </ng-container>
-                </nz-form-explain>
-              </nz-form-control>
-            </nz-form-item>
-          </form>
-        </ng-template>
-        <!-- 弹窗底部 -->
-        <ng-template #modelFooter>
-          <nz-form-control style='text-align: right'>
-            <button nz-button nzType="default" (click)="choiceCancel()">取消</button>
-            <button nz-button nzType="primary" [disabled]="!passwordForm.valid" (click)='choiceOk()'
-              [nzLoading]='password.modalLoading'>确定</button>
-          </nz-form-control>
-        </ng-template>
-      </li>
-      <!-- 注销登录 -->
-      <li class='logout' (click)="logout()">
-        <i class="anticon anticon-poweroff" style='font-size:18px;margin:0px 10px'></i>
-        注销登录
-      </li>
+                            <nz-form-explain
+                                *ngIf="passwordForm.get('oldPassword').dirty && passwordForm.get('oldPassword').errors">
+                                请输入原始密码!</nz-form-explain>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="newPassword" nzRequired>新密码</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24">
+                            <input nz-input type="password" id="newPassword" formControlName="newPassword"
+                                placeholder="请输入新密码" (ngModelChange)="changePassword()" maxlength="16"
+                                autocomplete='password'>
+                            <nz-form-explain
+                                *ngIf="passwordForm.get('newPassword').dirty && passwordForm.get('newPassword').errors">
+                                <ng-container *ngIf="passwordForm.get('newPassword').hasError('required')">
+                                    请输入新密码!
+                                </ng-container>
+                                <ng-container *ngIf="passwordForm.get('newPassword').hasError('pattern')">
+                                    密码由字母+数字组成，长度为6至16!
+                                </ng-container>
+                            </nz-form-explain>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="surePassword" nzRequired>确认新密码</nz-form-label>
+                        <nz-form-control [nzSm]="14" [nzXs]="24">
+                            <input nz-input type="password" id="surePassword" formControlName="surePassword"
+                                placeholder="确认新密码" maxlength="16" autocomplete='password'>
+                            <nz-form-explain
+                                *ngIf="passwordForm.get('surePassword').dirty && passwordForm.get('surePassword').errors">
+                                <ng-container *ngIf="passwordForm.get('surePassword').hasError('required')">
+                                    确认新密码不能为空!
+                                </ng-container>
+                                <ng-container *ngIf="passwordForm.get('surePassword').hasError('confirm')">
+                                    两次输入的密码不一致!
+                                </ng-container>
+                            </nz-form-explain>
+                        </nz-form-control>
+                    </nz-form-item>
+                </form>
+            </ng-template>
+            <!-- 弹窗底部 -->
+            <ng-template #modelFooter>
+                <nz-form-control style='text-align: right'>
+                    <button nz-button nzType="default" (click)="choiceCancel()">取消</button>
+                    <button nz-button nzType="primary" [disabled]="!passwordForm.valid" (click)='choiceOk()'
+                        [nzLoading]='password.modalLoading'>确定</button>
+                </nz-form-control>
+            </ng-template>
+        </li>
+        <!-- 注销登录 -->
+        <li class='logout' (click)="logout()">
+            <i class="anticon anticon-poweroff" style='font-size:18px;margin:0px 10px'></i>
+            注销登录
+        </li>
     </ul>
-  </div>
+</div>
