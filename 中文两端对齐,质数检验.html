@@ -32,16 +32,24 @@
         let btn = document.getElementById('btn01')
         btn.onclick = function () {
             let number = num.value;
-            console.log(isPrime(number)?'是质数':'不是质数')
+            console.log(isPrime(number) ? '是质数' : '不是质数')
         }
         function isPrime(n) {
             if (n <= 3) { return n > 1; }
             if (n % 2 == 0 || n % 3 == 0) { return false; }
-            for (var i = 5; i * i <= n; i += 6) {
-                if (n % i == 0 || n % (i + 2) == 0) { return false; }
+            for (let i = 5; i * i <= n; i += 2) {
+                if (n % i == 0||n % (i+2) == 0) { return false; }
             }
             return true;
         }
+
+        let arr = [];
+        for (let n = 1; n < 100; n++) {
+            if (isPrime(n)) {
+                arr.push(n)
+            }
+        } console.log(arr)
+
     </script>
 </body>
 
