@@ -1,0 +1,41 @@
+<app-crumb [url]="['首页统计']"></app-crumb>
+<div class="white_bg">
+    <ul class='list'>
+        <li>
+            <div class="shadow">
+                <p>{{maker.todayNewUser}}</p>
+                <span>今日新增创客数</span>
+            </div>
+        </li>
+        <li>
+            <div class="shadow">
+                <p>{{maker.currentUserCount}}</p>
+                <span>当前创客总数</span>
+            </div>
+        </li>
+        <li>
+            <div class="shadow">
+                <p>{{partner.currentPartnerCount}}</p>
+                <span>当前合伙人总数</span>
+            </div>
+        </li>
+        <li>
+            <div class="shadow">
+                <p>{{customer.todayNewUser}}</p>
+                <span>今日新增客户总数</span>
+            </div>
+        </li>
+        <li>
+            <div class="shadow">
+                <p>{{customer.currentUserCount}}</p>
+                <span>当前客户总数</span>
+            </div>
+        </li>
+        <li>
+            <div class="shadow">
+                <p>{{order.currentOrderCount}}</p>
+                <span>累计客户订单数</span>
+            </div>
+        </li>
+    </ul>
+</div>

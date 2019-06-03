@@ -1,0 +1,12 @@
+.col-label-span{
+    padding-left: 8px;
+    padding-right: 16px;
+    color: rgba(0, 0, 0, 0.85);
+    display: inline-block;
+    width: 120px;
+    text-align: right;
+}
+
+.reason-text{
+    margin-left: -5px;
+}

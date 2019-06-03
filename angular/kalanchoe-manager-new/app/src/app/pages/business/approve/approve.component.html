@@ -1,0 +1,97 @@
+<div class="container">
+    <app-crumb [url]="['客户管理','企业管理']"></app-crumb>
+    <nz-card class="shadow">
+        <div class="gutter-example">
+            <div nz-row nzGutter="16">
+                <div nz-col class="gutter-row" nzSpan="4">
+                    <span>客户账号：</span>
+                    <div class="gutter-box">
+                        <input nz-input placeholder='请输入客户账号' [(ngModel)]='findRegMobile'>
+                    </div>
+                </div>
+                <div nz-col class="gutter-row" nzSpan="4">
+                    <span>法人手机号码：</span>
+                    <div class="gutter-box">
+                        <input nz-input placeholder='请输入法人手机号码' [(ngModel)]='findMobile'>
+                    </div>
+                </div>
+                <div nz-col class="gutter-row" nzSpan="4">
+                    <span>企业名称：</span>
+                    <div class="gutter-box">
+                        <input nz-input placeholder='请输入企业名称' [(ngModel)]='findEtpName'>
+                    </div>
+                </div>
+                <div nz-col class="gutter-row" nzSpan="4">
+                    <span>法人代表姓名：</span>
+                    <div class="gutter-box">
+                        <input nz-input placeholder='请输入法人姓名' [(ngModel)]='findlegalName'>
+                    </div>
+                </div>
+                <div nz-col class="gutter-row" nzSpan="4">
+                    <span>统一社会信用代码：</span>
+                    <div class="gutter-box">
+                        <input nz-input placeholder='请输入统一社会信用代码' [(ngModel)]='findCreditCode'>
+                    </div>
+                </div>
+                <div nz-col class="gutter-row" nzSpan="4">
+                    <span>法人身份证号：</span>
+                    <div class="gutter-box">
+                        <input nz-input placeholder='请输入法人身份证号' [(ngModel)]='findIdCardNum'>
+                    </div>
+                </div>
+                <div nz-col class="gutter-row" nzSpan="4">
+                    <span>&nbsp;</span>
+                    <div class="gutter-box">
+                        <button nz-button nzType="primary" (click)="search()">查询</button>
+                        <button nz-button nzType="default" style="margin-left:8px;" (click)="reset()">重置</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nz-card>
+    <nz-card class="shadow mt20" [nzTitle]="cardTitle">
+        <nz-table #rowSelectionTable [nzData]="data" nzShowPagination=false>
+            <thead>
+                <tr>
+                    <th>企业名称</th>
+                    <th>客户账号</th>
+                    <th>法人代表姓名</th>
+                    <th>法人手机号码</th>
+                    <th>法人身份证号</th>
+                    <th>统一社会信用代码</th>
+                    <th>状态</th>
+                    <th>绑定日期</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of rowSelectionTable.data">
+                    <td>{{data.etpName}}</td>
+                    <td>{{data.mobile}}</td>
+                    <td>{{data.legalName}}</td>
+                    <td>{{data.regMobile}}</td>
+                    <td>{{data.idCardNum}}</td>
+                    <td>{{data.creditCode}}</td>
+                    <td>
+                        <span *ngIf="data.status == '0'">已失效</span>
+                        <span *ngIf="data.status == '1'">正常</span>
+                    </td>
+                    <td>{{data.authDate}}</td>
+                    <td>
+                        <button [routerLink]="['/app/business/approveinfo']" [queryParams]="{id: data.id}"
+                            style="cursor:pointer;padding:2px;">绑定详情</button>
+                        <button [routerLink]="['/app/business/order']" [queryParams]="{etpName:data.etpName}"
+                            style="cursor:pointer;padding:2px;">贷款订单</button>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+        <div class="pagination" *ngIf="total!=0">
+            <nz-pagination [nzPageIndex]='pageNum' [nzTotal]="total" (nzPageIndexChange)="pageSearch($event)"
+                nzShowQuickJumper></nz-pagination>
+        </div>
+    </nz-card>
+    <ng-template #cardTitle>
+        <div class="cardTitle">企业列表</div>
+    </ng-template>
+</div>
