@@ -561,7 +561,7 @@ export class EchartComponent implements OnInit {
                 zIndex: 10000000,
                 adcode: ['360000'],
                 // citycode:['0791',],
-    strokeWeight: 30, //线宽
+                strokeWeight: 30, //线宽
                 depth: 0,
                 styles: {
                     'province-stroke': 'blue',//边线条颜色
