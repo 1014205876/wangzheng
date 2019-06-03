@@ -559,7 +559,7 @@ export class EchartComponent implements OnInit {
             let adCode = '360000';//绘制省市区地图对应的编码（类似邮箱）
             let disProvince = new AMap.DistrictLayer.Province({
                 zIndex: 10000000,
-                adcode: ['360000'],
+                adcode: [adCode],
                 // citycode:['0791',],
                 strokeWeight: 30, //线宽
                 depth: 0,

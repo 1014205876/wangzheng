@@ -9,7 +9,7 @@ const session = require('express-session');
 const MemoryStore = require('session-memory-store')(session);
 const path = require('path');
 const app = express();
-const server = app.listen(3200);
+const server = app.listen(3300);
 
 var fileUtils = require('./fileUtils');
 
