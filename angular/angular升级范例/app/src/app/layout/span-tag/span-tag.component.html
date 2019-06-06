@@ -1,0 +1,4 @@
+<p class="tag">
+  <a  *ngFor="let item of list;let i=index;"  [href]="item.appAddress"><button class="btn" nz-button color="light">{{item.appName}}</button></a>
+  <!-- <a class="span-tag" *ngFor="let item of list;let i=index;" [style.width]="width + 'px'" [class.start]="i===0" [href]="item.appAddress"><label>{{item.appName}}</label></a> -->
+</p>

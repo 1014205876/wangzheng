@@ -1,0 +1,63 @@
+<app-breadcrumbs [breadcrumbs]="['业务资源管理','产品管理','费率配置']"></app-breadcrumbs>
+<nz-card class="card search-card" [appResource]="{authName:'get/productGrid'}">
+  <div nz-row>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>配置名称:</nz-form-label>
+        <nz-form-control>
+          <input nz-input maxlength="50" placeholder="请输入配置名称" [(ngModel)]="searchItems.name">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>配置key:</nz-form-label>
+        <nz-form-control>
+          <input nz-input placeholder="请输入配置key" [(ngModel)]="searchItems.key">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>&nbsp;</nz-form-label>
+        <nz-form-control>
+          <button nz-button nzType="primary" (click)="search(1)"><i nz-icon nzType="search" nzTheme="outline"></i>查询</button>
+          <button nz-button nzType="default" (click)="reset()"><i nz-icon nzType="close" nzTheme="outline"></i>重置</button>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</nz-card>
+<nz-card class="card" [nzTitle]="titleTemplate" [nzExtra]="extraTemplate">
+  <nz-table #basicTable nzBordered class="data-table" [nzData]="rows" [nzSize]="'small'" [nzShowPagination]="false"
+    [nzLoadingDelay]="loadingDelay" [nzLoading]="spinning">
+    <thead>
+      <tr>
+        <th>配置名称</th>
+        <th>配置key</th>
+        <th>更新时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td >{{data.name}}</td>
+        <td>{{data.key}}</td>
+        <td class="td-center">{{data.updateTime}}</td>
+        <td class="td-center">
+          <button nz-button nzType="default" class="table-btn" [routerLink]="['edit-rate-disposed']" [queryParams]="{productName: productName, productId: id, id: data.id, type: 'edit'}"><i nz-icon nzType="edit" nzTheme="outline"></i>编辑</button>
+          <button nz-button nzType="default" class="table-btn" (click)="showDeleteConfirm(data)"><i nz-icon nzType="close" nzTheme="outline"></i>删除</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <app-page-nav [total]="page.total" [totalPage]="page.totalPage" [pageNum]="page.pageNum" [pageSize]="page.pageSize"
+    (getCurrentPage)="changePage($event)">
+  </app-page-nav>
+</nz-card>
+<ng-template #extraTemplate>
+  <button [appResource]="{authName:'post/product'}" nz-button nzType="primary" class="tableBtn" [routerLink]="['edit-rate-disposed']" [queryParams]="{productName: productName, productId: id, type: 'add'}"><i nz-icon nzType="plus" nzTheme="outline"></i>新增配置</button>
+</ng-template>
+<ng-template #titleTemplate>
+    <div><span style="color: red; margin-right: 5px;">{{title}}</span>产品费率配置列表</div>
+</ng-template>

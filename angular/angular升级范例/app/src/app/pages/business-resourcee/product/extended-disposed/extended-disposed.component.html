@@ -1,0 +1,142 @@
+<app-breadcrumbs [breadcrumbs]="['业务资源管理','产品管理','扩展配置']"></app-breadcrumbs>
+<nz-card class="card search-card" [appResource]="{authName:'get/productGrid'}">
+    <div nz-row>
+        <div class="gutter-box" nz-col nzSpan="6">
+            <nz-form-item>
+                <nz-form-label>配置名称:</nz-form-label>
+                <nz-form-control>
+                    <input nz-input maxlength="50" placeholder="请输入配置名称" [(ngModel)]="searchItems.name">
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div class="gutter-box" nz-col nzSpan="6">
+            <nz-form-item>
+                <nz-form-label>配置key:</nz-form-label>
+                <nz-form-control>
+                    <input nz-input placeholder="请输入配置key" [(ngModel)]="searchItems.key">
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div class="gutter-box" nz-col nzSpan="6">
+            <nz-form-item>
+                <nz-form-label>&nbsp;</nz-form-label>
+                <nz-form-control>
+                    <button nz-button nzType="primary" (click)="search(1)"><i nz-icon nzType="search" nzTheme="outline"></i>查询</button>
+                    <button nz-button nzType="default" (click)="reset()"><i nz-icon nzType="close" nzTheme="outline"></i>重置</button>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+</nz-card>
+<nz-card class="card" [nzTitle]="titleTemplate" [nzExtra]="extraTemplate">
+    <nz-table #basicTable nzBordered class="data-table" [nzData]="rows" [nzSize]="'small'" [nzShowPagination]="false"
+        [nzLoadingDelay]="loadingDelay" [nzLoading]="spinning">
+        <thead>
+            <tr>
+                <th>配置名称</th>
+                <th>配置key</th>
+                <th>更新时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td >{{data.name}}</td>
+                <td >{{data.key}}</td>
+                <td class="td-center">{{data.updateTime}}</td>
+                <td class="td-center">
+                    <button nz-button nzType="default" class="table-btn" (click)="modalShow('edit', data)"><i nz-icon nzType="edit" nzTheme="outline"></i>编辑</button>
+                    <button nz-button nzType="default" class="table-btn" (click)="showDeleteConfirm(data)"><i
+                            nz-icon nzType="close" nzTheme="outline"></i>删除</button>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+    <app-page-nav [total]="page.total" [totalPage]="page.totalPage" [pageNum]="page.pageNum" [pageSize]="page.pageSize"
+        (getCurrentPage)="changePage($event)">
+    </app-page-nav>
+</nz-card>
+<ng-template #extraTemplate>
+    <button nz-button nzType="primary" class="tableBtn" (click)="modalShow('add')">
+            <i nz-icon nzType="plus" nzTheme="outline"></i>新增配置</button>
+</ng-template>
+<ng-template #titleTemplate>
+    <div><span style="color: red; margin-right: 5px;">{{title}}</span>产品扩展配置列表</div>
+</ng-template>
+<nz-modal [(nzVisible)]="show" *ngIf="show" [nzTitle]="modalTitle" (nzOnCancel)="modalCancel();" [nzFooter]="null" nzWidth="800">
+    <form nz-form [formGroup]="addForm" class="modalForm">
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">配置项名称</nz-form-label>
+            <nz-form-control [nzSm]="16" [nzXs]="24">
+                <input nz-input formControlName="name" id="name" type="text" maxLength="50" placeholder="请输入配置项名称">
+                <nz-form-explain *ngIf="addForm.get('name').dirty && addForm.get('name').errors">配置项名称不能为空!
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="key">配置项key</nz-form-label>
+            <nz-form-control [nzSm]="16" [nzXs]="24">
+                <input *ngIf="modalStatus == 'edit'" readonly nz-input formControlName="key" type="text" placeholder="请输入配置项key">
+                <input *ngIf="modalStatus == 'add'" nz-input formControlName="key" type="text" placeholder="请输入配置项key">
+                <nz-form-explain
+                    *ngIf="addForm.get('key').dirty && addForm.get('key').errors || addForm.get('key').pending">
+                    <ng-container *ngIf="addForm.get('key').hasError('required')">
+                        配置项key不能为空!
+                    </ng-container>
+                    <ng-container *ngIf="addForm.get('key').hasError('duplicated')">
+                        配置项key只能由英文或数字组成!
+                    </ng-container>
+                    <ng-container *ngIf="addForm.get('key').pending">
+                        校验中...
+                    </ng-container>
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="type">输入控件类型</nz-form-label>
+            <nz-form-control [nzSm]="16" [nzXs]="24">
+                <nz-select formControlName="type" (ngModelChange)="typeChange()">
+                    <nz-option nzValue="text" nzLabel="单行文本框"></nz-option>
+                    <nz-option nzValue="textArea" nzLabel="多行文本框"></nz-option>
+                    <nz-option nzValue="editor" nzLabel="富文本编辑器"></nz-option>
+                    <nz-option nzValue="file" nzLabel="文件上传"></nz-option>
+                </nz-select>
+                <nz-form-explain *ngIf="addForm.get('type').dirty && addForm.get('type').errors">输入控件类型不能为空!
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="value">配置项值</nz-form-label>
+            <nz-form-control [nzSm]="16" [nzXs]="24">
+                <!-- 单行文本框 -->
+                <input [hidden]="addForm.value.type != 'text'" nz-input type="text" formControlName="value"
+                    placeholder="请输入配置项值">
+                <!-- 多行文本 -->
+                <textarea nz-input rows="2" [hidden]='addForm.value.type != "textArea"' formControlName="value"
+                    placeholder="请输入配置项值"></textarea>
+                <!-- 上传文件 -->
+                <input [hidden]='true' nz-input type="file" id="file" name='file' required ng2FileSelect
+                    [uploader]="uploader" (change)='selectedFileOnChanged($event,addForm.value.value)'>
+                <div [hidden]='addForm.value.type != "file"'>
+                    <input nz-input readonly style='width:80%;float:left;' type="text" required formControlName="value"
+                        [readonly]="addForm.value.type == 'file'" placeholder="请上传文件">
+                    <button nz-button nzType="primary" style='float:right'
+                        onclick="document.getElementById('file').click()">上传文件</button>
+                    <div style='clear:both'></div>
+                </div>
+                <!-- 富文本框 -->
+                <app-tiny-editor [hidden]='addForm.value.type != "editor"' [elementId]="'my-editor'"
+                    (onEditorContentChange)="keyupHandler($event)" [initialContent]="addForm.value.value">
+                </app-tiny-editor>
+                <nz-form-explain *ngIf="addForm.get('value').dirty && addForm.get('value').errors">配置项值不能为空!
+                </nz-form-explain>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control [nzOffset]="6" [nzSm]="18">
+                <button nz-button (click)="modalCancel()">取消</button>
+                <button nz-button (click)="submited($event)" nzType="primary" [disabled]="!addForm.valid">确定</button>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</nz-modal>

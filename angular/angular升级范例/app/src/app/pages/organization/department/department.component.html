@@ -1,0 +1,144 @@
+<!-- <nz-spin nzTip="加载中..."  [nzSpinning]="spinning" > -->
+<app-breadcrumbs [breadcrumbs]="['组织架构','部门管理']"></app-breadcrumbs>
+<nz-card class="card" [nzTitle]="'部门列表'" [nzExtra]="extraTemplate">
+  <nz-table  #nzTable class="tree-table" [nzSize]="'small'" [nzData]="dataRows" [nzShowPagination]="false"
+    [nzLoading]="spinning" [nzBordered]="true" [nzLoadingDelay]="loadingDelay" [nzPageSize]="dataRows.length">
+    <thead>
+      <tr>
+        <th>节点名称</th>
+        <th>简称</th>
+        <th>排序</th>
+        <th>类型</th>
+        <th [appResource]="{authName:'patch/department/status'}">状态</th>
+        <th>更新时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody >
+      <ng-template  ngFor let-data [ngForOf]="nzTable.data">
+        <ng-template ngFor let-item [ngForOf]="expandDataCache[data.code]">
+          <tr *ngIf="(item.parent&&item.parent.expand)||!(item.parent)">
+            <td [nzIndentSize]="item.level*20" [nzShowExpand]="item.children.length>0" [(nzExpand)]="item.expand"
+              (nzExpandChange)="collapse(expandDataCache[data.code],item,$event)">
+              {{item.fullName}}
+            </td>
+            <td>{{item.shortName}}</td>
+            <td>{{item.sort}}</td>
+            <td>{{item.type}}</td>
+            <td class="td-center" [appResource]="{authName:'patch/department/status'}">
+              <nz-switch [ngModel]="item.status==1" (ngModelChange)="switchange(item)" >
+              </nz-switch>
+            </td>
+            <td class="td-center">{{item.updateDate}}</td>
+            <td class="td-center">
+              <button [appResource]="{authName:'post/department/child'}" nz-button nzType="default" class="table-btn"
+                (click)="getDepartment();modalShow('添加子部门','addChild',item)"><i
+                  nz-icon nzType="plus" nzTheme="outline"></i>添加子部门</button>
+              <button [appResource]="{authName:'put/department'}" nz-button nzType="default" class="table-btn"
+                (click)="getDepartmentEdit(item.id);modalShow('编辑部门','edit',item)"><i
+                  nz-icon nzType="edit" nzTheme="outline"></i>编辑</button>
+            </td>
+          </tr>
+        </ng-template>
+      </ng-template>
+    </tbody>
+  </nz-table>
+</nz-card>
+<ng-template #extraTemplate>
+  <button [appResource]="{authName:'post/department'}" nz-button nzType="primary" class="tableBtn"
+    (click)="getDepartment();modalShow('添加部门','add')"><i nz-icon nzType="plus" nzTheme="outline"></i>添加部门</button>
+</ng-template>
+<nz-modal [(nzVisible)]="show" *ngIf="show" [nzTitle]="modalTitle" (nzOnCancel)="modalCancel();" [nzFooter]="null">
+  <form nz-form [formGroup]="addForm" class="modalForm">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="parentId">上级节点</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <nz-select formControlName="parentId" [nzDisabled]="modalStatus=='addChild'">
+          <nz-option nzValue="" nzLabel="----" [nzCustomContent]="true">----</nz-option>
+          <nz-option [nzCustomContent]="true" nzValue="{{item.id}}" nzLabel="{{item.fullName}}"
+            *ngFor="let item of department">
+            <i [ngStyle]="{'padding-left': item.level>1? (item.level-1)*15+'px': 0+'px'}">&nbsp;</i>
+            <img src="../../../../../assets/images/icon/department.png" style="height: 14px;" />
+            {{item.fullName}}
+          </nz-option>
+        </nz-select>
+        <nz-form-explain *ngIf="addForm.get('parentId').dirty && addForm.get('parentId').errors">上级节点不能为空!
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="fullName">节点名称</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <input nz-input formControlName="fullName" id="fullName" type="text" maxlength="50"
+          placeholder="请输入节点名称">
+        <nz-form-explain *ngIf="addForm.get('fullName').dirty && addForm.get('fullName').errors">节点名称不能为空，最大50个字符!
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="shortName">节点简称</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <input nz-input formControlName="shortName" id="shortName" type="text" maxlength="10"
+           placeholder="请输入节点简称">
+        <nz-form-explain *ngIf="addForm.get('shortName').dirty && addForm.get('shortName').errors">节点简称不能为空，最大10个字符!
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="type">节点类型</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <nz-select style="width: 100%" formControlName="type"  nzPlaceHolder="请输入节点类型">
+          <nz-option *ngFor="let option of typeList" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+        </nz-select>
+        <nz-form-explain *ngIf="addForm.get('type').dirty && addForm.get('type').errors">节点简称不能为空!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="region">所在区域</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <nz-cascader nzChangeOnSelect [nzOptions]="options"  [nzValueProperty]="'label'"
+          formControlName="region" nzPlaceHolder="请输入所在区域" (ngModelChange)="onChanges($event)">
+        </nz-cascader>
+        <nz-form-explain *ngIf="addForm.get('region').dirty && addForm.get('region').errors">节点简称不能为空!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="sort">排序</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <input nz-input formControlName="sort" id="sort" type="text" maxlength="2" 
+          placeholder="请输入排序">
+        <nz-form-explain *ngIf="addForm.get('sort').dirty && addForm.get('sort').errors">
+          <ng-container *ngIf="addForm.get('sort').hasError('required')">
+            排序不能为空，最大2个字符!
+          </ng-container>
+          <ng-container *ngIf="addForm.get('sort').hasError('confirm')">
+            排序只能为1~99的数字!
+          </ng-container>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="status">部门状态</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <nz-radio-group formControlName="status">
+          <label nz-radio [nzValue]="1">启用</label>
+          <label nz-radio [nzValue]="0">禁用</label>
+        </nz-radio-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="remark">描述</nz-form-label>
+      <nz-form-control [nzSm]="16" [nzXs]="24">
+        <textarea formControlName="remark" nz-input rows="2"
+          placeholder="请输入描述"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzOffset]="6" [nzSm]="18">
+        <button nz-button (click)="modalCancel();resetForm($event)">取消</button>
+        <button nz-button (click)="submited($event)" nzType="primary" [disabled]="!addForm.valid">确定</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>
+<!-- </nz-spin> -->

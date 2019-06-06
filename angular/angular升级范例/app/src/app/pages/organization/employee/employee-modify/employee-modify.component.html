@@ -1,0 +1,143 @@
+<app-breadcrumbs [breadcrumbs]="['组织架构','员工管理','编辑员工']"></app-breadcrumbs>
+<nz-card class="card" [nzTitle]="'基本资料'">
+
+  <form nz-form [formGroup]="addForm" class="modalForm">
+    <div nz-row nzGutter="16">
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="account">员工账号</nz-form-label>
+          <nz-form-control>
+            <input nz-input formControlName="account" id="account" type="text" maxlength="20"
+               placeholder="请输入员工账号" readonly>
+            <nz-form-explain *ngIf="addForm.get('account').dirty && addForm.get('account').errors">员工账号不能为空，最大20个字符!
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="name">员工姓名</nz-form-label>
+          <nz-form-control>
+            <input nz-input formControlName="name" id="name" type="text" maxlength="4" 
+              placeholder="请输入员工姓名">
+            <nz-form-explain *ngIf="addForm.get('name').dirty && addForm.get('name').errors">员工姓名不能为空，最大4个字符!
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="mobile">手机号码</nz-form-label>
+          <nz-form-control>
+            <input nz-input formControlName="mobile" id="mobile" type="text"
+              placeholder="请输入手机号码">
+            <nz-form-explain
+              *ngIf="addForm.get('mobile').dirty && addForm.get('mobile').errors || addForm.get('mobile').pending ">
+              <ng-container *ngIf="addForm.get('mobile').hasError('required')">
+                手机号码不能为空!
+              </ng-container>
+              <ng-container *ngIf="addForm.get('mobile').hasError('duplicated')">
+                请输入正确的手机号码!
+              </ng-container>
+              <ng-container *ngIf="addForm.get('mobile').pending">
+                校验中...
+              </ng-container>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="departmentId">所属部门</nz-form-label>
+          <nz-form-control>
+            <nz-select formControlName="departmentId">
+              <nz-option nzValue="" nzLabel="----" [nzCustomContent]="true">----</nz-option>
+              <nz-option [nzCustomContent]="true" nzValue="{{item.id}}" nzLabel="{{item.fullName}}"
+                *ngFor="let item of department">
+                <i [ngStyle]="{'padding-left': item.level>1? (item.level-1)*15+'px': 0+'px'}">&nbsp;</i>
+                <!-- <i class="anticon anticon-file" *ngIf="item.level==1"></i> -->
+                <!-- <i class="anticon anticon-file-text" *ngIf="item.level>1"></i> -->
+                <img src="../../../../../assets/images/icon/department.png" style="height: 14px;" />
+                {{item.fullName}}
+              </nz-option>
+            </nz-select>
+            <nz-form-explain *ngIf="addForm.get('departmentId').dirty && addForm.get('departmentId').errors">所属部门不能为空!
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="16">
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="jobName">岗位名称</nz-form-label>
+          <nz-form-control>
+            <input nz-input formControlName="jobName" id="jobName" type="text" maxlength="10"
+              placeholder="请输入岗位名称">
+            <nz-form-explain *ngIf="addForm.get('jobName').dirty && addForm.get('jobName').errors">岗位名称不能为空，最大10个字符!
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="occupationClass">职位级别</nz-form-label>
+          <nz-form-control>
+            <nz-select formControlName="occupationClass">
+              <nz-option nzValue="{{item.occupationClass}}" nzLabel="{{item.occupationClass}}"
+                *ngFor="let item of occupationOptions"></nz-option>
+            </nz-select>
+            <nz-form-explain *ngIf="addForm.get('occupationClass').dirty && addForm.get('occupationClass').errors">
+              职位级别不能为空!</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="sex">性别</nz-form-label>
+          <nz-form-control>
+            <nz-radio-group formControlName="sex">
+              <label nz-radio [nzValue]="1">男</label>
+              <label nz-radio [nzValue]="0">女</label>
+            </nz-radio-group>
+            <nz-form-explain *ngIf="addForm.get('sex').dirty && addForm.get('sex').errors">性别不能为空!</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="status">状态</nz-form-label>
+          <nz-form-control>
+            <nz-radio-group  formControlName="status">
+              <label nz-radio [nzValue]="1">启用</label>
+              <label nz-radio [nzValue]="0">禁用</label>
+            </nz-radio-group>
+            <nz-form-explain *ngIf="addForm.get('status').dirty && addForm.get('status').errors">状态不能为空!
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row nzGutter="16">
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label nzFor="remark">备注信息</nz-form-label>
+          <nz-form-control>
+            <textarea style="width: 100%;" formControlName="remark" nz-input rows="2"
+              placeholder="请输入备注信息"></textarea>
+            <nz-form-explain *ngIf="addForm.get('remark').dirty && addForm.get('remark').errors">备注信息不能为空!
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" (click)="onSubmit()" [disabled]="!addForm.valid">提交</button>
+        <button nz-button nzType="default" (click)="reset()">重置</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+
+</nz-card>

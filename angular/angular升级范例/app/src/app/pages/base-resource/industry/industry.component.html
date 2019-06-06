@@ -1,0 +1,56 @@
+<app-breadcrumbs [breadcrumbs]="['基础资源管理','行业信息管理']"></app-breadcrumbs>
+<nz-card class="card search-card" [appResource]="{authName:'get/industrys/grid'}">
+  <div nz-row>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>行业名称</nz-form-label>
+        <nz-form-control>
+          <input nz-input maxlength="20" placeholder="请输入行业名称" [(ngModel)]="searchItems.name">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>行业代码</nz-form-label>
+        <nz-form-control>
+          <input nz-input maxlength="50" placeholder="请输入行业代码" [(ngModel)]="searchItems.code">
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="gutter-box" nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-label>&nbsp;</nz-form-label>
+        <nz-form-control>
+          <button nz-button nzType="primary" (click)="search(1)"><i nz-icon nzType="search" nzTheme="outline"></i>查询</button>
+          <button nz-button nzType="default" (click)="reset()"><i nz-icon nzType="close" nzTheme="outline"></i>重置</button>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</nz-card>
+<nz-card class="card" [nzTitle]="'行业列表'">
+  <nz-table #basicTable class="data-table" [nzData]="rows" [nzSize]="'small'" [nzShowPagination]="false"
+    [nzLoading]="loading" [nzBordered]="true" [nzLoadingDelay]="loadingDelay">
+    <thead>
+      <tr>
+        <th>行业名称</th>
+        <th>行业代码</th>
+        <th>父级行业</th>
+        <th>深度</th>
+        <th>更新时间</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{data.name}}</td>
+        <td>{{data.code}}</td>
+        <td>{{data.parentName}}</td>
+        <td>{{data.category}}</td>
+        <td class="td-center">{{data.updateDate}}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <app-page-nav [total]="page.total" [totalPage]="page.totalPage" [pageNum]="page.pageNum" [pageSize]="page.pageSize"
+    (getCurrentPage)="changePage($event)">
+  </app-page-nav>
+</nz-card>
