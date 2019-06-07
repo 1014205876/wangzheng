@@ -91,39 +91,39 @@ export class ArticlepublishComponent implements OnInit {
 		let params = {
 			id: id
 		}
-		this.http.getCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/articles/'+params.id).subscribe((res) => {
-			this.operate = 1
-			this.items.content = res.data.article.content
-			this.articleMes.createDate = res.data.article.createDate
-			this.articleMes.articleId = res.data.article.id
-			this.articleMes.id = res.data.articleDetail.id
-			this.articleMes.status = res.data.articleDetail.status
-			// this.articleMes.taskKey = res.article.taskKey
-			// this.articleMes.updateDate = res.article.updateDate
-			// this.articleMes.releaseDate = res.articleDetail.releaseDate
-			// this.articleMes.shareNumber = res.articleDetail.shareNumber
-			// this.articleMes.wxPageItemId = res.articleDetail.wxPageItemId
-			this.items.originResource = res.data.article.source
-			this.items.title = res.data.article.title
-			this.items.type = res.data.article.type
-			this.items.tags = res.data.articleTag.map(item => {
-				return item.tag
-			})
-			if(res.data.articleDetail.readNumber==null){
-				this.items.read='0'
-			}
-			else{
-			this.items.read = res.data.articleDetail.readNumber				
-			}
-			if(res.data.articleDetail.collectNumber==null){
-				this.items.favorite='0'
-			}
-			else{
-				this.items.favorite = res.data.articleDetail.collectNumber
-			}
-			this.items.picture = res.data.articleDetail.picture
-			this.defaultImgUrl = res.data.articleDetail.picture
-		})
+		// this.http.getCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/articles/'+params.id).subscribe((res) => {
+		// 	this.operate = 1
+		// 	this.items.content = res.data.article.content
+		// 	this.articleMes.createDate = res.data.article.createDate
+		// 	this.articleMes.articleId = res.data.article.id
+		// 	this.articleMes.id = res.data.articleDetail.id
+		// 	this.articleMes.status = res.data.articleDetail.status
+		// 	// this.articleMes.taskKey = res.article.taskKey
+		// 	// this.articleMes.updateDate = res.article.updateDate
+		// 	// this.articleMes.releaseDate = res.articleDetail.releaseDate
+		// 	// this.articleMes.shareNumber = res.articleDetail.shareNumber
+		// 	// this.articleMes.wxPageItemId = res.articleDetail.wxPageItemId
+		// 	this.items.originResource = res.data.article.source
+		// 	this.items.title = res.data.article.title
+		// 	this.items.type = res.data.article.type
+		// 	this.items.tags = res.data.articleTag.map(item => {
+		// 		return item.tag
+		// 	})
+		// 	if(res.data.articleDetail.readNumber==null){
+		// 		this.items.read='0'
+		// 	}
+		// 	else{
+		// 	this.items.read = res.data.articleDetail.readNumber				
+		// 	}
+		// 	if(res.data.articleDetail.collectNumber==null){
+		// 		this.items.favorite='0'
+		// 	}
+		// 	else{
+		// 		this.items.favorite = res.data.articleDetail.collectNumber
+		// 	}
+		// 	this.items.picture = res.data.articleDetail.picture
+		// 	this.defaultImgUrl = res.data.articleDetail.picture
+		// })
 	}
 	onSubmit(type) {
         let length=this.items.tags.length        
@@ -182,11 +182,11 @@ export class ArticlepublishComponent implements OnInit {
 				},
 				articleTag: articleTag
 			}
-		this.http.putCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/articles',form).subscribe((res) => {
-			if(res){
-				this.router.navigateByUrl("app/system/articleupload?pageNum="+this.pageNum)
-			}
-		})
+		// this.http.putCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/articles',form).subscribe((res) => {
+		// 	if(res){
+		// 		this.router.navigateByUrl("app/system/articleupload?pageNum="+this.pageNum)
+		// 	}
+		// })
 	}
 	getTime(time = new Date()) {
 		this.showTimePublish=true
@@ -303,14 +303,14 @@ export class ArticlepublishComponent implements OnInit {
 		// let form = "file="+img;
 		let form = new FormData();
 		form.append("file",  img)
-		this.http.upload('/upload', form).then((result) => {
-			if (result) {
-				this.uploadMsg = '图片上传成功！图片地址：' + result.location
-				this.defaultImgUrl = result.location
-				this.items.picture = this.defaultImgUrl
-				this.upload = 'uploaded'
-			}
-		})
+		// this.http.upload('/upload', form).then((result) => {
+		// 	if (result) {
+		// 		this.uploadMsg = '图片上传成功！图片地址：' + result.location
+		// 		this.defaultImgUrl = result.location
+		// 		this.items.picture = this.defaultImgUrl
+		// 		this.upload = 'uploaded'
+		// 	}
+		// })
 	}
 	keyupHandler(e) {//富文本内容导出
 		this.items.content = e

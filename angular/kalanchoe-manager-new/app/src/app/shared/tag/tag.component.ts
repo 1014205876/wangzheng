@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, Output,EventEmitter } from '@angular/core';
+import { Component, ElementRef, ViewChild, Output, EventEmitter } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
@@ -26,27 +26,27 @@ import { NzMessageService } from 'ng-zorro-antd';
       (blur)="handleInputConfirm()"
       (keydown.enter)="handleInputConfirm()">
   `,
-  styles  : [
-      `.editable-tag ::ng-deep .ant-tag {
+  styles: [
+    `.editable-tag ::ng-deep .ant-tag {
       background: rgb(255, 255, 255);
       border-style: dashed;
     }`
   ]
 })
 export class TagComponent {
-  @Output() outTags=new EventEmitter()
-  tags=[]
-  
+  @Output() outTags = new EventEmitter()
+  tags = []
+
 
   constructor(
     private message: NzMessageService
 
-  ){
-    
+  ) {
+
   }
   inputVisible = false;
   inputValue = '';
-  @ViewChild('inputElement') inputElement: ElementRef;
+  // @ViewChild('inputElement') inputElement: ElementRef;
 
   handleClose(removedTag: {}): void {
     this.tags = this.tags.filter(tag => tag !== removedTag);
@@ -58,15 +58,15 @@ export class TagComponent {
   }
 
   showInput(): void {
-    if(this.tags.length>=5){
+    if (this.tags.length >= 5) {
       this.message.warning('最多只能添加五个标签！')
-      console.log(this.tags,111)
+      console.log(this.tags, 111)
       return
     }
-    else{
+    else {
       this.inputVisible = true;
       setTimeout(() => {
-        this.inputElement.nativeElement.focus();
+        // this.inputElement.nativeElement.focus();
       }, 10);
       console.log(1)
       this.outTags.emit(this.tags)

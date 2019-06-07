@@ -52,20 +52,20 @@ export class ArticleresourceComponent implements OnInit {
         this.getData()
     }
     getData() {
-        this.http.getCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/originalArticleDataGrid?'
-            + 'pageNum=' + this.pageNum
-            + '&pageSize=10'
-            + '&starttime=' + this.wantStartTime
-            + '&endtime=' + this.wantEndTime
-            + '&title=' + this.findTittle).subscribe(e => {
-                this.loading = false
-                if (e.code == '200') {
-                    this.data = e.data.list
-                    this.total = e.data.total
-                }else{
-                    this.message.error('文章加载失败，请重新刷新页面！')
-                }
-            })
+        // this.http.getCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/originalArticleDataGrid?'
+        //     + 'pageNum=' + this.pageNum
+        //     + '&pageSize=10'
+        //     + '&starttime=' + this.wantStartTime
+        //     + '&endtime=' + this.wantEndTime
+        //     + '&title=' + this.findTittle).subscribe(e => {
+        //         this.loading = false
+        //         if (e.code == '200') {
+        //             this.data = e.data.list
+        //             this.total = e.data.total
+        //         }else{
+        //             this.message.error('文章加载失败，请重新刷新页面！')
+        //         }
+        //     })
     }
     search() {
         this.pageNum = '1'
@@ -112,20 +112,20 @@ export class ArticleresourceComponent implements OnInit {
         this.manyCheckModal = true
     }
     manyCheckModalOk() {
-        this.http.patchCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/originalArticle',
-            {
-                list: this.selected
-            }).subscribe(e => {
-                if (e.code == '200') {
-                    this.message.success('批量加入待发布成功，请至发布页面进行发布！')
-                    this.getData()
-                    this.manyCheckModal = false
-                    this.selected = []
-                }
-                else {
-                    this.message.error(e.reason)
-                }
-            })
+        // this.http.patchCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/originalArticle',
+        //     {
+        //         list: this.selected
+        //     }).subscribe(e => {
+        //         if (e.code == '200') {
+        //             this.message.success('批量加入待发布成功，请至发布页面进行发布！')
+        //             this.getData()
+        //             this.manyCheckModal = false
+        //             this.selected = []
+        //         }
+        //         else {
+        //             this.message.error(e.reason)
+        //         }
+        //     })
     }
     manyCheckModalCancel() {
         this.manyCheckModal = false

@@ -38,19 +38,19 @@ export class PreLetterComponent implements OnInit {
 
     }
     getData() {
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v1/app/back/pre/query?nickName='
-            + this.findNickname
-            + '&mobile=' + this.findMobile
-            + '&etpName=' + this.findEtpName
-            + '&legalName=' + this.findLegalName
-            + '&createStartDate=' + this.wantStartTime
-            + '&createEndDate=' + this.wantEndTime
-            + '&pageNum=' + this.pageNum + '&pageSize=10'
-        ).subscribe(res => {
-            let data = res.result.list;
-            this.total = res.result.total;
-        })
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v1/app/back/pre/query?nickName='
+        //     + this.findNickname
+        //     + '&mobile=' + this.findMobile
+        //     + '&etpName=' + this.findEtpName
+        //     + '&legalName=' + this.findLegalName
+        //     + '&createStartDate=' + this.wantStartTime
+        //     + '&createEndDate=' + this.wantEndTime
+        //     + '&pageNum=' + this.pageNum + '&pageSize=10'
+        // ).subscribe(res => {
+        //     let data = res.result.list;
+        //     this.total = res.result.total;
+        // })
     }
     disabledStartDate = (startValue: Date): boolean => {
         if (!startValue || !this.endValue) {

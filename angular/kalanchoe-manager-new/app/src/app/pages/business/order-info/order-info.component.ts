@@ -1,5 +1,5 @@
 import { post } from 'selenium-webdriver/http';
-import { Http } from '@angular/http';
+// import { Http } from '@angular/http';
 import { HttpService } from './../../../shared/service/http-serve.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -75,19 +75,19 @@ export class OrderInfoComponent implements OnInit {
 
   ngOnInit() {
     var id = this.route.snapshot.queryParams.id;
-    this.http.getCustomHeaders("kalanchoe-manager/v1/app/back/loans/" + id )
-      .subscribe(res => {
-        let data = res.result;
-        this.rows = data;
-        if(this.rows.applyDataList){
-          this.rows.applyDataList.forEach(item=>{
-            if(item.type=='multiplePic'){
-              item.value=this.transformStr(item.value)
-            }
-          })
-        }
-        this.basicInfoUrl = 'http://117.41.185.26:4200/companyReport/basicInfo?id=' + this.rows.etpId;
-      })
+    // this.http.getCustomHeaders("kalanchoe-manager/v1/app/back/loans/" + id )
+    //   .subscribe(res => {
+    //     let data = res.result;
+    //     this.rows = data;
+    //     if(this.rows.applyDataList){
+    //       this.rows.applyDataList.forEach(item=>{
+    //         if(item.type=='multiplePic'){
+    //           item.value=this.transformStr(item.value)
+    //         }
+    //       })
+    //     }
+    //     this.basicInfoUrl = 'http://117.41.185.26:4200/companyReport/basicInfo?id=' + this.rows.etpId;
+    //   })
   };
   transformTime(e){
     return e ? (e.match(/14:00:00/) ? e.replace(/14:00:00/, 'PM') : e.replace(/08:00:00/, 'AM')) : '';

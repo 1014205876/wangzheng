@@ -71,20 +71,20 @@ export class PartnerdetailComponent implements OnInit {
   }
 
   getMessage (){
-    this.http.getCustomHeaders(
-      'kalanchoe-manager/v1/kalanchoe/backstage/partner/' + this.userid
-    ).subscribe(res => {
-      this.applyInfo = res.data.applyInfo;
-      this.baseInfo = res.data.baseInfo;
-      this.statisticsInfo = res.data.statisticsInfo;
-      if(res.data.applyInfo.status == 0){
-        this.applyInfo.status = "未审核";
-      } else if(res.data.applyInfo.status == 1){
-        this.applyInfo.status = "审核通过";
-      } else if(res.data.applyInfo.status == 2){
-        this.applyInfo.status = "审核不通过";
-      }
-    })
+    // this.http.getCustomHeaders(
+    //   'kalanchoe-manager/v1/kalanchoe/backstage/partner/' + this.userid
+    // ).subscribe(res => {
+    //   this.applyInfo = res.data.applyInfo;
+    //   this.baseInfo = res.data.baseInfo;
+    //   this.statisticsInfo = res.data.statisticsInfo;
+    //   if(res.data.applyInfo.status == 0){
+    //     this.applyInfo.status = "未审核";
+    //   } else if(res.data.applyInfo.status == 1){
+    //     this.applyInfo.status = "审核通过";
+    //   } else if(res.data.applyInfo.status == 2){
+    //     this.applyInfo.status = "审核不通过";
+    //   }
+    // })
   }
 
 }

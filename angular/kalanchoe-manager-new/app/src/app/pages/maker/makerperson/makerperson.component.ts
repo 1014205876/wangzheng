@@ -58,18 +58,18 @@ export class MakerpersonComponent implements OnInit {
         this.getdata()
     }
     getdata() {
-        this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/userDataGrid?' + 'phone=' + this.findPhone + '&registerTimeStart=' + this.wantStartTime +
-            '&registerTimeEnd=' + this.wantEndTime + '&registerSource=' + this.findRegisterSource +
-            '&inviterPhone=' + this.findInviterPhone +
-            '&status=' + this.findStatus + '&groupName=' + this.findGroupName +
-            '&pageNum=' + this.pageNum +
-            '&pageSize=' + 10)
-            .subscribe(e => {
-                this.allChecked = false
-                this.list = e.data.list
-                this.total = e.data.total
-                this.pushSwitchValue()
-            })
+        // this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/userDataGrid?' + 'phone=' + this.findPhone + '&registerTimeStart=' + this.wantStartTime +
+        //     '&registerTimeEnd=' + this.wantEndTime + '&registerSource=' + this.findRegisterSource +
+        //     '&inviterPhone=' + this.findInviterPhone +
+        //     '&status=' + this.findStatus + '&groupName=' + this.findGroupName +
+        //     '&pageNum=' + this.pageNum +
+        //     '&pageSize=' + 10)
+        //     .subscribe(e => {
+        //         this.allChecked = false
+        //         this.list = e.data.list
+        //         this.total = e.data.total
+        //         this.pushSwitchValue()
+        //     })
     }
     pushSwitchValue() {
         this.list.map(item => {
@@ -86,12 +86,12 @@ export class MakerpersonComponent implements OnInit {
     }
 
     getGroupInm() {
-        this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/group').subscribe(e => {
-            var list = e.data.map((item) => {
-                return { 'groupId': item.id, 'groupName': item.groupName }
-            })
-            this.options = list
-        })
+        // this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/group').subscribe(e => {
+        //     var list = e.data.map((item) => {
+        //         return { 'groupId': item.id, 'groupName': item.groupName }
+        //     })
+        //     this.options = list
+        // })
     }
 
     ngOnInit() {
@@ -241,23 +241,23 @@ export class MakerpersonComponent implements OnInit {
     AdjugeGroup() {
         let groupId = this.groupId
         let selected = this.selected
-        this.http.patchCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/user/group',
-            {
-                'list': selected,
-                'groupId': groupId
-            }
+        // this.http.patchCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/user/group',
+        //     {
+        //         'list': selected,
+        //         'groupId': groupId
+        //     }
 
-        ).subscribe(res => {
-            if (res.code == '200') {
-                this.getdata();
-                this.message.success('分组调整成功')
-            }
-            else {
-                this.message.error('分组调整失败')
-            }
-            this.showAdjugeGroup = false
-        })
+        // ).subscribe(res => {
+        //     if (res.code == '200') {
+        //         this.getdata();
+        //         this.message.success('分组调整成功')
+        //     }
+        //     else {
+        //         this.message.error('分组调整失败')
+        //     }
+        //     this.showAdjugeGroup = false
+        // })
     }
     // 批量禁用
     DisableMoadleCancel() {
@@ -270,22 +270,22 @@ export class MakerpersonComponent implements OnInit {
     }
     manyDisabled() {
         let selected = this.selected
-        this.http.patchCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/user'
-            , {
-                'status': '0',
-                'list': selected
-            }
+        // this.http.patchCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/user'
+        //     , {
+        //         'status': '0',
+        //         'list': selected
+        //     }
 
-        ).subscribe(res => {
-            if (res.code == '200') {
-                this.getdata();
-                this.message.success('禁用成功')
-            }
-            else {
-                this.message.error('禁用失败')
-            }
-        })
+        // ).subscribe(res => {
+        //     if (res.code == '200') {
+        //         this.getdata();
+        //         this.message.success('禁用成功')
+        //     }
+        //     else {
+        //         this.message.error('禁用失败')
+        //     }
+        // })
 
     }
     clickedDisAble() {
@@ -316,22 +316,22 @@ export class MakerpersonComponent implements OnInit {
     }
     manyAbled() {
         let selected = this.selected
-        this.http.patchCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/user'
-            , {
-                'status': '1',
-                'list': selected
-            }
+        // this.http.patchCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/user'
+        //     , {
+        //         'status': '1',
+        //         'list': selected
+        //     }
 
-        ).subscribe(res => {
-            if (res.code == '200') {
-                this.getdata();
-                this.message.success('启用成功')
-            }
-            else {
-                this.message.error('启用失败')
-            }
-        })
+        // ).subscribe(res => {
+        //     if (res.code == '200') {
+        //         this.getdata();
+        //         this.message.success('启用成功')
+        //     }
+        //     else {
+        //         this.message.error('启用失败')
+        //     }
+        // })
     }
     //modal
     handleOk(): void {
@@ -351,22 +351,22 @@ export class MakerpersonComponent implements OnInit {
         selected.push(id)
         let status = this.status
 
-        this.http.patchCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/user'
-            , {
-                'status': status,
-                'list': selected
-            }
+        // this.http.patchCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/user'
+        //     , {
+        //         'status': status,
+        //         'list': selected
+        //     }
 
-        ).subscribe(res => {
-            if (res.code == '200') {
-                this.getdata();
-                this.message.success('状态改变成功')
-            }
-            else {
-                this.message.error('状态改变失败')
-            }
-        })
+        // ).subscribe(res => {
+        //     if (res.code == '200') {
+        //         this.getdata();
+        //         this.message.success('状态改变成功')
+        //     }
+        //     else {
+        //         this.message.error('状态改变失败')
+        //     }
+        // })
 
     }
     handleCancel(): void {

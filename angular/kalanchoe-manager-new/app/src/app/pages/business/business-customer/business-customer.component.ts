@@ -45,22 +45,22 @@ export class BusinessCustomerComponent implements OnInit {
     }
 
     getData() {
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v1/app/back/usersGrid'
-            + '?mobile=' + this.findPhone
-            + '&regStartDate=' + this.wantStartTime
-            + '&regEndDate=' + this.wantEndTime
-            + '&insName=' + this.findInsName
-            + '&registSource=' + this.findRegisterSource
-            + '&clientSource=' + this.findClientSource
-            + '&insStaffName=' + this.findInsStaffPhone
-            + '&pageNum=' + this.pageNum
-            + '&pageSize=10'
-        ).subscribe(res => {
-            let data = res.data.list;
-            this.total = res.data.total;
-            this.data = data;
-        })
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v1/app/back/usersGrid'
+        //     + '?mobile=' + this.findPhone
+        //     + '&regStartDate=' + this.wantStartTime
+        //     + '&regEndDate=' + this.wantEndTime
+        //     + '&insName=' + this.findInsName
+        //     + '&registSource=' + this.findRegisterSource
+        //     + '&clientSource=' + this.findClientSource
+        //     + '&insStaffName=' + this.findInsStaffPhone
+        //     + '&pageNum=' + this.pageNum
+        //     + '&pageSize=10'
+        // ).subscribe(res => {
+        //     let data = res.data.list;
+        //     this.total = res.data.total;
+        //     this.data = data;
+        // })
     }
     search() {
         this.getData()

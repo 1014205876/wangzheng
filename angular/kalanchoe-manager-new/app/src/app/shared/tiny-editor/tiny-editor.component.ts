@@ -20,7 +20,7 @@ import 'tinymce/plugins/toc';//目录
 import 'tinymce/plugins/help';//帮助
 import 'tinymce/plugins/textcolor';//文本颜色
 import "assets/zh_CN.js";
-import { Http, Headers } from '@angular/http';
+// import { Http, Headers } from '@angular/http';
 import { HttpHandler } from '@angular/common/http';
 
 @Component({
@@ -33,13 +33,13 @@ export class TinyEditorComponent implements AfterViewInit, OnDestroy {
   @Output() onEditorContentChange = new EventEmitter();
   editor;
   constructor(
-    private http: Http,
+    // private http: Http,
   ) { }
   uploadFile(url: string, formData: any) {
     var that = this;
     var headers = new Headers();
     headers.set('accept', 'application/json');
-    return this.http.post(url, formData, { headers: headers });
+    // return this.http.post(url, formData, { headers: headers });
   }
   ngOnChanges() {
     console.log(this.editor)

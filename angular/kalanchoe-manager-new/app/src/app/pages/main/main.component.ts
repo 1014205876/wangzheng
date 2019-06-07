@@ -179,11 +179,11 @@ export class MainComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.http.getCustomHeaders("peak-resource/api/resource/user/permission").subscribe(res => {
-            resource.ResourceItems = res.data.resource;
-            resource.menu = res.data.menu;
-           // this.menu = res.data.menu;
-        })
+        // this.http.getCustomHeaders("peak-resource/api/resource/user/permission").subscribe(res => {
+        //     resource.ResourceItems = res.data.resource;
+        //     resource.menu = res.data.menu;
+        //    // this.menu = res.data.menu;
+        // })
     }
     openHandler(index) {
         this.nowIndex = index

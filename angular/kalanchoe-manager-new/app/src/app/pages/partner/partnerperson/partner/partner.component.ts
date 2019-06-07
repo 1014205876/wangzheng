@@ -47,28 +47,28 @@ export class PartnerComponent implements OnInit {
         this.getPatNum()
     }
     getData() {
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/distribution/partnerDataGrid?mobile=' + this.findPhone +
-            '&registerTimeStart=' + this.wantStartTime +
-            '&registerTimeEnd=' + this.wantEndTime +
-            '&registerSource=' + this.findRegisterSource +
-            '&releation=' + this.findConnect +
-            '&userId=' + this.userId +
-            '&pageNum=' + this.pageNum +
-            '&pageSize=' + 10
-        ).subscribe(res => {
-            this.list = res.result.list
-            this.total = res.result.total
-            this.addIndexList()
-        })
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/distribution/partnerDataGrid?mobile=' + this.findPhone +
+        //     '&registerTimeStart=' + this.wantStartTime +
+        //     '&registerTimeEnd=' + this.wantEndTime +
+        //     '&registerSource=' + this.findRegisterSource +
+        //     '&releation=' + this.findConnect +
+        //     '&userId=' + this.userId +
+        //     '&pageNum=' + this.pageNum +
+        //     '&pageSize=' + 10
+        // ).subscribe(res => {
+        //     this.list = res.result.list
+        //     this.total = res.result.total
+        //     this.addIndexList()
+        // })
     }
     getPatNum() {
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/user/type?id=' + this.userId
-        ).subscribe(res => {
-            this.normalMaker = res.result.total
-            this.countPartner = res.result.countPartner
-        })
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/user/type?id=' + this.userId
+        // ).subscribe(res => {
+        //     this.normalMaker = res.result.total
+        //     this.countPartner = res.result.countPartner
+        // })
     }
     addIndexList() {
         var list = this.list

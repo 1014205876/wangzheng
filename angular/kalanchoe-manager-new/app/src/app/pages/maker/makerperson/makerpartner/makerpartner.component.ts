@@ -51,37 +51,37 @@ export class MakerpartnerComponent implements OnInit {
 
     getData() {
         let id = this.userid
-        this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/inviterDataGrid?id=' + id +
-            '&phone=' + this.findPhone +
-            '&registerTimeStart=' + this.wantStartTime +
-            '&registerTimeEnd=' + this.wantEndTime +
-            '&registerSource=' + this.findRegisterSource +
-            '&groupName=' + this.findGroupName +
-            '&pageNum=' + this.pageNum +
-            '&pageSize=' + 10)
-            .subscribe(e => {
-                this.data = []
-                this.data = e.data.list
-                this.total = e.data.total
-            })
+        // this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/inviterDataGrid?id=' + id +
+        //     '&phone=' + this.findPhone +
+        //     '&registerTimeStart=' + this.wantStartTime +
+        //     '&registerTimeEnd=' + this.wantEndTime +
+        //     '&registerSource=' + this.findRegisterSource +
+        //     '&groupName=' + this.findGroupName +
+        //     '&pageNum=' + this.pageNum +
+        //     '&pageSize=' + 10)
+        //     .subscribe(e => {
+        //         this.data = []
+        //         this.data = e.data.list
+        //         this.total = e.data.total
+        //     })
     }
     getPartnerData() {
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/user/type?id=' + this.userid
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/user/type?id=' + this.userid
 
-        ).subscribe(res => {
-            this.normalMaker = res.result.total
-            this.countPartner = res.result.countPartner
-        })
+        // ).subscribe(res => {
+        //     this.normalMaker = res.result.total
+        //     this.countPartner = res.result.countPartner
+        // })
     }
 
     getGroupData() {
-        this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/group').subscribe(e => {
-            var list = e.data.map((item) => {
-                return { 'groupId': item.id, 'groupName': item.groupName }
-            })
-            this.options = list
-        })
+        // this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/group').subscribe(e => {
+        //     var list = e.data.map((item) => {
+        //         return { 'groupId': item.id, 'groupName': item.groupName }
+        //     })
+        //     this.options = list
+        // })
     }
     search() {
         this.getData()

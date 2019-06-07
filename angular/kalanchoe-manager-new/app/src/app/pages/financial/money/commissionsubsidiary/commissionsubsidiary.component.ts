@@ -38,17 +38,17 @@ export class CommissionsubsidiaryComponent implements OnInit {
     }
 
     getData() {
-        this.http.getCustomHeaders('kalanchoe-manager/v1/reward/user/back/findCommissionDetail?'
-            + 'pageNum=' + this.pageNum
-            + '&pageSize=10'
-            + '&mobile=' + this.mobile
-            + '&createStartDate=' + this.wantStartTime
-            + '&createEndDate=' + this.wantEndTime
-            + '&type=' + this.findUse
-            + '&income=' + this.findFlow).subscribe(e => {
-                this.total = e.data.list.total
-                this.data = e.data.list.list
-            })
+        // this.http.getCustomHeaders('kalanchoe-manager/v1/reward/user/back/findCommissionDetail?'
+        //     + 'pageNum=' + this.pageNum
+        //     + '&pageSize=10'
+        //     + '&mobile=' + this.mobile
+        //     + '&createStartDate=' + this.wantStartTime
+        //     + '&createEndDate=' + this.wantEndTime
+        //     + '&type=' + this.findUse
+        //     + '&income=' + this.findFlow).subscribe(e => {
+        //         this.total = e.data.list.total
+        //         this.data = e.data.list.list
+        //     })
     }
     search() {
         this.getData()

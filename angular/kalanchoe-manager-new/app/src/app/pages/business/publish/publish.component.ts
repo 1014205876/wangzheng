@@ -2,7 +2,7 @@ import { DateTransformService } from './../../../shared/service/date-transform.s
 import { HttpService } from './../../../shared/service/http-serve.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Http } from '@angular/http/src/http';
+// import { Http } from '@angular/http/src/http';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
 
@@ -124,11 +124,11 @@ export class PublishComponent implements OnInit {
     }
   }
   getinfor() {//查询公司信息
-    this.http.getCustomHeaders(
-      'kalanchoe-manager/v1/app/back/products'
-    ).subscribe(res => {
-      this.data.infor = res.result;
-    })
+    // this.http.getCustomHeaders(
+    //   'kalanchoe-manager/v1/app/back/products'
+    // ).subscribe(res => {
+    //   this.data.infor = res.result;
+    // })
   }
   addone(type, list) {//添加一项
     let item = {}
@@ -269,17 +269,17 @@ export class PublishComponent implements OnInit {
         this.message.error('部分必填项未填写无法提交')
     } else {//所有必填项已填写。向后台提交请求
       let data = this.submit();
-      this.http.postCustomHeaders(
-        'kalanchoe-manager/v1/app/back/product',
-        data
-      ).subscribe(res => {
-        if (res.code == '200') {
-          this.message.success('发布成功')
-          this.router.navigate(['/app/business/publishproduct']);
-        } else {
-          this.message.error('发布失败')
-        }
-      })
+      // this.http.postCustomHeaders(
+      //   'kalanchoe-manager/v1/app/back/product',
+      //   data
+      // ).subscribe(res => {
+      //   if (res.code == '200') {
+      //     this.message.success('发布成功')
+      //     this.router.navigate(['/app/business/publishproduct']);
+      //   } else {
+      //     this.message.error('发布失败')
+      //   }
+      // })
     }
 
   }
@@ -290,17 +290,17 @@ export class PublishComponent implements OnInit {
 
     } else {//所有必填项已填写。向后台提交请求
       let data = this.submit();
-      this.http.putCustomHeaders(
-        'kalanchoe-manager/v1/app/back/products/' + this.data.id,
-        data
-      ).subscribe(res => {
-        if (res.code == '200') {
-          this.message.success('编辑成功')
-          this.router.navigate(['/app/business/publishproduct']);
-        } else {
-          this.message.error('编辑失败')
-        }
-      })
+      // this.http.putCustomHeaders(
+      //   'kalanchoe-manager/v1/app/back/products/' + this.data.id,
+      //   data
+      // ).subscribe(res => {
+      //   if (res.code == '200') {
+      //     this.message.success('编辑成功')
+      //     this.router.navigate(['/app/business/publishproduct']);
+      //   } else {
+      //     this.message.error('编辑失败')
+      //   }
+      // })
     }
   }
   //生命周期函数
@@ -310,30 +310,30 @@ export class PublishComponent implements OnInit {
     that.route.params.subscribe(function (data) {
       that.data.id = data.id
       if (data.id == 'new') {
-        that.data.url = ['业务管理', '产品发布管理', '发布产品'],
+        that.data.url = ['业务管理', '产品发布管理', '发布产品'];
           that.getinfor()
       } else {
-        that.data.url = ['业务管理', '产品发布管理', '编辑产品'],
-          that.http.getCustomHeaders(
-            'kalanchoe-manager/v1/app/back/products/' + that.data.id
-          ).subscribe(res => {
-            that.data.product = res.result.product;
-            // that.data.infor=res.result.product;
-            that.data.group = res.result.group;
-            that.data.applyCondition = res.result.applyCondition
-          })
+        that.data.url = ['业务管理', '产品发布管理', '编辑产品'];
+          // that.http.getCustomHeaders(
+          //   'kalanchoe-manager/v1/app/back/products/' + that.data.id
+          // ).subscribe(res => {
+          //   that.data.product = res.result.product;
+          //   // that.data.infor=res.result.product;
+          //   that.data.group = res.result.group;
+          //   that.data.applyCondition = res.result.applyCondition
+          // })
       }
     })
-    that.http.getCustomHeaders(
-      'kalanchoe-sys/v1/resource/dictionaryItem/guestApplyControlType'
-    ).subscribe(res => {
-      that.type = res
-    })
-    that.http.getCustomHeaders(
-      'kalanchoe-sys/v1/resource/dictionaries'
-    ).subscribe(res => {
-      that.dataSource = res
-    })
+    // that.http.getCustomHeaders(
+    //   'kalanchoe-sys/v1/resource/dictionaryItem/guestApplyControlType'
+    // ).subscribe(res => {
+    //   that.type = res
+    // })
+    // that.http.getCustomHeaders(
+    //   'kalanchoe-sys/v1/resource/dictionaries'
+    // ).subscribe(res => {
+    //   that.dataSource = res
+    // })
   }
 
 }

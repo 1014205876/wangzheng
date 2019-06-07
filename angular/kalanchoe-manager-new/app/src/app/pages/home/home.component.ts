@@ -25,22 +25,22 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpService) { }
 
   ngOnInit() {
-    this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/marker')
-      .subscribe(e => {
-        this.maker = e.data;
-      })
-    this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/partner')
-      .subscribe(e => {
-        this.partner = e.data;
-      })
-    this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/user')
-      .subscribe(e => {
-        this.customer = e.data;
-      })
-    this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/order')
-      .subscribe(e => {
-        this.order = e.data;
-      })
+    // this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/marker')
+    //   .subscribe(e => {
+    //     this.maker = e.data;
+    //   })
+    // this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/partner')
+    //   .subscribe(e => {
+    //     this.partner = e.data;
+    //   })
+    // this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/user')
+    //   .subscribe(e => {
+    //     this.customer = e.data;
+    //   })
+    // this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/order')
+    //   .subscribe(e => {
+    //     this.order = e.data;
+    //   })
   }
 
 }

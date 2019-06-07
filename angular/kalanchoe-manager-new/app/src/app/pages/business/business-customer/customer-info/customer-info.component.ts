@@ -17,8 +17,8 @@ export class CustomerInfoComponent implements OnInit {
 
     ngOnInit() {
         this.id = this.activeRoute.snapshot.queryParams.userid
-        this.http.getCustomHeaders('kalanchoe-manager/v1/app/back/users/' + this.id).subscribe(res => {
-            this.row = res.data;
-        })
+        // this.http.getCustomHeaders('kalanchoe-manager/v1/app/back/users/' + this.id).subscribe(res => {
+        //     this.row = res.data;
+        // })
     }
 }

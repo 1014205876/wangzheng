@@ -1,4 +1,4 @@
-import { Component, OnInit, group } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DateTransformService } from '../../../shared/service/date-transform.service'
 import { HttpService } from '../../../shared/service/http-serve.service';
 import { NzMessageService } from 'ng-zorro-antd';
@@ -79,21 +79,21 @@ export class WithdrawComponent implements OnInit {
   }
 
   getData() {
-    this.http.getCustomHeaders(     
-      'kalanchoe-manager/v1/back/app/cashs?pageNum=' + this.pageNum +
-      '&pageSize=' + 10 +
-      '&applyNo=' + this.findNo +
-      '&mobile=' + this.findPhone +    
-      '&createStartTime=' + this.findStartTime +
-      '&createEndTime=' + this.findEndTime +  
-      this.groupStatus 
-    ).subscribe(res => {
-      if(res.code==200){
-        this.total = res.data.total;
-        this.pageNum = res.data.pageNum;
-        this.displayData = res.data.list
-      }
-    })
+    // this.http.getCustomHeaders(     
+    //   'kalanchoe-manager/v1/back/app/cashs?pageNum=' + this.pageNum +
+    //   '&pageSize=' + 10 +
+    //   '&applyNo=' + this.findNo +
+    //   '&mobile=' + this.findPhone +    
+    //   '&createStartTime=' + this.findStartTime +
+    //   '&createEndTime=' + this.findEndTime +  
+    //   this.groupStatus 
+    // ).subscribe(res => {
+    //   if(res.code==200){
+    //     this.total = res.data.total;
+    //     this.pageNum = res.data.pageNum;
+    //     this.displayData = res.data.list
+    //   }
+    // })
   }
 
   search() {

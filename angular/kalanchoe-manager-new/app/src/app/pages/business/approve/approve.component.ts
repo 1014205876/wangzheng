@@ -39,21 +39,21 @@ export class ApproveComponent implements OnInit {
     }
   }
   getData(){
-    this.http.getCustomHeaders(
-      "kalanchoe-manager/v1/app/back/etpCersGrid?regMobile="
-      +this.findRegMobile
-      +"&mobile="+this.findMobile
-      +"&etpName="+this.findEtpName
-      +"&legalName=" +this.findlegalName
-      +"&creditCode="+this.findCreditCode
-      +"&idCardNum="+this.findIdCardNum
-      // +"&code="+(this.approveSearch.code?this.approveSearch.code:'')
-      +"&status=1"
-      +'&pageNum='+this.pageNum+'&pageSize=10'
-    ).subscribe(res=>{
-      this.data=res.data.list;
-      this.total=res.datadata.total
-    });
+    // this.http.getCustomHeaders(
+    //   "kalanchoe-manager/v1/app/back/etpCersGrid?regMobile="
+    //   +this.findRegMobile
+    //   +"&mobile="+this.findMobile
+    //   +"&etpName="+this.findEtpName
+    //   +"&legalName=" +this.findlegalName
+    //   +"&creditCode="+this.findCreditCode
+    //   +"&idCardNum="+this.findIdCardNum
+    //   // +"&code="+(this.approveSearch.code?this.approveSearch.code:'')
+    //   +"&status=1"
+    //   +'&pageNum='+this.pageNum+'&pageSize=10'
+    // ).subscribe(res=>{
+    //   this.data=res.data.list;
+    //   this.total=res.datadata.total
+    // });
   } 
   search(){
     this.getData()

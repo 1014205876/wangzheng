@@ -2,7 +2,7 @@ import { DateTransformService } from '../../../shared/service/date-transform.ser
 import { HttpService } from '../../../shared/service/http-serve.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Http } from '@angular/http/src/http';
+// import { Http } from '@angular/http/src/http';
 import { Router } from '@angular/router';
 
 @Component({

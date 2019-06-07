@@ -52,18 +52,18 @@ export class HeaderComponent implements OnInit {
     }
 
     getOtherAPP() {
-        this.http.getCustomHeaders("peak-resource/v1/resource/apps/permission").subscribe(res => {
-            this.AppList = res.data;
-        })
+        // this.http.getCustomHeaders("peak-resource/v1/resource/apps/permission").subscribe(res => {
+        //     this.AppList = res.data;
+        // })
     }
 
     getUser() {
-        this.http.getCustomHeaders('peak-resource/v1/resource/users/info')
-            .subscribe(res => {
-                localStorage.setItem("accountw", res.account); //将account存入本地
-                this.userName = res.name;
-                this.account = res.account;
-            })
+        // this.http.getCustomHeaders('peak-resource/v1/resource/users/info')
+        //     .subscribe(res => {
+        //         localStorage.setItem("accountw", res.account); //将account存入本地
+        //         this.userName = res.name;
+        //         this.account = res.account;
+        //     })
     }
 
     getOff() {
@@ -78,18 +78,17 @@ export class HeaderComponent implements OnInit {
         }
     }
     resetPwd() {
-        this.http.patchCustomHeaders('peak-resource/v1/resource/user/pass/' + this.account, { "oldPassword": this.pwd.origPwd, "newPassword": this.pwd.newPwd })
-            .subscribe(res => {
-                if (res.code == '200') {
-                    this.getOff()
-                } else {
-                    this.reason = res.reason;
-                    this.mask2 = true;
-                    this.reset();
-                    this.pwdForm.reset();
-                }
-            })
+        // this.http.patchCustomHeaders('peak-resource/v1/resource/user/pass/' + this.account, { "oldPassword": this.pwd.origPwd, "newPassword": this.pwd.newPwd })
+        //     .subscribe(res => {
+        //         if (res.code == '200') {
+        //             this.getOff()
+        //         } else {
+        //             this.reason = res.reason;
+        //             this.mask2 = true;
+        //             this.reset();
+        //             this.pwdForm.reset();
+        //         }
+        //     })
     }
 
 }
-class search { }

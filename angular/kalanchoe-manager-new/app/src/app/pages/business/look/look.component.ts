@@ -2,7 +2,7 @@ import { DateTransformService } from './../../../shared/service/date-transform.s
 import { HttpService } from './../../../shared/service/http-serve.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Http } from '@angular/http/src/http';
+// import { Http } from '@angular/http/src/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -81,25 +81,25 @@ export class LookComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute, ) { }
     getinfor() {//查看产品信息
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v1/app/back/products/' + this.data.id
-        ).subscribe(res => {
-            this.data.product = res.result.product
-            this.data.applyCondition = res.result.applyCondition
-            this.data.group = res.result.group
-        })
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v1/app/back/products/' + this.data.id
+        // ).subscribe(res => {
+        //     this.data.product = res.result.product
+        //     this.data.applyCondition = res.result.applyCondition
+        //     this.data.group = res.result.group
+        // })
     }
     back() {
         history.back();
     }
     submit() {
         if (this.data.examine.status) {
-            this.http.patchCustomHeaders(
-                'kalanchoe-manager/v1/app/back/products/' + this.data.id,//点击审批通过
-                this.data.examine
-            ).subscribe(res => {
-                this.router.navigate(['/app/business/publishproduct']);
-            })
+            // this.http.patchCustomHeaders(
+            //     'kalanchoe-manager/v1/app/back/products/' + this.data.id,//点击审批通过
+            //     this.data.examine
+            // ).subscribe(res => {
+            //     this.router.navigate(['/app/business/publishproduct']);
+            // })
         } else {
             alert('请选择审核结果')
         }
