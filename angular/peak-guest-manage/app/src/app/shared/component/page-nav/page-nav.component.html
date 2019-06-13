@@ -1,0 +1,42 @@
+<div class="box" *ngIf='totalPage>1'>
+  <ul class="page_con">
+    <li class="page_icon" [class.disabled]="currentPage <= 1">
+      <a (click)="goPrevious(currentPage)">上一页</a>
+    </li>
+    <li *ngIf="currentPage > 3">
+      <a (click)="changePage(currentPage-3)">{{currentPage-3}}</a>
+    </li>
+    <li *ngIf="currentPage > 2">
+      <a (click)="changePage(currentPage-2)">{{currentPage-2}}</a>
+    </li>
+    <li *ngIf="currentPage > 1">
+      <a (click)="changePage(currentPage-1)">{{currentPage-1}}</a>
+    </li>
+    <li class="active">
+      <a (click)="changePage(currentPage)">{{currentPage}}</a>
+    </li>
+    <li *ngIf="currentPage <= totalPage-1">
+      <a (click)="changePage(currentPage+1)">{{currentPage+1}}</a>
+    </li>
+    <li *ngIf="currentPage <= totalPage-2">
+      <a (click)="changePage(currentPage+2)">{{currentPage+2}}</a>
+    </li>
+    <li *ngIf="currentPage <= totalPage-3">
+      <a (click)="changePage(currentPage+3)">{{currentPage+3}}</a>
+    </li>
+    <li class="page_icon" [class.disabled]="currentPage >= totalPage">
+      <a (click)="goNext(currentPage)">下一页</a>
+    </li>
+  </ul>
+  <div class="tot_box">
+      <span>共{{totalPage}}页，</span>
+  </div>
+  <div class="HMpage">
+    <span>到第</span>
+    <input type="text" [(ngModel)]="inputText" 
+      onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" 
+      onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" >
+    <span>页</span>
+    <button (click)="HMpage()">确定</button>
+  </div>
+</div>

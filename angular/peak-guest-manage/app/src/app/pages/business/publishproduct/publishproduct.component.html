@@ -1,0 +1,77 @@
+<app-crumb></app-crumb>
+<div class="white_bg" style='margin-bottom:30px' [appResource]="{authName:'get/business/publishproduct'}">
+    <div class="search_box">
+        <div class="input_row clearfix row">
+            <div class="g_input">
+                <div class="label">
+                    <span>产品编号</span>
+                    <input type="text" placeholder='请输入产品编号' [(ngModel)]='data.find.number'>
+                </div>
+            </div>
+            <div class="g_input">
+                <div class="label">
+                    <span>状态</span>
+                    <select [(ngModel)]="data.find.status">
+                        <option value="">全部</option>
+                        <option value="0">待审核</option>
+                        <option value="1">审核不通过</option>
+                        <option value="2">已发布</option>
+                        <option value="3">已下架</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="btn_row">
+            <button class="btn pri_btn" (click)="gettable(data.find.pageNum,data.find)">查询</button>
+            <button class="btn pri_btn reset" (click)="reset()">重置</button>
+        </div>
+    </div>
+</div>
+<div class="white_bg list_box">
+    <div class="g_tit mb20">
+        <h5>
+            查询结果
+            <button class='product' [appResource]="{authName:'post/business/products'}" [routerLink]='["/app/business/publish","new"]'>发布产品</button>
+        </h5>
+    </div>
+    <ngx-datatable class="data-table dt-chk material mb20" [rows]="data.table" [columnMode]="'force'" [scrollbarH]="true"
+        [headerHeight]="44" [rowHeight]="'auto'" [limit]="10">
+        <ngx-datatable-column [sortable]="false" name="产品名称" prop="productName"></ngx-datatable-column>
+        <ngx-datatable-column [sortable]="false" name="产品编号" prop="number"></ngx-datatable-column>
+        <ngx-datatable-column [sortable]="false" name="产品类型" prop="productType"></ngx-datatable-column>
+        <ngx-datatable-column [sortable]="false" name="状态">
+            <ng-template ngx-datatable-cell-template let-row="row">
+                    <span *ngIf='row.status==0'>待审核</span>
+                    <span *ngIf='row.status==1'>审核不通过</span>
+                    <span *ngIf='row.status==2'>已发布</span>
+                    <span *ngIf='row.status==3'>已下架</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="false" name="更新时间" prop="updateDate"></ngx-datatable-column>
+        <ngx-datatable-column [sortable]="false" name="操作">
+            <ng-template ngx-datatable-cell-template let-row="row">
+                <div class="flex">
+                    <button [appResource]="{authName:'patch/business/publishproduct'}" *ngIf='row.status==2' (click)='saleshow(row)'>下架</button>
+                    <button [appResource]="{authName:'put/business/products'}" *ngIf='row.status==0||row.status==1||row.status==3' [routerLink]='["/app/business/publish",row.productId]'>编辑</button>
+                    <button [appResource]="{authName:'patch/business/products'}" *ngIf='row.status==0' [routerLink]='["/app/business/look",row.productId,"examine"]'>审核</button>
+                    <button [appResource]="{authName:'get/business/products'}" [routerLink]='["/app/business/look",row.productId,"look"]'>查看</button>
+                </div>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div>
+<div class="mask" [hidden]="!data.mengbanshow"></div>
+<div class='confirm' [hidden]="!data.saleshow">
+  <div class="header">
+    <span>系统提示</span>
+  </div>
+  <div class="body">
+    <span>您确定要下架此产品吗？下架后申请端将不显示此产品。</span>
+  </div>
+  <div class="footer">
+    <button class='cal' type="button" (click)="hidden()">取消</button>
+    <button class='sure' type="button" (click)="fromsale()">确定下架</button>
+  </div>
+</div>
+<app-page-nav (getCurrentPage)="changePage($event)" [totalPage]='data.find.pages'></app-page-nav>
+<ng2-toasty [position]="toast.position"></ng2-toasty>

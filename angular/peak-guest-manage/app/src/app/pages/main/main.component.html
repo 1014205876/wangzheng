@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="box">
+  <div class="menu_box">
+    <div class="con">
+      <ul>
+        <li class="pcodedItem" *ngFor="let item of menu; let i=index;">
+          <a [routerLink]="[item.url]" *ngIf="item.type === 'link'" [routerLinkActive]="['active']">
+            <span class="{{item.icon}}"></span>
+            {{ item.name }}
+          </a>
+          <a class="rightIcon" href="javascript:;" *ngIf="item.type === 'sub'" (click)="showList(i)" >
+            <span class="{{item.icon}}"></span>
+            {{item.name}}
+          </a>
+          <ul *ngIf="item.type === 'sub'">
+            <li class="subItem" *ngFor="let asideItem of item.children; let j=index">
+              <a class="leftIcon" [routerLink]="[asideItem.url]" *ngIf="asideItem.type === 'link'" [routerLinkActive]="['active']">
+                <span class="{{asideItem.icon}}"></span>
+                {{ asideItem.name }}
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class='main_box'>
+    <router-outlet></router-outlet>
+  </div>
+</div>

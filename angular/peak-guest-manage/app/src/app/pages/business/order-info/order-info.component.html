@@ -1,0 +1,273 @@
+<app-crumb></app-crumb>
+<div class="card">
+    <div class="sub-title">
+        <h4>申请信息</h4>
+    </div>
+    <div class="card-content">
+        <table class="gridtable" *ngIf="rows && rows.loanApply">
+            <tr>
+                <td style="width:25%" class="text-right">申请编号</td>
+                <td style="width:25%" class="text-left">{{rows.loanApply.no}}</td>
+                <td style="width:25%" class="text-right">状态</td>
+                <td style="width:25%" class="text-left"><span class="value red"
+                        *ngIf="rows.loanApply.status=='0'">处理中</span>
+                    <span class="value red" *ngIf="rows.loanApply.status=='1'">已终止</span>
+                    <span class="value red" *ngIf="rows.loanApply.status=='2'">已放款</span></td>
+            </tr>
+            <tr>
+                <td class="text-right">客户名称</td>
+                <td class="text-left">{{rows.loanApply.etpName}}</td>
+                <td class="text-right">申请产品</td>
+                <td class="text-left">{{rows.loanApply.productName}}</td>
+            </tr>
+            <tr>
+                <td class="text-right">申请贷款金额</td>
+                <td class="text-left">{{rows.loanApply.amount}}万元</td>
+                <td class="text-right">申请贷款期限</td>
+                <td class="text-left">{{rows.loanApply.term}}个月</td>
+            </tr>
+            <tr>
+                <td class="text-right">申请还款方式</td>
+                <td class="text-left">{{rows.loanApply.repayMethod}}</td>
+                <td class="text-right"></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="card" *ngIf="rows && rows.loanReadyAuth">
+    <div class="sub-title">
+        <h4>预审批结果</h4>
+    </div>
+    <div class="card-content">
+        <table class="gridtable">
+            <tr>
+                <td style="width:25%" class="text-right">预审批结果</td>
+                <td style="width:25%" class="text-left">
+                    <span *ngIf="rows.loanReadyAuth.status === '0'">预审中</span>
+                    <span *ngIf="rows.loanReadyAuth.status === '1'">不通过</span>
+                    <span *ngIf="rows.loanReadyAuth.status === '2'">通过</span>
+                </td>
+                <td style="width:25%" class="text-right">建议额度</td>
+                <td style="width:25%" class="text-left">{{(rows.loanReadyAuth.amount/10000).toFixed(0)}}万</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="card" *ngIf="rows">
+    <div class="sub-title">
+        <h4>申请结果</h4>
+    </div>
+    <div class="card-content">
+        <table class="gridtable">
+            <tr>
+                <td style="width:25%" class="text-right">审批结果</td>
+                <td style="width:25%" class="text-left">
+                    <span *ngIf="rows.loanApply.status === '0'">进行中</span>
+                    <span *ngIf="rows.loanApply.status === '1'">已终止</span>
+                    <span *ngIf="rows.loanApply.status === '2'">已放款</span>
+                </td>
+                <td style="width:25%" class="text-right">审批意见</td>
+                <td style="width:25%" class="text-left">{{rows.loanContractInfo ? '': rows.loanApply.reason}}</td>
+            </tr>
+            <tr *ngIf="rows.loanContractInfo">
+                <td class="text-right">批复贷款金额</td>
+                <td class="text-left">{{rows.loanResultInput.approvalAmount}}万</td>
+                <td class="text-right">批复贷款期限</td>
+                <td class="text-left">{{rows.loanResultInput.approvalTerm}}个月</td>
+            </tr>
+            <tr *ngIf="rows.loanContractInfo">
+                <td class="text-right">批复贷款利率（年化）</td>
+                <td class="text-left">{{rows.loanResultInput.loanRate}}%</td>
+                <td class="text-right">批复还款方式</td>
+                <td class="text-left">{{rows.loanResultInput.repayMethod}}</td>
+            </tr>
+            <tr *ngIf="rows.loanContractInfo">
+                <td class="text-right">贷款合同编号</td>
+                <td class="text-left">{{rows.loanResultInput.no}}</td>
+                <td class="text-right">结果录入时间</td>
+                <td class="text-left">{{rows.loanResultInput.createDate}}</td>
+            </tr>
+            <!-- <tr *ngIf="rows.loanContractInfo">
+            <td class="text-right">放款日期</td><td class="text-left">字段未确认</td><td class="text-right">结果录入时间</td><td class="text-left">字段未确认</td>
+          </tr> -->
+        </table>
+    </div>
+</div>
+
+<div class="card" *ngIf="rows">
+    <div class="sub-title">
+        <h4>进度详情</h4>
+    </div>
+    <div class="card-content">
+        <table class="gridtable">
+            <tr>
+                <td style="width: 50%" class="text-center">时间</td>
+                <td style="width: 50%" class="text-center">进度说明</td>
+            </tr>
+            <tr>
+                <td class="text-center">{{rows.loanApply.createDate}}</td>
+                <td class="text-center">提交申请</td>
+            </tr>
+            <tr>
+                <td class="text-center">{{rows.loanReadyAuth.createDate}}</td>
+                <td class="text-center">预审批</td>
+            </tr>
+            <tr *ngIf="rows.loanApply.status === '1' || rows.loanApply.status === '2'">
+                <td class="text-center">{{rows.loanApply.updateDate}}</td>
+                <td class="text-center"><span *ngIf="rows.loanApply.status === '1'">已终止</span><span
+                        *ngIf="rows.loanApply.status==='2'">已放款</span></td>
+            </tr>
+            <tr></tr>
+        </table>
+    </div>
+</div>
+
+
+<!-- <div class="white_bg list_box" style="margin-bottom:30px;">
+  <div class="g_tit mb20">
+    <h5>申请信息</h5>
+  </div>
+  <div class="inline_row clearfix" *ngIf="rows.loanApply">
+    <div class="inline col_6">
+      <span class="text">订单号</span>
+      <span class="value">{{rows.loanApply.no}}</span>
+    </div>
+    <div class="inline col_6">
+      <span class="text">订单状态</span>
+      <span class="value red" *ngIf="rows.loanApply.status=='0'">处理中</span>
+      <span class="value red" *ngIf="rows.loanApply.status=='1'">已终止</span>
+      <span class="value red" *ngIf="rows.loanApply.status=='2'">处理完成</span>
+    </div>
+  </div>
+  <div class="inline_row clearfix" *ngIf="rows">
+    <div class="inline">
+      <span class="text">客户名称</span>
+      <span class="value">{{rows.loanApply.etpName}}
+      </span>
+    </div>
+  </div>
+  <div class="inline_row clearfix" *ngIf="rows">
+    <div class="inline col_6">
+      <span class="text">申请贷款金额</span>
+      <span class="value">{{rows.loanApply.amount}}万元</span>
+    </div>
+    <div class="inline col_6">
+      <span class="text">申请贷款期限</span>
+      <span class="value">{{rows.loanApply.term}}个月</span>
+    </div>
+  </div>
+  <div class="inline_row clearfix" *ngIf="rows">
+    <div class="inline col_6">
+      <span class="text">申请产品</span>
+      <span class="value">{{rows.loanApply.productName}}</span>
+    </div>
+    <div class="inline col_6">
+      <span class="text">确认签约时间</span>
+      <span class="value">{{transformTime(rows.loanApply.appointConfirmTime)}}</span>
+    </div>
+  </div>
+  <div class="inline_row clearfix" *ngIf="rows">
+    <div class="inline col_6" *ngFor="let item of rows.applyDataList" [ngClass]="{'hidden': item.type=='multiplePic'||item.type=='pic'}">
+      <span class="text">{{item.controlName}}</span>
+      <span class="value" *ngIf="item.type=='dateTime'">{{transformTime(item.value)}}</span>
+      <span class="value" *ngIf="item.type!='dateTime'">{{item.value}}</span>
+    </div>
+  </div>
+</div> -->
+<!-- <div class="white_bg list_box" style="margin-bottom:30px;" *ngIf="rows.loanContractInfo">
+  <div class="g_tit mb20">
+    <h5>平台核准信息</h5>
+  </div>
+  <div class="inline_row clearfix">
+    <div class="inline col_6">
+      <span class="text">批复金额（万元）</span>
+      <span class="value">{{rows.loanContractInfo.approvalAmount}}</span>
+    </div>
+    <div class="inline col_6" *ngIf="rows.loanContractInfo.approvalTerm">
+      <span class="text">批复期限</span>
+      <span class="value">{{rows.loanContractInfo.approvalTerm+'个月'}}</span>
+    </div>
+  </div>
+  <div class="inline_row clearfix">
+    <div class="inline col_6">
+      <span class="text">还款方式</span>
+      <span class="value">{{rows.loanContractInfo.repayMethod}}</span>
+    </div>
+    <div class="inline col_6" *ngIf="rows.loanContractInfo.loanRate">
+      <span class="text">核准利率（年化）</span>
+      <span class="value">{{rows.loanContractInfo.loanRate}}%</span>
+    </div>
+  </div>
+  <div class="inline_row clearfix" *ngIf="rows.loanContractInfo.serviceRate">
+    <div class="inline col_6">
+      <span class="text">居间费率</span>
+      <span class="value">{{rows.loanContractInfo.serviceRate}}%</span>
+    </div>
+  </div>
+</div>
+<div class="white_bg list_box" style="margin-bottom:30px;" *ngIf="rows.repayDetail">
+  <div class="g_tit mb20">
+    <h5>还款计划</h5>
+  </div>
+  <div class="cur_table">
+    <table width="100%" border="0">
+      <thead>
+        <tr>
+          <td>期数</td>
+          <td>应还总金额（万元）</td>
+          <td>应还本金（万元）</td>
+          <td>应还利息</td>
+          <td>最后还款时间</td>
+          <td>备注</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of rows.repayDetail.repayPlan">
+          <td>{{item.borrowTimes}}</td>
+          <td>{{item.repayAccountAll}}</td>
+          <td>{{item.repayAccountCapital}}</td>
+          <td>{{item.repayAccountInterest}}</td>
+          <td>{{item.repayTime}}</td>
+          <td>{{item.repayAccountAllYes}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="white_bg list_box" style="margin-bottom:30px;">
+  <div class="g_tit mb20">
+    <h5>进度详情</h5>
+  </div>
+  <div class="inline_row clearfix">
+    <div class="inline col_6" style='text-align:center;font-weight: bold;'>
+      时间
+    </div>
+    <div class="inline col_6" style='text-align:center;font-weight: bold;'>
+      进度说明
+    </div>
+  </div>
+  <div class="inline_row clearfix">
+    <div class="inline col_6" style='text-align:center;'>
+      {{rows.loanApply.createDate}}
+    </div>
+    <div class="inline col_6" style='text-align:center;'>
+      <span>申请成功</span>
+    </div>
+  </div>
+  <div class="inline_row clearfix" *ngIf="rows.loanApply.status=='1'||rows.loanApply.status=='2'">
+    <div class="inline col_6" style='text-align:center;'>
+      {{rows.loanApply.updateDate}}
+    </div>
+    <div class="inline col_6" style='text-align:center;'>
+      <span *ngIf="rows.loanApply.status=='1'">已终止</span>
+      <span *ngIf="rows.loanApply.status=='2'">处理完成</span>
+    </div>
+  </div>
+</div>
+
+<div class="mask" *ngIf="active">
+  <pic-scale class="picBox" [ImgUrl]="imgUrl" (closeImg)="close($event)"></pic-scale>
+</div> -->

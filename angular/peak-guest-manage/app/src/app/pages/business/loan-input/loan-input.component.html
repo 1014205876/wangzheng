@@ -1,0 +1,272 @@
+<app-crumb></app-crumb>
+<div class="white_bg search-bar" [appResource]="{authName: 'get/order/query'}" style="margin-bottom:30px;">
+    <div class="search_box">
+        <div class="input_row clearfix row">
+            <div class="g_input">
+                <div class="label">
+                    <span>企业名称</span>
+                    <input type="text" placeholder="请输入企业名称" [(ngModel)]="params.etpName">
+                </div>
+            </div>
+            <div class="g_input">
+                <div class="label fl">
+                    <span>申请编号：</span>
+                    <input type="text" placeholder="请输入申请编号" [(ngModel)]="params.no">
+                </div>
+            </div>
+            <div class="g_input">
+                <div class="label fl">
+                    <span>经办人：</span>
+                    <input type="text" placeholder="请输入经办人" [(ngModel)]="params.operator">
+                </div>
+            </div>
+            <div class="g_input">
+                <div class="label fl">
+                    <span>复核人：</span>
+                    <input type="text" placeholder="请输入复核人" [(ngModel)]="params.checker">
+                </div>
+            </div>
+            <div class="g_input">
+                <div class="label fl">
+                    <span>复核状态：</span>
+                    <select [(ngModel)]="params.status">
+                        <option value="">全部</option>
+                        <option value="0">待录入</option>
+                        <option value="1">待复核</option>
+                        <option value="2">已复核</option>
+                        <option value="3">已驳回</option>
+                    </select>
+                </div>
+            </div>
+            <div class="g_input">
+                <div class="label fl">
+                    <button class="btn pri_btn" (click)="searchAct()">查询</button>
+                    <button class="btn pri_btn reset-btn" (click)="reset()">重置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="sub-title">
+        <h4>任务列表</h4>
+    </div>
+    <div class="rowsNull" style="position: relative;top: 20px;" *ngIf="load && rows.length==0">暂无数据！</div>
+    <div class="card-content">
+        <ngx-datatable class="material mb20" [rows]="rows" [columnMode]="'force'" [scrollbarH]="true"
+            [headerHeight]="44" [rowHeight]="'auto'" [limit]="10" [selectionType]="'checkbox'"
+            [selectAllRowsOnPage]="false" *ngIf="rows.length!=0">
+            <ngx-datatable-column name="申请编号" prop="no" [width]="260" [sortable]="false">
+                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                    <span title="{{value}}" style="white-space: nowrap;">{{value}}</span>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="企业名称" prop="etpName" [width]="250" [sortable]="false">
+                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                    <span title="{{value}}" style="white-space: nowrap;">{{value}}</span>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="申请信息" [sortable]="false">
+                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                    {{row.amount}}万/{{row.term}}个月
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="复核状态" [sortable]="false">
+                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                    <!-- <span *ngIf=" ">全部</span> -->
+                    <!-- <span *ngIf="row.status=='0'">待录入</span>
+          <span *ngIf="row.status=='1'">待复核</span>
+          <span *ngIf="row.status=='2'">已复核</span> -->
+                    <label class="reject">已驳回
+                        <label class="icon">
+                            <img (mouseover)="rejectMouseover()" (mouseout)="rejectMouseout()"
+                                src="../../../../assets/images/question.png" />
+                        </label>
+                    </label>
+                    <label *ngIf="rejectHover && row.status=='3'" class="rejectHover">{{row.checkReason}}</label>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="经办人" prop="operator" [sortable]="false"></ngx-datatable-column>
+            <ngx-datatable-column name="经办日期" prop="operatorDate" [sortable]="false"></ngx-datatable-column>
+            <ngx-datatable-column name="复核人" prop="checker" [sortable]="false"></ngx-datatable-column>
+            <ngx-datatable-column name="复核日期" prop="checkerDate" [sortable]="false"></ngx-datatable-column>
+
+
+            <ngx-datatable-column name="操作" [sortable]="false">
+                <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                    <label class="operate" [appResource]="{authName: 'patch/loan-input/input'}" (click)="inputForm(row)"
+                        *ngIf="true">录入结果</label>
+                    <label class="operate" [appResource]="{authName: 'patch/loan-input/check'}"
+                        (click)="inputCheckForm(row)" *ngIf="row.status === '1'">结果复核</label>
+                    <a class="blue" [appResource]="{authName: 'get/order/id/detail'}"
+                        [routerLink]="['/app/business/orderinfo/'+row.loanId]">申请详情</a>
+                    <!-- <a *ngIf="row.status=='0'" class="blue" [appResource]="{authName: 'get/order/id/result'}" [routerLink]="['/app/business/order-result/']" [queryParams]="{'id': row.id,'productId': row.productId}">预审批报告</a> -->
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+
+        <app-page-nav (getCurrentPage)="changePage($event)" [totalPage]='totalPage'></app-page-nav>
+    </div>
+</div>
+
+<app-dialog [show]="input">
+    <header>贷款结果录入 <button type="button" class="close basic-close" (click)="hidden()">
+            <span aria-hidden="true">&times;</span>
+        </button></header>
+    <div class="content">
+        <form (ngSubmit)="resultInputSubmit()">
+            <table>
+                <tr>
+                    <td>申请编号:</td>
+                    <td class="left">{{resultInputParams.identifier}}</td>
+                </tr>
+                <tr>
+                    <td>签约结果:</td>
+                    <td class="left">
+                        <label class='radio'>
+                            <input type="radio" (change)="changeRadio()" name='status' value='1'
+                                [(ngModel)]='resultInputParams.signStatus'>
+                            <div class="after"></div>已放款
+                        </label>
+                        <label class='radio'>
+                            <input type="radio" (change)="changeRadio()" name='status' value='0'
+                                [(ngModel)]='resultInputParams.signStatus'>
+                            <div class="after"></div>已终止
+                        </label>
+                    </td>
+                </tr>
+                <tr *ngIf="resultInputParams.signStatus === '1'">
+                    <td>批复金额：</td>
+                    <td class="left">
+                        <input style="width:30%" [class.required]="submit && !resultInputParams.approvalAmount"
+                            type="number" name="approvalAmount" [(ngModel)]="resultInputParams.approvalAmount">
+                        <span style="margin-left: 10px;">万</span>
+                    </td>
+                </tr>
+                <tr *ngIf="resultInputParams.signStatus === '1'">
+                    <td>批复期限：</td>
+                    <td class="left">
+                        <input type="number" style="width:30%"
+                            [class.required]="submit && !resultInputParams.approvalTerm" name="approvalTerm"
+                            [(ngModel)]="resultInputParams.approvalTerm">
+                        <span style="margin-left: 10px;">个月</span>
+                    </td>
+                </tr>
+                <tr *ngIf="resultInputParams.signStatus === '1'">
+                    <td>批复利率：</td>
+                    <td class="left"><input [class.required]="submit && !resultInputParams.loanRate" type="number"
+                            name="loanRate"
+                            onkeyup="this.value = this.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3')"
+                            style="width:30%" [(ngModel)]="resultInputParams.loanRate"><span
+                            style="margin-left: 10px;">%</span></td>
+                </tr>
+                <tr *ngIf="resultInputParams.signStatus === '1'">
+                    <td>还款方式：</td>
+                    <td class="left">
+                        <select class="select" [class.required]="submit && !resultInputParams.repayMethod"
+                            name="applyRepayMethod" [(ngModel)]="resultInputParams.repayMethod" required="required">
+                            <option value="{{item.name}}" *ngFor="let item of applyRepayMethod">{{item.name}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr *ngIf="resultInputParams.signStatus === '1'">
+                    <td>合同编号</td>
+                    <td class="left"><input [class.required]="submit && !resultInputParams.no" type="number" name="no"
+                            [(ngModel)]="resultInputParams.no"></td>
+                </tr>
+                <tr *ngIf="resultInputParams.signStatus === '0'">
+                    <td>终止原因：</td>
+                    <td class="left">
+                        <textarea [class.required]="submit && !resultInputParams.noSignReason" class="textarea"
+                            name="noSignReason" rows="3" [(ngModel)]="resultInputParams.noSignReason"></textarea>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="footer">
+                <button type="button" class="btn btn-primary btn-outline-primary ripple light"
+                    (click)="hidden()">取消</button>
+                <button type="submit" class="btn btn-primary ripple light">提交</button>
+            </div>
+        </form>
+    </div>
+</app-dialog>
+
+<app-dialog [show]="inputCheck" *ngIf="selectRow">
+    <header>贷款结果复核 <button type="button" class="close basic-close" (click)="hidden()">
+            <span aria-hidden="true">&times;</span>
+        </button></header>
+    <div class="content">
+        <table>
+            <tr>
+                <td>申请编号:</td>
+                <td class="left">{{selectRow.identifier}}</td>
+            </tr>
+            <tr>
+                <td>最终结果:</td>
+                <td class="left">
+                    {{selectRow.signStatus === '1'? '已放款': '已终止'}}
+                </td>
+            </tr>
+            <tr *ngIf="selectRow.signStatus === '1'">
+                <td>批复金额</td>
+                <td class="left">
+                    {{selectRow.approvalAmount}}万
+                </td>
+            </tr>
+            <tr *ngIf="selectRow.signStatus === '1'">
+                <td>批复期限：</td>
+                <td class="left">{{selectRow.approvalTerm}}个月</td>
+            </tr>
+            <tr *ngIf="selectRow.signStatus === '1'">
+                <td>批复利率：</td>
+                <td class="left">{{selectRow.loanRate}}%</td>
+            </tr>
+            <tr *ngIf="selectRow.signStatus === '1'">
+                <td>还款方式：</td>
+                <td class="left">
+                    {{selectRow.repayMethod}}
+                </td>
+            </tr>
+
+            <tr *ngIf="selectRow.signStatus === '1'">
+                <td>合同编号：</td>
+                <td class="left">{{selectRow.no}}</td>
+            </tr>
+            <tr *ngIf="selectRow.signStatus === '0'">
+                <td>终止原因：</td>
+                <td class="left">{{selectRow.noSignReason}}</td>
+            </tr>
+            <tr>
+                <td>复核结果:</td>
+                <td class="left">
+                    <label class='radio'>
+                        <input type="radio" (change)="changeRadio()" name='status' value="1"
+                            [(ngModel)]='resultCheckParams.checkStatus'>
+                        <div class="after"></div>确认无误
+                    </label>
+                    <label class='radio'>
+                        <input type="radio" (change)="changeRadio()" name='status' value='0'
+                            [(ngModel)]='resultCheckParams.checkStatus'>
+                        <div class="after"></div>驳回修改
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>复核意见</td>
+                <td class="left"><textarea [class.required]="submit && !resultCheckParams.checkReason" class="textarea"
+                        rows="3" [(ngModel)]="resultCheckParams.checkReason"></textarea>
+                </td>
+            </tr>
+        </table>
+        <div class="footer">
+            <button type="button" class="btn btn-primary btn-outline-primary ripple light"
+                (click)="hidden()">取消</button>
+            <button type="button" class="btn btn-primary ripple light" (click)="resultCheckSubmit()">提交</button>
+        </div>
+    </div>
+</app-dialog>
+
+
+<ng2-toasty [position]="toast.position"></ng2-toasty>

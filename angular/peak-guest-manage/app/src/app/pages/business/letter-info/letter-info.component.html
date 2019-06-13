@@ -1,0 +1,88 @@
+<app-crumb></app-crumb>
+<div class="white_bg list_box" style="margin-bottom:30px;">
+  <div class="g_tit mb20">
+    <h5>预授信详情</h5>
+  </div>
+  <div class="inline_row clearfix">
+    <div class="inline col_6">
+      <span class="text">姓名</span>
+      <span class="value">{{rows.legalName}}</span>
+    </div>
+    <div class="inline col_6">
+      <span class="text">职位</span>
+      <span class="value">{{rows.position}}</span>
+    </div>
+  </div>
+  <div class="inline_row clearfix">
+    <div class="inline col_6">
+      <span class="text">手机号码</span>
+      <span class="value">{{rows.mobile}}</span>
+    </div>
+    <div class="inline col_6">
+      <span class="text">个人邮箱</span>
+      <span class="value">{{rows.email}}</span>
+    </div>
+    <!-- <div class="inline col_6">
+      <span class="text">QQ</span>
+      <span class="value">{{rows.qq}}</span>
+    </div> -->
+  </div>
+  <div class="inline_row clearfix">
+    <div class="inline col_6">
+      <span class="text">公司名称</span>
+      <span class="value">{{rows.etpName}}</span>
+    </div>
+    <div class="inline col_6">
+      <span class="text">企业白名单评分</span>
+      <span class="value">{{rows.score}}
+        <a class="blue ml40" href="{{reportUrl}}" target="_blank">查看评估报告</a>
+      </span>
+    </div>
+  </div>
+  <div class="inline_row clearfix">
+    <div class="inline">
+      <span class="text">公司地址</span>
+      <span class="value">{{rows.address}}
+        <!-- <a class="blue ml40" href="">查看工商信息</a> -->
+      </span>
+    </div>
+  </div>
+  <div class="inline_row clearfix">
+    <div class="inline col_6">
+      <span class="text">公司电话</span>
+      <span class="value">{{rows.phone}}</span>
+    </div>
+    <div class="inline col_6">
+      <span class="text">公司网址</span>
+      <span class="value">{{rows.website}}</span>
+    </div>
+  </div>
+  <!-- <div class="inline_row clearfix">
+    <div class="inline col_6">
+      <span class="text">企业白名单评分</span>
+      <span class="value">{{rows.score}}
+        <a class="blue ml40" href="{{reportUrl}}" target="_blank">查看评估报告</a>
+      </span>
+    </div>
+    <div class="inline col_6">
+      <span class="text">传真号码</span>
+      <span class="value">{{rows.telephone2}}</span>
+    </div>
+  </div> -->
+  <div class="inline_row clearfix">
+    <div class="inline col_6">
+      <span class="text">评估信用等级</span>
+      <span class="value">{{rows.creditLevel}}</span>
+    </div>
+    <div class="inline col_6">
+      <span class="text">预授信额度（万元）</span>
+      <span class="value">{{rows.loanLimit}}</span>
+    </div>
+  </div>
+  <div class="inline_row clearfix">
+    <div class="inline col_6">
+      <span class="text">授信评估时间</span>
+      <span class="value">{{rows.createDate}}</span>
+    </div>
+  </div>
+</div>

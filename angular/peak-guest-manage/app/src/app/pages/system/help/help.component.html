@@ -1,0 +1,89 @@
+<app-crumb></app-crumb>
+<div class="white_bg" style='margin-bottom:30px' [appResource]="{authName:'get/system/help'}">
+  <div class="search_box">
+    <div class="input_row clearfix">
+      <div class="g_input">
+        <div class="label">
+          <span>问题标题：</span>
+          <input type="text" placeholder='' [(ngModel)]='data.find.title'>
+        </div>
+      </div>
+    </div>
+    <div class="btn_row">
+      <button class="pri_btn" (click)="gettable(data.find.pageNum,data.find)">查询</button>
+      <button class="pri_btn reset" (click)="reset()">重置</button>
+    </div>
+  </div>
+</div>
+<div class="white_bg list_box" style='height:715px'>
+  <div class="g_tit mb20">
+    <h5>
+      查询结果
+      <button [appResource]="{authName:'post/system/help'}" (click)='formshow(false)'>添加帮助</button>
+    </h5>
+  </div>
+  <ngx-datatable class="data-table dt-chk material mb20" [rows]="data.table" [columnMode]="'force'" [scrollbarH]="true"
+    [headerHeight]="44" [rowHeight]="'auto'" [limit]="10">
+    <ngx-datatable-column [sortable]="false" name="问题标题" prop="title"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="未解决数" prop="unsolvedCount"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="已解决数" prop="solvedCount"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="更新时间" prop="updateDate"></ngx-datatable-column>
+    <ngx-datatable-column [sortable]="false" name="操作">
+      <ng-template ngx-datatable-cell-template let-row="row">
+        <div class="flex">
+          <button [appResource]="{authName:'put/system/help'}" (click)='formshow(row)'>修改</button>
+          <button [appResource]="{authName:'delete/system/help'}" (click)='removeshow(row)'>删除</button>
+        </div>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>
+<div class="mask" [hidden]="!data.mengbanshow"></div>
+<div class="modal" [hidden]="!data.formshow">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">{{data.addtext}}帮助</h4>
+      <button type="button" class="close basic-close" (click)="hidden()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">问题标题：</label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" placeholder='请输入标题' maxlength="50" [(ngModel)]='data.form.title'>
+          <!-- <div class="messages text-danger">
+            <span [hidden]="data.form.title">问题标题不能为空</span>
+          </div> -->
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">问题回答：</label>
+        <div class="col-sm-9" style='padding-top:0.375rem'>
+          <app-tiny-editor [elementId]="'my-editor'" (onEditorContentChange)="keyupHandler($event)" [initialContent]="data.form.answer"></app-tiny-editor>
+          <!-- <div class="messages text-danger" [hidden]="data.form.answer">
+            <span>问题回答不能为空</span>
+          </div> -->
+        </div>
+      </div>
+      <div class="form-group form-group-btn row">
+        <button type="button" class="btn btn-primary btn-outline-primary ripple light" (click)="hidden()">取消</button>
+        <button type="button" class="btn btn-primary ripple light" (click)="submit()" [disabled]="data.form.cansubmit">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='confirm' [hidden]="!data.removeshow">
+  <div class="header">
+    <span>系统提示</span>
+  </div>
+  <div class="body">
+    <span>您确定要删除此条帮助信息吗？删除后用户将无法看到本条信息。</span>
+  </div>
+  <div class="footer">
+    <button class='cal' type="button" (click)="hidden()">取消</button>
+    <button class='sure' type="button" (click)="remove()">确定删除</button>
+  </div>
+</div>
+<app-page-nav (getCurrentPage)="changePage($event)" [totalPage]='data.find.pages'></app-page-nav>
+<ng2-toasty [position]="toast.position"></ng2-toasty>

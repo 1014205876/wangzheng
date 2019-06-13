@@ -1,0 +1,83 @@
+<app-crumb [url]='["业务管理","注册客户管理"]'></app-crumb>
+<div class="white_bg" [appResource]="{authName: 'get/user/query'}" style="margin-bottom:30px;">
+  <div class="search_box">
+    <div class="input_row clearfix">
+      <div class="g_input">
+        <div class="label">
+          <span>手机号码：</span>
+          <input type="text" placeholder="请输入手机号码" [(ngModel)]="customerSearch.mobile">
+        </div>
+      </div>
+      <div class="g_input has_date">
+        <div class="label">
+          <span>注册时间：</span>
+          <div class="calendar_box">
+            <app-calendar [placeholder]="'请选择注册开始时间'" (inputText)='customerSearch.regStartDate=$event'></app-calendar>~~
+            <app-calendar [placeholder]="'请选择注册结束时间'" (inputText)='customerSearch.regEndDate=$event' [minDate]='customerSearch.regStartDate'></app-calendar>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="input_row clearfix">
+      <div class="g_input">
+        <div class="label">
+          <span>注册来源：</span>
+          <select [(ngModel)]="customerSearch.registSource">
+            <option value="">所有来源</option>
+            <option value="{{item}}" *ngFor="let item of sourceData">{{item}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="g_input">
+        <div class="label">
+          <span>推广机构：</span>
+          <select [(ngModel)]="customerSearch.insName">
+              <option value="">所有机构</option>
+            <option value="{{item}}" *ngFor="let item of bankList">{{item}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="btn_row">
+      <button class="btn pri_btn" (click)="search(1)">查询</button>
+    </div>
+  </div>
+</div>
+<div class="white_bg list_box">
+  <div class="g_tit mb20">
+    <h5>查询结果</h5>
+  </div>
+  <div class="rowsNull" *ngIf="rows.length==0">暂无数据！</div>
+  <ngx-datatable class="material mb20" [rows]="rows" [columnMode]="'force'" [headerHeight]="44" [rowHeight]="'auto'" [limit]="10"
+    [selectionType]="'checkbox'" [selectAllRowsOnPage]="false" *ngIf="rows.length!=0">
+    <ngx-datatable-column name="手机号码" prop="mobile" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column name="头像" prop="headPort" class="picture" [sortable]="false">
+      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+        <img src="{{value}}" alt="" style="border-radius:100%; width: 36px; height: 36px;">
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="推广机构" prop="insName" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column name="推广人员" prop="insStaffName" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column name="注册来源" prop="registSource" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column name="注册时间" prop="regDate" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column  name="操作" [width]="120" [sortable]="false">
+      <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+        <a class="blue" [appResource]="{authName: 'get/auth/etp/authId/detail'}" [routerLink]="['/app/customer-info']" [queryParams]="{'id': row.id}">查看详情</a>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+  <app-page-nav (getCurrentPage)="changePage($event)" [totalPage]="totalPage"></app-page-nav>
+</div>
+
+<div class="mask" *ngIf="mask"></div>
+<div class='confirm timeErr' *ngIf="mask">
+  <div class="header">
+    <span>提示</span>
+  </div>
+  <div class="body">
+    <span>结束时间不能小于开始时间！</span>
+  </div>
+  <div class="footer">
+    <button type="button" (click)="mask=false;">确认</button>
+  </div>
+</div>

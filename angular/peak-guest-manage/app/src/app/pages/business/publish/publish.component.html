@@ -1,0 +1,139 @@
+<app-crumb [url]='data.url'></app-crumb>
+<div class='title'>产品信息</div>
+<div class="white_bg list_box infor" *ngIf='data.id=="new"'>
+  <div class="mb20 top">
+    <div class="g_input">
+      <div class="label">
+        <span>绑定产品：</span>
+        <select [(ngModel)]='data.index'>
+          <option value="" [disabled]='true'>请选择产品</option>
+          <option *ngFor='let list of data.infor;let index=index' [value]='index'>{{list.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="right" *ngIf='data.infor.length>0' [routerLink]='["/app/business/productinfor",data.infor[data.index].id]'>查看产品详细信息</div>
+  </div>
+  <div *ngFor='let list of data.infor;let index=index' [hidden]='index!=data.index'>
+    <ul class='data'>
+      <li>产品编号：{{list.number}}</li>
+      <li>贷款期限：{{list.minTerm}}-{{list.maxTerm}}月</li>
+      <li>贷款金额：{{list.minAmount}}-{{list.maxAmount}}万</li>
+      <li>贷款利息（年化）：{{list.minRate}}%-{{list.maxRate}}%</li>
+    </ul>
+  </div>
+</div>
+<div class="white_bg list_box infor" *ngIf='data.id!="new"'>
+  <div class="white_bg list_box infor">
+    <div class="mb20 top">
+      <div class="g_input">
+        <div class="label">
+          绑定产品：{{data.product.name}}
+        </div>
+      </div>
+      <div class="right" [routerLink]='["/app/business/productinfor",data.id]'>查看产品详细信息</div>
+    </div>
+    <ul class='data'>
+      <li>产品编号：{{data.product.number}}</li>
+      <li>贷款期限：{{data.product.minTerm}}-{{data.product.maxTerm}}月</li>
+      <li>贷款金额：{{data.product.minAmount}}-{{data.product.maxAmount}}万</li>
+      <li>贷款利息（年化）：{{data.product.minRate}}%-{{data.product.maxRate}}%</li>
+    </ul>
+  </div>
+</div>
+<div class='title'>表单配置
+  <button (click)='addone("group",data.group)'>新增分组</button>
+</div>
+<div class="white_bg list_box form">
+  <div *ngFor='let list of data.group;let index=index'>
+    <div class='tabletitle'>
+      <div class="left">
+        <label>
+          分组名称:<input maxlength="20" style='margin-left:5px' type="text" [(ngModel)]='list.groupName'>
+        </label>
+        <label style='margin-left:10px'>
+          <input type="checkbox" [checked]='list.groupShow=="1"' (change)='checkchange(list,"groupShow",$event)'>
+          分页显示此分组
+        </label>
+      </div>
+      <div class="right">
+        <button [disabled]='index==0' (click)='moveup(index,data.group)'>上移分组</button>
+        <button [disabled]='index==data.group.length-1' (click)='movedown(index,data.group)'>下移分组</button>
+        <button [disabled]='data.group.length<=1' (click)='remove(index,data.group)' class='red'>删除分组</button>
+        <button (click)='addone("formControlList",list.formControlList)'>新增一行</button>
+      </div>
+    </div>
+    <table class='table'>
+      <tr class='tablehead'>
+        <td>排序</td>
+        <td>字段名称</td>
+        <td>业务主键</td>
+        <td>字段类型</td>
+        <td>数据源</td>
+        <td>提示信息</td>
+        <td>是否必填</td>
+        <td>操作</td>
+      </tr>
+      <tr class='tablebody' *ngFor='let row of list.formControlList;let index=index'>
+        <td>
+          {{index+1}}
+        </td>
+        <td>
+          <input maxlength="20" type="text" [(ngModel)]='row.controlName'>
+        </td>
+        <td>
+          <input maxlength="50" type="text" [(ngModel)]='row.controlKey'>
+        </td>
+        <td>
+          <select [(ngModel)]="row.type">
+            <option value="" [disabled]='true'>请选择类型</option>
+            <option *ngFor='let list of type' [value]="list.code">{{list.name}}</option>
+            <!-- <option value="text">单行文本</option> -->
+          </select>
+          <!-- <select [(ngModel)]='row.type'>
+            <option value="">请选择</option>
+            <option value="number">数字</option>
+          </select> -->
+        </td>
+        <td>
+          <!-- <select [(ngModel)]='row.dataSource'>
+            <option value="">请选择</option>
+          </select> -->
+          <select *ngIf='row.type=="select"||row.type=="multipleSelect"' [(ngModel)]="row.dataSource">
+              <option value="" [disabled]='true'>请选择数据源</option>
+              <option *ngFor='let list of dataSource' [value]="list.code">{{list.name}}</option>
+              <!-- <option value="text">单行文本</option> -->
+            </select>
+        </td>
+        <td>
+          <input type="text" [(ngModel)]='row.placeInfo'>
+        </td>
+        <td>
+          <input type="checkbox" [checked]='row.require=="1"' (change)='checkchange(row,"require",$event)'>
+        </td>
+        <td>
+          <div class="flex">
+            <button [disabled]='index==0' (click)='moveup(index,list.formControlList)'>上移</button>
+            <button [disabled]='index==list.formControlList.length-1' (click)='movedown(index,list.formControlList)'>下移</button>
+            <button [disabled]='list.formControlList.length<=1' (click)='remove(index,list.formControlList)'>删除</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<!-- <div class='title'>申请条件</div>
+<div class="white_bg list_box infor">
+  <ul class='data'>
+    <li *ngFor='let list of data.applyCondition;let index=index'>
+      <label>
+        <input type="checkbox" [checked]='list.checked=="1"' (change)='checkchange(list,"checked",$event)'>{{list.name}}
+      </label>
+    </li>
+  </ul>
+</div> -->
+<div class='buttom'>
+  <button (click)='back()'>返回列表</button>
+  <button class='save' *ngIf='data.id=="new"' (click)='submitnew()'>提交审核</button>
+  <button class='save' *ngIf='data.id!="new"' (click)='submitid()'>提交审核</button>
+</div>
+<ng2-toasty [position]="toast.position"></ng2-toasty>

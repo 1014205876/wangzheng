@@ -1,0 +1,15 @@
+.box{line-height: 30px;color: #666;overflow: hidden;text-align: center;}
+
+.page_con{display: inline-block; overflow: hidden;}
+.page_con li{float: left;}
+.page_con li.page_icon>a{width: auto;}
+.page_con li{float: left;padding: 0 6px;}
+.page_con li>a{display: block; padding: 0 10px;height: 30px;line-height: 30px;background-color: transparent; border: 1px solid #666;color: #666; text-align: center;cursor: pointer;user-select:none;}
+.page_con li.disabled>a{border-color: #999;color: #999;cursor: not-allowed;}
+.page_con li.active>a{border: none;color: #716aca;}
+
+.tot_box{display: inline-block; height:30px;vertical-align: top;user-select:none;}
+
+.HMpage{display: inline-block;vertical-align: top;user-select:none;}
+.HMpage input{margin: 0 10px; width: 30px; height: 30px;line-height: 30px;border: 1px solid #666;color: #666; text-align: center;background-color: transparent;}
+.HMpage button{padding: 0 8px;margin: 0 10px; height: 30px;line-height: 30px;border: 1px solid #666;color: #666; text-align: center;background-color: transparent;}

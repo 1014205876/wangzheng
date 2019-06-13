@@ -1,0 +1,67 @@
+<app-crumb></app-crumb>
+<div class="white_bg list_box" style="margin-bottom:30px;">
+  <div class="g_tit mb20">
+    <h5><span class='blue'>{{data.etpName}}</span>信息采集授权书材料</h5>
+  </div>
+  <div class="imgBox clearfix">
+    <h6 class="blue subtitle">授权书</h6>
+    <div class="imgBlock">
+      <ul>
+        <li>
+          <p class="text">授权书编号：{{data.no}}</p>
+          <img src="{{data.authUrl}}" alt="{{data.authUrl}}" srcset="" (click)="imgScale(data.authUrl)">
+          <!-- <img src="{{data.authUrl}}" alt="{{data.authUrl}}"> -->
+          <!-- <pic-scale class="picBox" [ImgUrl]="data.authUrl" #curImg></pic-scale> -->
+          <!-- <pic-scale></pic-scale> -->
+          <p class="imgName">企业信息采集授权书</p>
+        </li>
+        <li>
+          <p class="text">大股东/实际控制人：{{data.controllerName}}（{{data.controllerIdCode}}）</p>
+          <!-- <img src="{{data.controllerAuthUrl}}" alt="{{data.controllerAuthUrl}}"> -->
+          <img src="{{data.controllerAuthUrl}}" alt="{{data.controllerAuthUrl}}" srcset="" (click)="imgScale(data.controllerAuthUrl)">
+          <!-- <pic-scale class="picBox" [ImgUrl]="data.controllerAuthUrl" #curImg></pic-scale> -->
+          <p class="imgName">大股东/实际控制人征信授权书</p>
+        </li>
+        <li>
+          <p class="text">企业法人：{{data.legalName}}（{{data.idCode}}）</p>
+          <!-- <img src="{{data.bodyUrl}}" alt="{{data.bodyUrl}}"> -->
+          <img src="{{data.bodyUrl}}" alt="{{data.bodyUrl}}" srcset="" (click)="imgScale(data.bodyUrl)">
+          <!-- <pic-scale class="picBox" [ImgUrl]="data.bodyUrl" #curImg></pic-scale> -->
+          <p class="imgName">法人手持企业授权书</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="">
+    <h6 class="blue subtitle">审核意见</h6>
+    <textarea class="checkOpinion" placeholder="请输入审核意见" [(ngModel)]='agreement'></textarea>
+    <div class="checkBtns">
+      <button class="btn pri_btn" [appResource]="{authName: 'post/auth/info/pass'}" (click)="flagS='T';mask=true;">审核通过</button>
+      <button class="btn pri_btn" [appResource]="{authName: 'post/auth/info/noPass'}" style="background: #e64340;" (click)="flagS='F';mask=true;">审核失败</button>
+    </div>
+  </div>
+</div>
+<div class="mask" *ngIf="mask"></div>
+<div class="mask" *ngIf="active">
+  <div class="imgScale" *ngIf="active">
+    <img src="{{imgUrl}}" alt="{{imgUrl}}" class="active_img">
+    <img src="../../../../assets/images/close.png" alt="" class="close" (click)="active=false">
+  </div>
+</div>
+<div class='confirm' *ngIf="mask">
+  <div class="header">
+    <span>提示</span>
+  </div>
+  <div class="body">
+    <div class='box' *ngIf="(flagS == 'T')">
+      审核通过？
+    </div>
+    <div class='box' *ngIf="(flagS == 'F')">
+      审核不通过？
+    </div>
+  </div>
+  <div class="footer btns">
+    <button type="button" (click)="mask=false;passResult(flagS)">确定</button>
+    <button type="button" (click)="mask=false;" style=' background-color: #e64340;'>取消</button>
+  </div>
+</div>

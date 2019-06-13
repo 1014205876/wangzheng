@@ -1,0 +1,101 @@
+<app-crumb></app-crumb>
+<div class="white_bg" [appResource]="{authName: 'get/auth/etp/query'}" style="margin-bottom:30px;padding-bottom:30px;">
+  <div class="search_box">
+    <div class="input_row clearfix">
+      <div class="g_input">
+        <div class="label">
+          <span>所属用户：</span>
+          <input type="text" placeholder="请输入所属用户" [(ngModel)]="approveSearch.regMobile">
+        </div>
+        <br>
+        <div class="label">
+          <span>企业名称：</span>
+          <input type="text" placeholder="请输入企业名称" [(ngModel)]="approveSearch.etpName">
+        </div>
+        <!-- <br>
+                <div class="label">
+                    <span>认证状态：</span>
+                    <select [(ngModel)]="approveSearch.status">
+                        <option value="">全部</option>
+                        <option value="0">认证失败</option>
+                        <option value="1">认证通过</option>
+                    </select>
+                </div> -->
+      </div>
+      <div class="g_input">
+        <div class="label">
+          <span>法人手机号码：</span>
+          <input type="text" placeholder="请输入法人手机号码" [(ngModel)]="approveSearch.mobile">
+        </div>
+        <br>
+        <div class="label">
+          <span>姓名：</span>
+          <input type="text" placeholder="请输入法人姓名" [(ngModel)]="approveSearch.legalName">
+        </div>
+      </div>
+      <div class="g_input">
+        <!-- <div class="label">
+                    <span>认证状态：</span>
+                    <select [(ngModel)]="approveSearch.status">
+                        <option value="">全部</option>
+                        <option value="0">认证失败</option>
+                        <option value="1">认证通过</option>
+                    </select>
+                </div>
+                <br> -->
+        <div class="label">
+          <span>统一社会信息代码：</span>
+          <input type="text" placeholder="请输入统一社会信用代码" [(ngModel)]="approveSearch.creditCode">
+        </div>
+        <!-- <div class="label">
+                    <span>机构信用代码：</span>
+                    <input type="text" placeholder="请输入机构信用代码" [(ngModel)]="approveSearch.code">
+                </div> -->
+      </div>
+    </div>
+    <div class="btn_row">
+      <button class="btn pri_btn" (click)="search(1)">查询</button>
+    </div>
+  </div>
+</div>
+<div class="white_bg list_box">
+  <div class="g_tit mb20">
+    <h5>查询结果</h5>
+  </div>
+  <div class="rowsNull" *ngIf="rows.length==0">暂无数据！</div>
+  <ngx-datatable class="material mb20" [rows]="rows" [columnMode]="'force'" [headerHeight]="44" [rowHeight]="'auto'"
+    [limit]="10" [selectionType]="'checkbox'" [selectAllRowsOnPage]="false" *ngIf="rows.length!=0">
+    <ngx-datatable-column name="企业名称" prop="etpName" [width]="250" [sortable]="false">
+      <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+        <span title="{{value}}" style="white-space: nowrap;">{{value}}</span>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="所属用户" prop="regMobile" [sortable]="false">
+      <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+        <span title="{{value}}" style="white-space: nowrap;">{{value}}</span>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="法人姓名" prop="legalName" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column name="统一社会信用代码" prop="creditCode" [sortable]="false"></ngx-datatable-column>
+    <!-- <ngx-datatable-column name="机构信用代码" prop="code" [sortable]="false"></ngx-datatable-column> -->
+    <ngx-datatable-column name="法人身份证号" prop="idCardNum" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column name="状态" prop="status" [sortable]="false">
+      <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+        <span *ngIf="row.status == '0'">已失效</span>
+        <span *ngIf="row.status == '1'">正常</span>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="法人手机号码" prop="mobile" [sortable]="false"></ngx-datatable-column>
+    <ngx-datatable-column name="绑定时间" prop="authDate" [sortable]="false">
+      <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+        {{row.authDate | date:'yyyy-MM-dd'}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="" [width]="120" [sortable]="false">
+      <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+        <a class="blue" [appResource]="{authName: 'get/auth/etp/authId/detail'}" [routerLink]="['/app/business/approveinfo/'+row.id]">绑定信息详情</a>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+  <app-page-nav (getCurrentPage)="changePage($event)" [totalPage]='totalPage'></app-page-nav>
+</div>

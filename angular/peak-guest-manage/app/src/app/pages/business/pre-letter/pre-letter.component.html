@@ -1,0 +1,101 @@
+<app-crumb></app-crumb>
+<div class="white_bg" [appResource]="{authName: 'get/pre/query'}" style="margin-bottom:30px;">
+    <div class="search_box">
+        <div class="input_row clearfix row">
+            <div class="g_input">
+                <div class="label">
+                    <span>微信昵称：</span>
+                    <input type="text" placeholder="请输入微信昵称" [(ngModel)]="letterSearch.nickName">
+                </div>
+
+            </div>
+            <div class=g_input>
+                <div class="label">
+                    <span>手机号码：</span>
+                    <input type="text" placeholder="请输入手机号码" [(ngModel)]="letterSearch.mobile">
+                </div>
+            </div>
+            <div class="g_input">
+                <div class="label">
+                    <span>公司名称：</span>
+                    <input type="text" placeholder="请输入公司名称" [(ngModel)]="letterSearch.etpName">
+                </div>
+
+            </div>
+            <div class="g_input">
+                <div class="label">
+                    <span style='width:5em;'>姓名：</span>
+                    <input type="text" placeholder="请输入法人姓名" [(ngModel)]="letterSearch.legalName">
+                </div>
+            </div>
+            <div class="g_input has_date">
+                <div class="label">
+                    <span>评估日期：</span>
+                    <div class="calendar_box">
+                        <app-calendar [placeholder]="'请选择评估开始日期'" (inputText)='letterSearch.createStartDate=$event'></app-calendar>~~
+                        <app-calendar [placeholder]="'请选择评估结束日期'" (inputText)='letterSearch.createEndDate=$event' [minDate]='letterSearch.createStartDate'></app-calendar>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="btn_row">
+            <button class="btn pri_btn" (click)="search(1)">查询</button>
+        </div>
+    </div>
+</div>
+<div class="white_bg list_box">
+    <div class="g_tit mb20">
+        <h5>查询结果</h5>
+    </div>
+    <div class="rowsNull" *ngIf="rows.length==0">暂无数据！</div>
+    <ngx-datatable class="material mb20" 
+        [rows]="rows" [columnMode]="'force'" 
+        [headerHeight]="44" [rowHeight]="'auto'" [limit]="10" 
+        [selectionType]="'checkbox'" [selectAllRowsOnPage]="false" *ngIf="rows.length!=0">
+        <ngx-datatable-column name="微信昵称" prop="nickName" [sortable]="false">
+            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                <span title="{{value}}" style="white-space: nowrap;">{{value}}</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="手机号码" prop="mobile" [sortable]="false"></ngx-datatable-column>
+        <ngx-datatable-column name="公司名称" prop="etpName" [width]="250" [sortable]="false">
+            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template >
+                <span title="{{value}}">{{value}}</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="信用等级" prop="creditLevel" [sortable]="false"></ngx-datatable-column>
+        <ngx-datatable-column name="姓名" prop="legalName" [sortable]="false"></ngx-datatable-column>
+        <ngx-datatable-column name="职位" prop="position" [sortable]="false"></ngx-datatable-column>
+        <ngx-datatable-column name="预授信额度（万元）" prop="loanLimit" [sortable]="false">
+            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                <span title="{{value}}" style="white-space: nowrap;">{{value}}</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="评估时间" prop="createDate" [sortable]="false"></ngx-datatable-column>
+        <ngx-datatable-column name="操作" [width]="120" [sortable]="false">
+            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                <a class="blue" [appResource]="{authName: 'get/pre/id/detail'}" [routerLink]="['/app/business/letterinfo/'+row.id]">信用额度评估详情</a>
+            </ng-template>
+        </ngx-datatable-column>
+        <!-- <ngx-datatable-column name="" [width]="120">
+            <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+                <a class="red" (click)="delete(row.id)">删除</a>
+            </ng-template>
+        </ngx-datatable-column> -->
+    </ngx-datatable>
+    <app-page-nav (getCurrentPage)="changePage($event)" [totalPage]='totalPage'></app-page-nav>
+</div>
+
+<div class="mask" *ngIf="mask"></div>
+<div class='confirm timeErr' *ngIf="mask">
+  <div class="header">
+    <span>提示</span>
+  </div>
+  <div class="body">
+    <span>结束时间不能小于开始时间！</span>
+  </div>
+  <div class="footer">
+    <button type="button" (click)="mask=false;">确认</button>
+  </div>
+</div>
