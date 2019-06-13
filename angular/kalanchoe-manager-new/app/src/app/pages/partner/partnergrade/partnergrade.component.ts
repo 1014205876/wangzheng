@@ -23,43 +23,43 @@ export class PartnergradeComponent implements OnInit {
     this.getMes()
   }
   getMes (){
-    this.http.getCustomHeaders(
-      'kalanchoe-manager/v1/kalanchoe/backstage/level'
-    ).subscribe(res => {
-      this.rows = res.data
-    })
+    // this.http.getCustomHeaders(
+    //   'kalanchoe-manager/v1/kalanchoe/backstage/level'
+    // ).subscribe(res => {
+    //   this.rows = res.data
+    // })
   }
   edit (id) {
     this.checkId = id;
   }
   delete (num) {
     let levelId = this.rows[num].id
-    this.http.deleteCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/delLevelById/'+levelId).subscribe(e=>{
-        if(e.code==200){
-            this.rows.splice(num,1)
-            this.getMes()
-            this.message.success('等级删除成功')
-        }
-        else{
-            this.message.error(e.reason)
-        }
-    })
+    // this.http.deleteCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/delLevelById/'+levelId).subscribe(e=>{
+    //     if(e.code==200){
+    //         this.rows.splice(num,1)
+    //         this.getMes()
+    //         this.message.success('等级删除成功')
+    //     }
+    //     else{
+    //         this.message.error(e.reason)
+    //     }
+    // })
   }
   save (id){
     this.checkId = null;
     this.update()
   }
   update (){
-    this.http.postCustomHeaders(
-      'kalanchoe-manager/v1/kalanchoe/backstage/level',this.rows
-    ).subscribe(res => {
-      if(res.code == "200"){
-        this.getMes()
-      }else {
-        this.message.error(res.reason)
-      }
+    // this.http.postCustomHeaders(
+    //   'kalanchoe-manager/v1/kalanchoe/backstage/level',this.rows
+    // ).subscribe(res => {
+    //   if(res.code == "200"){
+    //     this.getMes()
+    //   }else {
+    //     this.message.error(res.reason)
+    //   }
       
-    })
+    // })
   }
   add (){
     this.checkId = '';

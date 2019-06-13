@@ -2,7 +2,7 @@ import { DateTransformService } from './../../../shared/service/date-transform.s
 import { HttpService } from './../../../shared/service/http-serve.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Http } from '@angular/http/src/http';
+// import { Http } from '@angular/http/src/http';
 import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
@@ -53,60 +53,60 @@ export class HelpComponent implements OnInit {
     this.data.form.answer = e
   }
   addtable(form) {//添加配置项
-    this.http.postCustomHeaders(
-      'kalanchoe-manager/v1/app/back/help',
-      {
-        title: form.title,
-        answer: form.answer,
-      }
-    ).subscribe(res => {
-      if (res.code == '200') {
-       this.message.success('添加成功')
-      } else {
-        this.message.error('添加失败')
-      }
-      this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
-    })
+    // this.http.postCustomHeaders(
+    //   'kalanchoe-manager/v1/app/back/help',
+    //   {
+    //     title: form.title,
+    //     answer: form.answer,
+    //   }
+    // ).subscribe(res => {
+    //   if (res.code == '200') {
+    //    this.message.success('添加成功')
+    //   } else {
+    //     this.message.error('添加失败')
+    //   }
+    //   this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
+    // })
   }
   removetable(form) {//删除配置项
-    this.http.deleteCustomHeaders(
-      'kalanchoe-manager/v1/app/back/helps/' + form.id
-    ).subscribe(res => {
-      if (res.code == '200') {
-        this.message.success('删除成功')
-      } else {
-        this.message.error('删除失败')
-      }
-      this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
-    })
+    // this.http.deleteCustomHeaders(
+    //   'kalanchoe-manager/v1/app/back/helps/' + form.id
+    // ).subscribe(res => {
+    //   if (res.code == '200') {
+    //     this.message.success('删除成功')
+    //   } else {
+    //     this.message.error('删除失败')
+    //   }
+    //   this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
+    // })
   }
   changetable(form) {//修改配置项
-    this.http.putCustomHeaders(
-      'kalanchoe-manager/v1/app/back/helps/' + form.id,
-      {
-        title: form.title,
-        answer: form.answer,
-      }
-    ).subscribe(res => {
-      if (res.code == '200') {
-       this.message.success('修改成功')
-      } else {
-        this.message.error('修改失败')
-      }
-      this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
-    })
+    // this.http.putCustomHeaders(
+    //   'kalanchoe-manager/v1/app/back/helps/' + form.id,
+    //   {
+    //     title: form.title,
+    //     answer: form.answer,
+    //   }
+    // ).subscribe(res => {
+    //   if (res.code == '200') {
+    //    this.message.success('修改成功')
+    //   } else {
+    //     this.message.error('修改失败')
+    //   }
+    //   this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
+    // })
   }
   gettable(pageNum, find) {//查询配置项
-    this.http.getCustomHeaders(
-      'kalanchoe-manager/v1/app/back/helpsDataGrid?title=' + find.title +
-      '&pageNum=' + pageNum +
-      '&pageSize=' + 10
-    ).subscribe(res => {
-      this.data.table = res.data.list
-      this.data.find.pageNum = res.data.pageNum
-      this.data.find.pages = res.data.pages
-      this.total=res.data.total
-    })
+    // this.http.getCustomHeaders(
+    //   'kalanchoe-manager/v1/app/back/helpsDataGrid?title=' + find.title +
+    //   '&pageNum=' + pageNum +
+    //   '&pageSize=' + 10
+    // ).subscribe(res => {
+    //   this.data.table = res.data.list
+    //   this.data.find.pageNum = res.data.pageNum
+    //   this.data.find.pages = res.data.pages
+    //   this.total=res.data.total
+    // })
   }
   reset() {//重置查询框
     this.data.find.title = '';

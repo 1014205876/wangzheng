@@ -24,13 +24,13 @@ export class BankcardComponent implements OnInit {
     this.getData()
   }
   getData(){
-    this.http.getCustomHeaders('kalanchoe-manager/v1/bank/user/cards?'
-    +'pageNum='+this.pageNum
-    +'&pageSize=10'
-    +'&mobile='+this.mobile).subscribe(e => {
-      this.total=e.data.list.total
-     this.data=e.data.list.list
-    })
+    // this.http.getCustomHeaders('kalanchoe-manager/v1/bank/user/cards?'
+    // +'pageNum='+this.pageNum
+    // +'&pageSize=10'
+    // +'&mobile='+this.mobile).subscribe(e => {
+    //   this.total=e.data.list.total
+    //  this.data=e.data.list.list
+    // })
   }
   pageSearch($event) {
     this.pageNum = $event;

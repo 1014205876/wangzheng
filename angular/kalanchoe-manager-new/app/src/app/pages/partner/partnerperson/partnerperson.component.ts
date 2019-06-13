@@ -53,32 +53,32 @@ export class PartnerpersonComponent implements OnInit {
     }
     //获取所有等级
     getLevel() {
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/level'
-        ).subscribe(res => {
-            this.levelList = res.data
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/level'
+        // ).subscribe(res => {
+        //     this.levelList = res.data
 
-        })
+        // })
     }
     //获取总数据
     getData() {
         this.allChecked = false
         this.indeterminate = false
         this.selected.length = 0
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/partner/userDataGrid?mobile=' + this.findPhone +
-            '&checkTimeStart=' + this.wantStartTime +
-            '&checkTimeEnd=' + this.wantEndTime +
-            '&inviterPhone=' + this.findInviter +
-            '&levelName=' + this.findLevel +
-            '&pageNum=' + this.pageNum +
-            '&pageSize=' + 10
-        ).subscribe(res => {
-            this.allChecked = false
-            this.total = res.data.total
-            this.list = res.data.list
-            this.addCheckBox()
-        })
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/partner/userDataGrid?mobile=' + this.findPhone +
+        //     '&checkTimeStart=' + this.wantStartTime +
+        //     '&checkTimeEnd=' + this.wantEndTime +
+        //     '&inviterPhone=' + this.findInviter +
+        //     '&levelName=' + this.findLevel +
+        //     '&pageNum=' + this.pageNum +
+        //     '&pageSize=' + 10
+        // ).subscribe(res => {
+        //     this.allChecked = false
+        //     this.total = res.data.total
+        //     this.list = res.data.list
+        //     this.addCheckBox()
+        // })
     }
     addCheckBox() {
         this.list.map(item => {
@@ -131,18 +131,18 @@ export class PartnerpersonComponent implements OnInit {
     adjugeLevel() {
         let selected = this.selected
         let levelId = this.levelId
-        this.http.patchCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/partner/user',
-            {
-                list: selected,
-                levelName: levelId
-            }).subscribe(res => {
-                if (res.code == '200') {
-                    this.message.success('调整成功')
-                    this.getData()
-                } else {
-                    this.message.error(res.reason)
-                }
-            })
+        // this.http.patchCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/partner/user',
+        //     {
+        //         list: selected,
+        //         levelName: levelId
+        //     }).subscribe(res => {
+        //         if (res.code == '200') {
+        //             this.message.success('调整成功')
+        //             this.getData()
+        //         } else {
+        //             this.message.error(res.reason)
+        //         }
+        //     })
     }
     //批量选中
     checked($event, id) {

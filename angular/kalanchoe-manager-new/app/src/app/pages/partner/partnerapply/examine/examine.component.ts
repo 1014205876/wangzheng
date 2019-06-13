@@ -3,7 +3,7 @@ import { HttpService } from './../../../../shared/service/http-serve.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
-import { Http } from '@angular/http/src/http';
+// import { Http } from '@angular/http/src/http';
 import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
@@ -84,20 +84,20 @@ export class ExamineComponent implements OnInit {
   }
   
   getMessage (){
-    this.http.getCustomHeaders(
-      'kalanchoe-manager/v1/kalanchoe/backstage/partner/' + this.userid
-    ).subscribe(res => {
-      this.applyInfo = res.result.applyInfo;
-      this.baseInfo = res.result.baseInfo;
-      this.statisticsInfo = res.result.statisticsInfo;
-      if(res.result.applyInfo.status == 0){
-        this.applyInfo.status = "未审核";
-      } else if(res.result.applyInfo.status == 1){
-        this.applyInfo.status = "审核通过";
-      } else if(res.result.applyInfo.status == 2){
-        this.applyInfo.status = "审核不通过";
-      }
-    })
+    // this.http.getCustomHeaders(
+    //   'kalanchoe-manager/v1/kalanchoe/backstage/partner/' + this.userid
+    // ).subscribe(res => {
+    //   this.applyInfo = res.result.applyInfo;
+    //   this.baseInfo = res.result.baseInfo;
+    //   this.statisticsInfo = res.result.statisticsInfo;
+    //   if(res.result.applyInfo.status == 0){
+    //     this.applyInfo.status = "未审核";
+    //   } else if(res.result.applyInfo.status == 1){
+    //     this.applyInfo.status = "审核通过";
+    //   } else if(res.result.applyInfo.status == 2){
+    //     this.applyInfo.status = "审核不通过";
+    //   }
+    // })
   }
   examine (){
     if(!this.status || this.status == ""){
@@ -114,13 +114,13 @@ export class ExamineComponent implements OnInit {
       status: Number(this.status),
       remark: this.remark
     }]
-    this.http.patchCustomHeaders(
-      'kalanchoe-manager/v1/kalanchoe/backstage/partner',params
-    ).subscribe(res => {
-      if(res.code == "200"){
-        this.router.navigate(['/app/partner/partnerapply']);
-      }else {
-      }
-    })
+    // this.http.patchCustomHeaders(
+    //   'kalanchoe-manager/v1/kalanchoe/backstage/partner',params
+    // ).subscribe(res => {
+    //   if(res.code == "200"){
+    //     this.router.navigate(['/app/partner/partnerapply']);
+    //   }else {
+    //   }
+    // })
   }
 }

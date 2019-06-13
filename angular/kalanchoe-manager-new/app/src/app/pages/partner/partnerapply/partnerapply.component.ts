@@ -48,19 +48,19 @@ export class PartnerapplyComponent implements OnInit {
     }
 
     getData() {
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/partnerDataGrid?phone=' + this.findPhone +
-            '&applyTimeStart=' + this.wantStartTime +
-            '&applyTimeEnd=' + this.wantEndTime +
-            '&status=' + this.findStatus +
-            '&mode=' + this.findMode +
-            '&pageNum=' + this.pageNum +
-            '&pageSize=' + 10
-        ).subscribe(res => {
-            this.list = res.data.list
-            this.total = res.data.total
-            this.addStatusText()
-        })
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/partnerDataGrid?phone=' + this.findPhone +
+        //     '&applyTimeStart=' + this.wantStartTime +
+        //     '&applyTimeEnd=' + this.wantEndTime +
+        //     '&status=' + this.findStatus +
+        //     '&mode=' + this.findMode +
+        //     '&pageNum=' + this.pageNum +
+        //     '&pageSize=' + 10
+        // ).subscribe(res => {
+        //     this.list = res.data.list
+        //     this.total = res.data.total
+        //     this.addStatusText()
+        // })
     }
 
     addStatusText() {
@@ -111,16 +111,16 @@ export class PartnerapplyComponent implements OnInit {
                 remark: ''
             }
         })
-        this.http.patchCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/partner', param
-        ).subscribe(res => {
-            if (res.code == "200") {
-                this.message.success('成功')
-                this.getData()
-            } else {
-                this.message.error('失败')
-            }
-        })
+        // this.http.patchCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/partner', param
+        // ).subscribe(res => {
+        //     if (res.code == "200") {
+        //         this.message.success('成功')
+        //         this.getData()
+        //     } else {
+        //         this.message.error('失败')
+        //     }
+        // })
     }
     //判断是否存在已通过/拒绝的选项
     checkType(type) {

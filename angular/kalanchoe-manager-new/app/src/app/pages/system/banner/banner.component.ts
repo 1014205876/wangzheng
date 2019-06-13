@@ -69,71 +69,71 @@ export class BannerComponent implements OnInit {
     }
 
     addtable(form) {//添加配置项
-        this.http.postCustomHeaders(
-            'kalanchoe-manager/v1/app/back/banner',
-            {
-                title: form.title,
-                mediaUrl: form.mediaUrl,
-                detail: form.detail,
-                status: form.status,
-                sort: form.sort,
-                bannerGroup: form.code
-            }
-        ).subscribe(res => {
-            if (res.code == '200') {
-                this.message.success('添加成功')
-            } else {
-                this.message.error('添加失败')
-            }
-            this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
-        })
+        // this.http.postCustomHeaders(
+        //     'kalanchoe-manager/v1/app/back/banner',
+        //     {
+        //         title: form.title,
+        //         mediaUrl: form.mediaUrl,
+        //         detail: form.detail,
+        //         status: form.status,
+        //         sort: form.sort,
+        //         bannerGroup: form.code
+        //     }
+        // ).subscribe(res => {
+        //     if (res.code == '200') {
+        //         this.message.success('添加成功')
+        //     } else {
+        //         this.message.error('添加失败')
+        //     }
+        //     this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
+        // })
     }
     removetable(form) {//删除配置项
-        this.http.deleteCustomHeaders(
-            'kalanchoe-manager/v1/app/back/banners/' + form.id
-        ).subscribe(res => {
-            if (res.code == '200') {
-                this.message.success('删除成功')
-            } else {
-                this.message.error('删除失败')
-            }
-            this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
-        })
+        // this.http.deleteCustomHeaders(
+        //     'kalanchoe-manager/v1/app/back/banners/' + form.id
+        // ).subscribe(res => {
+        //     if (res.code == '200') {
+        //         this.message.success('删除成功')
+        //     } else {
+        //         this.message.error('删除失败')
+        //     }
+        //     this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
+        // })
     }
     changetable(form) {//修改banner图
-        this.http.putCustomHeaders(
-            'kalanchoe-manager/v1/app/back/banners/' + form.id,
-            {
-                title: form.title,
-                mediaUrl: form.mediaUrl,
-                detail: form.detail,
-                status: form.status,
-                sort: form.sort,
-                bannerGroup: form.code
-            }
-        ).subscribe(res => {
-            if (res.code == '200') {
-                this.message.success('修改成功')
-            } else {
-                this.message.error('修改失败')
-            }
-            this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
-        })
+        // this.http.putCustomHeaders(
+        //     'kalanchoe-manager/v1/app/back/banners/' + form.id,
+        //     {
+        //         title: form.title,
+        //         mediaUrl: form.mediaUrl,
+        //         detail: form.detail,
+        //         status: form.status,
+        //         sort: form.sort,
+        //         bannerGroup: form.code
+        //     }
+        // ).subscribe(res => {
+        //     if (res.code == '200') {
+        //         this.message.success('修改成功')
+        //     } else {
+        //         this.message.error('修改失败')
+        //     }
+        //     this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
+        // })
     }
     gettable(pageNum, find) {//查询配置项
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v1/app/back/bannersDataGrid?title=' + find.title +
-            '&status=' + find.status +
-            '&bannerGroup=' + find.code +
-            '&pageNum=' + pageNum +
-            '&pageSize=' + 10
-        ).subscribe(res => {
-            this.list = res.data.list
-            this.total = res.data.total
-            this.pushSwitchValue()
-            this.data.find.pageNum = res.data.pageNum
-            this.data.find.pages = res.data.pages
-        })
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v1/app/back/bannersDataGrid?title=' + find.title +
+        //     '&status=' + find.status +
+        //     '&bannerGroup=' + find.code +
+        //     '&pageNum=' + pageNum +
+        //     '&pageSize=' + 10
+        // ).subscribe(res => {
+        //     this.list = res.data.list
+        //     this.total = res.data.total
+        //     this.pushSwitchValue()
+        //     this.data.find.pageNum = res.data.pageNum
+        //     this.data.find.pages = res.data.pages
+        // })
     }
     pushSwitchValue() {
         this.list.map(item => {
@@ -212,30 +212,30 @@ export class BannerComponent implements OnInit {
                         alert('排序不能为负数')
                     } else {
                         if (this.data.addtext == '添加') {
-                            this.http.getCustomHeaders(
-                                'kalanchoe-manager/v1/app/back/banner/sort?sort=' + this.data.form.sort).subscribe(res => {
-                                    if (res.data == 0) {
-                                        this.addtable(this.data.form);
-                                        this.hidden()
-                                    } else {
-                                        alert("排序不能重复")
-                                    }
-                                })
+                            // this.http.getCustomHeaders(
+                            //     'kalanchoe-manager/v1/app/back/banner/sort?sort=' + this.data.form.sort).subscribe(res => {
+                            //         if (res.data == 0) {
+                            //             this.addtable(this.data.form);
+                            //             this.hidden()
+                            //         } else {
+                            //             alert("排序不能重复")
+                            //         }
+                            //     })
                         }
                         if (this.data.addtext == '修改') {
                             if (this.chooseSort == this.data.form.sort) {
                                 this.changetable(this.data.form);
                                 this.hidden()
                             } else {
-                                this.http.getCustomHeaders(
-                                    'kalanchoe-manager/v1/app/back/banner/sort?sort=' + this.data.form.sort).subscribe(res => {
-                                        if (res.data == 0) {
-                                            this.changetable(this.data.form);
-                                            this.hidden()
-                                        } else {
-                                            alert("排序不能重复")
-                                        }
-                                    })
+                                // this.http.getCustomHeaders(
+                                //     'kalanchoe-manager/v1/app/back/banner/sort?sort=' + this.data.form.sort).subscribe(res => {
+                                //         if (res.data == 0) {
+                                //             this.changetable(this.data.form);
+                                //             this.hidden()
+                                //         } else {
+                                //             alert("排序不能重复")
+                                //         }
+                                //     })
                             }
                         }
                     }
@@ -278,15 +278,15 @@ export class BannerComponent implements OnInit {
     changeStatusData() {
         let status = {}
         status['status'] = this.status
-        this.http.patchCustomHeaders("kalanchoe-manager/v1/app/back/banners/" + this.groupId, status)
-            .subscribe(res => {
-                if (res.code == '200') {
-                    this.message.success('状态修改成功')
-                } else {
-                    this.message.error('状态修改失败')
-                }
-                this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
-            })
+        // this.http.patchCustomHeaders("kalanchoe-manager/v1/app/back/banners/" + this.groupId, status)
+        //     .subscribe(res => {
+        //         if (res.code == '200') {
+        //             this.message.success('状态修改成功')
+        //         } else {
+        //             this.message.error('状态修改失败')
+        //         }
+        //         this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
+        //     })
     }
     removeshow(list) {//点击删除按钮，打开删除弹窗
         this.data.mengbanshow = true;
@@ -328,9 +328,9 @@ export class BannerComponent implements OnInit {
     }
 
     getGroupData() {
-        this.http.getCustomHeaders('kalanchoe-manager/v1/app/back/find/group?bannerGroup=bannerGroup').subscribe(e => {
-            this.groupList = e.data
-        })
+        // this.http.getCustomHeaders('kalanchoe-manager/v1/app/back/find/group?bannerGroup=bannerGroup').subscribe(e => {
+        //     this.groupList = e.data
+        // })
     }
 
     ngDoCheck() {

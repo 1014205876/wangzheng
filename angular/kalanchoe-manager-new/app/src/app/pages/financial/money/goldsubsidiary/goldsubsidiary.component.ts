@@ -36,17 +36,17 @@ export class GoldsubsidiaryComponent implements OnInit {
         this.getData()
     }
     getData() {
-        this.http.getCustomHeaders('kalanchoe-manager/v1/glod/user/back/dataGrid?'
-            + 'pageNum=' + this.pageNum
-            + '&pageSize=10'
-            + '&mobile=' + this.mobile
-            + '&createStartDate=' + this.wantStartTime
-            + '&createEndDate=' + this.wantEndTime
-            + '&type=' + this.findUse
-            + '&income=' + this.findFlow).subscribe(e => {
-                this.total = e.data.list.total
-                this.data = e.data.list.list
-            })
+        // this.http.getCustomHeaders('kalanchoe-manager/v1/glod/user/back/dataGrid?'
+        //     + 'pageNum=' + this.pageNum
+        //     + '&pageSize=10'
+        //     + '&mobile=' + this.mobile
+        //     + '&createStartDate=' + this.wantStartTime
+        //     + '&createEndDate=' + this.wantEndTime
+        //     + '&type=' + this.findUse
+        //     + '&income=' + this.findFlow).subscribe(e => {
+        //         this.total = e.data.list.total
+        //         this.data = e.data.list.list
+        //     })
     }
     search() {
         this.getData()

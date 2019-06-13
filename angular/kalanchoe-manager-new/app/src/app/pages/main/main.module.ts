@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 // 引入外部插件
-import { HttpInterceptorModule } from 'ng-http-interceptor';
+// import { HttpInterceptorModule } from 'ng-http-interceptor';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { SwiperModule, SWIPER_CONFIG, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -299,7 +299,7 @@ const routes: Routes = [
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forChild(routes),
-        HttpInterceptorModule,
+        // HttpInterceptorModule,
         NgZorroAntdModule.forRoot(),
         SwiperModule,
         FileUploadModule,

@@ -26,33 +26,33 @@ export class PublishproductComponent implements OnInit {
     this.getData()
   }
   getData(){
-    this.http.getCustomHeaders(
-      'kalanchoe-manager/v1/app/back/productsDataGrid?number=' + this.findNumber +
-      '&status=' + this.findStatus +
-      '&pageNum=' + this.pageNum +
-      '&pageSize=' + 10
-    ).subscribe(res => {
-      this.data=res.result.list
-      this.total=res.result.total
-    })
+    // this.http.getCustomHeaders(
+    //   'kalanchoe-manager/v1/app/back/productsDataGrid?number=' + this.findNumber +
+    //   '&status=' + this.findStatus +
+    //   '&pageNum=' + this.pageNum +
+    //   '&pageSize=' + 10
+    // ).subscribe(res => {
+    //   this.data=res.result.list
+    //   this.total=res.result.total
+    // })
   }
   fromsale(data){
-    this.http.patchCustomHeaders(
-        'kalanchoe-manager/v1/app/back/products/' + data.productId,//调试7300接口
-        {
-          id:data.productId,
-          status: 3,
-          comments: '',
-        }
-      ).subscribe(e=>{
-          if(e.code==200){
-            this.message.success('下架成功')
-            this.getData()
-          }
-          else{
-            this.message.error('下架失败')
-          }
-      })
+    // this.http.patchCustomHeaders(
+    //     'kalanchoe-manager/v1/app/back/products/' + data.productId,//调试7300接口
+    //     {
+    //       id:data.productId,
+    //       status: 3,
+    //       comments: '',
+    //     }
+    //   ).subscribe(e=>{
+    //       if(e.code==200){
+    //         this.message.success('下架成功')
+    //         this.getData()
+    //       }
+    //       else{
+    //         this.message.error('下架失败')
+    //       }
+    //   })
   }
   search(){
     this.getData()

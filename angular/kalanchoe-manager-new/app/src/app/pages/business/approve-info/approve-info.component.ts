@@ -1,5 +1,3 @@
-import { post } from 'selenium-webdriver/http';
-import { Http } from '@angular/http';
 import { HttpService } from './../../../shared/service/http-serve.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -23,8 +21,8 @@ const zoomInterface: SwiperZoomInterface = {
 })
 export class ApproveInfoComponent implements OnInit {
 
-  @ViewChild('curImg') curImg;
-  @ViewChild('imgBig') imgBig;
+  // @ViewChild('curImg') curImg;
+  // @ViewChild('imgBig') imgBig;
   public imgUrl;
   public active = false;
 
@@ -39,16 +37,16 @@ export class ApproveInfoComponent implements OnInit {
 
   ngOnInit() {
     var id = this.route.snapshot.queryParams.id;
-    this.http.getCustomHeaders("kalanchoe-manager/v1/app/back/etpCers/" + id )
-      .subscribe(res => {
-        let data = res.data;
-        // var ipos = data.bus.busUrl.indexOf('static');
-        // var baseUrl = 'http://192.168.111.212:6200/';
-        // data.bus.busUrl = baseUrl + data.bus.busUrl.substr(ipos).replace(/\\/g,'/');
-        // data.idCer.idUrl = baseUrl + data.idCer.idUrl.substr(ipos).replace(/\\/g,'/');
-        // data.controllerCer.idUrl = baseUrl + data.controllerCer.idUrl.substr(ipos).replace(/\\/g,'/');
-        this.rows = data;
-      });
+    // this.http.getCustomHeaders("kalanchoe-manager/v1/app/back/etpCers/" + id )
+    //   .subscribe(res => {
+    //     let data = res.data;
+    //     // var ipos = data.bus.busUrl.indexOf('static');
+    //     // var baseUrl = 'http://192.168.111.212:6200/';
+    //     // data.bus.busUrl = baseUrl + data.bus.busUrl.substr(ipos).replace(/\\/g,'/');
+    //     // data.idCer.idUrl = baseUrl + data.idCer.idUrl.substr(ipos).replace(/\\/g,'/');
+    //     // data.controllerCer.idUrl = baseUrl + data.controllerCer.idUrl.substr(ipos).replace(/\\/g,'/');
+    //     this.rows = data;
+    //   });
     
     this.config={
       direction: 'horizontal',

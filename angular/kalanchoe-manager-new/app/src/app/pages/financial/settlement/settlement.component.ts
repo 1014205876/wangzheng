@@ -33,19 +33,19 @@ export class SettlementComponent implements OnInit {
     }
 
     getData() {
-        this.http.getCustomHeaders('kalanchoe-manager/v1/settlementApply?'
-            + 'pageNum=' + this.pageNum
-            + '&pageSize=10'
-            + '&mobile=' + this.findPhone
-            + '&type=' + this.findSettleType
-            + '&no=' + this.findNo).subscribe(e => {
-                if(e.code==200){
-                    this.allChecked=false
-                    this.total = e.data.total
-                    this.list = e.data.list
-                    this.addCheckBox()
-                }
-            })
+        // this.http.getCustomHeaders('kalanchoe-manager/v1/settlementApply?'
+        //     + 'pageNum=' + this.pageNum
+        //     + '&pageSize=10'
+        //     + '&mobile=' + this.findPhone
+        //     + '&type=' + this.findSettleType
+        //     + '&no=' + this.findNo).subscribe(e => {
+        //         if(e.code==200){
+        //             this.allChecked=false
+        //             this.total = e.data.total
+        //             this.list = e.data.list
+        //             this.addCheckBox()
+        //         }
+        //     })
     }
     addCheckBox(){
         this.list.map(item=>{
@@ -55,20 +55,20 @@ export class SettlementComponent implements OnInit {
         this.data=this.list
     }
     submit(type, nos) {
-        this.http.putCustomHeaders('kalanchoe-manager/v1/settlementApply/updateStatus?'
-            + 'ids=' + nos
-            + '&status=' + type, {
-                nos: nos,
-                status: type
-            }).subscribe(e => {
-                if (e.code == 200) {
-                    this.message.success('操作成功')
-                }
-                else {
-                    this.message.error(e.reason)
-                }
-                this.getData()
-            })
+        // this.http.putCustomHeaders('kalanchoe-manager/v1/settlementApply/updateStatus?'
+        //     + 'ids=' + nos
+        //     + '&status=' + type, {
+        //         nos: nos,
+        //         status: type
+        //     }).subscribe(e => {
+        //         if (e.code == 200) {
+        //             this.message.success('操作成功')
+        //         }
+        //         else {
+        //             this.message.error(e.reason)
+        //         }
+        //         this.getData()
+        //     })
     }
     apply(type, no, singleOrmany) {
         let index = this.statusList.indexOf(type)

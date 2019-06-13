@@ -62,54 +62,54 @@ export class DetailComponent implements OnInit {
   }
   getDetailData() {
     let id = this.userid
-    this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/user/' + id)
-      .subscribe(e => {
-        console.log(e.data)
-        this.identificationInfo = e.data.identificationInfo
-        this.telNum = e.data.baseInfo.mobile
-        if (e.data.baseInfo.status == 1) {
-          this.statusText = '启用'
-        } else {
-          this.statusText = '禁用'
-        }
-        this.avatar = e.data.baseInfo.headUrl
-        this.status = e.data.baseInfo.status
-        if (e.data.baseInfo.inviterMobile == null) {
-          this.inviter = '无'
-        } else {
-          this.inviter = e.data.baseInfo.inviterMobile //邀请人
-        }
+    // this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/user/' + id)
+    //   .subscribe(e => {
+    //     console.log(e.data)
+    //     this.identificationInfo = e.data.identificationInfo
+    //     this.telNum = e.data.baseInfo.mobile
+    //     if (e.data.baseInfo.status == 1) {
+    //       this.statusText = '启用'
+    //     } else {
+    //       this.statusText = '禁用'
+    //     }
+    //     this.avatar = e.data.baseInfo.headUrl
+    //     this.status = e.data.baseInfo.status
+    //     if (e.data.baseInfo.inviterMobile == null) {
+    //       this.inviter = '无'
+    //     } else {
+    //       this.inviter = e.data.baseInfo.inviterMobile //邀请人
+    //     }
 
-        //基本信息
-        this.registrationSource = e.data.baseInfo.registerSource
-        this.group = e.data.baseInfo.groupName //分组
-        this.education = e.data.baseInfo.education //最高学历
-        this.workTime = e.data.baseInfo.workAge ? (e.data.baseInfo.workAge + "年") : ''
-        this.job = e.data.baseInfo.industry//当前所在行业
-        this.city = e.data.baseInfo.live
-        this.position = e.data.baseInfo.post//当前所在岗位
+    //     //基本信息
+    //     this.registrationSource = e.data.baseInfo.registerSource
+    //     this.group = e.data.baseInfo.groupName //分组
+    //     this.education = e.data.baseInfo.education //最高学历
+    //     this.workTime = e.data.baseInfo.workAge ? (e.data.baseInfo.workAge + "年") : ''
+    //     this.job = e.data.baseInfo.industry//当前所在行业
+    //     this.city = e.data.baseInfo.live
+    //     this.position = e.data.baseInfo.post//当前所在岗位
 
-        //认证信息
-        this.realName = e.data.identificationInfo.realName
-        this.sex = e.data.identificationInfo.sex
-        this.nation = e.data.identificationInfo.nation
-        this.birthday = e.data.identificationInfo.birthday
-        this.idNum = e.data.identificationInfo.idNum
-        this.address = e.data.identificationInfo.address
-        this.expireDate = e.data.identificationInfo.expireDate
-        this.cerOrg = e.data.identificationInfo.cerOrg
-        this.frontUrl = e.data.identificationInfo.frontUrl
-        this.oppositeUrl = e.data.identificationInfo.oppositeUrl
-      })
+    //     //认证信息
+    //     this.realName = e.data.identificationInfo.realName
+    //     this.sex = e.data.identificationInfo.sex
+    //     this.nation = e.data.identificationInfo.nation
+    //     this.birthday = e.data.identificationInfo.birthday
+    //     this.idNum = e.data.identificationInfo.idNum
+    //     this.address = e.data.identificationInfo.address
+    //     this.expireDate = e.data.identificationInfo.expireDate
+    //     this.cerOrg = e.data.identificationInfo.cerOrg
+    //     this.frontUrl = e.data.identificationInfo.frontUrl
+    //     this.oppositeUrl = e.data.identificationInfo.oppositeUrl
+    //   })
 
   }
   getLoginData() {
-    this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/user/' + this.userid + '/logDataGrid?' + 'pageNum=' + this.pageNum + '&pageSize=' + 10
-    ).subscribe(e => {
-      this.total=e.data.total
-      this.list=e.data.list
-      this.addIndexList()
-    })
+    // this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/user/' + this.userid + '/logDataGrid?' + 'pageNum=' + this.pageNum + '&pageSize=' + 10
+    // ).subscribe(e => {
+    //   this.total=e.data.total
+    //   this.list=e.data.list
+    //   this.addIndexList()
+    // })
   }
   addIndexList(){
     var list = this.list

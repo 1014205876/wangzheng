@@ -43,20 +43,20 @@ export class CustomerComponent implements OnInit {
         this.getData()
     }
     getData() {
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/distribution/userDataGrid?mobile=' + this.findPhone +
-            '&registerTimeStart=' + this.wantStartTime +
-            '&registerTimeEnd=' + this.wantEndTime +
-            '&registerSource=' + this.findRegisterSource +
-            '&releation=' + this.findConnect +
-            '&userId=' + this.userId +
-            '&pageNum=' + this.pageNum +
-            '&pageSize=' + 10
-        ).subscribe(res => {
-            this.list = res.result.list
-            this.total = res.result.total
-            this.addIndexList()
-        })
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/distribution/userDataGrid?mobile=' + this.findPhone +
+        //     '&registerTimeStart=' + this.wantStartTime +
+        //     '&registerTimeEnd=' + this.wantEndTime +
+        //     '&registerSource=' + this.findRegisterSource +
+        //     '&releation=' + this.findConnect +
+        //     '&userId=' + this.userId +
+        //     '&pageNum=' + this.pageNum +
+        //     '&pageSize=' + 10
+        // ).subscribe(res => {
+        //     this.list = res.result.list
+        //     this.total = res.result.total
+        //     this.addIndexList()
+        // })
     }
     addIndexList() {
         var list = this.list

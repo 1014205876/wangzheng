@@ -82,18 +82,18 @@ export class OrderResultComponent implements OnInit {
             }
         }
         console.log(data)
-        this.http.postCustomHeaders(
-            'kalanchoe-manager/v1/app/back/loan/result',
-            data
-        ).subscribe(res => {
-            console.log(res);
-            if (res.code == 200) {
-                that.message.create('success', `保存结果成功`, { nzDuration: 2000 });
-                that.goBack();
-              } else {
-                that.message.create('error', `保存结果失败，${res.reason}`, {});
-              }
-        })
+        // this.http.postCustomHeaders(
+        //     'kalanchoe-manager/v1/app/back/loan/result',
+        //     data
+        // ).subscribe(res => {
+        //     console.log(res);
+        //     if (res.code == 200) {
+        //         that.message.create('success', `保存结果成功`, { nzDuration: 2000 });
+        //         that.goBack();
+        //       } else {
+        //         that.message.create('error', `保存结果失败，${res.reason}`, {});
+        //       }
+        // })
     }
 
     dateFtt(fmt, date) { //时间格式化函数 
@@ -124,16 +124,16 @@ export class OrderResultComponent implements OnInit {
         let that = this;
         this.id = this.route.snapshot.queryParams.id;
         this.productId = this.route.snapshot.queryParams.productId;
-        that.http.getCustomHeaders("kalanchoe-manager/v1/app/back/loans/" + that.id)
-            .subscribe(res => {
-                console.log(res);
-                that.loanApply = res.result.loanApply;
-            });
-        that.http.getCustomHeaders("guest-client/v2/app/pre/repayMethod/" + that.productId)
-            .subscribe(res => {
-                console.log(res);
-                that.repayMethodArr = res.result;
-            });
+        // that.http.getCustomHeaders("kalanchoe-manager/v1/app/back/loans/" + that.id)
+        //     .subscribe(res => {
+        //         console.log(res);
+        //         that.loanApply = res.result.loanApply;
+        //     });
+        // that.http.getCustomHeaders("guest-client/v2/app/pre/repayMethod/" + that.productId)
+        //     .subscribe(res => {
+        //         console.log(res);
+        //         that.repayMethodArr = res.result;
+        //     });
         this.formData = this.fb.group({
             status: [this.form.status, [Validators.required]],
             reason: [this.form.reason, [Validators.required]],

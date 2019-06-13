@@ -84,26 +84,26 @@ export class AuditComponent implements OnInit {
   }
 
   getData(){
-    this.http.getCustomHeaders(     
-      'kalanchoe-manager/v1/back/app/cashs?pageNum=' + this.pageNum +
-      '&pageSize=' + 10 +
-      '&applyNo=' + this.findNo +
-      '&mobile=' + this.findPhone +    
-      '&auditStartTime=' + this.findStartTime +
-      '&auditEndTime=' + this.findEndTime +  
-      this.groupStatus 
-    ).subscribe(res => {
-      if(res.code==='200'){
-        this.total = res.data.total;
-        this.pageNum = res.data.pageNum;
-        this.data = res.data.list;
-        this.mapOfCheckedId = {};
-        this.mapOfDisableId ={};
-        this.allChecked = false;
-        this.indeterminate = false;  
-        this.data.forEach( item => this.mapOfDisableId[item.id] = (item.state!== 0 ) )
-      }
-    })
+    // this.http.getCustomHeaders(     
+    //   'kalanchoe-manager/v1/back/app/cashs?pageNum=' + this.pageNum +
+    //   '&pageSize=' + 10 +
+    //   '&applyNo=' + this.findNo +
+    //   '&mobile=' + this.findPhone +    
+    //   '&auditStartTime=' + this.findStartTime +
+    //   '&auditEndTime=' + this.findEndTime +  
+    //   this.groupStatus 
+    // ).subscribe(res => {
+    //   if(res.code==='200'){
+    //     this.total = res.data.total;
+    //     this.pageNum = res.data.pageNum;
+    //     this.data = res.data.list;
+    //     this.mapOfCheckedId = {};
+    //     this.mapOfDisableId ={};
+    //     this.allChecked = false;
+    //     this.indeterminate = false;  
+    //     this.data.forEach( item => this.mapOfDisableId[item.id] = (item.state!== 0 ) )
+    //   }
+    // })
   }
   search() {
     this.pageNum = 1;
@@ -154,13 +154,13 @@ export class AuditComponent implements OnInit {
   }
 
   submitApply(status: string, text: string,ids){
-    this.http.patchCustomHeaders(`kalanchoe-manager/v1/back/app/cashApply/${status}`,ids).subscribe(res => {
-      if(res.code==='200'){
-        this.message.success(`${text}申请操作成功`);
-        this.groupStatus = '&states=0&states=1&states=2';
-        this.getData();
-      }
-    })
+    // this.http.patchCustomHeaders(`kalanchoe-manager/v1/back/app/cashApply/${status}`,ids).subscribe(res => {
+    //   if(res.code==='200'){
+    //     this.message.success(`${text}申请操作成功`);
+    //     this.groupStatus = '&states=0&states=1&states=2';
+    //     this.getData();
+    //   }
+    // })
   }
 
   checkAll(value: boolean): void {

@@ -106,21 +106,21 @@ export class PaymentComponent implements OnInit {
   }
 
   getData(){
-    this.http.getCustomHeaders(     
-      'kalanchoe-manager/v1/back/app/cashs?pageNum=' + this.pageNum +
-      '&pageSize=' + 10 +
-      '&applyNo=' + this.findNo +
-      '&mobile=' + this.findPhone +    
-      '&auditStartTime=' + this.findStartTime +
-      '&auditEndTime=' + this.findEndTime +  
-      this.groupStatus 
-    ).subscribe(res => {
-      if(res.code=="200"){
-        this.total = res.data.total;
-        this.pageNum = res.data.pageNum;
-        this.data = res.data.list;
-      }
-    })
+    // this.http.getCustomHeaders(     
+    //   'kalanchoe-manager/v1/back/app/cashs?pageNum=' + this.pageNum +
+    //   '&pageSize=' + 10 +
+    //   '&applyNo=' + this.findNo +
+    //   '&mobile=' + this.findPhone +    
+    //   '&auditStartTime=' + this.findStartTime +
+    //   '&auditEndTime=' + this.findEndTime +  
+    //   this.groupStatus 
+    // ).subscribe(res => {
+    //   if(res.code=="200"){
+    //     this.total = res.data.total;
+    //     this.pageNum = res.data.pageNum;
+    //     this.data = res.data.list;
+    //   }
+    // })
   }
 
   search() {
@@ -170,16 +170,16 @@ export class PaymentComponent implements OnInit {
       remark:this.enterPayForm.payReason
     }
 
-    this.http.postCustomHeaders('kalanchoe-manager/v1/back/app/cash/pay/input',param).subscribe(res => {
-      this.handleCancelEnter();
-      if (res.code == "200") {
-          this.getData();
-          this.message.success('录入划付结果成功');
-          this.groupStatus = '&states=1&states=3&states=4';
-      } else {
-         this.message.error('录入划付结果失败');
-      }
-    })
+    // this.http.postCustomHeaders('kalanchoe-manager/v1/back/app/cash/pay/input',param).subscribe(res => {
+    //   this.handleCancelEnter();
+    //   if (res.code == "200") {
+    //       this.getData();
+    //       this.message.success('录入划付结果成功');
+    //       this.groupStatus = '&states=1&states=3&states=4';
+    //   } else {
+    //      this.message.error('录入划付结果失败');
+    //   }
+    // })
   }
 
   handleCancelEnter(){

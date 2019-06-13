@@ -110,19 +110,19 @@ export class businessorderComponent implements OnInit {
 
     shareProfit() {//为选中订单执行分润
         this.profitModel.modalLoading = true;
-        this.http.patchCustomHeaders(
-            "kalanchoe-manager/v2/app/pre/shareProfit"
-            , this.displayData)
-            .subscribe(res => {
-                if (res.code == '200') {
-                    this.message.success('分润成功')
-                    this.getData()
-                } else {
-                    this.message.error(res.reason)
-                }
-                this.profitModel.modalShow = false;
-                this.profitModel.modalLoading = false;
-            })
+        // this.http.patchCustomHeaders(
+        //     "kalanchoe-manager/v2/app/pre/shareProfit"
+        //     , this.displayData)
+        //     .subscribe(res => {
+        //         if (res.code == '200') {
+        //             this.message.success('分润成功')
+        //             this.getData()
+        //         } else {
+        //             this.message.error(res.reason)
+        //         }
+        //         this.profitModel.modalShow = false;
+        //         this.profitModel.modalLoading = false;
+        //     })
     }
 
     change(e) {//导入文件时执行的函数（一直触发，直到上传成功）返回url
@@ -133,19 +133,19 @@ export class businessorderComponent implements OnInit {
     }
 
     importOrder(url) {//将得到的URL路径发送给后端完成导入
-        this.http.postCustomHeaders(
-            'kalanchoe-manager/v2/app/pre/importLoans',
-            {
-                fileUrl: url
-            }
-        ).subscribe(res => {
-            if (res.code == '200') {
-                this.message.success('导入成功')
-                this.getData()
-            } else {
-                this.message.error('导入失败')
-            }
-        })
+        // this.http.postCustomHeaders(
+        //     'kalanchoe-manager/v2/app/pre/importLoans',
+        //     {
+        //         fileUrl: url
+        //     }
+        // ).subscribe(res => {
+        //     if (res.code == '200') {
+        //         this.message.success('导入成功')
+        //         this.getData()
+        //     } else {
+        //         this.message.error('导入失败')
+        //     }
+        // })
     }
 
     ngOnInit() {
@@ -162,32 +162,32 @@ export class businessorderComponent implements OnInit {
     }
 
     getProduct() {//获取申请产品数组
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v2/app/pre/product'
-        ).subscribe(res => {
-            this.productArr = res.data
-        })
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v2/app/pre/product'
+        // ).subscribe(res => {
+        //     this.productArr = res.data
+        // })
     }
 
     getData() {//获取表格信息
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v2/app/pre/loansGrid'
-            + "?no=" + this.no
-            + "&etpName=" + this.etpName
-            + '&regMobile=' + this.regMobile
-            + '&insStaffName=' + this.insStaffName
-            + '&productId=' + this.productId
-            + "&loanStartDate=" + this.wantStartTime
-            + "&loanEndDate=" + this.wantEndTime
-            + '&pageNum=' + this.pageNum
-            + '&pageSize=' + 10
-        ).subscribe(res => {
-            this.data = res.data.list;
-            this.total = res.data.total
-            this.displayData.length = 0;
-            this.indeterminate = false;
-            this.allChecked = false;
-        })
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v2/app/pre/loansGrid'
+        //     + "?no=" + this.no
+        //     + "&etpName=" + this.etpName
+        //     + '&regMobile=' + this.regMobile
+        //     + '&insStaffName=' + this.insStaffName
+        //     + '&productId=' + this.productId
+        //     + "&loanStartDate=" + this.wantStartTime
+        //     + "&loanEndDate=" + this.wantEndTime
+        //     + '&pageNum=' + this.pageNum
+        //     + '&pageSize=' + 10
+        // ).subscribe(res => {
+        //     this.data = res.data.list;
+        //     this.total = res.data.total
+        //     this.displayData.length = 0;
+        //     this.indeterminate = false;
+        //     this.allChecked = false;
+        // })
     }
 
     pageSearch($event) {//点击分页器切换

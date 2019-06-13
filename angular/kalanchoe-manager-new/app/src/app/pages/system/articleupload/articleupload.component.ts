@@ -42,16 +42,16 @@ export class ArticleuploadComponent implements OnInit {
         this.getData()
     }
     getData() {
-        this.http.getCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/articles?'
-            + 'pageNum=' + this.pageNum
-            + '&pageSize=10'
-            + '&starttime=' + this.wantStartTime
-            + '&endtime=' + this.wantEndTime
-            + '&title=' + this.findTittle
-            + '&status=' + this.findStaus).subscribe(e => {
-                this.total = e.data.total
-                this.data = e.data.list
-            })
+        // this.http.getCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/articles?'
+        //     + 'pageNum=' + this.pageNum
+        //     + '&pageSize=10'
+        //     + '&starttime=' + this.wantStartTime
+        //     + '&endtime=' + this.wantEndTime
+        //     + '&title=' + this.findTittle
+        //     + '&status=' + this.findStaus).subscribe(e => {
+        //         this.total = e.data.total
+        //         this.data = e.data.list
+        //     })
     }
     search() {
         this.pageNum = '1'
@@ -75,10 +75,10 @@ export class ArticleuploadComponent implements OnInit {
             articlesDetailId: this.backChoosed.id,
             status: 3
         }
-        this.http.patchCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/articles/' + params.articlesDetailId + "?status=" + params.status, params).subscribe(e => {
-            this.getData()
-            this.showBack = false
-        })
+        // this.http.patchCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/articles/' + params.articlesDetailId + "?status=" + params.status, params).subscribe(e => {
+        //     this.getData()
+        //     this.showBack = false
+        // })
     }
     showBackCancel() {
         this.showBack = false
@@ -87,9 +87,9 @@ export class ArticleuploadComponent implements OnInit {
         let params = {
             articlesDetailId: data.id
         }
-        this.http.patchCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/articles/job/' + params.articlesDetailId, params).subscribe(e => {
-            this.getData()
-        })
+        // this.http.patchCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/articles/job/' + params.articlesDetailId, params).subscribe(e => {
+        //     this.getData()
+        // })
     }
 
     //查看文章

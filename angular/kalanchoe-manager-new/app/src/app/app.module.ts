@@ -7,9 +7,10 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { AppComponent } from './app.component';
 import { RouterModule,Routes } from '@angular/router'
 import { AppLoadModule } from './shared/app-load/app-load.module';
-import { HttpModule } from '@angular/http';
 
 import { MainModule } from './pages/main/main.module';
+
+import { HttpService } from './shared/service/http-serve/http.service'
 
 const routes: Routes=[
 ]
@@ -26,10 +27,10 @@ const routes: Routes=[
     NgZorroAntdModule.forRoot(),
     RouterModule.forRoot(routes),
     AppLoadModule,
-    HttpModule,
     MainModule
   ],
   providers:[
+    HttpService
   ],
   bootstrap: [ AppComponent ]
 })

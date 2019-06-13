@@ -46,29 +46,29 @@ export class OrderComponent implements OnInit {
         this.getPatNum()
     }
     getData() {
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/distribution/orderDataGrid?mobile=' + this.findPhone +
-            '&createTimeStart=' + this.wantStartTime +
-            '&createTimeEnd=' + this.wantEndTime +
-            '&etpName=' + this.findEtpName +
-            '&status=' + this.findStatus +
-            '&no=' + this.findNo +
-            '&releation=' + this.findReleation +
-            '&productId=' + this.findProductId +
-            '&userId=' + this.userId +
-            '&pageNum=' + this.pageNum +
-            '&pageSize=' + 10
-        ).subscribe(res => {
-            this.data = res.result.list
-            this.total = res.result.total
-        })
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/distribution/orderDataGrid?mobile=' + this.findPhone +
+        //     '&createTimeStart=' + this.wantStartTime +
+        //     '&createTimeEnd=' + this.wantEndTime +
+        //     '&etpName=' + this.findEtpName +
+        //     '&status=' + this.findStatus +
+        //     '&no=' + this.findNo +
+        //     '&releation=' + this.findReleation +
+        //     '&productId=' + this.findProductId +
+        //     '&userId=' + this.userId +
+        //     '&pageNum=' + this.pageNum +
+        //     '&pageSize=' + 10
+        // ).subscribe(res => {
+        //     this.data = res.result.list
+        //     this.total = res.result.total
+        // })
     }
     getPatNum() {
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/product'
-        ).subscribe(res => {
-            this.productList = res.result
-        })
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/product'
+        // ).subscribe(res => {
+        //     this.productList = res.result
+        // })
     }
     search() {
         this.pageNum = 1

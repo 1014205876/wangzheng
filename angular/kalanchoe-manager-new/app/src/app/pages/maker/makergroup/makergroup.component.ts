@@ -54,20 +54,20 @@ export class MakergroupComponent implements OnInit {
     }
 
     getGroupData() {
-        this.http.getCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/groupDataGrid?groupName=' + this.findGroupName +
-            '&status=' + this.findStatus +
-            '&pageNum=' + this.pageNum +
-            '&pageSize=' + 10)
-            .subscribe(e => {
-                this.total = e.data.total;
-                this.list = e.data.list;
-                this.pushSwitchValue();
-                //复选框相关参数重置
-                this.selected = [];
-                this.indeterminate = false;
-                this.allChecked = false;
-            })
+        // this.http.getCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/groupDataGrid?groupName=' + this.findGroupName +
+        //     '&status=' + this.findStatus +
+        //     '&pageNum=' + this.pageNum +
+        //     '&pageSize=' + 10)
+        //     .subscribe(e => {
+        //         this.total = e.data.total;
+        //         this.list = e.data.list;
+        //         this.pushSwitchValue();
+        //         //复选框相关参数重置
+        //         this.selected = [];
+        //         this.indeterminate = false;
+        //         this.allChecked = false;
+        //     })
     }
 
     pushSwitchValue() {
@@ -119,22 +119,22 @@ export class MakergroupComponent implements OnInit {
         let selected = []
         selected.push(id)
         let status = this.status
-        this.http.patchCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/group',
-            {
-                'status': status,
-                'list': selected
-            }
-        ).subscribe(res => {
-            if (res.code == '200') {
-                this.getGroupData();
-                this.message.success('状态修改成功', { nzDuration: 1500 })
-            }
-            else {
-                this.getGroupData()
-                this.message.error(res.reason);
-            }
-        })
+        // this.http.patchCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/group',
+        //     {
+        //         'status': status,
+        //         'list': selected
+        //     }
+        // ).subscribe(res => {
+        //     if (res.code == '200') {
+        //         this.getGroupData();
+        //         this.message.success('状态修改成功', { nzDuration: 1500 })
+        //     }
+        //     else {
+        //         this.getGroupData()
+        //         this.message.error(res.reason);
+        //     }
+        // })
     }
 
     checked(status: boolean, id) {
@@ -193,21 +193,21 @@ export class MakergroupComponent implements OnInit {
     }
 
     manyDisabled() {//点击禁用按钮批量禁用
-        this.http.patchCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/group'
-            , {
-                'status': '0',
-                'list': this.selected
-            }
+        // this.http.patchCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/group'
+        //     , {
+        //         'status': '0',
+        //         'list': this.selected
+        //     }
 
-        ).subscribe(res => {
-            if (res.code == '200') {
-                this.message.success('禁用成功', { nzDuration: 1500 })
-            } else {
-                this.message.error(res.reason);
-            }
-            this.getGroupData()
-        })
+        // ).subscribe(res => {
+        //     if (res.code == '200') {
+        //         this.message.success('禁用成功', { nzDuration: 1500 })
+        //     } else {
+        //         this.message.error(res.reason);
+        //     }
+        //     this.getGroupData()
+        // })
     }
 
     DisableMoadleCancel() {
@@ -228,21 +228,21 @@ export class MakergroupComponent implements OnInit {
     }
 
     manyAble() {//点击启用按钮批量启用
-        this.http.patchCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/group'
-            , {
-                'status': 1,
-                'list': this.selected
-            }
+        // this.http.patchCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/group'
+        //     , {
+        //         'status': 1,
+        //         'list': this.selected
+        //     }
 
-        ).subscribe(res => {
-            if (res.code == '200') {
-                this.message.success('启用成功', { nzDuration: 1500 })
-            } else {
-                this.message.error(res.reason);
-            }
-            this.getGroupData()
-        })
+        // ).subscribe(res => {
+        //     if (res.code == '200') {
+        //         this.message.success('启用成功', { nzDuration: 1500 })
+        //     } else {
+        //         this.message.error(res.reason);
+        //     }
+        //     this.getGroupData()
+        // })
     }
 
     AbleMoadleOk() {
@@ -273,22 +273,22 @@ export class MakergroupComponent implements OnInit {
         }
     }
     addGroup() {
-        this.http.postCustomHeaders(
-            'kalanchoe-manager/v1/kalanchoe/backstage/group',
-            {
-                groupName: this.groupName,
-                commissionRate: this.commissionRate,
-                remark: this.remark
-            }).subscribe(res => {
-                if (res.code == '200') {
-                    this.getGroupData()
-                    this.message.success('添加分组成功')
-                }
-                else {
-                    this.message.error('该分组已存在')
-                }
+        // this.http.postCustomHeaders(
+        //     'kalanchoe-manager/v1/kalanchoe/backstage/group',
+        //     {
+        //         groupName: this.groupName,
+        //         commissionRate: this.commissionRate,
+        //         remark: this.remark
+        //     }).subscribe(res => {
+        //         if (res.code == '200') {
+        //             this.getGroupData()
+        //             this.message.success('添加分组成功')
+        //         }
+        //         else {
+        //             this.message.error('该分组已存在')
+        //         }
 
-            })
+        //     })
     }
     AddMoadleCancel() {
         this.showAddMoadl = false
@@ -317,22 +317,22 @@ export class MakergroupComponent implements OnInit {
         }
     }
     changeGroup() {
-        this.http.putCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/group',
-            {
-                id: this.groupId,
-                groupName: this.oldGroupName,
-                commissionRate: this.oldCommissionRate,
-                remark: this.oldRemark
-            }).subscribe(res => {
-                if (res.code == '200') {
-                    this.getGroupData()
-                    this.message.success('修改分组成功')
-                }
-                else {
-                    this.message.error('该分组已存在')
-                }
+        // this.http.putCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/group',
+        //     {
+        //         id: this.groupId,
+        //         groupName: this.oldGroupName,
+        //         commissionRate: this.oldCommissionRate,
+        //         remark: this.oldRemark
+        //     }).subscribe(res => {
+        //         if (res.code == '200') {
+        //             this.getGroupData()
+        //             this.message.success('修改分组成功')
+        //         }
+        //         else {
+        //             this.message.error('该分组已存在')
+        //         }
 
-            })
+        //     })
     }
 
 

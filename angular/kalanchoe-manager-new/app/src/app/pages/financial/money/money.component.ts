@@ -46,13 +46,13 @@ export class MoneyComponent implements OnInit {
         this.getData()
     }
     getData() {
-        this.http.getCustomHeaders('kalanchoe-manager/v1/account/user/dataGrid?'
-            + 'pageNum=' + this.pageNum
-            + '&pageSize=10'
-            + '&mobile=' + this.findPhone).subscribe(e => {
-                this.data = e.data.list
-                this.total = e.data.total
-            })
+        // this.http.getCustomHeaders('kalanchoe-manager/v1/account/user/dataGrid?'
+        //     + 'pageNum=' + this.pageNum
+        //     + '&pageSize=10'
+        //     + '&mobile=' + this.findPhone).subscribe(e => {
+        //         this.data = e.data.list
+        //         this.total = e.data.total
+        //     })
     }
     search() {
         this.pageNum = 1
@@ -70,20 +70,20 @@ export class MoneyComponent implements OnInit {
     }
     //选择获取账户余额（余额，佣金，奖金）
     getCount(type) {
-        this.http.getCustomHeaders('kalanchoe-manager/v1/account/deploy/show?'
-            + 'mobile=' + this.mobile
-            + '&type=' + type).subscribe(e => {
-                if (type == '1') {
-                    this.availableMoney = e.data.canAccount
-                }
-                if (type == '2') {
-                    this.availableCommissions = e.data.canAccount
-                }
-                if (type == '3') {
-                    this.availableBonuses = e.data.canAccount
-                }
+        // this.http.getCustomHeaders('kalanchoe-manager/v1/account/deploy/show?'
+        //     + 'mobile=' + this.mobile
+        //     + '&type=' + type).subscribe(e => {
+        //         if (type == '1') {
+        //             this.availableMoney = e.data.canAccount
+        //         }
+        //         if (type == '2') {
+        //             this.availableCommissions = e.data.canAccount
+        //         }
+        //         if (type == '3') {
+        //             this.availableBonuses = e.data.canAccount
+        //         }
 
-            })
+        //     })
     }
     reconciliationCancel() {
         this.showReconciliation = false
@@ -180,22 +180,22 @@ export class MoneyComponent implements OnInit {
         if (this.radiovalue == '0') {
             method = 'minus'
         }
-        this.http.postCustomHeaders('kalanchoe-manager/v1/account/deploy', {
-            type: type,
-            mobile: mobile,
-            account: account,
-            remark: remark,
-            method: method
-        }).subscribe(e => {
-            if (e.code == 200) {
-                this.message.success('调账成功')
-            }
-            if (e.code != 200) {
-                this.message.error(e.reason + ',调账失败')
-            }
-            this.getData()
-            this.clearData()
-        })
+        // this.http.postCustomHeaders('kalanchoe-manager/v1/account/deploy', {
+        //     type: type,
+        //     mobile: mobile,
+        //     account: account,
+        //     remark: remark,
+        //     method: method
+        // }).subscribe(e => {
+        //     if (e.code == 200) {
+        //         this.message.success('调账成功')
+        //     }
+        //     if (e.code != 200) {
+        //         this.message.error(e.reason + ',调账失败')
+        //     }
+        //     this.getData()
+        //     this.clearData()
+        // })
     }
     pageSearch($event) {
         this.pageNum = $event
