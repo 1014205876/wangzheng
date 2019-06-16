@@ -5,6 +5,54 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "CodeLens (Launch) - Conver",
+            "request": "launch",
+            "mainClass": "Conver"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Arith",
+            "request": "launch",
+            "mainClass": "Arith"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Eval",
+            "request": "launch",
+            "mainClass": "Eval"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Val",
+            "request": "launch",
+            "mainClass": "Val"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Part",
+            "request": "launch",
+            "mainClass": "Part"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Gess",
+            "request": "launch",
+            "mainClass": "Gess"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Number",
+            "request": "launch",
+            "mainClass": "Number"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - First",
+            "request": "launch",
+            "mainClass": "Number.First"
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
