@@ -6,6 +6,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Compound",
+            "request": "launch",
+            "mainClass": "Compound"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Conver",
             "request": "launch",
             "mainClass": "Conver"

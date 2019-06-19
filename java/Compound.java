@@ -12,6 +12,6 @@ public class Compound {
             }
         }
         String word = "hello java";
-        System.out.println(wprd);
+        System.out.println(word);
     }
 }
