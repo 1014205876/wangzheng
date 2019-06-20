@@ -67,7 +67,7 @@ export class OrderInfoComponent implements OnInit {
     var id = this.route.snapshot.params.id;
     this.http.getCustomHeaders("/v1/app/back/loans/" + id)
       .subscribe(res => {
-        let data = res.result;
+        let data = res.data;
         this.rows = data;
         if (this.rows['applyDataList']) {
           this.rows['applyDataList'].forEach(item => {

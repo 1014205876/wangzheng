@@ -55,9 +55,9 @@ export class OrderComponent implements OnInit {
       +"&status="+encodeURIComponent(this.orderSearch.status?this.orderSearch.status:'')
       +'&pageNum='+(e?e:'1')+'&pageSize=10'
     ).subscribe(res => {
-        let data=res.result.list;
+        let data=res.data.list;
         this.rows=data;
-        this.totalPage=res.result.navigatepageNums.length;
+        this.totalPage=res.data.navigatepageNums.length;
       })
   }
 
