@@ -7,13 +7,16 @@ const app = express();
 const server = app.listen(linsen);
 var router = express.Router();
 
-router.get('*', (req, res) => {
-    console.log(123)
-    // res.send({
-    //     success: "成功",
-    //     data: '返回' // 权限数据
-    // })
-})
+
+
+app.use('/api',
+    router.get('/get', (req, res) => {
+        res.send({
+            success: "成功",
+            data: '返回' // 权限数据
+        })
+    }))
+
 
 //静态页面的入口文件夹
 app.use(express.static(path.join(__dirname, 'dist')));
