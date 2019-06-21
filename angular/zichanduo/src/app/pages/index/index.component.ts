@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpServe } from 'src/app/shared/service/http-serve.service'
 
 @Component({
     selector: 'app-index',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-    constructor() { }
+    constructor(
+        private http: HttpServe
+    ) { }
 
     toTop = false;//控制回到顶部按钮的显示隐藏
     modelShow = false;//控制弹窗的显示隐藏
@@ -154,7 +157,7 @@ export class IndexComponent implements OnInit {
             document.body.scrollTop = nowTop
             times++
             if (times > 50) {//滚动50次后停止
-                nowTop=getTop
+                nowTop = getTop
                 document.documentElement.scrollTop = nowTop
                 document.body.scrollTop = nowTop
                 clearInterval(this.time1)
@@ -162,13 +165,26 @@ export class IndexComponent implements OnInit {
         }, 10);
     }
 
-    stopPropagation(e){
+    stopPropagation(e) {
         e.stopPropagation()
     }
 
+
+    getLeftMenu() { // 获取左导航
+        this.http.get('api/get', {}, true).then((res) => {
+            console.log(res)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+
+
     ngOnInit() {
+        this.getLeftMenu();
+
         document.onscroll = () => {//滚动监听，控制nav栏的显示隐藏
-            let scrollTop = document.documentElement.scrollTop|| document.body.scrollTop
+            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
             if (!!document.getElementById('msg')) {
                 if (scrollTop > document.getElementById('msg').offsetTop) {
                     this.toTop = true
@@ -178,8 +194,9 @@ export class IndexComponent implements OnInit {
             }
         }
     }
-    
+
     ngOnDestroy() {
+
         document.onscroll = null;
         clearInterval(this.time1);
     }
