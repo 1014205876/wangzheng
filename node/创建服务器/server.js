@@ -4,24 +4,34 @@ const path = require('path');
 
 const linsen = 3300;
 const app = express();
-const server = app.listen(linsen);
 var router = express.Router();
 
+let data = [];
 
+app.listen(linsen);
 
 app.use('/api',
     router.get('/get', (req, res) => {
         res.send({
-            success: "成功",
+            code: 200,
+            req:req,
+            // res:res,
             data: '返回' // 权限数据
         })
-    }))
+    }),
+    router.post('/login', (req, res) => {
+        res.send({
+            code: 200,
+            req:req,
+            res:res,
+            data: '返回' // 权限数据
+        })
+    })
+)
 
 
 //静态页面的入口文件夹
 app.use(express.static(path.join(__dirname, 'dist')));
-//登出cas
-// app.get('/logout', casClient.logout());
 
 //把路由交给angular管理
 app.get('*', function (req, res) {

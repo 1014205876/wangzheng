@@ -6,6 +6,48 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Opinion",
+            "request": "launch",
+            "mainClass": "Opinion"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - StartOrEnd",
+            "request": "launch",
+            "mainClass": "StartOrEnd"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - NewStr",
+            "request": "launch",
+            "mainClass": "NewStr"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Blak",
+            "request": "launch",
+            "mainClass": "Blak"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Subs",
+            "request": "launch",
+            "mainClass": "Subs"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Ref",
+            "request": "launch",
+            "mainClass": "Ref"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Text",
+            "request": "launch",
+            "mainClass": "Text"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Compound",
             "request": "launch",
             "mainClass": "Compound"

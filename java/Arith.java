@@ -16,6 +16,5 @@ public class Arith {
             a = false;
         }
         System.out.println(a);
-
     }
 }
