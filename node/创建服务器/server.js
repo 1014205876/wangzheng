@@ -1,5 +1,7 @@
 var http = require('http');
 var express = require('express');
+var url = require('url');
+var formidable = require('formidable');
 const path = require('path');
 
 const linsen = 3300;
@@ -12,19 +14,27 @@ app.listen(linsen);
 
 app.use('/api',
     router.get('/get', (req, res) => {
+        var data=url.parse(req.url,true).query; 
         res.send({
             code: 200,
-            req:req,
-            // res:res,
-            data: '返回' // 权限数据
+            data: data
         })
     }),
     router.post('/login', (req, res) => {
-        res.send({
-            code: 200,
-            req:req,
-            res:res,
-            data: '返回' // 权限数据
+        var form = new formidable.IncomingForm(req.url);
+        form.parse(req, function (err, data, files) {
+            if (err) {
+                res.send({
+                    code: 400,
+                    data: '',
+                    reason:err
+                })
+            } else {
+                res.send({
+                    code: 200,
+                    data: data
+                })
+            }
         })
     })
 )
@@ -33,6 +43,23 @@ app.use('/api',
 //静态页面的入口文件夹
 app.use(express.static(path.join(__dirname, 'dist')));
 
+// app.post('/api/login', function (req, res) {
+//     var form = new formidable.IncomingForm(req.url);
+//     form.parse(req, function (err, fields, files) {
+//         if (err) {
+//             res.send({
+//                 code: 400,
+//                 data: '',
+//                 reason:err
+//             })
+//         } else {
+//             res.send({
+//                 code: 200,
+//                 data: fields
+//             })
+//         }
+//     })
+// })
 //把路由交给angular管理
 app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname + '/dist/index.html'));

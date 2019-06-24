@@ -171,7 +171,16 @@ export class IndexComponent implements OnInit {
 
 
     getLeftMenu() { // 获取左导航
-        this.http.get('api/get', {}, true).then((res) => {
+        this.http.post('api/login', { id: 123 }, true).then((res) => {
+            console.log(res)
+        }).catch((err) => {
+            console.log(err)
+        })
+        this.http.get('api/get', {
+            name: 1,
+            id: 2,
+            age: 3
+        }, true).then((res) => {
             console.log(res)
         }).catch((err) => {
             console.log(err)
