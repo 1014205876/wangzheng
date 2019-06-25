@@ -1,20 +1,39 @@
-var http = require('http');
-var express = require('express');
-var url = require('url');
-var formidable = require('formidable');
+const http = require('http');
+const express = require('express');
+const url = require('url');
+const formidable = require('formidable');
 const path = require('path');
+const mysql = require('mysql');
 
 const linsen = 3300;
 const app = express();
+
 var router = express.Router();
 
-let data = [];
+var connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'wang',
+    port: '3306'
+});
+connection.connect((err) => {
+    if (err) {
+        console.error('连接失败: ' + err.stack);
+    } else {
+        console.log('连接成功 id ' + connection.threadId);
+    }
+});
+
+connection.query('insert into table01(runoob_title, runoob_author, submission_date) values("学习 PHP", "菜鸟教程", NOW())', function (err, result) {
+    
+})
 
 app.listen(linsen);
 
 app.use('/api',
     router.get('/get', (req, res) => {
-        var data=url.parse(req.url,true).query; 
+        var data = url.parse(req.url, true).query;
         res.send({
             code: 200,
             data: data
@@ -27,7 +46,7 @@ app.use('/api',
                 res.send({
                     code: 400,
                     data: '',
-                    reason:err
+                    reason: err
                 })
             } else {
                 res.send({
