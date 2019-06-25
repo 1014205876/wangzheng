@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from './../../../shared/service/http-serve.service';
+import { HttpServe } from './../../../shared/service/http-serve.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -21,7 +21,7 @@ export class ApproveComponent implements OnInit {
   data=[]
   total=0
   constructor(
-    private http: HttpService,
+    private http: HttpServe,
     private route: ActivatedRoute,
 
   ) { }

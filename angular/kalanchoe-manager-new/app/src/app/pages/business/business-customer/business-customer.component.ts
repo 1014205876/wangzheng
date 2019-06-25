@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DateTransformService } from '../../../shared/service/date-transform.service';
-import { HttpService } from '../../../shared/service/http-serve.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { TransformService } from '../../../shared/service/transform.service';
+import { HttpServe } from '../../../shared/service/http-serve.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-business-customer',
     templateUrl: './business-customer.component.html',
@@ -27,8 +27,8 @@ export class BusinessCustomerComponent implements OnInit {
     data = []
 
     constructor(
-        private http: HttpService,
-        private dateTransform: DateTransformService,
+        private http: HttpServe,
+        private dateTransform: TransformService,
         private route: ActivatedRoute,
 
     ) { }

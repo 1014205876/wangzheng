@@ -1,4 +1,4 @@
-import { HttpService } from './../../../shared/service/http-serve.service';
+import { HttpServe } from './../../../shared/service/http-serve.service';
 import { Component, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { NzMessageService } from 'ng-zorro-antd';
@@ -12,7 +12,7 @@ import { NzMessageService } from 'ng-zorro-antd';
 })
 export class BannerComponent implements OnInit {
     constructor(
-        private http: HttpService,
+        private http: HttpServe,
         private message: NzMessageService
 
     ) { }

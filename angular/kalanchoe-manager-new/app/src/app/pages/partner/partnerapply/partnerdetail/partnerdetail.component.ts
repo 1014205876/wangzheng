@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
-import { HttpService } from '../../../../shared/service/http-serve.service';
+import { HttpServe } from '../../../../shared/service/http-serve.service';
 
 
 @Component({
@@ -62,7 +62,7 @@ export class PartnerdetailComponent implements OnInit {
   }
   constructor(
     private route: ActivatedRoute,
-    private http: HttpService
+    private http: HttpServe
   ) { }
 
   ngOnInit() {

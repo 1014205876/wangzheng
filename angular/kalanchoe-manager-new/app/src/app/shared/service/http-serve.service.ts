@@ -1,70 +1,119 @@
-
 import { Injectable } from '@angular/core';
-// import { Http, Headers } from '@angular/http';
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/do';
-import { AuthService } from './auth.service';
-// import { CookieService } from 'ngx-cookie';
-// import { HttpInterceptorService } from 'ng-http-interceptor';
-import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { NzMessageService } from 'ng-zorro-antd';
+
 @Injectable()
-export class HttpService {
-    api: String = "/api/";
-    uploadHeaders: Headers
-    constructor(
-        // private http: Http,
-        private auth: AuthService,
-        // private cookie: CookieService,
-        private route: Router,
-        // private httpInterceptor: HttpInterceptorService
-        ) {
-        // this.httpInterceptor.request().addInterceptor((data, method) => {
-        //     return data;
-        // });
+export class HttpServe {
 
-        // this.httpInterceptor.response().addInterceptor(res => res.do(null, e => {
-        //     if (e.status == 403) {
-        //         this.route.navigate(['/login']);
-        //     }
-        //     return res;
-        // }));
+  constructor(
+    private http: HttpClient,
+    private message: NzMessageService
+  ) { }
+
+  async get(url: string, params?: object, custom = true, contentType = 'application/json'){
+    let headers = new HttpHeaders({ 'Content-Type': contentType })
+    return this.http.get(url + this.formatParams(params), { headers })
+      .toPromise()
+      .then((res: any) => this.extractData(custom, res))
+      .catch((err: any) => {
+        this.handleError(err.error)
+      })
+  }
+  async post(url: string, params: any = {}, custom = true, ContentType = 'application/json') {
+    let headers = new HttpHeaders({ 'Content-Type': ContentType })
+    return this.http
+      .post(url , params, { headers })
+      .toPromise()
+      .then((res) => this.extractData(custom, res))
+      .catch((err) =>  this.handleError(err.error))
+  }
+
+  async put(url: string, body: any = {}, custom = true, ContentType = 'application/json') {
+    let headers = new HttpHeaders({ 'Content-Type': ContentType })
+    return this.http
+      .put(url , body, { headers })
+      .toPromise()
+      .then((res) => this.extractData(custom, res))
+      .catch((err) => {
+        this.handleError(err.error)
+      })
+  }
+
+  async delete(url:string, body: any = {}, custom = true) {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' })
+    return this.http
+      .delete(url , { headers, params: body })
+      .toPromise()
+      .then((res) => this.extractData(custom, res))
+      .catch((err) =>  this.handleError(err.error))
+  }
+
+
+ async patch(url: string, body: any = {}, custom = true, ContentType = 'application/json') {
+    let headers = new HttpHeaders({ 'Content-Type': ContentType })
+    return this.http
+      .patch( url , body, { headers })
+      .toPromise()
+      .then((res) => this.extractData(custom, res))
+      .catch((err) => {
+        this.handleError(err.error)
+      })
+  }
+
+
+  getApiNull(url: string): Promise<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' })
+    return new Promise((resolve, reject) => {
+      this.http.get( url , { headers }).subscribe(
+        (res: any) => {
+          if ((!res.code) || res.code == '200') {
+            resolve(res.data ? res.data : res);
+          }
+          else {
+            reject(res.reason);
+          }
+        },
+        (error) => {
+          reject(error.statusText);
+        });
+    })
+  }
+
+  extractData(custom: boolean, res: any) {
+    let body = res
+    if (custom) {
+      return body
+    } else {
+      if (body.code == '200') {
+        return body.data ? body.data : ''
+      } else {
+        let reason = body.reason ? body.reason : '出错了'
+        this.handleError(reason)
+      }
     }
+  }
 
-    // getCustomHeaders(url: string) {
-    //     let headers: Headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': this.auth.getAuthorization('Template1') })
-    //     return this.http.get(this.api + url, { headers: headers })
-    //         .map(res => res.json())
-    // }
+  formatParams(params: object) {
+    let result = []
+    for (const key in params) {
+      if (params.hasOwnProperty(key)) {
+        result.push(this.toQueryPair(key, params[key]))
+      }
 
-    // postCustomHeaders(url: string, data: any) {
-    //     let headers: Headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': this.auth.getAuthorization('Template1') })
-    //     return this.http.post(this.api + url, data, { headers: headers })
-    //         .map(res => res.json())
-    // }
+    }
+    return result.length ? '?' + result.join('&') : ''
+  }
 
-    // putCustomHeaders(url: string, data: any) {
-    //     let headers: Headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': this.auth.getAuthorization('Template1') })
-    //     return this.http.put(this.api + url, data, { headers: headers })
-    //         .map(res => res.json());
-    // }
+  private toQueryPair(key: any, value: any) {
+    if (typeof value == 'undefined') {
+      return key
+    }
+    return key + '=' + value
+  }
 
-    // deleteCustomHeaders(url: string) {
-    //     let headers: Headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': this.auth.getAuthorization('Template1') })
-    //     return this.http.delete(this.api + url, { headers: headers })
-    //         .map(res => res.json());
-    // }
-
-    // patchCustomHeaders(url: string, data: any) {
-    //     let headers: Headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': this.auth.getAuthorization('Template1') })
-    //     return this.http.patch(this.api + url, data, { headers: headers })
-    //         .map(res => res.json());
-    // }
-
-    // upload(url: string, body: any = {}, contentType: string = 'multipart/form-data', customMessage = false) {
-    //     return this.http.post(url, body, { headers: this.uploadHeaders }).toPromise().then((res) => {
-    //         return res.json();
-    //     })
-    //         .catch()
-    // }
+  handleError(err: any) {
+    this.message.create('error', err);
+  }
 
 }
+

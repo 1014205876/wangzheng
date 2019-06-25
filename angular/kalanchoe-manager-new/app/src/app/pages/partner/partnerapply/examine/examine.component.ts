@@ -1,5 +1,5 @@
-import { DateTransformService } from './../../../../shared/service/date-transform.service';
-import { HttpService } from './../../../../shared/service/http-serve.service';
+import { TransformService } from '../../../../shared/service/transform.service';
+import { HttpServe } from './../../../../shared/service/http-serve.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
@@ -68,8 +68,8 @@ export class ExamineComponent implements OnInit {
   }
 
   constructor(
-    private http: HttpService, 
-    private dateTransform: DateTransformService,
+    private http: HttpServe, 
+    private dateTransform: TransformService,
     private route: ActivatedRoute,
     private router: Router,
     private message: NzMessageService

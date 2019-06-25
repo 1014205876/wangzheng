@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { HttpService } from './../../../shared/service/http-serve.service';
+import { HttpServe } from './../../../shared/service/http-serve.service';
 import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
@@ -13,7 +13,7 @@ export class PartnergradeComponent implements OnInit {
   checkId
 
   constructor(
-    private http: HttpService,
+    private http: HttpServe,
     private route: ActivatedRoute,
     private message: NzMessageService,
 

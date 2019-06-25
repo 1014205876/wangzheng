@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DateTransformService } from '../../../shared/service/date-transform.service'
-import { HttpService } from '../../../shared/service/http-serve.service';
+import { TransformService } from '../../../shared/service/transform.service';
+import { HttpServe } from '../../../shared/service/http-serve.service';
 import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
@@ -60,9 +60,9 @@ export class WithdrawComponent implements OnInit {
   };
 
   constructor(
-    private http: HttpService,
+    private http: HttpServe,
     private message: NzMessageService,
-    private dateTransform: DateTransformService,
+    private dateTransform: TransformService,
   ) { 
   }
 

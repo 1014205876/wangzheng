@@ -1,4 +1,4 @@
-import { HttpService } from './../../../shared/service/http-serve.service';
+import { HttpServe } from './../../../shared/service/http-serve.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -32,7 +32,7 @@ export class ApproveInfoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpService
+    private http: HttpServe
   ) { }
 
   ngOnInit() {

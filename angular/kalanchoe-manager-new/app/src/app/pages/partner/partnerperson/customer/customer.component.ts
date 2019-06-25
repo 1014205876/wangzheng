@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DateTransformService } from './../../../../shared/service/date-transform.service';
-import { HttpService } from './../../../../shared/service/http-serve.service';
+import { TransformService } from '../../../../shared/service/transform.service';
+import { HttpServe } from './../../../../shared/service/http-serve.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -32,8 +32,8 @@ export class CustomerComponent implements OnInit {
     data = []
     list = []
     constructor(
-        private http: HttpService,
-        private dateTransform: DateTransformService,
+        private http: HttpServe,
+        private dateTransform: TransformService,
         private route: ActivatedRoute,
     ) { }
 

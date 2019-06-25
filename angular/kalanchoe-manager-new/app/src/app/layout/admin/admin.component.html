@@ -1,0 +1,19 @@
+<nz-layout class="layout" id="layout">
+    <nz-header style="position:fixed; width:100%">
+      <!-- 头部 -->
+      <app-header></app-header>
+      <span (click)="changeTheme()" class="theme-btn">{{theme}}</span>
+    </nz-header>
+    <nz-layout style="margin-top: 64px;" >
+      <nz-sider [nzWidth]='200' style="height: calc(100vh - 64px); position: fixed; left: 0" class="nz-left-sider">
+        <!-- 左导航 -->
+        <app-menu></app-menu>
+      </nz-sider>
+      <nz-layout style="margin-left: 200px;">
+        <nz-content id="scroll-content" style="background-color:#ecf0f5;padding:0 30px 30px; height: calc(100vh - 64px); overflow: initial;">
+        <!-- 内容 -->
+          <router-outlet></router-outlet>
+        </nz-content>
+      </nz-layout>
+    </nz-layout>
+  </nz-layout>

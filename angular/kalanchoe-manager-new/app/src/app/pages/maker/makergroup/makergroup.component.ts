@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../../shared/service/http-serve.service';
+import { HttpServe } from '../../../shared/service/http-serve.service';
 import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
@@ -45,7 +45,7 @@ export class MakergroupComponent implements OnInit {
     indeterminate = false
     allChecked = false
     constructor(
-        private http: HttpService,
+        private http: HttpServe,
         private message: NzMessageService
     ) { }
 

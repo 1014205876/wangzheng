@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../../../shared/service/http-serve.service';
+import { HttpServe } from '../../../../shared/service/http-serve.service';
 import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
@@ -14,7 +14,7 @@ export class BankcardComponent implements OnInit {
   mobile=''
   data=[]
   constructor(
-    private http: HttpService,
+    private http: HttpServe,
     private route: ActivatedRoute,
 
   ) { }
