@@ -1,0 +1,56 @@
+.theme(
+    @backcolor:#001529,
+    @fontColor:hsla(0,0%,100%,.65),
+    @primaryColor:#36A3F7,
+    @menuHoverColor:#fff,
+    @menuSubBack:#000c17,
+	@menuSelectColor:#36A3F7,
+	@headerColor:#fff,
+    @btnColor:#36A3F7) {
+	.nz-header /deep/ .platform-name {
+		color: @headerColor;
+    }
+    .nz-left-sider /deep/ .ant-menu-inline{
+        border-right: 0;
+    } 
+	.nz-left-sider /deep/ .menu {
+		background: @backcolor;
+		color: @fontColor;
+		.ant-menu-submenu-title:hover {
+			color: @menuHoverColor;
+		}
+		.ant-menu-sub {
+			background: @menuSubBack;
+			a {
+				color: @fontColor;
+			}
+			a:hover {
+				color: @menuHoverColor;
+			}
+		}
+		.ant-menu-item {
+			a {
+				color: @fontColor;
+			}
+		}
+		.ant-menu-item-selected {
+			background: @primaryColor;
+			a {
+				color: @menuSelectColor;
+			}
+			a:hover {
+				color: @menuSelectColor;
+			}
+		}
+		.ant-menu-submenu-title:active {
+			background: transparent;
+		}
+	}
+	.ant-layout-header /deep/ .logo {
+		background: @backcolor;
+		color: @fontColor;
+	}
+	.nz-left-sider {
+		background: @backcolor;
+	}
+}

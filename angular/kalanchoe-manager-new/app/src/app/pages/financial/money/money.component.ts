@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../../shared/service/http-serve.service';
+import { HttpServe } from '../../../shared/service/http-serve.service';
 import { NzMessageService } from 'ng-zorro-antd';
 import { ActivatedRoute, Router } from '@angular/router'
 
@@ -33,7 +33,7 @@ export class MoneyComponent implements OnInit {
     selectText = '余额账户'
     adjugeReason = ''
     constructor(
-        private http: HttpService,
+        private http: HttpServe,
         private message: NzMessageService,
         private route: ActivatedRoute,
 

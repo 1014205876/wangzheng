@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
-import { HttpService } from '../../../../shared/service/http-serve.service';
+import { HttpServe } from '../../../../shared/service/http-serve.service';
 import { ActivatedRoute, Router } from '@angular/router'
 import { NzMessageService } from 'ng-zorro-antd';
 
@@ -46,7 +46,7 @@ export class ArticlepublishComponent implements OnInit {
     pageNum
 	showTimePublish=false
   constructor(
-		private http: HttpService,
+		private http: HttpServe,
 		private route: ActivatedRoute,
     private message: NzMessageService,
     private router: Router

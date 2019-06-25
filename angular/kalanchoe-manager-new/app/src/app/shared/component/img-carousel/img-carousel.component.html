@@ -1,0 +1,14 @@
+<div class="img-swiper">
+    <div class="control-container">
+        <div class="controlBar pre-button btn" (click)="carousel.pre()" *ngIf="urlLists.length>1">
+            <i class="anticon anticon-left-circle"></i>
+        </div>
+        <div class="controlBar next-button btn" (click)="carousel.next()">
+            <i class="anticon anticon-right-circle"></i>
+        </div>
+    </div>
+
+    <nz-carousel class="home-carousel" [nzEffect]="effect" [nzDots]="false" #carousel>
+        <div nz-carousel-content *ngFor="let item of urlLists"><img class="item-img" src="{{item}}" alt=""></div>
+    </nz-carousel>
+</div>

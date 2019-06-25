@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DateTransformService } from '../../../shared/service/date-transform.service'
-import { HttpService } from '../../../shared/service/http-serve.service';
+import { TransformService } from '../../../shared/service/transform.service';
+import { HttpServe } from '../../../shared/service/http-serve.service';
 import { Router } from '@angular/router'
 import { NzMessageService } from 'ng-zorro-antd';
 
@@ -32,8 +32,8 @@ export class ArticleresourceComponent implements OnInit {
     content
     manyCheckModal = false
     constructor(
-        private dateTransform: DateTransformService,
-        private http: HttpService,
+        private dateTransform: TransformService,
+        private http: HttpServe,
         private router: Router,
         private message: NzMessageService
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../../shared/service/http-serve.service';
+import { HttpServe } from '../../../shared/service/http-serve.service';
 import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
@@ -24,7 +24,7 @@ export class SettlementComponent implements OnInit {
     allChecked=false
     list=[]
     constructor(
-        private http: HttpService,
+        private http: HttpServe,
         private message: NzMessageService,
     ) { }
 

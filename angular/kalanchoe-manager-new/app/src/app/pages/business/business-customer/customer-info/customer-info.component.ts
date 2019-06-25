@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpService } from '../../../../shared/service/http-serve.service';
+import { HttpServe } from '../../../../shared/service/http-serve.service';
 
 @Component({
     selector: 'app-customer-info',
@@ -12,7 +12,7 @@ export class CustomerInfoComponent implements OnInit {
     public id;
     public row;
 
-    constructor(public activeRoute: ActivatedRoute, private http: HttpService) {
+    constructor(public activeRoute: ActivatedRoute, private http: HttpServe) {
     }
 
     ngOnInit() {

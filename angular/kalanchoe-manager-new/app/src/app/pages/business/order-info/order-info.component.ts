@@ -1,6 +1,6 @@
 import { post } from 'selenium-webdriver/http';
 // import { Http } from '@angular/http';
-import { HttpService } from './../../../shared/service/http-serve.service';
+import { HttpServe } from './../../../shared/service/http-serve.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {
@@ -70,7 +70,7 @@ export class OrderInfoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpService
+    private http: HttpServe
   ) { }
 
   ngOnInit() {

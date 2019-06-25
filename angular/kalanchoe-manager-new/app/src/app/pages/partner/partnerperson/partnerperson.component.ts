@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DateTransformService } from '../../../shared/service/date-transform.service'
-import { HttpService } from '../../../shared/service/http-serve.service';
+import { TransformService } from '../../../shared/service/transform.service';
+import { HttpServe } from '../../../shared/service/http-serve.service';
 import { NzMessageService } from 'ng-zorro-antd';
 
 
@@ -41,8 +41,8 @@ export class PartnerpersonComponent implements OnInit {
     allChecked = false
     list = []
     constructor(
-        private http: HttpService,
-        private dateTransform: DateTransformService,
+        private http: HttpServe,
+        private dateTransform: TransformService,
         private message: NzMessageService,
 
     ) { }

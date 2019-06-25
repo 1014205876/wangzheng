@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from './../../../shared/service/http-serve.service';
+import { HttpServe } from './../../../shared/service/http-serve.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DateTransformService } from '../../../shared/service/date-transform.service';
+import { TransformService } from '../../../shared/service/transform.service';
 import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
@@ -13,10 +13,10 @@ import { NzMessageService } from 'ng-zorro-antd';
 export class OrderResultComponent implements OnInit {
 
     constructor(
-        private http: HttpService,
+        private http: HttpServe,
         private route: ActivatedRoute,
         private fb: FormBuilder,
-        private dateTransform: DateTransformService,
+        private dateTransform: TransformService,
         private message: NzMessageService
     ) {
     }

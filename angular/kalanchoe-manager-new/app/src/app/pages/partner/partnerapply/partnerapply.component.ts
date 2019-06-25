@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../../shared/service/http-serve.service';
+import { HttpServe } from '../../../shared/service/http-serve.service';
 import { NzMessageService } from 'ng-zorro-antd';
-import { DateTransformService } from '../../../shared/service/date-transform.service'
-
+import { TransformService } from '../../../shared/service/transform.service';
 
 @Component({
     selector: 'app-partnerapply',
@@ -38,8 +37,8 @@ export class PartnerapplyComponent implements OnInit {
     indeterminate = false
     allChecked = false
     constructor(
-        private http: HttpService,
-        private dateTransform: DateTransformService,
+        private http: HttpServe,
+        private dateTransform: TransformService,
         private message: NzMessageService
     ) { }
 
