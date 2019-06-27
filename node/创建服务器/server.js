@@ -25,12 +25,8 @@ connection.connect((err) => {
     }
 });
 
-connection.query('insert into table01(runoob_title, runoob_author, submission_date) values("学习 PHP", "菜鸟教程", NOW())', function (err, result) {
-    
-})
-
 app.listen(linsen);
-
+const tableName = "table01";
 app.use('/api',
     router.get('/get', (req, res) => {
         var data = url.parse(req.url, true).query;
@@ -49,10 +45,54 @@ app.use('/api',
                     reason: err
                 })
             } else {
-                res.send({
-                    code: 200,
-                    data: data
-                })
+                // connection.query(
+                //     "insert into " +
+                //     tableName +
+                //     "(name) values('" +
+                //     data.name +
+                //     "')",
+                //     ((err, result) => {
+                //         if (err) {
+                //             res.send({
+                //                 code: 400,
+                //                 data: '',
+                //                 reason: err
+                //             })
+                //         } else {
+                //             res.send({
+                //                 code: 200,
+                //                 data: ''
+                //             })
+                //         }
+                //     })
+                // )
+                connection.query(
+                    "INSERT INTO " +
+                    tableName +
+                    "(name,id,status,creatDate,upDateTime,tel,value)VALUES('" +
+                    data.name + "','" +
+                    data.id + "'," +
+                    data.status + "," +
+                    "NOW()" + "," +
+                    "NOW()" + "," +
+                    data.tel + ",'" +
+                    data.value +
+                    "')",
+                    ((err, result) => {
+                        if (err) {
+                            res.send({
+                                code: 400,
+                                data: '',
+                                reason: err
+                            })
+                        } else {
+                            res.send({
+                                code: 200,
+                                data: result
+                            })
+                        }
+                    })
+                )
             }
         })
     })
