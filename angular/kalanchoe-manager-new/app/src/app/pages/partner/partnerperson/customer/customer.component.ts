@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { TransformService } from '../../../../shared/service/transform.service';
-import { HttpServe } from './../../../../shared/service/http-serve.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ApiService } from '../../../../shared/service/api.service';
 
 @Component({
     selector: 'app-customer',
@@ -19,8 +20,6 @@ export class CustomerComponent implements OnInit {
     userId
     userTle
 
-
-
     //查询变量
     findPhone = ''
     wantStartTime = ''
@@ -32,7 +31,7 @@ export class CustomerComponent implements OnInit {
     data = []
     list = []
     constructor(
-        private http: HttpServe,
+        private api: ApiService,
         private dateTransform: TransformService,
         private route: ActivatedRoute,
     ) { }
@@ -42,21 +41,22 @@ export class CustomerComponent implements OnInit {
         this.userTle = this.route.snapshot.queryParams.userTle
         this.getData()
     }
-    getData() {
-        // this.http.getCustomHeaders(
-        //     'kalanchoe-manager/v1/kalanchoe/backstage/distribution/userDataGrid?mobile=' + this.findPhone +
-        //     '&registerTimeStart=' + this.wantStartTime +
-        //     '&registerTimeEnd=' + this.wantEndTime +
-        //     '&registerSource=' + this.findRegisterSource +
-        //     '&releation=' + this.findConnect +
-        //     '&userId=' + this.userId +
-        //     '&pageNum=' + this.pageNum +
-        //     '&pageSize=' + 10
-        // ).subscribe(res => {
-        //     this.list = res.result.list
-        //     this.total = res.result.total
-        //     this.addIndexList()
-        // })
+    async getData() {
+        let res = await this.api.getDistributionUserDataGrid({
+            mobile: this.findPhone,
+            registerTimeStart: this.wantStartTime,
+            registerTimeEnd: this.wantEndTime,
+            registerSource: this.findRegisterSource,
+            releation: this.findConnect,
+            userId: this.userId,
+            pageNum: this.pageNum,
+            pageSize: 10
+        });
+        if (res.code == 200) {
+            this.list = res.data.list
+            this.total = res.data.total
+            this.addIndexList()
+        }
     }
     addIndexList() {
         var list = this.list

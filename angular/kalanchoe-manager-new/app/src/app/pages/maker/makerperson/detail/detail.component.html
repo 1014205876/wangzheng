@@ -1,5 +1,5 @@
 <div class="container" style="width:100%;">
-    <app-crumb [url]="['创客管理 ','人员管理','详情']"></app-crumb>
+    <app-breadcrumbs [breadcrumbs]="['创客管理 ','人员管理','详情']"></app-breadcrumbs>
     <nz-card class="shadow">
         <nz-table class="table_keyvalue" [nzData]='[1]' [nzShowPagination]='false' [nzBordered]='true'>
             <tbody>
@@ -8,7 +8,7 @@
                     <td>{{telNum}}</td>
                     <td>用户头像</td>
                     <td>
-                        <img [src]="avatar" alt="" style="width:40px;height:40px;">
+                        <img [src]="avatar" alt="用户头像" style="width:40px;height:40px;">
                     </td>
                 </tr>
                 <tr>
@@ -56,7 +56,10 @@
         </nz-table>
     </nz-card>
     <div *ngIf="showCheckInm">
-        <span style="font-size:18px;font-weight: bold;">实名认证 <i class="anticon anticon-check-circle"></i></span>
+        <span style="font-size:18px;font-weight: bold;">
+            实名认证
+            <i nz-icon nzType="check-circle" nzTheme="outline"></i>
+        </span>
         <div class="idCard">
             <img [src]="frontUrl" alt="身份证正面">
             <img [src]="oppositeUrl" alt="身份证背面">

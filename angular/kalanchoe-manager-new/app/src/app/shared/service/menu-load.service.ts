@@ -10,12 +10,12 @@ export class MenuLoadService {
         private injector: Injector
     ) { }
     getSettings() {
+        console.log('start')
         this.http.get("api/peak-resource/api/resource/user/permission")
             .toPromise()
             .then((res: any) => {
                 resource.ResourceItems = res.data.resource;
                 resource.menu = res.data.menu;
-                console.log('over')
                 resource.over = true;//防止由于接口反悔过慢导致权限判定逻辑失败
                 this.redirectPlatform()
             });

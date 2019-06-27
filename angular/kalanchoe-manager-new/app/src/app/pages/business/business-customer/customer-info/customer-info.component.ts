@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HttpServe } from '../../../../shared/service/http-serve.service';
+import { ActivatedRoute } from '@angular/router';
+
+import { ApiService } from '../../../../shared/service/api.service';
 
 @Component({
     selector: 'app-customer-info',
@@ -12,13 +13,22 @@ export class CustomerInfoComponent implements OnInit {
     public id;
     public row;
 
-    constructor(public activeRoute: ActivatedRoute, private http: HttpServe) {
+    constructor(
+        public activeRoute: ActivatedRoute, 
+        private api: ApiService,
+        ) {
     }
 
     ngOnInit() {
         this.id = this.activeRoute.snapshot.queryParams.userid
-        // this.http.getCustomHeaders('kalanchoe-manager/v1/app/back/users/' + this.id).subscribe(res => {
-        //     this.row = res.data;
-        // })
+        this.getData()
+    }
+
+    
+    async getData() {
+        let res = await this.api.getUsers(this.id);
+        if (res.code == 200) {
+            this.row = res.data;
+        }
     }
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { TransformService } from '../../../shared/service/transform.service';
-import { HttpServe } from './../../../shared/service/http-serve.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
 import { NzMessageService } from 'ng-zorro-antd';
+
+import { TransformService } from '../../../shared/service/transform.service';
+import { ApiService } from '../../../shared/service/api.service';
 
 @Component({
     selector: 'app-order',
@@ -10,7 +12,7 @@ import { NzMessageService } from 'ng-zorro-antd';
     styleUrls: ['./order.component.css']
 })
 export class businessorderComponent implements OnInit {
-
+    open = false;//控制多余查询框的展开收起
     startValue: Date = null;
     endValue: Date = null;
     startOpen: boolean = false;
@@ -41,7 +43,7 @@ export class businessorderComponent implements OnInit {
     }
 
     constructor(
-        private http: HttpServe,
+        private api: ApiService,
         private dateTransform: TransformService,
         private route: ActivatedRoute,
         private message: NzMessageService
@@ -108,21 +110,17 @@ export class businessorderComponent implements OnInit {
         this.profitModel.modalShow = false;
     }
 
-    shareProfit() {//为选中订单执行分润
+    async shareProfit() {//为选中订单执行分润
         this.profitModel.modalLoading = true;
-        // this.http.patchCustomHeaders(
-        //     "kalanchoe-manager/v2/app/pre/shareProfit"
-        //     , this.displayData)
-        //     .subscribe(res => {
-        //         if (res.code == '200') {
-        //             this.message.success('分润成功')
-        //             this.getData()
-        //         } else {
-        //             this.message.error(res.reason)
-        //         }
-        //         this.profitModel.modalShow = false;
-        //         this.profitModel.modalLoading = false;
-        //     })
+        let res = await this.api.patchShareProfit(this.displayData);
+        if (res.code == '200') {
+            this.message.success('分润成功')
+            this.getData()
+        } else {
+            this.message.error(res.reason)
+        }
+        this.profitModel.modalShow = false;
+        this.profitModel.modalLoading = false;
     }
 
     change(e) {//导入文件时执行的函数（一直触发，直到上传成功）返回url
@@ -235,7 +233,7 @@ export class businessorderComponent implements OnInit {
         this.startOpen = open;
         if (open) {
             this.endOpen = false;
-        }else{
+        } else {
             this.endOpen = true;
         }
     }

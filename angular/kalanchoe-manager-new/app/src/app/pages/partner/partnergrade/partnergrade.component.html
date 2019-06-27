@@ -1,5 +1,5 @@
 <div class="container">
-    <app-crumb [url]="['合伙人管理','等级管理']"></app-crumb>
+    <app-breadcrumbs [breadcrumbs]="['合伙人管理','等级管理']"></app-breadcrumbs>
     <nz-card class="shadow" [nzTitle]="cardTitle" [nzExtra]="cardExtra">
         <nz-table [nzData]="[1]" nzShowPagination=false>
             <thead>
@@ -11,7 +11,6 @@
                     <th style="width: 20%;">贡献值要求</th>
                     <th style="width: 10%;">默认等级</th>
                     <th style="width: 20%;">操作</th>
-
                 </tr>
             </thead>
             <tbody>

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpServe } from '../../../shared/service/http-serve.service';
+
 import { NzMessageService } from 'ng-zorro-antd';
+
 import { TransformService } from '../../../shared/service/transform.service';
+import { ApiService } from '../../../shared/service/api.service';
 
 @Component({
     selector: 'app-partnerapply',
@@ -9,6 +11,7 @@ import { TransformService } from '../../../shared/service/transform.service';
     styleUrls: ['./partnerapply.component.css']
 })
 export class PartnerapplyComponent implements OnInit {
+    open = false;//控制多余查询框的展开收起
     startValue: Date = null;
     endValue: Date = null;
     startOpen: boolean = false;
@@ -37,7 +40,7 @@ export class PartnerapplyComponent implements OnInit {
     indeterminate = false
     allChecked = false
     constructor(
-        private http: HttpServe,
+        private api: ApiService,
         private dateTransform: TransformService,
         private message: NzMessageService
     ) { }
@@ -46,20 +49,21 @@ export class PartnerapplyComponent implements OnInit {
         this.getData()
     }
 
-    getData() {
-        // this.http.getCustomHeaders(
-        //     'kalanchoe-manager/v1/kalanchoe/backstage/partnerDataGrid?phone=' + this.findPhone +
-        //     '&applyTimeStart=' + this.wantStartTime +
-        //     '&applyTimeEnd=' + this.wantEndTime +
-        //     '&status=' + this.findStatus +
-        //     '&mode=' + this.findMode +
-        //     '&pageNum=' + this.pageNum +
-        //     '&pageSize=' + 10
-        // ).subscribe(res => {
-        //     this.list = res.data.list
-        //     this.total = res.data.total
-        //     this.addStatusText()
-        // })
+    async getData() {
+        let res = await this.api.getPartnerDataGrid({
+            phone: this.findPhone,
+            applyTimeStart: this.wantStartTime,
+            applyTimeEnd: this.wantEndTime,
+            status: this.findStatus,
+            mode: this.findMode,
+            pageNum: this.pageNum,
+            pageSize: 10
+        });
+        if (res.code == 200) {
+            this.list = res.data.list
+            this.total = res.data.total
+            this.addStatusText()
+        }
     }
 
     addStatusText() {
@@ -110,17 +114,19 @@ export class PartnerapplyComponent implements OnInit {
                 remark: ''
             }
         })
-        // this.http.patchCustomHeaders(
-        //     'kalanchoe-manager/v1/kalanchoe/backstage/partner', param
-        // ).subscribe(res => {
-        //     if (res.code == "200") {
-        //         this.message.success('成功')
-        //         this.getData()
-        //     } else {
-        //         this.message.error('失败')
-        //     }
-        // })
+        this.patchPartner(param);
     }
+
+    async patchPartner(param) {
+        let res = await this.api.patchPartner(param);
+        if (res.code == "200") {
+            this.message.success('成功')
+            this.getData()
+        } else {
+            this.message.error(res.reason)
+        }
+    }
+
     //判断是否存在已通过/拒绝的选项
     checkType(type) {
         let index = this.statusList.indexOf(type)
@@ -132,9 +138,7 @@ export class PartnerapplyComponent implements OnInit {
                 this.showPassModal = true
             }
             if (type == 2) {
-
                 this.showRejectModal = true
-
             }
         }
     }
@@ -142,8 +146,7 @@ export class PartnerapplyComponent implements OnInit {
     clickedPass(type) {
         if (this.selected.length == 0) {
             this.message.error('请至少选择一个分组！')
-        }
-        else {
+        } else {
             this.checkType(type)
         }
     }
@@ -161,8 +164,7 @@ export class PartnerapplyComponent implements OnInit {
     clickedReject(type) {
         if (this.selected.length == 0) {
             this.message.error('请至少选择一个分组！')
-        }
-        else {
+        } else {
             this.checkType(type)
         }
     }
@@ -190,22 +192,21 @@ export class PartnerapplyComponent implements OnInit {
             let index = this.statusList.indexOf(data.status)
             if (index >= 0) {
                 this.statusList.splice(index, 1)
-            }
-            else {
+            } else {
                 return false
             }
         }
         if (this.selected.length == this.data.length) {
             this.allChecked = true
             this.indeterminate = false
-        }
-        else if (this.selected.length == 0) {
-            this.allChecked = false
-            this.indeterminate = false
-        }
-        else {
-            this.allChecked = false
-            this.indeterminate = true
+        } else {
+            if (this.selected.length == 0) {
+                this.allChecked = false
+                this.indeterminate = false
+            }else {
+                this.allChecked = false
+                this.indeterminate = true
+            }
         }
     }
 
@@ -273,5 +274,4 @@ export class PartnerapplyComponent implements OnInit {
             this.startOpen = false;
         }
     }
-
 }

@@ -21,7 +21,6 @@ import { AppComponent } from './app.component';
 
 // 引入页面
 import { AdminComponent } from './layout/admin/admin.component';
-import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
     {
@@ -29,11 +28,66 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'app/home', pathMatch: 'full' },
             { path: 'app', redirectTo: 'app/home', pathMatch: 'full' },
+            { path: 'app/home', loadChildren: './pages/home/home.module#HomeModule' },
             {
-                path: 'app/home', component: HomeComponent, data: {
-                    breadcrumb: ["首页统计"]
-                }
-            }
+                path: 'app/maker',
+                children: [
+                    {
+                        path: 'makerperson', children: [
+                            { path: '', loadChildren: './pages/maker/makerperson/makerperson.module#MakerpersonModule' },
+                            { path: 'detail', loadChildren: './pages/maker/makerperson/detail/detail.module#DetailModule' },
+                            { path: 'partner', loadChildren: './pages/maker/makerperson/makerpartner/makerpartner.module#MakerpartnerModule' },
+                            { path: 'makerpartner', loadChildren: './pages/maker/makerperson/makerpartner/makerpartner.module#MakerpartnerModule' },
+                        ]
+                    },
+                    {
+                        path: 'makergroup', children: [
+                            { path: '', loadChildren: './pages/maker/makergroup/makergroup.module#MakergroupModule' },
+                        ]
+                    },
+                ]
+            }, 
+            {
+                path: 'app/partner',
+                children: [
+                    {
+                        path: 'partnerapply', children: [
+                            { path: '', loadChildren: './pages/partner/partnerapply/partnerapply.module#PartnerapplyModule' },
+                            { path: 'detail', loadChildren: './pages/partner/partnerapply/partnerdetail/partnerdetail.module#PartnerdetailModule' },
+                            { path: 'examine', loadChildren: './pages/partner/partnerapply/examine/examine.module#ExamineModule' },
+                        ]
+                    },
+                    {
+                        path: 'partnerperson', children: [
+                            { path: '', loadChildren: './pages/partner/partnerperson/partnerperson.module#PartnerpersonModule' },
+                            { path: 'customer', loadChildren: './pages/partner/partnerperson/customer/customer.module#CustomerModule' },
+                            { path: 'order', loadChildren: './pages/partner/partnerperson/order/order.module#OrderModule' },
+                            { path: 'partner', loadChildren: './pages/partner/partnerperson/partner/partner.module#PartnerModule' },
+                        ]
+                    },
+                    {
+                        path: 'partnergrade', children: [
+                            { path: '', loadChildren: './pages/partner/partnergrade/partnergrade.module#PartnergradeModule' },
+                        ]
+                    },
+                ]
+            },
+            {
+                path: 'app/business',
+                children: [
+                    {
+                        path: 'business-customer', children: [
+                            { path: '', loadChildren: './pages/business/business-customer/business-customer.module#BusinessCustomerModule' },
+                            { path: 'customer-info', loadChildren: './pages/business/business-customer/customer-info/customer-info.module#CustomerInfoModule' },
+                        ]
+                    },
+                    {
+                        path: 'order', children: [
+                            { path: '', loadChildren: './pages/business/order/order.module#OrderModule' },
+                        ]
+                    },
+                ]
+            },
         ]
     }
 ];
@@ -41,7 +95,6 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent
     ],
     imports: [
         BrowserModule,
@@ -57,6 +110,7 @@ const routes: Routes = [
             { preloadingStrategy: PreloadAllModules }
         )
     ],
+    providers: [{ provide: NZ_I18N, useValue: zh_CN }],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TransformService } from '../../../shared/service/transform.service';
-import { HttpServe } from '../../../shared/service/http-serve.service';
 import { NzMessageService } from 'ng-zorro-antd';
 
+import { TransformService } from '../../../shared/service/transform.service';
+import { ApiService } from '../../../shared/service/api.service';
 
 @Component({
     selector: 'app-partnerperson',
@@ -10,6 +10,7 @@ import { NzMessageService } from 'ng-zorro-antd';
     styleUrls: ['./partnerperson.component.css']
 })
 export class PartnerpersonComponent implements OnInit {
+    open = false;//控制多余查询框的展开收起
     startValue: Date = null;
     endValue: Date = null;
     startOpen: boolean = false;
@@ -23,11 +24,12 @@ export class PartnerpersonComponent implements OnInit {
     wantStartTime = ''
     wantEndTime = ''
     findLevel = ''
+
     //等级数据
     levelList = []
     AdjugeLevelModal = false
-    data = [
-    ]
+    data = []
+
     //批量移动变量
     levelId
     userId
@@ -41,7 +43,7 @@ export class PartnerpersonComponent implements OnInit {
     allChecked = false
     list = []
     constructor(
-        private http: HttpServe,
+        private api: ApiService,
         private dateTransform: TransformService,
         private message: NzMessageService,
 
@@ -52,33 +54,32 @@ export class PartnerpersonComponent implements OnInit {
         this.getLevel()
     }
     //获取所有等级
-    getLevel() {
-        // this.http.getCustomHeaders(
-        //     'kalanchoe-manager/v1/kalanchoe/backstage/level'
-        // ).subscribe(res => {
-        //     this.levelList = res.data
-
-        // })
+    async getLevel() {
+        let res = await this.api.getLevel();
+        if (res.code == 200) {
+            this.levelList = res.data
+        }
     }
     //获取总数据
-    getData() {
+    async getData() {
         this.allChecked = false
         this.indeterminate = false
         this.selected.length = 0
-        // this.http.getCustomHeaders(
-        //     'kalanchoe-manager/v1/kalanchoe/backstage/partner/userDataGrid?mobile=' + this.findPhone +
-        //     '&checkTimeStart=' + this.wantStartTime +
-        //     '&checkTimeEnd=' + this.wantEndTime +
-        //     '&inviterPhone=' + this.findInviter +
-        //     '&levelName=' + this.findLevel +
-        //     '&pageNum=' + this.pageNum +
-        //     '&pageSize=' + 10
-        // ).subscribe(res => {
-        //     this.allChecked = false
-        //     this.total = res.data.total
-        //     this.list = res.data.list
-        //     this.addCheckBox()
-        // })
+        let res = await this.api.getPartnerUserDataGrid({
+            mobile: this.findPhone,
+            checkTimeStart: this.wantStartTime,
+            checkTimeEnd: this.wantEndTime,
+            inviterPhone: this.findInviter,
+            levelName: this.findLevel,
+            pageNum: this.pageNum,
+            pageSize: 10
+        });
+        if (res.code == 200) {
+            this.allChecked = false
+            this.total = res.data.total
+            this.list = res.data.list
+            this.addCheckBox()
+        }
     }
     addCheckBox() {
         this.list.map(item => {

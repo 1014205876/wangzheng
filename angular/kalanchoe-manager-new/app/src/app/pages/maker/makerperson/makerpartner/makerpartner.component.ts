@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'
-import { HttpServe } from '../../../../shared/service/http-serve.service';
+import { ActivatedRoute } from '@angular/router'
+
 import { TransformService } from '../../../../shared/service/transform.service';
+import { ApiService } from '../../../../shared/service/api.service';
 
 @Component({
     selector: 'app-makerpartner',
@@ -9,6 +10,7 @@ import { TransformService } from '../../../../shared/service/transform.service';
     styleUrls: ['./makerpartner.component.css']
 })
 export class MakerpartnerComponent implements OnInit {
+    open = false;//控制多余查询框的展开收起
     startValue: Date = null;
     endValue: Date = null;
     startOpen: boolean = false;
@@ -36,7 +38,7 @@ export class MakerpartnerComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private http: HttpServe,
+        private api: ApiService,
         private dateTransform: TransformService,
     ) { }
 
@@ -48,39 +50,43 @@ export class MakerpartnerComponent implements OnInit {
         this.getGroupData()//获取分组信息
     }
 
-    getData() {
-        let id = this.userid
-        // this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/inviterDataGrid?id=' + id +
-        //     '&phone=' + this.findPhone +
-        //     '&registerTimeStart=' + this.wantStartTime +
-        //     '&registerTimeEnd=' + this.wantEndTime +
-        //     '&registerSource=' + this.findRegisterSource +
-        //     '&groupName=' + this.findGroupName +
-        //     '&pageNum=' + this.pageNum +
-        //     '&pageSize=' + 10)
-        //     .subscribe(e => {
-        //         this.data = []
-        //         this.data = e.data.list
-        //         this.total = e.data.total
-        //     })
+    async getData() {
+        let res = await this.api.getUserDataGrid({
+            id: this.userid,
+            phone: this.findPhone,
+            registerTimeStart: this.wantStartTime,
+            registerTimeEnd: this.wantEndTime,
+            registerSource: this.findRegisterSource,
+            groupName: this.findGroupName,
+            pageNum: this.pageNum,
+            pageSize: 10
+        })
+        if (res.code == 200) {
+            this.data = []
+            this.data = res.data.list
+            this.total = res.data.total
+            console.log()
+        }
     }
-    getPartnerData() {
-        // this.http.getCustomHeaders(
-        //     'kalanchoe-manager/v1/kalanchoe/backstage/user/type?id=' + this.userid
-
-        // ).subscribe(res => {
-        //     this.normalMaker = res.result.total
-        //     this.countPartner = res.result.countPartner
-        // })
+    async getPartnerData() {
+        let res = await this.api.getUserType({
+            id: this.userid
+        });
+        if (res.code == 200) {
+            this.normalMaker = res.data.total
+            this.countPartner = res.data.countPartner
+            console.log()
+        }
     }
 
-    getGroupData() {
-        // this.http.getCustomHeaders('kalanchoe-manager/v1/kalanchoe/backstage/group').subscribe(e => {
-        //     var list = e.data.map((item) => {
-        //         return { 'groupId': item.id, 'groupName': item.groupName }
-        //     })
-        //     this.options = list
-        // })
+    async getGroupData() {
+        let res = await this.api.getGroup();
+        if (res.code == 200) {
+            var list = res.data.map((item) => {
+                return { 'groupId': item.id, 'groupName': item.groupName }
+            })
+            this.options = list
+        }
     }
     search() {
         this.getData()

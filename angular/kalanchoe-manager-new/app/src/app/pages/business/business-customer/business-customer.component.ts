@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { TransformService } from '../../../shared/service/transform.service';
-import { HttpServe } from '../../../shared/service/http-serve.service';
 import { ActivatedRoute } from '@angular/router';
+
+import { TransformService } from '../../../shared/service/transform.service';
+import { ApiService } from '../../../shared/service/api.service';
+
 @Component({
     selector: 'app-business-customer',
     templateUrl: './business-customer.component.html',
     styleUrls: ['./business-customer.component.css']
 })
 export class BusinessCustomerComponent implements OnInit {
+    open = false;//控制多余查询框的展开收起
     startValue: Date = null;
     endValue: Date = null;
     startOpen: boolean = false;
@@ -27,7 +30,7 @@ export class BusinessCustomerComponent implements OnInit {
     data = []
 
     constructor(
-        private http: HttpServe,
+        private api: ApiService,
         private dateTransform: TransformService,
         private route: ActivatedRoute,
 
@@ -36,31 +39,29 @@ export class BusinessCustomerComponent implements OnInit {
     ngOnInit() {
         if (this.route.snapshot.queryParams.userTle) {
             this.findInsStaffPhone = this.route.snapshot.queryParams.userTle
-        }
-        else {
+        } else {
             this.findInsStaffPhone = ''
         }
-
         this.getData()
     }
 
-    getData() {
-        // this.http.getCustomHeaders(
-        //     'kalanchoe-manager/v1/app/back/usersGrid'
-        //     + '?mobile=' + this.findPhone
-        //     + '&regStartDate=' + this.wantStartTime
-        //     + '&regEndDate=' + this.wantEndTime
-        //     + '&insName=' + this.findInsName
-        //     + '&registSource=' + this.findRegisterSource
-        //     + '&clientSource=' + this.findClientSource
-        //     + '&insStaffName=' + this.findInsStaffPhone
-        //     + '&pageNum=' + this.pageNum
-        //     + '&pageSize=10'
-        // ).subscribe(res => {
-        //     let data = res.data.list;
-        //     this.total = res.data.total;
-        //     this.data = data;
-        // })
+    async getData() {
+        let res = await this.api.getUsersGrid({
+            mobile: this.findPhone,
+            regStartDate: this.wantStartTime,
+            regEndDate: this.wantEndTime,
+            insName: this.findInsName,
+            registSource: this.findRegisterSource,
+            clientSource: this.findClientSource,
+            insStaffName: this.findInsStaffPhone,
+            pageNum: this.pageNum,
+            pageSize: 10
+        });
+        if (res.code == 200) {
+            let data = res.data.list;
+            this.total = res.data.total;
+            this.data = data;
+        }
     }
     search() {
         this.getData()
@@ -109,7 +110,7 @@ export class BusinessCustomerComponent implements OnInit {
         this.startOpen = open;
         if (open) {
             this.endOpen = false;
-        }else{
+        } else {
             this.endOpen = true;
         }
     }

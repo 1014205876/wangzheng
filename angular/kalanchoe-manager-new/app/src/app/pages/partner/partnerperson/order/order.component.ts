@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TransformService } from '../../../../shared/service/transform.service';
-import { HttpServe } from './../../../../shared/service/http-serve.service';
 import { ActivatedRoute, Params } from '@angular/router';
+
+import { TransformService } from '../../../../shared/service/transform.service';
+import { ApiService } from '../../../../shared/service/api.service';
 
 @Component({
     selector: 'app-order',
@@ -9,6 +10,7 @@ import { ActivatedRoute, Params } from '@angular/router';
     styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
+    open = false;//控制多余查询框的展开收起
     startValue: Date = null;
     endValue: Date = null;
     startOpen: boolean = false;
@@ -34,7 +36,7 @@ export class OrderComponent implements OnInit {
 
     data = []
     constructor(
-        private http: HttpServe,
+        private api: ApiService,
         private route: ActivatedRoute,
         private dateTransform: TransformService,
     ) { }
@@ -45,34 +47,34 @@ export class OrderComponent implements OnInit {
         this.getData()
         this.getPatNum()
     }
-    getData() {
-        // this.http.getCustomHeaders(
-        //     'kalanchoe-manager/v1/kalanchoe/backstage/distribution/orderDataGrid?mobile=' + this.findPhone +
-        //     '&createTimeStart=' + this.wantStartTime +
-        //     '&createTimeEnd=' + this.wantEndTime +
-        //     '&etpName=' + this.findEtpName +
-        //     '&status=' + this.findStatus +
-        //     '&no=' + this.findNo +
-        //     '&releation=' + this.findReleation +
-        //     '&productId=' + this.findProductId +
-        //     '&userId=' + this.userId +
-        //     '&pageNum=' + this.pageNum +
-        //     '&pageSize=' + 10
-        // ).subscribe(res => {
-        //     this.data = res.result.list
-        //     this.total = res.result.total
-        // })
+    async getData() {
+        let res = await this.api.getDistributionOrderDataGrid({
+            mobile: this.findPhone,
+            createTimeStart: this.wantStartTime,
+            createTimeEnd: this.wantEndTime,
+            etpName: this.findEtpName,
+            status: this.findStatus,
+            no: this.findNo,
+            releation: this.findReleation,
+            productId: this.findProductId,
+            userId: this.userId,
+            pageNum: this.pageNum,
+            pageSize: 10
+        });
+        if (res.code == 200) {
+            this.data = res.data.list
+            this.total = res.data.total
+        }
     }
-    getPatNum() {
-        // this.http.getCustomHeaders(
-        //     'kalanchoe-manager/v1/kalanchoe/backstage/product'
-        // ).subscribe(res => {
-        //     this.productList = res.result
-        // })
+    async getPatNum() {
+        let res = await this.api.getProduct();
+        if (res.code == 200) {
+            this.productList = res.data;
+        }
     }
     search() {
-        this.pageNum = 1
-        this.getData()
+        this.pageNum = 1;
+        this.getData();
     }
     reset() {
         this.findPhone = ''

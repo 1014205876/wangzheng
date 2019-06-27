@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TransformService } from '../../../../shared/service/transform.service';
-import { HttpServe } from '../../../../shared/service/http-serve.service';
 import { ActivatedRoute, Params } from '@angular/router';
+
+import { TransformService } from '../../../../shared/service/transform.service';
+import { ApiService } from '../../../../shared/service/api.service';
 
 @Component({
     selector: 'app-partner',
@@ -9,6 +10,7 @@ import { ActivatedRoute, Params } from '@angular/router';
     styleUrls: ['./partner.component.css']
 })
 export class PartnerComponent implements OnInit {
+    open = false;//控制多余查询框的展开收起
     startValue: Date = null;
     endValue: Date = null;
     startOpen: boolean = false;
@@ -16,8 +18,7 @@ export class PartnerComponent implements OnInit {
     total = 0
     pageNum = 1
 
-    data = [
-    ]
+    data = []
     list = []
     //查询变量
     findPhone = ''
@@ -34,7 +35,7 @@ export class PartnerComponent implements OnInit {
     normalMaker
     countPartner
     constructor(
-        private http: HttpServe,
+        private api: ApiService,
         private dateTransform: TransformService,
         private route: ActivatedRoute,
 
@@ -46,29 +47,31 @@ export class PartnerComponent implements OnInit {
         this.getData()
         this.getPatNum()
     }
-    getData() {
-        // this.http.getCustomHeaders(
-        //     'kalanchoe-manager/v1/kalanchoe/backstage/distribution/partnerDataGrid?mobile=' + this.findPhone +
-        //     '&registerTimeStart=' + this.wantStartTime +
-        //     '&registerTimeEnd=' + this.wantEndTime +
-        //     '&registerSource=' + this.findRegisterSource +
-        //     '&releation=' + this.findConnect +
-        //     '&userId=' + this.userId +
-        //     '&pageNum=' + this.pageNum +
-        //     '&pageSize=' + 10
-        // ).subscribe(res => {
-        //     this.list = res.result.list
-        //     this.total = res.result.total
-        //     this.addIndexList()
-        // })
+    async getData() {
+        let res = await this.api.getDistributionPartnerDataGrid({
+            mobile: this.findPhone,
+            registerTimeStart: this.wantStartTime,
+            registerTimeEnd: this.wantEndTime,
+            registerSource: this.findRegisterSource,
+            releation: this.findConnect,
+            userId: this.userId,
+            pageNum: this.pageNum,
+            pageSize: 10
+        });
+        if (res.code == 200) {
+            this.list = res.data.list
+            this.total = res.data.total
+            this.addIndexList()
+        }
     }
-    getPatNum() {
-        // this.http.getCustomHeaders(
-        //     'kalanchoe-manager/v1/kalanchoe/backstage/user/type?id=' + this.userId
-        // ).subscribe(res => {
-        //     this.normalMaker = res.result.total
-        //     this.countPartner = res.result.countPartner
-        // })
+    async getPatNum() {
+        let res = await this.api.getUserType({
+            id: this.userId
+        });
+        if (res.code == 200) {
+            this.normalMaker = res.data.total
+            this.countPartner = res.data.countPartner
+        }
     }
     addIndexList() {
         var list = this.list
