@@ -1,0 +1,58 @@
+<ul>
+  <li>
+    <div class="left">
+      名字:
+    </div>
+    <div class="right">
+      <input type="text" [(ngModel)]="form.name">
+    </div>
+  </li>
+  <li>
+    <div class="left">
+      id:
+    </div>
+    <div class="right">
+      <input type="text" [(ngModel)]="form.id">
+    </div>
+  </li>
+  <li>
+    <div class="left">
+      状态
+    </div>
+    <div class="right">
+      <label>
+        <input type="radio" [value]="0" [(ngModel)]="form.status">0
+      </label>
+      <label>
+        <input type="radio" [value]="1" [(ngModel)]="form.status">1
+      </label>
+      <label>
+        <input type="radio" [value]="2" [(ngModel)]="form.status">2
+      </label>
+    </div>
+  </li>
+  <li>
+    <div class="left">
+      电话
+    </div>
+    <div class="right">
+      <input type="number" [(ngModel)]="form.tel">
+    </div>
+  </li>
+  <li>
+    <div class="left">
+      值
+    </div>
+    <div class="right">
+      <input type="text" [(ngModel)]="form.value">
+    </div>
+  </li>
+  <li>
+    <div class="left">
+
+    </div>
+    <div class="right">
+      <button class="submit" (click)="formSubmit()">提交</button>
+    </div>
+  </li>
+</ul>

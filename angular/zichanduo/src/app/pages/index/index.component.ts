@@ -168,30 +168,7 @@ export class IndexComponent implements OnInit {
     stopPropagation(e) {
         e.stopPropagation()
     }
-
-
-    getLeftMenu() { // 获取左导航
-        this.http.post('api/login', { id: 123 }, true).then((res) => {
-            console.log(res)
-        }).catch((err) => {
-            console.log(err)
-        })
-        this.http.get('api/get', {
-            name: 1,
-            id: 2,
-            age: 3
-        }, true).then((res) => {
-            console.log(res)
-        }).catch((err) => {
-            console.log(err)
-        })
-    }
-
-
-
     ngOnInit() {
-        this.getLeftMenu();
-
         document.onscroll = () => {//滚动监听，控制nav栏的显示隐藏
             let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
             if (!!document.getElementById('msg')) {
