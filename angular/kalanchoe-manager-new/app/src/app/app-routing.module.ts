@@ -88,6 +88,27 @@ const routes: Routes = [
                     },
                 ]
             },
+            {
+                path: 'app/system',
+                children: [
+                    {
+                        path: 'banner', children: [
+                            { path: '', loadChildren: './pages/system/banner/banner.module#BannerModule' },
+                        ]
+                    },
+                    {
+                        path: 'articleresource', children: [
+                            { path: '', loadChildren: './pages/system/articleresource/articleresource.module#ArticleresourceModule' },
+                        ]
+                    },
+                    {
+                        path: 'articleupload', children: [
+                            { path: '', loadChildren: './pages/system/articleupload/articleupload.module#ArticleuploadModule' },
+                            { path: 'articlepublish', loadChildren: './pages/system/articleupload/articlepublish/articlepublish.module#ArticlepublishModule' },
+                        ]
+                    },
+                ]
+            },
         ]
     }
 ];

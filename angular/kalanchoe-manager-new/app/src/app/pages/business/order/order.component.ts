@@ -130,20 +130,16 @@ export class businessorderComponent implements OnInit {
         }
     }
 
-    importOrder(url) {//将得到的URL路径发送给后端完成导入
-        // this.http.postCustomHeaders(
-        //     'kalanchoe-manager/v2/app/pre/importLoans',
-        //     {
-        //         fileUrl: url
-        //     }
-        // ).subscribe(res => {
-        //     if (res.code == '200') {
-        //         this.message.success('导入成功')
-        //         this.getData()
-        //     } else {
-        //         this.message.error('导入失败')
-        //     }
-        // })
+    async importOrder(url) {//将得到的URL路径发送给后端完成导入
+        let res = await this.api.postImportLoans({
+            fileUrl: url
+        });
+        if (res.code == '200') {
+            this.message.success('导入成功')
+            this.getData()
+        } else {
+            this.message.error(res.reason)
+        }
     }
 
     ngOnInit() {
@@ -159,33 +155,32 @@ export class businessorderComponent implements OnInit {
         this.getData()
     }
 
-    getProduct() {//获取申请产品数组
-        // this.http.getCustomHeaders(
-        //     'kalanchoe-manager/v2/app/pre/product'
-        // ).subscribe(res => {
-        //     this.productArr = res.data
-        // })
+    async getProduct() {//获取申请产品数组
+        let res = await this.api.getProduct();
+        if (res.code == '200') {
+            this.productArr = res.data
+        }
     }
 
-    getData() {//获取表格信息
-        // this.http.getCustomHeaders(
-        //     'kalanchoe-manager/v2/app/pre/loansGrid'
-        //     + "?no=" + this.no
-        //     + "&etpName=" + this.etpName
-        //     + '&regMobile=' + this.regMobile
-        //     + '&insStaffName=' + this.insStaffName
-        //     + '&productId=' + this.productId
-        //     + "&loanStartDate=" + this.wantStartTime
-        //     + "&loanEndDate=" + this.wantEndTime
-        //     + '&pageNum=' + this.pageNum
-        //     + '&pageSize=' + 10
-        // ).subscribe(res => {
-        //     this.data = res.data.list;
-        //     this.total = res.data.total
-        //     this.displayData.length = 0;
-        //     this.indeterminate = false;
-        //     this.allChecked = false;
-        // })
+    async getData() {//获取表格信息
+        let res = await this.api.getLoansGrid({
+            no: this.no,
+            etpName: this.etpName,
+            regMobile: this.regMobile,
+            insStaffName: this.insStaffName,
+            productId: this.productId,
+            loanStartDate: this.wantStartTime,
+            loanEndDate: this.wantEndTime,
+            pageNum: this.pageNum,
+            pageSize: 10,
+        });
+        if (res.code == '200') {
+            this.data = res.data.list;
+            this.total = res.data.total
+            this.displayData.length = 0;
+            this.indeterminate = false;
+            this.allChecked = false;
+        }
     }
 
     pageSearch($event) {//点击分页器切换

@@ -9,20 +9,20 @@ registerLocaleData(zh);
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 
 // 引入组件和服务
-import { LayoutModule } from '../../../layout/layout.module';
-import { SharedModule } from '../../../shared/shared.module';
-import { ComponentModule } from '../../../shared/component/component.module';
+import { LayoutModule } from '../../../../layout/layout.module';
+import { SharedModule } from '../../../../shared/shared.module';
+import { ComponentModule } from '../../../../shared/component/component.module';
 
 // 引入页面
-import { MakerpersonComponent } from './makerperson.component';
+import { ArticlepublishComponent } from './articlepublish.component';
 
 const routes: Routes = [
-    { path: '', component: MakerpersonComponent }
+    { path: '', component: ArticlepublishComponent }
 ];
 
 @NgModule({
     declarations: [
-        MakerpersonComponent
+        ArticlepublishComponent
     ],
     imports: [
         CommonModule,
@@ -42,4 +42,4 @@ const routes: Routes = [
     ],
     exports: [RouterModule]
 })
-export class MakerpersonRoutingModule { }
+export class ArticlepublishRoutingModule { }

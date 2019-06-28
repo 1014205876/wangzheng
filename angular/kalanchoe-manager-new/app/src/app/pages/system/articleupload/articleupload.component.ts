@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router'
+
+import { NzMessageService } from 'ng-zorro-antd';
+
 import { TransformService } from '../../../shared/service/transform.service';
-import { HttpServe } from '../../../shared/service/http-serve.service';
-import { ActivatedRoute, Router } from '@angular/router'
+import { ApiService } from '../../../shared/service/api.service';
 
 @Component({
     selector: 'app-articleupload',
@@ -29,29 +32,32 @@ export class ArticleuploadComponent implements OnInit {
     showBack = false
     backChoosed //
     constructor(
-        private dateTransform: TransformService,
-        private http: HttpServe,
         private route: ActivatedRoute,
-
-    ) { }
-
-    ngOnInit() {
+        private message: NzMessageService,
+        private dateTransform: TransformService,
+        private api: ApiService,
+    ) {
         if (this.route.snapshot.queryParams.pageNum) {
             this.pageNum = this.route.snapshot.queryParams.pageNum
         }
+    }
+
+    ngOnInit() {
         this.getData()
     }
-    getData() {
-        // this.http.getCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/articles?'
-        //     + 'pageNum=' + this.pageNum
-        //     + '&pageSize=10'
-        //     + '&starttime=' + this.wantStartTime
-        //     + '&endtime=' + this.wantEndTime
-        //     + '&title=' + this.findTittle
-        //     + '&status=' + this.findStaus).subscribe(e => {
-        //         this.total = e.data.total
-        //         this.data = e.data.list
-        //     })
+    async getData() {
+        let res = await this.api.getOriginalArticles({
+            starttime: this.wantStartTime,
+            endtime: this.wantEndTime,
+            title: this.findTittle,
+            status: this.findStaus,
+            pageNum: this.pageNum,
+            pageSize: 10
+        });
+        if (res.code == 200) {
+            this.total = res.data.total
+            this.data = res.data.list
+        }
     }
     search() {
         this.pageNum = '1'
@@ -70,22 +76,33 @@ export class ArticleuploadComponent implements OnInit {
         this.showBack = true
         this.backChoosed = data
     }
-    showBackOk() {
+    async showBackOk() {
         let params = {
             articlesDetailId: this.backChoosed.id,
             status: 3
         }
-        // this.http.patchCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/articles/' + params.articlesDetailId + "?status=" + params.status, params).subscribe(e => {
-        //     this.getData()
-        //     this.showBack = false
-        // })
+        console.log(params)
+        let res = await this.api.patchArticles(
+            this.backChoosed.id, 3
+        );
+        if (res.code == '200') {
+            this.getData()
+            this.showBack = false;
+            this.message.success('撤回成功')
+        } else {
+            this.message.error(res.reason)
+        }
     }
     showBackCancel() {
         this.showBack = false
     }
-    clickedCancelPublish(data) {
-        let params = {
-            articlesDetailId: data.id
+    async clickedCancelPublish(data) {
+        let res = await this.api.patchArticlesJob(data.id);
+        if (res.code == '200') {
+            this.getData()
+            this.message.success('取消成功')
+        } else {
+            this.message.error(res.reason)
         }
         // this.http.patchCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/articles/job/' + params.articlesDetailId, params).subscribe(e => {
         //     this.getData()

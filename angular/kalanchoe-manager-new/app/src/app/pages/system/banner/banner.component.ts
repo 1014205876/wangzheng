@@ -1,9 +1,9 @@
-import { HttpServe } from './../../../shared/service/http-serve.service';
 import { Component, OnInit } from '@angular/core';
+
 import { FileUploader } from 'ng2-file-upload';
 import { NzMessageService } from 'ng-zorro-antd';
 
-// import { runInThisContext } from 'vm';
+import { ApiService } from '../../../shared/service/api.service';
 
 @Component({
     selector: 'app-banner',
@@ -12,7 +12,7 @@ import { NzMessageService } from 'ng-zorro-antd';
 })
 export class BannerComponent implements OnInit {
     constructor(
-        private http: HttpServe,
+        private api: ApiService,
         private message: NzMessageService
 
     ) { }
@@ -31,18 +31,7 @@ export class BannerComponent implements OnInit {
             pages: 2,
             code: ''//页码总数
         },
-        table: [//表格的数据
-            {
-                "id": "93cd3d5b-9e26-44d8-a2cf-9507343323a8",
-                "title": "标题",
-                "mediaUrl": "",
-                'detail': '详情信息',
-                "status": 0,//状态
-                "updateDate": "2018-11-27 16:25:52",
-                "switchValue": true,
-                sort: '',//排序
-            }
-        ],
+        table: [],//表格的数据
         form: {//表单数据，用于生成和修改
             "id": "",
             "title": "",
@@ -63,77 +52,74 @@ export class BannerComponent implements OnInit {
     statusText
     status
     total
-    groupList = []
+    groupList = [];
+
     keyupHandler(e) {//富文本内容导出
         this.data.form.detail = e
     }
 
-    addtable(form) {//添加配置项
-        // this.http.postCustomHeaders(
-        //     'kalanchoe-manager/v1/app/back/banner',
-        //     {
-        //         title: form.title,
-        //         mediaUrl: form.mediaUrl,
-        //         detail: form.detail,
-        //         status: form.status,
-        //         sort: form.sort,
-        //         bannerGroup: form.code
-        //     }
-        // ).subscribe(res => {
-        //     if (res.code == '200') {
-        //         this.message.success('添加成功')
-        //     } else {
-        //         this.message.error('添加失败')
-        //     }
-        //     this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
-        // })
+    async addtable(form) {//添加配置项
+        let res = await this.api.postBanner({
+            title: form.title,
+            mediaUrl: form.mediaUrl,
+            detail: form.detail,
+            status: form.status,
+            sort: form.sort,
+            bannerGroup: form.code
+        });
+        if (res.code == '200') {
+            this.message.success('添加成功')
+        } else {
+            this.message.error(res.reason)
+        }
+        this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
+    };
+
+    async removetable(form) {//删除配置项
+        let res = await this.api.deleteBanners(form.id);
+        if (res.code == '200') {
+            this.message.success('删除成功')
+        } else {
+            this.message.error(res.reason)
+        }
+        this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
+    };
+
+    async changetable(form) {//修改banner图
+        let res = await this.api.putBanners(
+            form.id,
+            {
+                title: form.title,
+                mediaUrl: form.mediaUrl,
+                detail: form.detail,
+                status: form.status,
+                sort: form.sort,
+                bannerGroup: form.code
+            }
+        );
+        if (res.code == '200') {
+            this.message.success('修改成功');
+        } else {
+            this.message.error(res.reason);
+        }
+        this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
     }
-    removetable(form) {//删除配置项
-        // this.http.deleteCustomHeaders(
-        //     'kalanchoe-manager/v1/app/back/banners/' + form.id
-        // ).subscribe(res => {
-        //     if (res.code == '200') {
-        //         this.message.success('删除成功')
-        //     } else {
-        //         this.message.error('删除失败')
-        //     }
-        //     this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
-        // })
-    }
-    changetable(form) {//修改banner图
-        // this.http.putCustomHeaders(
-        //     'kalanchoe-manager/v1/app/back/banners/' + form.id,
-        //     {
-        //         title: form.title,
-        //         mediaUrl: form.mediaUrl,
-        //         detail: form.detail,
-        //         status: form.status,
-        //         sort: form.sort,
-        //         bannerGroup: form.code
-        //     }
-        // ).subscribe(res => {
-        //     if (res.code == '200') {
-        //         this.message.success('修改成功')
-        //     } else {
-        //         this.message.error('修改失败')
-        //     }
-        //     this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
-        // })
-    }
-    gettable(pageNum, find) {//查询配置项
-        // this.http.getCustomHeaders(
-        //     'kalanchoe-manager/v1/app/back/bannersDataGrid?title=' + find.title +
-        //     '&status=' + find.status +
-        //     '&bannerGroup=' + find.code +
-        //     '&pageNum=' + pageNum +
-        //     '&pageSize=' + 10
-        // ).subscribe(res => {
-        //     this.list = res.data.list
-        //     this.total = res.data.total
-        //     this.pushSwitchValue()
-        //     this.data.find.pageNum = res.data.pageNum
-        //     this.data.find.pages = res.data.pages
-        // })
+
+    async gettable(pageNum, find) {//查询配置项
+        let res = await this.api.getBannersDataGrid({
+            title: find.title,
+            status: find.status,
+            bannerGroup: find.code,
+            pageNum: pageNum,
+            pageSize: 10
+        });
+        if (res.code == '200') {
+            this.list = res.data.list
+            this.total = res.data.total
+            this.pushSwitchValue()
+            this.data.find.pageNum = res.data.pageNum
+            this.data.find.pages = res.data.pages
+        }
     }
     pushSwitchValue() {
         this.list.map(item => {
@@ -212,30 +198,14 @@ export class BannerComponent implements OnInit {
                         alert('排序不能为负数')
                     } else {
                         if (this.data.addtext == '添加') {
-                            // this.http.getCustomHeaders(
-                            //     'kalanchoe-manager/v1/app/back/banner/sort?sort=' + this.data.form.sort).subscribe(res => {
-                            //         if (res.data == 0) {
-                            //             this.addtable(this.data.form);
-                            //             this.hidden()
-                            //         } else {
-                            //             alert("排序不能重复")
-                            //         }
-                            //     })
+                            this.getBannerSort('add');
                         }
                         if (this.data.addtext == '修改') {
                             if (this.chooseSort == this.data.form.sort) {
                                 this.changetable(this.data.form);
                                 this.hidden()
                             } else {
-                                // this.http.getCustomHeaders(
-                                //     'kalanchoe-manager/v1/app/back/banner/sort?sort=' + this.data.form.sort).subscribe(res => {
-                                //         if (res.data == 0) {
-                                //             this.changetable(this.data.form);
-                                //             this.hidden()
-                                //         } else {
-                                //             alert("排序不能重复")
-                                //         }
-                                //     })
+                                this.getBannerSort('change');
                             }
                         }
                     }
@@ -250,15 +220,34 @@ export class BannerComponent implements OnInit {
         }
     }
 
+    async getBannerSort(status) {
+        let res = await this.api.getBannerSort({
+            sort: this.data.form.sort
+        });
+        if (res.code == '200') {
+            if (res.data == 0) {
+                if (status == 'add') {
+                    this.addtable(this.data.form);
+                }
+                if (status == 'change') {
+                    this.changetable(this.data.form);
+                }
+                this.hidden()
+            } else {
+                alert("排序不能重复")
+            }
+        }
+    }
+
     switchChange($event, id) {
         this.groupId = id
         this.switchValue = $event
         this.showSingleSwitch = true
         if ($event == true) {
-            this.statusText = '你确定要启用此人吗？'
+            this.statusText = '你确定要启用这张图吗？'
         }
         if ($event == false) {
-            this.statusText = '你确定要禁用此人吗？'
+            this.statusText = '你确定要禁用这张图吗？'
         }
     }
     singleHandleCancel() {
@@ -275,19 +264,19 @@ export class BannerComponent implements OnInit {
         }
         this.changeStatusData()
     }
-    changeStatusData() {
-        let status = {}
-        status['status'] = this.status
-        // this.http.patchCustomHeaders("kalanchoe-manager/v1/app/back/banners/" + this.groupId, status)
-        //     .subscribe(res => {
-        //         if (res.code == '200') {
-        //             this.message.success('状态修改成功')
-        //         } else {
-        //             this.message.error('状态修改失败')
-        //         }
-        //         this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
-        //     })
+
+    async changeStatusData() {
+        let status = {};
+        status['status'] = this.status;
+        let res = await this.api.patchBanners(this.groupId, status);
+        if (res.code == '200') {
+            this.message.success('状态修改成功')
+        } else {
+            this.message.error(res.reason)
+        }
+        this.gettable(this.data.find.pageNum, this.data.find);//重新调取后台表格数据
     }
+
     removeshow(list) {//点击删除按钮，打开删除弹窗
         this.data.mengbanshow = true;
         this.data.removeshow = true;
@@ -327,10 +316,13 @@ export class BannerComponent implements OnInit {
         this.getGroupData()
     }
 
-    getGroupData() {
-        // this.http.getCustomHeaders('kalanchoe-manager/v1/app/back/find/group?bannerGroup=bannerGroup').subscribe(e => {
-        //     this.groupList = e.data
-        // })
+    async getGroupData() {
+        let res = await this.api.getFindGroup({
+            bannerGroup: 'bannerGroup'
+        });
+        if (res.code == '200') {
+            this.groupList = res.data
+        }
     }
 
     ngDoCheck() {

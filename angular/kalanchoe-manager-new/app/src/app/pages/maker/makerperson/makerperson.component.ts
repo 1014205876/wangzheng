@@ -48,9 +48,9 @@ export class MakerpersonComponent implements OnInit {
     indeterminate = false
     allChecked = false
     constructor(
-        private api: ApiService,
         private message: NzMessageService,
         private dateTransform: TransformService,
+        private api: ApiService,
     ) { }
 
     //分页查询
@@ -251,8 +251,7 @@ export class MakerpersonComponent implements OnInit {
         if (res.code == '200') {
             this.getdata();
             this.message.success('分组调整成功')
-        }
-        else {
+        }else {
             this.message.error(res.reason)
         }
         this.showAdjugeGroup = false
