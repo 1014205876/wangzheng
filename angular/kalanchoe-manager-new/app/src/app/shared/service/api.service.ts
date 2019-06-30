@@ -165,7 +165,7 @@ export class ApiService {
 
     // customer-info 账户详情
     public getUsers(id) {
-        let url = this.backManagerUrl + 'users/'+id
+        let url = this.backManagerUrl + 'users/' + id
         return this.http.get(url)
     }
 
@@ -174,6 +174,91 @@ export class ApiService {
         let url = this.preManagerUrl + 'shareProfit'
         return this.http.patch(url, params)
     }
+    public postImportLoans(params: any) {
+        let url = this.preManagerUrl + 'importLoans'
+        return this.http.post(url, params)
+    }
+    public getLoansGrid(params) {
+        let url = this.preManagerUrl + 'loansGrid'
+        return this.http.get(url, params)
+    }
+
+    // order-info 订单详情
+    public getLoans(id) {
+        let url = this.backManagerUrl + 'loans/' + id
+        return this.http.get(url)
+    }
+
+    // system 内容管理
+    // banner banner管理
+    public getBanner(params) {
+        let url = this.backManagerUrl + 'banner'
+        return this.http.get(url, params)
+    }
+    public postBanner(params: any) {
+        let url = this.backManagerUrl + 'banner'
+        return this.http.post(url, params)
+    }
+    public deleteBanners(id: any) {
+        let url = this.backManagerUrl + 'banners/' + id
+        return this.http.delete(url)
+    }
+    public putBanners(id: any, params) {
+        let url = this.backManagerUrl + 'banners/' + id
+        return this.http.put(url, params)
+    }
+    public getBannersDataGrid(params) {
+        let url = this.backManagerUrl + 'bannersDataGrid'
+        return this.http.get(url, params)
+    }
+    public getBannerSort(params) {
+        let url = this.backManagerUrl + 'banner/sort'
+        return this.http.get(url, params)
+    }
+    public patchBanners(id: any, params: any) {
+        let url = this.backManagerUrl + 'banners/' + id
+        return this.http.patch(url, params)
+    }
+    public getFindGroup(params) {
+        let url = this.backManagerUrl + 'find/group'
+        return this.http.get(url, params)
+    }
+
+    // articleresource 文章资源管理
+    public getOriginalArticleDataGrid(params) {
+        let url = 'api/kalanchoe-manager/v1/phosphor/backstage/' + 'originalArticleDataGrid'
+        return this.http.get(url, params)
+    }
+    public patchOriginalArticle(params: any) {
+        let url = 'api/kalanchoe-manager/v1/phosphor/backstage/' + 'originalArticle'
+        return this.http.patch(url, params)
+    }
+
+    // articleupload 文章发布管理
+    public getOriginalArticles(params) {
+        let url = 'api/kalanchoe-manager/v1/phosphor/backstage/' + 'articles'
+        return this.http.get(url, params)
+    }
+    public patchArticles(id, status) {
+        let url = 'api/kalanchoe-manager/v1/phosphor/backstage/' + 'articles/' + id + '?status=' + status
+        return this.http.patch(url)
+    }
+    public patchArticlesJob(id) {
+        let url = 'api/kalanchoe-manager/v1/phosphor/backstage/' + 'articles/job/' + id
+        return this.http.patch(url)
+    }
+
+    // articlepublish 文章发布
+    public getArticles(id) {
+        let url = 'api/kalanchoe-manager/v1/phosphor/backstage/' + 'articles/' + id
+        return this.http.get(url)
+    }
+    public putArticles(params) {
+        let url = 'api/kalanchoe-manager/v1/phosphor/backstage/' + 'articles'
+        return this.http.put(url, params)
+    }
+
+
 
     // public helpsPageGet(params: any) {
     //     let url = this.baseUrl + 'helpsDataGrid'

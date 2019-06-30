@@ -14,15 +14,15 @@ import { SharedModule } from '../../../shared/shared.module';
 import { ComponentModule } from '../../../shared/component/component.module';
 
 // 引入页面
-import { MakerpersonComponent } from './makerperson.component';
+import { ArticleuploadComponent } from './articleupload.component';
 
 const routes: Routes = [
-    { path: '', component: MakerpersonComponent }
+    { path: '', component: ArticleuploadComponent }
 ];
 
 @NgModule({
     declarations: [
-        MakerpersonComponent
+        ArticleuploadComponent
     ],
     imports: [
         CommonModule,
@@ -42,4 +42,4 @@ const routes: Routes = [
     ],
     exports: [RouterModule]
 })
-export class MakerpersonRoutingModule { }
+export class ArticleuploadRoutingModule { }

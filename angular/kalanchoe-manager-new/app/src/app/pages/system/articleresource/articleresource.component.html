@@ -1,15 +1,15 @@
 <div class="container">
-    <app-crumb [url]="['内容管理','文章资源管理']"></app-crumb>
+    <app-breadcrumbs [breadcrumbs]="['内容管理','文章资源管理']"></app-breadcrumbs>
     <nz-card class="shadow">
         <div class="gutter-example">
             <div nz-row nzGutter="16">
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>文章标题：</span>
                     <div class="gutter-box">
                         <input nz-input placeholder="请输入文章标题" [(ngModel)]="findTittle">
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="8">
+                <div nz-col class="gutter-row" nzSpan="12">
                     <span>注册时间：</span>
                     <div class="gutter-box">
                         <nz-date-picker [nzStyle]="{width:'100%'}" [nzDisabledDate]="disabledStartDate"
@@ -25,7 +25,7 @@
                         </nz-date-picker>
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>&nbsp;</span>
                     <div class="gutter-box">
                         <button nz-button nzType="primary" (click)="search()">查询</button>
@@ -35,7 +35,6 @@
             </div>
         </div>
     </nz-card>
-
     <nz-card class="shadow mt20" [nzTitle]="cardTitle" [nzExtra]="cardExtra">
         <nz-table #rowSelectionTable [nzLoading]="loading" [nzData]="data" nzShowPagination=false>
             <thead>
@@ -48,13 +47,13 @@
             </thead>
             <tbody>
                 <tr *ngFor="let data of rowSelectionTable.data">
-                    <td nzShowCheckbox [nzDisabled]="data.status==0||data.status==1"
+                    <td nzShowCheckbox [nzDisabled]="data.status!=null"
                         (nzCheckedChange)="checked($event,data.id)"></td>
                     <td (click)="clickedshowContent(data.pageContent)" style="cursor:pointer;">{{data.title}}</td>
                     <td>{{data.pageDate}}</td>
                     <td>
-                        <span *ngIf="data.status !=null">--</span>
-                        <span *ngIf="data.status ==null&&data.title!='正在加载...'" (click)="clickedSinglePublish(data.id)"
+                        <span *ngIf="data.status!=null">--</span>
+                        <span *ngIf="data.status==null&&data.title!='正在加载...'" (click)="clickedSinglePublish(data.id)"
                             style="cursor:pointer;">加入待发布列表</span>
                     </td>
                 </tr>

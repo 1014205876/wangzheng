@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { TransformService } from '../../../shared/service/transform.service';
-import { HttpServe } from '../../../shared/service/http-serve.service';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+
 import { NzMessageService } from 'ng-zorro-antd';
+
+import { TransformService } from '../../../shared/service/transform.service';
+import { ApiService } from '../../../shared/service/api.service';
 
 @Component({
     selector: 'app-articleresource',
@@ -32,10 +34,10 @@ export class ArticleresourceComponent implements OnInit {
     content
     manyCheckModal = false
     constructor(
-        private dateTransform: TransformService,
-        private http: HttpServe,
         private router: Router,
-        private message: NzMessageService
+        private message: NzMessageService,
+        private dateTransform: TransformService,
+        private api: ApiService,
 
     ) { }
     clickedshowContent(content) {
@@ -51,21 +53,21 @@ export class ArticleresourceComponent implements OnInit {
     ngOnInit() {
         this.getData()
     }
-    getData() {
-        // this.http.getCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/originalArticleDataGrid?'
-        //     + 'pageNum=' + this.pageNum
-        //     + '&pageSize=10'
-        //     + '&starttime=' + this.wantStartTime
-        //     + '&endtime=' + this.wantEndTime
-        //     + '&title=' + this.findTittle).subscribe(e => {
-        //         this.loading = false
-        //         if (e.code == '200') {
-        //             this.data = e.data.list
-        //             this.total = e.data.total
-        //         }else{
-        //             this.message.error('文章加载失败，请重新刷新页面！')
-        //         }
-        //     })
+    async getData() {
+        let res = await this.api.getOriginalArticleDataGrid({
+            starttime: this.wantStartTime,
+            endtime: this.wantEndTime,
+            title: this.findTittle,
+            pageNum: this.pageNum,
+            pageSize: 10
+        });
+        if (res.code == 200) {
+            this.data = res.data.list
+            this.total = res.data.total
+        } else {
+            this.message.error(res.reason)
+        }
+        this.loading = false
     }
     search() {
         this.pageNum = '1'
@@ -91,9 +93,7 @@ export class ArticleresourceComponent implements OnInit {
     singleCheckModalOk() {
         this.singleCheckModal = false
         this.manyCheckModalOk()
-        // setTimeout(() => {
         this.publishCheckModal = true
-        // }, 300);
     }
     //批量加入待发布
     checked($event, id) {
@@ -111,7 +111,20 @@ export class ArticleresourceComponent implements OnInit {
     clickedWillPublish() {
         this.manyCheckModal = true
     }
-    manyCheckModalOk() {
+    async manyCheckModalOk() {
+        let res = await this.api.patchOriginalArticle({
+            list: this.selected
+        });
+        if (res.code == '200') {
+            this.message.success('加入待发布列表成功，请至发布页面进行发布！')
+            this.getData()
+            this.manyCheckModal = false
+            this.selected = []
+        } else {
+            this.message.error(res.reason)
+        }
+
+
         // this.http.patchCustomHeaders('kalanchoe-manager/v1/phosphor/backstage/originalArticle',
         //     {
         //         list: this.selected

@@ -1,18 +1,18 @@
 <div class="container">
-    <app-crumb [url]="['内容管理','banner管理']"></app-crumb>
+    <app-breadcrumbs [breadcrumbs]="['内容管理','banner管理']"></app-breadcrumbs>
     <nz-card class="shadow">
         <div class="gutter-example">
             <div nz-row nzGutter="16">
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>标题：</span>
                     <div class="gutter-box">
                         <input nz-input [(ngModel)]="data.find.title">
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>状态：</span>
                     <div class="gutter-box">
-                        <nz-select style="width: 250px;" nzShowSearch nzAllowClear nzPlaceHolder="所有状态"
+                        <nz-select style="width: 100%" nzShowSearch nzAllowClear nzPlaceHolder="所有状态"
                             [(ngModel)]="data.find.status">
                             <nz-option nzLabel="全部" nzValue=""></nz-option>
                             <nz-option nzLabel="禁止" nzValue="0"></nz-option>
@@ -20,10 +20,10 @@
                         </nz-select>
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>分组：</span>
                     <div class="gutter-box">
-                        <nz-select style="width: 250px;" nzShowSearch nzAllowClear nzPlaceHolder="全部分组"
+                        <nz-select style="width: 100%" nzShowSearch nzAllowClear nzPlaceHolder="全部分组"
                             [(ngModel)]="data.find.code">
                             <nz-option nzLabel="全部分组" nzValue=""></nz-option>
                             <nz-option nzLabel="{{v.name}}" nzValue="{{v.code}}" *ngFor="let v of groupList">
@@ -31,7 +31,7 @@
                         </nz-select>
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>&nbsp;</span>
                     <div class="gutter-box">
                         <button nz-button nzType="primary" (click)="gettable(data.find.pageNum,data.find)">查询</button>

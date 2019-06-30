@@ -16,6 +16,7 @@ export class MenuLoadService {
             .then((res: any) => {
                 resource.ResourceItems = res.data.resource;
                 resource.menu = res.data.menu;
+                console.log('over')
                 resource.over = true;//防止由于接口反悔过慢导致权限判定逻辑失败
                 this.redirectPlatform()
             });
@@ -27,6 +28,7 @@ export class MenuLoadService {
         this.http.get("api/peak-resource/v1/resource/apps/permission")
             .toPromise()
             .then((res: any) => {
+                resource.navOver = true;//防止由于接口反悔过慢导致其他平台导航获取失败
                 resource.nav = res.data
             })
     }

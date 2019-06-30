@@ -1,5 +1,5 @@
 <div class="container">
-    <app-crumb [url]="['内容管理','文章发布管理','文章发布']"></app-crumb>
+    <app-breadcrumbs [breadcrumbs]="['内容管理','文章发布管理','文章发布']"></app-breadcrumbs>
     <nz-card class="shadow">
         <form [formGroup]="form" accept-charset="utf-8">
             <div class="form">
@@ -56,12 +56,17 @@
                 <div class="form-item">
                     <label>封面图片</label>
                     <div class="item-content">
-                        <span class="image-upload-tip">{{uploadMsg}}<i *ngIf="upload === 'uploading'"
-                                class="fa fa-spinner fa-spin"></i></span>
-                        <a href="javascript:;" class="file">选择图片
-                            <input type="file" (change)="previewImg($event)" accept="image/jpg,image/jpeg,image/png"
-                                capture="camera">
-                        </a>
+                        <div class="flex">
+                            <div class="image-upload-tip">{{uploadMsg}}<i *ngIf="upload === 'uploading'"
+                                    class="fa fa-spinner fa-spin"></i></div>
+                            <!-- <a href="javascript:;" class="file">选择图片
+                                <input type="file" (change)="previewImg($event)" accept="image/jpg,image/jpeg,image/png"
+                                    capture="camera">
+                            </a> -->
+                            <nz-upload nzAccept="image/jpg,image/jpeg,image/png" [nzAction]="'/upload'" (nzChange)="change($event)" [nzShowUploadList]="false">
+                                <button nz-button nzType="primary">选择图片</button>
+                            </nz-upload>
+                        </div>
                     </div>
                 </div>
                 <div style="text-align: center;">
@@ -81,7 +86,6 @@
     <nz-modal [(nzVisible)]="showTimePublish" nzTitle="定时发布" (nzOnCancel)="TimepublishMoadleCancel()"
         (nzOnOk)="TimepublishMoadleOk()">
         <div class="app-modal-body">
-            <!-- <form accept-charset ='UTF-8' (ngSubmit)="onSubmit()"> -->
             <div class="form-group row">
                 <!-- <div class="content"> -->
                 <select class="form-control day" name="day" (change)="timeChange($event,'day')">
@@ -97,11 +101,8 @@
                     <option *ngFor="let item of time.minutes" [value]="item" [selected]="item === time.selectedMinute">
                         {{item}}</option>
                 </select><span>分</span>
-                <!-- </div> -->
             </div>
             <p>（只能选择5分钟-48小时范围内的时间）</p>
-            <!-- <p>本文将于{{time.timeString}}发布</p> -->
-            <!-- </form> -->
         </div>
     </nz-modal>
 </div>

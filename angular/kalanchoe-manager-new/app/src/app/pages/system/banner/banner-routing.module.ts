@@ -5,8 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import zh from '@angular/common/locales/zh';
 registerLocaleData(zh);
 
-/** 引入外部插件 */
+// 引入外部插件
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import { FileUploadModule } from 'ng2-file-upload';
 
 // 引入组件和服务
 import { LayoutModule } from '../../../layout/layout.module';
@@ -14,15 +15,15 @@ import { SharedModule } from '../../../shared/shared.module';
 import { ComponentModule } from '../../../shared/component/component.module';
 
 // 引入页面
-import { MakerpersonComponent } from './makerperson.component';
+import { BannerComponent } from './banner.component';
 
 const routes: Routes = [
-    { path: '', component: MakerpersonComponent }
+    { path: '', component: BannerComponent }
 ];
 
 @NgModule({
     declarations: [
-        MakerpersonComponent
+        BannerComponent
     ],
     imports: [
         CommonModule,
@@ -30,6 +31,7 @@ const routes: Routes = [
         FormsModule,
         ReactiveFormsModule,
         NgZorroAntdModule,
+        FileUploadModule,
         LayoutModule,
         SharedModule,
         ComponentModule
@@ -42,4 +44,4 @@ const routes: Routes = [
     ],
     exports: [RouterModule]
 })
-export class MakerpersonRoutingModule { }
+export class BannerRoutingModule { }
