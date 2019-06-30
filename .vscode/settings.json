@@ -7,5 +7,7 @@
     "emmet.includeLanguages": {
         "vue-html": "html",
         "vue": "html"
-    }
+    },
+    "vetur.format.options.tabSize": 4,
+    "beautify.tabSize": 4
 }

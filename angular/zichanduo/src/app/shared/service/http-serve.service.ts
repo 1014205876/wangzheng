@@ -8,18 +8,19 @@ export class HttpServe {
         private http: HttpClient
     ) { }
 
-    async get(url: string, params?: object, custom = false, contentType = 'application/json') {
+    async get(url: string, params?: object, custom = true, contentType = 'application/json') {
         let headers = new HttpHeaders({ 'Content-Type': contentType })
-        return this.http.get(url + this.formatParams(params), { headers })
+        return this.http
+            .get(url + this.formatParams(params), { headers })
             .toPromise()
-            .then((res: any) => {
-                this.extractData(custom, res)
+            .then((res) => { 
+                return this.extractData(custom, res) 
             })
-            .catch((err: any) => {
-                // this.handleError(err.error)
+            .catch((err) => {
+                this.handleError(err.error)
             })
     }
-    async post(url: string, params: any = {}, custom = false, ContentType = 'application/json') {
+    async post(url: string, params: any = {}, custom = true, ContentType = 'application/json') {
         let headers = new HttpHeaders({ 'Content-Type': ContentType })
         return this.http
             .post(url, params, { headers })
@@ -28,7 +29,7 @@ export class HttpServe {
             .catch((err) => this.handleError(err.error))
     }
 
-    async put(url: string, body: any = {}, custom = false, ContentType = 'application/json') {
+    async put(url: string, body: any = {}, custom = true, ContentType = 'application/json') {
         let headers = new HttpHeaders({ 'Content-Type': ContentType })
         return this.http
             .put(url, body, { headers })
@@ -39,7 +40,7 @@ export class HttpServe {
             })
     }
 
-    async delete(url: string, body: any = {}, custom = false) {
+    async delete(url: string, body: any = {}, custom = true) {
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' })
         return this.http
             .delete(url, { headers, params: body })
@@ -49,7 +50,7 @@ export class HttpServe {
     }
 
 
-    async patch(url: string, body: any = {}, custom = false, ContentType = 'application/json') {
+    async patch(url: string, body: any = {}, custom = true, ContentType = 'application/json') {
         let headers = new HttpHeaders({ 'Content-Type': ContentType })
         return this.http
             .patch(url, body, { headers })

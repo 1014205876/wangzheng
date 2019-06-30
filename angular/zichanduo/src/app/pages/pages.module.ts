@@ -8,7 +8,8 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      { path: '', loadChildren: './index/index.module#IndexModule' },
+      { path: '', redirectTo: '/form', pathMatch: 'full' },//默认路由
+      { path: 'index', loadChildren: './index/index.module#IndexModule' },
       { path: 'form', loadChildren: './form/form.module#FormModule' },
     ]
   }

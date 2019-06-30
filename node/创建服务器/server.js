@@ -27,15 +27,10 @@ connection.connect((err) => {
 
 app.listen(linsen);
 const tableName = "table01";
+
 app.use('/api',
-    router.get('/get', (req, res) => {
-        var data = url.parse(req.url, true).query;
-        res.send({
-            code: 200,
-            data: data
-        })
-    }),
-    router.post('/login', (req, res) => {
+    router.get('/form', (req, res) => {
+        // var data = url.parse(req.url, true).query;
         var form = new formidable.IncomingForm(req.url);
         form.parse(req, function (err, data, files) {
             if (err) {
@@ -45,49 +40,26 @@ app.use('/api',
                     reason: err
                 })
             } else {
-                // connection.query(
-                //     "insert into " +
-                //     tableName +
-                //     "(name) values('" +
-                //     data.name +
-                //     "')",
-                //     ((err, result) => {
-                //         if (err) {
-                //             res.send({
-                //                 code: 400,
-                //                 data: '',
-                //                 reason: err
-                //             })
-                //         } else {
-                //             res.send({
-                //                 code: 200,
-                //                 data: ''
-                //             })
-                //         }
-                //     })
-                // )
+
+                let sql = "select * from " + tableName +
+                    ((data.name || data.status || data.tel) ? " where " : "") +
+                    ((data.name) ? ("name='" + data.name + "'") : ("")) +
+                    ((data.status) ? (" and status=" + data.status) : ("")) +
+                    ((data.tel) ? (" and tel=" + data.tel) : (""));
                 connection.query(
-                    "INSERT INTO " +
-                    tableName +
-                    "(name,id,status,creatDate,upDateTime,tel,value)VALUES('" +
-                    data.name + "','" +
-                    data.id + "'," +
-                    data.status + "," +
-                    "NOW()" + "," +
-                    "NOW()" + "," +
-                    data.tel + ",'" +
-                    data.value +
-                    "')",
+                    sql,
                     ((err, result) => {
                         if (err) {
                             res.send({
                                 code: 400,
                                 data: '',
+                                sql: sql,
                                 reason: err
                             })
                         } else {
                             res.send({
                                 code: 200,
+                                sql: sql,
                                 data: result
                             })
                         }
@@ -95,9 +67,114 @@ app.use('/api',
                 )
             }
         })
+
+
+    }),
+    router.post('/form', (req, res) => {
+        var form = new formidable.IncomingForm(req.url);
+        form.parse(req, function (err, data, files) {
+            let sql = "INSERT INTO " + tableName +
+                "(name,status,creatDate,upDateTime,tel,value)" +
+                "VALUES" +
+                "(" +
+                "'" + data.name + "'" + "," +
+                data.status + "," +
+                "NOW()" + "," +
+                "NOW()" + "," +
+                data.tel + "," +
+                "'" + data.value + "'" +
+                ")"
+            if (err) {
+                res.send({
+                    code: 400,
+                    data: '',
+                    reason: err
+                })
+            } else {
+                connection.query(
+                    sql, ((err, result) => {
+                        if (err) {
+                            res.send({
+                                code: 400,
+                                data: '',
+                                sql: sql,
+                                reason: err
+                            })
+                        } else {
+                            res.send({
+                                code: 200,
+                                sql: sql,
+                                data: result,
+                            })
+                        }
+                    })
+                )
+            }
+        })
+    }),
+    router.put('/form', (req, res) => {
+        var form = new formidable.IncomingForm(req.url);
+        form.parse(req, function (err, data, files) {
+            let sql = "UPDATE " + tableName + " SET " +
+                "name=" + "'" + data.name + "'" + "," +
+                "status=" + data.status + "," +
+                "upDateTime=NOW()" + "," +
+                "tel=" + data.tel + "," +
+                "value=" + "'" + data.value + "'" +
+                " WHERE id=" + data.id;
+            if (err) {
+                res.send({
+                    code: 400,
+                    data: '',
+                    reason: err
+                })
+            } else {
+                connection.query(
+                    sql, ((err, result) => {
+                        if (err) {
+                            res.send({
+                                code: 400,
+                                data: '',
+                                sql: sql,
+                                reason: err
+                            })
+                        } else {
+                            res.send({
+                                code: 200,
+                                sql: sql,
+                                data: result
+                            })
+                        }
+                    })
+                )
+            }
+        })
+    }),
+    router.delete('/form', (req, res) => {
+        var data = url.parse(req.url, true).query;
+        let sql = "DELETE FROM " + tableName + " WHERE id=" + data.id;
+        connection.query(
+            sql,
+            ((err, result) => {
+                if (err) {
+                    res.send({
+                        code: 400,
+                        sql: sql,
+                        data: '',
+                        reason: err
+                    })
+                } else {
+                    res.send({
+                        code: 200,
+                        sql: sql,
+                        data: result
+                    })
+                }
+            })
+        )
+
     })
 )
-
 
 //静态页面的入口文件夹
 app.use(express.static(path.join(__dirname, 'dist')));
