@@ -6,6 +6,30 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - GetDate",
+            "request": "launch",
+            "mainClass": "GetDate"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Division",
+            "request": "launch",
+            "mainClass": "Division"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - UpAndLower",
+            "request": "launch",
+            "mainClass": "UpAndLower"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Wordbook",
+            "request": "launch",
+            "mainClass": "Wordbook"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Opinion",
             "request": "launch",
             "mainClass": "Opinion"
