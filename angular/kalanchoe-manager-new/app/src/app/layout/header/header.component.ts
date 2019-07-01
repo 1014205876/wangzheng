@@ -48,7 +48,6 @@ export class HeaderComponent implements OnInit {
     }
 
     getHeader() {
-        console.log('header')
         if (resource.navOver&&resource.currentUser) {//防止权限接口返回过慢导致获取到的权限数组为空
             this.nav = resource.nav;
             this.userInfor = resource.currentUser;

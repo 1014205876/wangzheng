@@ -21,7 +21,7 @@
                 </tr>
             </tbody>
         </nz-table>
-        <div class="pagination" *ngIf="total!='0'">
+        <div class="pagination" *ngIf="total!=0">
             <nz-pagination [nzPageIndex]='pageNum' [nzTotal]="total" (nzPageIndexChange)="pageSearch($event)"
                 nzShowQuickJumper></nz-pagination>
         </div>

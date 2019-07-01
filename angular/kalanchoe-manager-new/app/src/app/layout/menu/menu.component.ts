@@ -24,7 +24,6 @@ export class MenuComponent implements OnInit {
     }
 
     getMenu() {
-        console.log('menu')
         if (resource.over) {//防止权限接口返回过慢导致获取到的权限数组为空
             this.menu = resource.menu;
         } else {

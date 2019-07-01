@@ -10,7 +10,7 @@ import { ApiService } from '../../../../shared/service/api.service';
     styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-
+    open = false;//控制多余查询框的展开收起
     startValue: Date = null;
     endValue: Date = null;
     startOpen: boolean = false;
