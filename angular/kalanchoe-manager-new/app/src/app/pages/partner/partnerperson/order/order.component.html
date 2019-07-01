@@ -25,7 +25,7 @@
                     <div nz-col class="gutter-row" nzSpan="6">
                         <span>订单状态：</span>
                         <div class="gutter-box">
-                            <nz-select style="width: 250px;" nzShowSearch nzAllowClear nzPlaceHolder="所有状态"
+                            <nz-select style="width: 100%" nzShowSearch nzAllowClear nzPlaceHolder="所有状态"
                                 [(ngModel)]="findStatus">
                                 <nz-option nzLabel="所有状态" nzValue=""></nz-option>
                                 <nz-option nzLabel="处理中" nzValue="0"></nz-option>
@@ -52,7 +52,7 @@
                     <div nz-col class="gutter-row" nzSpan="6">
                         <span>申请产品：</span>
                         <div class="gutter-box">
-                            <nz-select style="width: 250px;" nzShowSearch nzAllowClear nzPlaceHolder="所有产品"
+                            <nz-select style="width: 100%" nzShowSearch nzAllowClear nzPlaceHolder="所有产品"
                                 [(ngModel)]="findProductId">
                                 <nz-option nzLabel="所有产品" nzValue=""></nz-option>
                                 <nz-option nzLabel="{{item.name}}" nzValue="{{item.id}}"
@@ -64,7 +64,7 @@
                     <div nz-col class="gutter-row" nzSpan="6">
                         <span>关系：</span>
                         <div class="gutter-box">
-                            <nz-select style="width: 250px;" nzShowSearch nzAllowClear nzPlaceHolder="所有"
+                            <nz-select style="width: 100%" nzShowSearch nzAllowClear nzPlaceHolder="所有"
                                 [(ngModel)]="findReleation">
                                 <nz-option nzLabel="所有" nzValue=""></nz-option>
                                 <nz-option nzLabel="直接客户" nzValue="0"></nz-option>

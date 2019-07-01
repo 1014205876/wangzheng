@@ -27,7 +27,7 @@
                     <div nz-col class="gutter-row" nzSpan="6">
                         <span>注册来源：</span>
                         <div class="gutter-box">
-                            <nz-select style="width: 250px;" nzShowSearch nzAllowClear nzPlaceHolder="所有来源"
+                            <nz-select style="width: 100%" nzShowSearch nzAllowClear nzPlaceHolder="所有来源"
                                 [(ngModel)]="findRegisterSource">
                                 <nz-option nzLabel="所有·" nzValue=""></nz-option>
                                 <nz-option nzLabel="APP" nzValue="APP"></nz-option>
@@ -38,7 +38,7 @@
                     <div nz-col class="gutter-row" nzSpan="6">
                         <span>分组：</span>
                         <div class="gutter-box">
-                            <nz-select style="width: 250px;" nzShowSearch nzAllowClear nzPlaceHolder="默认分组"
+                            <nz-select style="width: 100%" nzShowSearch nzAllowClear nzPlaceHolder="默认分组"
                                 [(ngModel)]="findGroupName">
                                 <nz-option nzLabel="所有分组" nzValue=""></nz-option>
                                 <nz-option nzLabel="{{v.groupName}}" nzValue="{{v.groupName}}"
