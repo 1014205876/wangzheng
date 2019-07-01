@@ -1,5 +1,5 @@
 <div class="container">
-    <app-crumb [url]="['财务管理','资金管理','银行卡']"></app-crumb>
+    <app-breadcrumbs [breadcrumbs]="['财务管理','资金管理','银行卡']"></app-breadcrumbs>
     <nz-card class="shadow" [nzTitle]="cardTitle">
         <nz-table #rowSelectionTable [nzData]="data" nzShowPagination=false>
             <thead>
@@ -8,7 +8,6 @@
                     <th>类型</th>
                     <th>卡号</th>
                     <th>绑定时间</th>
-                    <!-- <th>操作</th> -->
                 </tr>
             </thead>
             <tbody>

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpServe } from '../../../shared/service/http-serve.service';
-import { NzMessageService } from 'ng-zorro-antd';
 import { ActivatedRoute, Router } from '@angular/router'
+
+import { NzMessageService } from 'ng-zorro-antd';
+
+import { ApiService } from '../../../shared/service/api.service';
 
 @Component({
     selector: 'app-money',
@@ -9,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router'
     styleUrls: ['./money.component.css']
 })
 export class MoneyComponent implements OnInit {
-    total = 30
+    total = 0;
     pageNum = 1
     //查找变量
     findPhone = ''
@@ -33,7 +35,7 @@ export class MoneyComponent implements OnInit {
     selectText = '余额账户'
     adjugeReason = ''
     constructor(
-        private http: HttpServe,
+        private api: ApiService,
         private message: NzMessageService,
         private route: ActivatedRoute,
 
@@ -45,14 +47,16 @@ export class MoneyComponent implements OnInit {
         }
         this.getData()
     }
-    getData() {
-        // this.http.getCustomHeaders('kalanchoe-manager/v1/account/user/dataGrid?'
-        //     + 'pageNum=' + this.pageNum
-        //     + '&pageSize=10'
-        //     + '&mobile=' + this.findPhone).subscribe(e => {
-        //         this.data = e.data.list
-        //         this.total = e.data.total
-        //     })
+    async getData() {
+        let res = await this.api.getDataGrid({
+            mobile: this.findPhone,
+            pageNum: this.pageNum,
+            pageSize: 10
+        })
+        if (res.code == 200) {
+            this.data = res.data.list
+            this.total = res.data.total
+        }
     }
     search() {
         this.pageNum = 1
@@ -69,21 +73,22 @@ export class MoneyComponent implements OnInit {
         this.getCount(1)
     }
     //选择获取账户余额（余额，佣金，奖金）
-    getCount(type) {
-        // this.http.getCustomHeaders('kalanchoe-manager/v1/account/deploy/show?'
-        //     + 'mobile=' + this.mobile
-        //     + '&type=' + type).subscribe(e => {
-        //         if (type == '1') {
-        //             this.availableMoney = e.data.canAccount
-        //         }
-        //         if (type == '2') {
-        //             this.availableCommissions = e.data.canAccount
-        //         }
-        //         if (type == '3') {
-        //             this.availableBonuses = e.data.canAccount
-        //         }
-
-        //     })
+    async getCount(type) {
+        let res = await this.api.getDeployShow({
+            mobile: this.mobile,
+            type: type
+        })
+        if (res.code == 200) {
+            if (type == '1') {
+                this.availableMoney = res.data.canAccount
+            }
+            if (type == '2') {
+                this.availableCommissions = res.data.canAccount
+            }
+            if (type == '3') {
+                this.availableBonuses = res.data.canAccount
+            }
+        }
     }
     reconciliationCancel() {
         this.showReconciliation = false
@@ -164,11 +169,13 @@ export class MoneyComponent implements OnInit {
             this.selectText = '奖金账户'
         }
     }
+
     //提交
     clickedcheckCancel() {
         this.showCheckMoadl = false
     }
-    clickedcheckOk() {
+
+    async clickedcheckOk() {
         let method
         let type = this.selectAccount
         let account = this.adjugeAccount
@@ -180,23 +187,22 @@ export class MoneyComponent implements OnInit {
         if (this.radiovalue == '0') {
             method = 'minus'
         }
-        // this.http.postCustomHeaders('kalanchoe-manager/v1/account/deploy', {
-        //     type: type,
-        //     mobile: mobile,
-        //     account: account,
-        //     remark: remark,
-        //     method: method
-        // }).subscribe(e => {
-        //     if (e.code == 200) {
-        //         this.message.success('调账成功')
-        //     }
-        //     if (e.code != 200) {
-        //         this.message.error(e.reason + ',调账失败')
-        //     }
-        //     this.getData()
-        //     this.clearData()
-        // })
+        let res = await this.api.postDeploy({
+            type: type,
+            mobile: mobile,
+            account: account,
+            remark: remark,
+            method: method
+        });
+        if (res.code == '200') {
+            this.message.success('调账成功')
+        } else {
+            this.message.error(res.reason);
+        }
+        this.getData()
+        this.clearData()
     }
+
     pageSearch($event) {
         this.pageNum = $event
         this.getData()

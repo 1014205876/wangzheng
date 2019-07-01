@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpServe } from '../../../shared/service/http-serve.service';
 import { NzMessageService } from 'ng-zorro-antd';
+
+import { ApiService } from '../../../shared/service/api.service';
 
 @Component({
     selector: 'app-settlement',
@@ -18,13 +19,13 @@ export class SettlementComponent implements OnInit {
     total = ''
     data = []
     seleted = [];//复选框number数组
-    statusList=[];//复选框status数组
+    statusList = [];//复选框status数组
     //全选
-    indeterminate=false
-    allChecked=false
-    list=[]
+    indeterminate = false
+    allChecked = false
+    list = []
     constructor(
-        private http: HttpServe,
+        private api: ApiService,
         private message: NzMessageService,
     ) { }
 
@@ -32,43 +33,40 @@ export class SettlementComponent implements OnInit {
         this.getData()
     }
 
-    getData() {
-        // this.http.getCustomHeaders('kalanchoe-manager/v1/settlementApply?'
-        //     + 'pageNum=' + this.pageNum
-        //     + '&pageSize=10'
-        //     + '&mobile=' + this.findPhone
-        //     + '&type=' + this.findSettleType
-        //     + '&no=' + this.findNo).subscribe(e => {
-        //         if(e.code==200){
-        //             this.allChecked=false
-        //             this.total = e.data.total
-        //             this.list = e.data.list
-        //             this.addCheckBox()
-        //         }
-        //     })
+    async getData() {
+        let res = await this.api.getSettlementApply({
+            mobile: this.findPhone,
+            type: this.findSettleType,
+            no: this.findNo,
+            pageNum: this.pageNum,
+            pageSize: 10
+        });
+        if (res.code == 200) {
+            this.allChecked = false;
+            this.total = res.data.total;
+            this.list = res.data.list;
+            this.addCheckBox();
+        }
     }
-    addCheckBox(){
-        this.list.map(item=>{
-            item.check=false
-          return
+    addCheckBox() {
+        this.list.map(item => {
+            item.check = false
+            return
         })
-        this.data=this.list
+        this.data = this.list
     }
-    submit(type, nos) {
-        // this.http.putCustomHeaders('kalanchoe-manager/v1/settlementApply/updateStatus?'
-        //     + 'ids=' + nos
-        //     + '&status=' + type, {
-        //         nos: nos,
-        //         status: type
-        //     }).subscribe(e => {
-        //         if (e.code == 200) {
-        //             this.message.success('操作成功')
-        //         }
-        //         else {
-        //             this.message.error(e.reason)
-        //         }
-        //         this.getData()
-        //     })
+    async submit(type, nos) {
+        let res = await this.api.putSettlementApply({
+            nos: nos,
+            status: type
+        });
+        if (res.code == 200) {
+            this.message.success('操作成功')
+        }
+        else {
+            this.message.error(res.reason)
+        }
+        this.getData()
     }
     apply(type, no, singleOrmany) {
         let index = this.statusList.indexOf(type)
@@ -84,7 +82,7 @@ export class SettlementComponent implements OnInit {
             if (this.seleted.length == 0) {
                 this.message.error('请至少选择一项！')
             }
-            if(index>=0){
+            if (index >= 0) {
                 this.message.error('存在已结清选项，请重新选择！')
             }
             else {
@@ -102,76 +100,76 @@ export class SettlementComponent implements OnInit {
             })
             this.seleted = selected
         }
-        if(this.seleted.length==this.data.length){
-            this.allChecked=true
-            this.indeterminate=false
+        if (this.seleted.length == this.data.length) {
+            this.allChecked = true
+            this.indeterminate = false
         }
-        else if(this.seleted.length==0){
-            this.allChecked=false
-            this.indeterminate=false
+        else if (this.seleted.length == 0) {
+            this.allChecked = false
+            this.indeterminate = false
         }
-        else{
-            this.allChecked=false
-            this.indeterminate=true
+        else {
+            this.allChecked = false
+            this.indeterminate = true
         }
-        this.getNoStatus($event,data)
+        this.getNoStatus($event, data)
     }
-        //全选
- 
-    checkAll($event,data) {
-        if($event==true){
-            this.allChecked=true
-            this.indeterminate=false
-        }else{
-            this.allChecked=false
-            this.indeterminate=false
+    //全选
+
+    checkAll($event, data) {
+        if ($event == true) {
+            this.allChecked = true
+            this.indeterminate = false
+        } else {
+            this.allChecked = false
+            this.indeterminate = false
         }
-        if(this.allChecked==true){
-                this.seleted = this.data.map(item=>{
-                item.check=true
+        if (this.allChecked == true) {
+            this.seleted = this.data.map(item => {
+                item.check = true
                 return item.no
             })
-            this.getAllNoStatus($event,data)
+            this.getAllNoStatus($event, data)
         }
-        if(this.allChecked==false){
-            this.seleted = this.data.map(item=>{
-                item.check=false
+        if (this.allChecked == false) {
+            this.seleted = this.data.map(item => {
+                item.check = false
             })
-            this.seleted=[]
-            this.statusList=[]
+            this.seleted = []
+            this.statusList = []
         }
     }
-    getNoStatus($event,data) {
-        if($event === true){
+    getNoStatus($event, data) {
+        if ($event === true) {
             this.statusList.push(data.status)
         }
         if ($event === false) {
             let deleteStatus = data.status
             let statusList = this.statusList
             let index = statusList.indexOf(deleteStatus)
-            statusList.splice(index,1)
-            this.statusList=statusList
+            statusList.splice(index, 1)
+            this.statusList = statusList
         }
     }
-    getAllNoStatus($event,data){
-        if($event==true){
-            this.statusList=data.map(item=>{
+    getAllNoStatus($event, data) {
+        if ($event == true) {
+            this.statusList = data.map(item => {
                 return item.status
             })
         }
-        if($event==false){
-            this.statusList=[]
+        if ($event == false) {
+            this.statusList = []
         }
     }
     search() {
-        this.pageNum='1'
+        this.pageNum = '1'
         this.getData()
     }
     reset() {
         this.findNo = ''
         this.findPhone = ''
         this.findSettleType = ''
-        this.pageNum='1'
+        this.pageNum = '1'
     }
     pageSearch($event) {
         this.pageNum = $event

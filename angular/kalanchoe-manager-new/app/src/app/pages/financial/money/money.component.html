@@ -1,15 +1,15 @@
 <div class="container">
-    <app-crumb [url]="['财务管理','资金管理']"></app-crumb>
+    <app-breadcrumbs [breadcrumbs]="['财务管理','资金管理']"></app-breadcrumbs>
     <nz-card class="shadow">
         <div class="gutter-example">
             <div nz-row nzGutter="16">
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>手机号码：</span>
                     <div class="gutter-box">
                         <input placeholder="请输入电话号码" nz-input [(ngModel)]="findPhone">
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>&nbsp;</span>
                     <div class="gutter-box">
                         <button nz-button nzType="primary" (click)="search()">查询</button>

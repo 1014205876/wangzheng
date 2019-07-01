@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd';
+
+import { NzModalRef, NzModalService, NzMessageService } from 'ng-zorro-antd';
+
 import { TransformService } from '../../../shared/service/transform.service';
-import { HttpServe } from '../../../shared/service/http-serve.service';
-import { NzMessageService } from 'ng-zorro-antd';
+import { ApiService } from '../../../shared/service/api.service';
+
 @Component({
     selector: 'app-audit',
     templateUrl: './audit.component.html',
     styleUrls: ['./audit.component.css']
 })
+
 export class AuditComponent implements OnInit {
+    open = false;//控制多余查询框的展开收起
     startTime: Date = null;
     endTime: Date = null;
     //查找变量
@@ -66,7 +70,7 @@ export class AuditComponent implements OnInit {
     confirmModal: NzModalRef; // For testing by now
 
     constructor(private modal: NzModalService,
-        private http: HttpServe,
+        private api: ApiService,
         private message: NzMessageService,
         private dateTransform: TransformService
     ) { };
@@ -84,27 +88,26 @@ export class AuditComponent implements OnInit {
         this.findEndTime = date ? this.dateTransform.timeFormat("yyyy-MM-dd 23:59:59", date) : '';
     }
 
-    getData() {
-        // this.http.getCustomHeaders(     
-        //   'kalanchoe-manager/v1/back/app/cashs?pageNum=' + this.pageNum +
-        //   '&pageSize=' + 10 +
-        //   '&applyNo=' + this.findNo +
-        //   '&mobile=' + this.findPhone +    
-        //   '&auditStartTime=' + this.findStartTime +
-        //   '&auditEndTime=' + this.findEndTime +  
-        //   this.groupStatus 
-        // ).subscribe(res => {
-        //   if(res.code==='200'){
-        //     this.total = res.data.total;
-        //     this.pageNum = res.data.pageNum;
-        //     this.data = res.data.list;
-        //     this.mapOfCheckedId = {};
-        //     this.mapOfDisableId ={};
-        //     this.allChecked = false;
-        //     this.indeterminate = false;  
-        //     this.data.forEach( item => this.mapOfDisableId[item.id] = (item.state!== 0 ) )
-        //   }
-        // })
+    async getData() {
+        let res = await this.api.getBackAppCashs(
+            '?pageNum=' + this.pageNum +
+            '&pageSize=' + 10 +
+            '&applyNo=' + this.findNo +
+            '&mobile=' + this.findPhone +
+            '&auditStartTime=' + this.findStartTime +
+            '&auditEndTime=' + this.findEndTime +
+            this.groupStatus
+        );
+        if (res.code === '200') {
+            this.total = res.data.total;
+            this.pageNum = res.data.pageNum;
+            this.data = res.data.list;
+            this.mapOfCheckedId = {};
+            this.mapOfDisableId = {};
+            this.allChecked = false;
+            this.indeterminate = false;
+            this.data.forEach(item => this.mapOfDisableId[item.id] = (item.state !== 0))
+        }
     }
     search() {
         this.pageNum = 1;
@@ -154,14 +157,13 @@ export class AuditComponent implements OnInit {
         });
     }
 
-    submitApply(status: string, text: string, ids) {
-        // this.http.patchCustomHeaders(`kalanchoe-manager/v1/back/app/cashApply/${status}`,ids).subscribe(res => {
-        //   if(res.code==='200'){
-        //     this.message.success(`${text}申请操作成功`);
-        //     this.groupStatus = '&states=0&states=1&states=2';
-        //     this.getData();
-        //   }
-        // })
+    async submitApply(status: string, text: string, ids) {
+        let res = await this.api.patchCashApply(status, ids);
+        if (res.code == 200) {
+            this.message.success(`${text}申请操作成功`);
+            this.groupStatus = '&states=0&states=1&states=2';
+            this.getData();
+        }
     }
 
     checkAll(value: boolean): void {

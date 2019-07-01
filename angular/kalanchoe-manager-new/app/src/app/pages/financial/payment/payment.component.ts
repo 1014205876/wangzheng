@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { TransformService } from '../../../shared/service/transform.service';
-import { HttpServe } from '../../../shared/service/http-serve.service';
+
 import { NzMessageService } from 'ng-zorro-antd';
+
+import { TransformService } from '../../../shared/service/transform.service';
+import { ApiService } from '../../../shared/service/api.service';
+
 @Component({
     selector: 'app-payment',
     templateUrl: './payment.component.html',
     styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
+    open = false;//控制多余查询框的展开收起
     startTime: Date = null;
     endTime: Date = null;
+
     //查找变量
     findNo = '';
     findPhone = '';
@@ -90,7 +95,7 @@ export class PaymentComponent implements OnInit {
 
 
     constructor(
-        private http: HttpServe,
+        private api: ApiService,
         private message: NzMessageService,
         private dateTransform: TransformService
     ) { }
@@ -107,22 +112,21 @@ export class PaymentComponent implements OnInit {
         this.findEndTime = date ? this.dateTransform.timeFormat("yyyy-MM-dd 23:59:59", date) : '';
     }
 
-    getData() {
-        // this.http.getCustomHeaders(     
-        //   'kalanchoe-manager/v1/back/app/cashs?pageNum=' + this.pageNum +
-        //   '&pageSize=' + 10 +
-        //   '&applyNo=' + this.findNo +
-        //   '&mobile=' + this.findPhone +    
-        //   '&auditStartTime=' + this.findStartTime +
-        //   '&auditEndTime=' + this.findEndTime +  
-        //   this.groupStatus 
-        // ).subscribe(res => {
-        //   if(res.code=="200"){
-        //     this.total = res.data.total;
-        //     this.pageNum = res.data.pageNum;
-        //     this.data = res.data.list;
-        //   }
-        // })
+    async getData() {
+        let res = await this.api.getBackAppCashs(
+            '?pageNum=' + this.pageNum +
+            '&pageSize=' + 10 +
+            '&applyNo=' + this.findNo +
+            '&mobile=' + this.findPhone +
+            '&auditStartTime=' + this.findStartTime +
+            '&auditEndTime=' + this.findEndTime +
+            this.groupStatus
+        );
+        if (res.code == "200") {
+            this.total = res.data.total;
+            this.pageNum = res.data.pageNum;
+            this.data = res.data.list;
+        }
     }
 
     search() {
@@ -171,17 +175,19 @@ export class PaymentComponent implements OnInit {
             state: this.enterPayForm.payResult,
             remark: this.enterPayForm.payReason
         }
+        this.postPayInput(param);
+    }
 
-        // this.http.postCustomHeaders('kalanchoe-manager/v1/back/app/cash/pay/input',param).subscribe(res => {
-        //   this.handleCancelEnter();
-        //   if (res.code == "200") {
-        //       this.getData();
-        //       this.message.success('录入划付结果成功');
-        //       this.groupStatus = '&states=1&states=3&states=4';
-        //   } else {
-        //      this.message.error('录入划付结果失败');
-        //   }
-        // })
+    async postPayInput(param) {
+        let res = await this.api.postPayInput(param);
+        this.handleCancelEnter();
+        if (res.code == "200") {
+            this.getData();
+            this.message.success('录入划付结果成功');
+            this.groupStatus = '&states=1&states=3&states=4';
+        } else {
+            this.message.error(res.reason)
+        }
     }
 
     handleCancelEnter() {

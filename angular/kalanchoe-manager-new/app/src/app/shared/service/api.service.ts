@@ -6,8 +6,8 @@ import { HttpServe } from './http-serve.service'
 export class ApiService {
     public resourceUrl = 'api/peak-resource/v1/resource/';//资源接口
     public managerUrl = 'api/kalanchoe-manager/v1/kalanchoe/backstage/';//获客接口
-    public backManagerUrl = 'api/kalanchoe-manager/v1/app/back/';//获客接口
-    public preManagerUrl = 'api/kalanchoe-manager/v2/app/pre/';//获客接口
+    public backManagerUrl = 'api/kalanchoe-manager/v1/app/back/';
+    public v1ManagerUrl = 'api/kalanchoe-manager/v1/';
 
     constructor(
         private http: HttpServe
@@ -171,22 +171,16 @@ export class ApiService {
 
     // order 订单管理
     public patchShareProfit(params: any) {
-        let url = this.preManagerUrl + 'shareProfit'
+        let url = 'api/kalanchoe-manager/v2/app/pre/' + 'shareProfit'
         return this.http.patch(url, params)
     }
     public postImportLoans(params: any) {
-        let url = this.preManagerUrl + 'importLoans'
+        let url = 'api/kalanchoe-manager/v2/app/pre/' + 'importLoans'
         return this.http.post(url, params)
     }
     public getLoansGrid(params) {
-        let url = this.preManagerUrl + 'loansGrid'
+        let url = 'api/kalanchoe-manager/v2/app/pre/' + 'loansGrid'
         return this.http.get(url, params)
-    }
-
-    // order-info 订单详情
-    public getLoans(id) {
-        let url = this.backManagerUrl + 'loans/' + id
-        return this.http.get(url)
     }
 
     // system 内容管理
@@ -226,39 +220,110 @@ export class ApiService {
 
     // articleresource 文章资源管理
     public getOriginalArticleDataGrid(params) {
-        let url = 'api/kalanchoe-manager/v1/phosphor/backstage/' + 'originalArticleDataGrid'
+        let url = this.v1ManagerUrl + 'phosphor/backstage/originalArticleDataGrid'
         return this.http.get(url, params)
     }
     public patchOriginalArticle(params: any) {
-        let url = 'api/kalanchoe-manager/v1/phosphor/backstage/' + 'originalArticle'
+        let url = this.v1ManagerUrl + 'phosphor/backstage/originalArticle'
         return this.http.patch(url, params)
     }
 
     // articleupload 文章发布管理
     public getOriginalArticles(params) {
-        let url = 'api/kalanchoe-manager/v1/phosphor/backstage/' + 'articles'
+        let url = this.v1ManagerUrl + 'phosphor/backstage/articles'
         return this.http.get(url, params)
     }
     public patchArticles(id, status) {
-        let url = 'api/kalanchoe-manager/v1/phosphor/backstage/' + 'articles/' + id + '?status=' + status
+        let url = this.v1ManagerUrl + 'phosphor/backstage/articles/' + id + '?status=' + status
         return this.http.patch(url)
     }
     public patchArticlesJob(id) {
-        let url = 'api/kalanchoe-manager/v1/phosphor/backstage/' + 'articles/job/' + id
+        let url = this.v1ManagerUrl + 'phosphor/backstage/articles/job/' + id
         return this.http.patch(url)
     }
 
     // articlepublish 文章发布
     public getArticles(id) {
-        let url = 'api/kalanchoe-manager/v1/phosphor/backstage/' + 'articles/' + id
+        let url = this.v1ManagerUrl + 'phosphor/backstage/articles/' + id
         return this.http.get(url)
     }
     public putArticles(params) {
-        let url = 'api/kalanchoe-manager/v1/phosphor/backstage/' + 'articles'
+        let url = this.v1ManagerUrl + 'phosphor/backstage/articles'
         return this.http.put(url, params)
     }
 
+    // financial 财务管理
+    // money 资金管理
+    public getDataGrid(params) {
+        let url = this.v1ManagerUrl + 'account/user/dataGrid'
+        return this.http.get(url, params)
+    }
+    public getDeployShow(params) {
+        let url = this.v1ManagerUrl + 'account/deploy/show'
+        return this.http.get(url, params)
+    }
+    public postDeploy(params: any) {
+        let url = this.v1ManagerUrl + 'account/deploy'
+        return this.http.post(url, params)
+    }
 
+    // bankcard 银行卡
+    public getUserCards(params) {
+        let url = this.v1ManagerUrl + 'bank/user/cards'
+        return this.http.get(url, params)
+    }
+
+    // bonussubsidiary 奖金明细
+    public getBankDataGrid(params) {
+        let url = this.v1ManagerUrl + 'reward/user/back/dataGrid'
+        return this.http.get(url, params)
+    }
+
+    // capitalsubsidiary 余额明细
+    public getBalanceBankDataGrid(params) {
+        let url = this.v1ManagerUrl + 'balance/user/back/dataGrid'
+        return this.http.get(url, params)
+    }
+
+    // commissionsubsidiary 佣金明细
+    public getRewardBankDataGrid(params) {
+        let url = this.v1ManagerUrl + 'reward/user/back/dataGrid'
+        return this.http.get(url, params)
+    }
+
+    // goldsubsidiary 金币明细
+    public getGlodBankDataGrid(params) {
+        let url = this.v1ManagerUrl + 'glod/user/back/dataGrid'
+        return this.http.get(url, params)
+    }
+
+    // settlementApply 结算申请
+    public getSettlementApply(params) {
+        let url = this.v1ManagerUrl + 'settlementApply'
+        return this.http.get(url, params)
+    }
+    public putSettlementApply(params) {
+        let url = this.v1ManagerUrl + 'settlementApply/updateStatus'
+        return this.http.put(url, params)
+    }
+
+    // withdraw 提现记录
+    public getBackAppCashs(params) {
+        let url = this.v1ManagerUrl + 'back/app/cashs' + params
+        return this.http.get(url)
+    }
+
+    // audit 提现审核
+    public patchCashApply(status, params) {
+        let url = this.v1ManagerUrl + 'back/app/cashApply/' + status
+        return this.http.patch(url,params)
+    }
+
+    // payment 资金划付
+    public postPayInput(params) {
+        let url = this.v1ManagerUrl + 'back/app/cash/pay/input'
+        return this.http.post(url,params)
+    }
 
     // public helpsPageGet(params: any) {
     //     let url = this.baseUrl + 'helpsDataGrid'

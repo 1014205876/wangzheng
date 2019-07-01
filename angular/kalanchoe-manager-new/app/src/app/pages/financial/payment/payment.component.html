@@ -1,45 +1,45 @@
 <div class="container">
-    <app-crumb [url]="['财务管理','资金划付']"></app-crumb>
+    <app-breadcrumbs [breadcrumbs]="['财务管理','资金划付']"></app-breadcrumbs>
     <nz-card class="shadow">
         <div class="gutter-example">
             <div nz-row nzGutter="16">
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>申请编号：</span>
                     <div class="gutter-box">
                         <input nz-input placeholder="请输入编号" [(ngModel)]="findNo">
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="4">
-                    <span>手机账号：</span>
-                    <div class="gutter-box">
-                        <input nz-input placeholder="请输入手机号码" [(ngModel)]="findPhone">
-                    </div>
-                </div>
-                <div nz-col class="gutter-row" nzSpan="6">
+                <div nz-col class="gutter-row" nzSpan="12">
                     <span>任务创建时间:</span>
                     <div class="gutter-box">
-                      <nz-date-picker
-                      [nzDisabledDate]="disabledStartTime"
-                      class="mr10"
-                      [(ngModel)]="startTime"
-                      nzPlaceHolder="开始时间"
-                      (ngModelChange)="onStartTimeChange($event)"
-                    >
-                    </nz-date-picker>
-                    <nz-date-picker
-                      [nzDisabledDate]="disabledEndTime"
-                      [(ngModel)]="endTime"
-                      nzPlaceHolder="结束时间"
-                      (ngModelChange)="onEndTimeChange($event)"
-                    >
-                    </nz-date-picker>
+                        <nz-date-picker [nzStyle]="{width:'100%'}" [nzDisabledDate]="disabledStartTime" class="mr10"
+                            [(ngModel)]="startTime" nzPlaceHolder="开始时间" (ngModelChange)="onStartTimeChange($event)">
+                        </nz-date-picker>
+                        <span style="width:16px;text-align:center">~</span>
+                        <nz-date-picker [nzStyle]="{width:'100%'}" [nzDisabledDate]="disabledEndTime"
+                            [(ngModel)]="endTime" nzPlaceHolder="结束时间" (ngModelChange)="onEndTimeChange($event)">
+                        </nz-date-picker>
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="2">
+                <ng-container *ngIf="open">
+                    <div nz-col class="gutter-row" nzSpan="6">
+                        <span>手机账号：</span>
+                        <div class="gutter-box">
+                            <input nz-input placeholder="请输入手机号码" [(ngModel)]="findPhone">
+                        </div>
+                    </div>
+                </ng-container>
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>&nbsp;</span>
                     <div class="gutter-box">
-                        <button nz-button nzType="primary" (click)="search()">查询</button>
-                        <button nz-button nzType="default" style="margin-left:8px;" (click)="reset()">重置</button>
+                        <button class="mr10" nz-button nzType="primary" (click)="search()">查询</button>
+                        <button class="mr10" nz-button nzType="default" (click)="reset()">重置</button>
+                        <button *ngIf="!open" class="mr10" nz-button nzType="default" (click)="open=!open">
+                            <i nz-icon nzType="down" nzTheme="outline"></i>展开
+                        </button>
+                        <button *ngIf="open" class="mr10" nz-button nzType="default" (click)="open=!open">
+                            <i nz-icon nzType="up" nzTheme="outline"></i>收起
+                        </button>
                     </div>
                 </div>
             </div>
@@ -89,23 +89,25 @@
     </nz-card>
     <ng-template #cardTitle>
         <div class="cardTitle">
-            <span  class="mr10">资金划付列表</span>
+            <span class="mr10">资金划付列表</span>
             <nz-radio-group [(ngModel)]="groupStatus" (ngModelChange)="getData()">
-                    <label nz-radio-button nzSize="small" *ngFor="let item of groupText" [nzValue]="item.value">{{ item.label }}</label>
+                <label nz-radio-button nzSize="small" *ngFor="let item of groupText"
+                    [nzValue]="item.value">{{ item.label }}</label>
             </nz-radio-group>
         </div>
     </ng-template>
     <ng-template #cardExtra>
         <div class="cardExtra">
             <button class="nz-button" nz-button nzType="ghost" (click)="download()">
-                    导出全部待划付申请
+                导出全部待划付申请
                 <!-- <a href="http://192.168.111.35:7660/kalanchoe-manager/v1/back/app/cash/pay/export"  download="文件名.ex">导出全部待划付申请</a> -->
             </button>
         </div>
     </ng-template>
 
     <!-- 划付结果录入模态框begin -->
-    <nz-modal [(nzVisible)]="enterPayModel" nzWidth="800px" nzTitle="划付结果录入" (nzOnCancel)="handleCancelEnter()" (nzOnOk)="handleOkEnter()">
+    <nz-modal [(nzVisible)]="enterPayModel" nzWidth="800px" nzTitle="划付结果录入" (nzOnCancel)="handleCancelEnter()"
+        (nzOnOk)="handleOkEnter()">
         <div class="form-group row" nz-row nzGutter="16">
             <div nz-col class="gutter-row" nzSpan="12">
                 <span class="col-label-span">申请编号:</span><span>{{ enterPayForm.applyNo }}</span>
@@ -122,38 +124,39 @@
                 <span class="col-label-span">收款账号:</span><span>{{ enterPayForm.card }}</span>
             </div>
         </div>
-            <div class="form-group row mt20" nz-row nzGutter="16">
-                <div nz-col class="gutter-row" nzSpan="12">
-                    <span class="col-label-span">付款时间</span>
-                    <nz-date-picker [(ngModel)]="enterPayForm.setPaymentTime" nzShowTime></nz-date-picker>
-                </div>
-                <div nz-col class="gutter-row" nzSpan="12">
-                    <span class="col-label-span">银行流水号</span>
-                    <input nz-input placeholder="输入流水号或回单号" [(ngModel)]="enterPayForm.bankSerialNo" style="width:200px" />
-                </div>
+        <div class="form-group row mt20" nz-row nzGutter="16">
+            <div nz-col class="gutter-row" nzSpan="12">
+                <span class="col-label-span">付款时间</span>
+                <nz-date-picker [(ngModel)]="enterPayForm.setPaymentTime" nzShowTime></nz-date-picker>
             </div>
-            <div class="form-group row mt20" nz-row nzGutter="16">
-                <div nz-col class="gutter-row" nzSpan="12">
-                    <span class="col-label-span">划付结果</span>
-                    <nz-radio-group [(ngModel)]="enterPayForm.payResult">
-                        <label nz-radio nzValue="3">成功</label>
-                        <label nz-radio nzValue="4">失败</label>
-                    </nz-radio-group>
-                </div>
+            <div nz-col class="gutter-row" nzSpan="12">
+                <span class="col-label-span">银行流水号</span>
+                <input nz-input placeholder="输入流水号或回单号" [(ngModel)]="enterPayForm.bankSerialNo" style="width:200px" />
             </div>
-            <div class="form-group row mt20" nz-row nzGutter="16">
-                <div nz-col class="gutter-row" nzSpan="4">
-                    <span class="col-label-span">失败原因</span>
-                </div>
-                <div nz-col class="gutter-row" nzSpan="18">
-                    <textarea rows="4" nz-input [(ngModel)]="enterPayForm.payReason" placeholder="请输入备注"></textarea>
-                </div> 
+        </div>
+        <div class="form-group row mt20" nz-row nzGutter="16">
+            <div nz-col class="gutter-row" nzSpan="12">
+                <span class="col-label-span">划付结果</span>
+                <nz-radio-group [(ngModel)]="enterPayForm.payResult">
+                    <label nz-radio nzValue="3">成功</label>
+                    <label nz-radio nzValue="4">失败</label>
+                </nz-radio-group>
             </div>
+        </div>
+        <div class="form-group row mt20" nz-row nzGutter="16">
+            <div nz-col class="gutter-row" nzSpan="4">
+                <span class="col-label-span">失败原因</span>
+            </div>
+            <div nz-col class="gutter-row" nzSpan="18">
+                <textarea rows="4" nz-input [(ngModel)]="enterPayForm.payReason" placeholder="请输入备注"></textarea>
+            </div>
+        </div>
     </nz-modal>
     <!-- 划付结果录入模态框end -->
 
     <!-- 划付详情模态框begin -->
-    <nz-modal [(nzVisible)]="delailPayModel" nzWidth="800px" nzTitle="划付详情" [nzFooter]="modalFooter" (nzOnCancel)="handleCancelDetail()">
+    <nz-modal [(nzVisible)]="delailPayModel" nzWidth="800px" nzTitle="划付详情" [nzFooter]="modalFooter"
+        (nzOnCancel)="handleCancelDetail()">
         <div class="form-group row" nz-row nzGutter="16">
             <div nz-col class="gutter-row" nzSpan="12">
                 <span class="col-label-span">申请编号:</span><span>{{detailPayForm.applyNo}}</span>
@@ -192,7 +195,7 @@
             <div nz-col class="gutter-row" nzSpan="4">
                 <span class="col-label-span">失败原因:</span>
             </div>
-            <div nz-col  nzSpan="18" class="reason-text">
+            <div nz-col nzSpan="18" class="reason-text">
                 {{detailPayForm.remark}}
             </div>
         </div>
@@ -208,4 +211,3 @@
     </nz-modal>
     <!-- 划付详情模态框end -->
 </div>
-

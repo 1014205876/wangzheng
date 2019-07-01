@@ -3,13 +3,13 @@
     <nz-card class="shadow">
         <div class="gutter-example">
             <div nz-row nzGutter="16">
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>分组名称：</span>
                     <div class="gutter-box">
                         <input nz-input placeholder="请输入分组名称关键字" [(ngModel)]="findGroupName">
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>状态：</span>
                     <div class="gutter-box">
                         <nz-select style="width: 250px;" nzShowSearch nzAllowClear nzPlaceHolder="所有状态"
@@ -20,7 +20,7 @@
                         </nz-select>
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>&nbsp;</span>
                     <div class="gutter-box">
                         <button nz-button nzType="primary" (click)="search()">查询</button>

@@ -1,4 +1,4 @@
-.col-label-span{
+.col-label-span {
     padding-left: 8px;
     padding-right: 16px;
     color: rgba(0, 0, 0, 0.85);
@@ -7,6 +7,10 @@
     text-align: right;
 }
 
-.reason-text{
+.reason-text {
     margin-left: -5px;
+}
+
+.gutter-box nz-date-picker {
+    width: 50%;
 }

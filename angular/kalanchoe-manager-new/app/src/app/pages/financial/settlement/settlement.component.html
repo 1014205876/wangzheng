@@ -1,24 +1,24 @@
 <div class="container">
-    <app-crumb [url]="['财务管理','结算申请']"></app-crumb>
+    <app-breadcrumbs [breadcrumbs]="['财务管理','结算申请']"></app-breadcrumbs>
     <nz-card class="shadow">
         <div class="gutter-example">
             <div nz-row nzGutter="16">
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>申请编号：</span>
                     <div class="gutter-box">
                         <input nz-input placeholder="请输入编号" [(ngModel)]="findNo">
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>手机号码：</span>
                     <div class="gutter-box">
                         <input nz-input placeholder="请输入电话号码" [(ngModel)]="findPhone">
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>结算类型：</span>
                     <div class="gutter-box">
-                        <nz-select style="width: 250px;" nzShowSearch nzAllowClear nzPlaceHolder="所有"
+                        <nz-select style="width: 100%" nzShowSearch nzAllowClear nzPlaceHolder="所有"
                             [(ngModel)]="findSettleType">
                             <nz-option nzLabel="所有" nzValue=""></nz-option>
                             <nz-option nzLabel="佣金结算" nzValue="1"></nz-option>
@@ -26,7 +26,7 @@
                         </nz-select>
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>&nbsp;</span>
                     <div class="gutter-box">
                         <button nz-button nzType="primary" (click)="search()">查询</button>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { NzMessageService } from 'ng-zorro-antd';
 
-import { HttpServe } from '../../../shared/service/http-serve.service';
 import { ApiService } from '../../../shared/service/api.service';
 
 @Component({
@@ -134,23 +134,6 @@ export class MakergroupComponent implements OnInit {
             this.getGroupData()
             this.message.error(res.reason);
         }
-
-        // this.http.patchCustomHeaders(
-        //     'kalanchoe-manager/v1/kalanchoe/backstage/group',
-        //     {
-        //         'status': status,
-        //         'list': selected
-        //     }
-        // ).subscribe(res => {
-        //     if (res.code == '200') {
-        //         this.getGroupData();
-        //         this.message.success('状态修改成功', { nzDuration: 1500 })
-        //     }
-        //     else {
-        //         this.getGroupData()
-        //         this.message.error(res.reason);
-        //     }
-        // })
     }
 
     checked(status: boolean, id) {

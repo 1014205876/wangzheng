@@ -1,28 +1,26 @@
 <div class="container">
-    <app-crumb [url]="['财务管理','资金管理','奖金明细']"></app-crumb>
+    <app-breadcrumbs [breadcrumbs]="['财务管理','资金管理','奖金明细']"></app-breadcrumbs>
     <nz-card class="shadow">
         <div class="gutter-example">
             <div nz-row nzGutter="16">
-                <div nz-col class="gutter-row" nzSpan="8">
+                <div nz-col class="gutter-row" nzSpan="12">
                     <span>发生时间：</span>
                     <div class="gutter-box">
                         <nz-date-picker [nzStyle]="{width:'100%'}" [nzDisabledDate]="disabledStartDate"
                             [nzShowTime]="false" nzFormat="yyyy-MM-dd" [(ngModel)]="startValue" nzPlaceHolder="开始日期"
-                            (ngModelChange)="onStartChange($event)"
-                            (nzOnOpenChange)="handleStartOpenChange($event)">
+                            (ngModelChange)="onStartChange($event)" (nzOnOpenChange)="handleStartOpenChange($event)">
                         </nz-date-picker>
-                        <span style="width:16px;text-align:center">~~</span>
+                        <span style="width:16px;text-align:center">~</span>
                         <nz-date-picker [nzStyle]="{width:'100%'}" [nzDisabledDate]="disabledEndDate"
                             [nzShowTime]="false" nzFormat="yyyy-MM-dd" [(ngModel)]="endValue" nzPlaceHolder="结束日期"
-                            (ngModelChange)="onEndChange($event)"
-                            (nzOnOpenChange)="handleEndOpenChange($event)">
+                            (ngModelChange)="onEndChange($event)" (nzOnOpenChange)="handleEndOpenChange($event)">
                         </nz-date-picker>
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>用途：</span>
                     <div class="gutter-box">
-                        <nz-select style="width: 250px;" nzShowSearch nzAllowClear nzPlaceHolder="所有"
+                        <nz-select style="width: 100%" nzShowSearch nzAllowClear nzPlaceHolder="所有"
                             [(ngModel)]="findUse">
                             <nz-option nzLabel="所有" nzValue=""></nz-option>
                             <nz-option nzLabel="返利奖金" nzValue="1"></nz-option>
@@ -31,24 +29,30 @@
                         </nz-select>
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="4">
-                    <span>资金流向：</span>
-                    <div class="gutter-box">
-                        <nz-select style="width: 250px;" nzShowSearch nzAllowClear nzPlaceHolder="所有"
-                            [(ngModel)]="findFlow">
-                            <nz-option nzLabel="所有" nzValue=""></nz-option>
-                            <nz-option nzLabel="收入" nzValue="收入"></nz-option>
-                            <nz-option nzLabel="支出" nzValue="支出"></nz-option>
-                        </nz-select>
+                <ng-container *ngIf="open">
+                    <div nz-col class="gutter-row" nzSpan="6">
+                        <span>资金流向：</span>
+                        <div class="gutter-box">
+                            <nz-select style="width: 100%" nzShowSearch nzAllowClear nzPlaceHolder="所有"
+                                [(ngModel)]="findFlow">
+                                <nz-option nzLabel="所有" nzValue=""></nz-option>
+                                <nz-option nzLabel="收入" nzValue="收入"></nz-option>
+                                <nz-option nzLabel="支出" nzValue="支出"></nz-option>
+                            </nz-select>
+                        </div>
                     </div>
-                </div>
-
-
-                <div nz-col class="gutter-row" nzSpan="4">
+                </ng-container>
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>&nbsp;</span>
                     <div class="gutter-box">
-                        <button nz-button nzType="primary" (click)="search()">查询</button>
-                        <button nz-button nzType="default" style="margin-left:8px;" (click)="reset()">重置</button>
+                        <button class="mr10" nz-button nzType="primary" (click)="search()">查询</button>
+                        <button class="mr10" nz-button nzType="default" (click)="reset()">重置</button>
+                        <button *ngIf="!open" class="mr10" nz-button nzType="default" (click)="open=!open">
+                            <i nz-icon nzType="down" nzTheme="outline"></i>展开
+                        </button>
+                        <button *ngIf="open" class="mr10" nz-button nzType="default" (click)="open=!open">
+                            <i nz-icon nzType="up" nzTheme="outline"></i>收起
+                        </button>
                     </div>
                 </div>
             </div>

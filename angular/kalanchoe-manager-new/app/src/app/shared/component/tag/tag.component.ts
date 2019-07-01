@@ -18,8 +18,8 @@ export class TagComponent {
 
     inputVisible = false;
     inputValue = '';
-    
-    @ViewChild('inputElement') inputElement: ElementRef;
+
+    @ViewChild('inputElement', {static: false }) inputElement: ElementRef;
 
     handleClose(removedTag: {}): void {
         this.tags = this.tags.filter(tag => tag !== removedTag);

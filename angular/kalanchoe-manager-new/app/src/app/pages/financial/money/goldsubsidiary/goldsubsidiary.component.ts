@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TransformService } from '../../../../shared/service/transform.service';
-import { HttpServe } from '../../../../shared/service/http-serve.service';
 import { ActivatedRoute, Router } from '@angular/router'
+
+import { TransformService } from '../../../../shared/service/transform.service';
+import { ApiService } from '../../../../shared/service/api.service';
 
 @Component({
     selector: 'app-goldsubsidiary',
@@ -9,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router'
     styleUrls: ['./goldsubsidiary.component.css']
 })
 export class GoldsubsidiaryComponent implements OnInit {
-
+    open = false;//控制多余查询框的展开收起
     startValue: Date = null;
     endValue: Date = null;
     startOpen: boolean = false;
@@ -26,7 +27,7 @@ export class GoldsubsidiaryComponent implements OnInit {
     data = []
     constructor(
         private dateTransform: TransformService,
-        private http: HttpServe,
+        private api: ApiService,
         private route: ActivatedRoute,
 
     ) { }
@@ -35,18 +36,20 @@ export class GoldsubsidiaryComponent implements OnInit {
         this.mobile = this.route.snapshot.queryParams.mobile
         this.getData()
     }
-    getData() {
-        // this.http.getCustomHeaders('kalanchoe-manager/v1/glod/user/back/dataGrid?'
-        //     + 'pageNum=' + this.pageNum
-        //     + '&pageSize=10'
-        //     + '&mobile=' + this.mobile
-        //     + '&createStartDate=' + this.wantStartTime
-        //     + '&createEndDate=' + this.wantEndTime
-        //     + '&type=' + this.findUse
-        //     + '&income=' + this.findFlow).subscribe(e => {
-        //         this.total = e.data.list.total
-        //         this.data = e.data.list.list
-        //     })
+    async getData() {
+        let res = await this.api.getGlodBankDataGrid({
+            mobile: this.mobile,
+            createStartDate: this.wantStartTime,
+            createEndDate: this.wantEndTime,
+            type: this.findUse,
+            income: this.findFlow,
+            pageNum: this.pageNum,
+            pageSize: 10
+        });
+        if (res.code == 200) {
+            this.total = res.data.list.total
+            this.data = res.data.list.list
+        }
     }
     search() {
         this.getData()

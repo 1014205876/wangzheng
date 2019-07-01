@@ -1,9 +1,9 @@
 <div class="container">
-    <app-crumb [url]="['财务管理','资金管理','金币明细']"></app-crumb>
+    <app-breadcrumbs [breadcrumbs]="['财务管理','资金管理','金币明细']"></app-breadcrumbs>
     <nz-card class="shadow">
         <div class="gutter-example">
             <div nz-row nzGutter="16">
-                <div nz-col class="gutter-row" nzSpan="8">
+                <div nz-col class="gutter-row" nzSpan="12">
                     <span>发生时间：</span>
                     <div class="gutter-box">
                         <nz-date-picker [nzStyle]="{width:'100%'}" [nzDisabledDate]="disabledStartDate"
@@ -19,10 +19,10 @@
                         </nz-date-picker>
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="4">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>用途：</span>
                     <div class="gutter-box">
-                        <nz-select style="width: 250px;" nzShowSearch nzAllowClear nzPlaceHolder="所有"
+                        <nz-select style="width: 100%" nzShowSearch nzAllowClear nzPlaceHolder="所有"
                             [(ngModel)]="findUse">
                             <nz-option nzLabel="所有" nzValue=""></nz-option>
                             <nz-option nzLabel="实名认证" nzValue="1"></nz-option>
@@ -33,10 +33,11 @@
                         </nz-select>
                     </div>
                 </div>
-                <div nz-col class="gutter-row" nzSpan="4">
+                <ng-container *ngIf="open">
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>资金流向：</span>
                     <div class="gutter-box">
-                        <nz-select style="width: 250px;" nzShowSearch nzAllowClear nzPlaceHolder="所有"
+                        <nz-select style="width: 100%" nzShowSearch nzAllowClear nzPlaceHolder="所有"
                             [(ngModel)]="findFlow">
                             <nz-option nzLabel="所有" nzValue=""></nz-option>
                             <nz-option nzLabel="收入" nzValue="1"></nz-option>
@@ -44,9 +45,8 @@
                         </nz-select>
                     </div>
                 </div>
-
-
-                <div nz-col class="gutter-row" nzSpan="4">
+            </ng-container>
+                <div nz-col class="gutter-row" nzSpan="6">
                     <span>&nbsp;</span>
                     <div class="gutter-box">
                         <button nz-button nzType="primary" (click)="search()">查询</button>

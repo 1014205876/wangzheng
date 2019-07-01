@@ -109,6 +109,41 @@ const routes: Routes = [
                     },
                 ]
             },
+            {
+                path: 'app/financial',
+                children: [
+                    {
+                        path: 'money', children: [
+                            { path: '', loadChildren: './pages/financial/money/money.module#MoneyModule' },
+                            { path: 'capitalsubsidiary', loadChildren: './pages/financial/money/capitalsubsidiary/capitalsubsidiary.module#CapitalsubsidiaryModule' },
+                            { path: 'commissionsubsidiary', loadChildren: './pages/financial/money/commissionsubsidiary/commissionsubsidiary.module#CommissionsubsidiaryModule' },
+                            { path: 'bonussubsidiary', loadChildren: './pages/financial/money/bonussubsidiary/bonussubsidiary.module#BonussubsidiaryModule' },
+                            { path: 'goldsubsidiary', loadChildren: './pages/financial/money/goldsubsidiary/goldsubsidiary.module#GoldsubsidiaryModule' },
+                            { path: 'bankcard', loadChildren: './pages/financial/money/bankcard/bankcard.module#BankcardModule' },
+                        ]
+                    },
+                    {
+                        path: 'settlement', children: [
+                            { path: '', loadChildren: './pages/financial/settlement/settlement.module#SettlementModule' },
+                        ]
+                    },
+                    {
+                        path: 'withdraw', children: [
+                            { path: '', loadChildren: './pages/financial/withdraw/withdraw.module#WithdrawModule' },
+                        ]
+                    },
+                    {
+                        path: 'audit', children: [
+                            { path: '', loadChildren: './pages/financial/audit/audit.module#AuditModule' },
+                        ]
+                    },
+                    {
+                        path: 'payment', children: [
+                            { path: '', loadChildren: './pages/financial/payment/payment.module#PaymentModule' },
+                        ]
+                    },
+                ]
+            },
         ]
     }
 ];

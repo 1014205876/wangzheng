@@ -1,39 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpServe } from '../../../../shared/service/http-serve.service';
-import { ActivatedRoute, Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { ApiService } from '../../../../shared/service/api.service';
 
 @Component({
-  selector: 'app-bankcard',
-  templateUrl: './bankcard.component.html',
-  styleUrls: ['./bankcard.component.css']
+    selector: 'app-bankcard',
+    templateUrl: './bankcard.component.html',
+    styleUrls: ['./bankcard.component.css']
 })
 export class BankcardComponent implements OnInit {
 
-  pageNum='1'
-  total='30'
-  mobile=''
-  data=[]
-  constructor(
-    private http: HttpServe,
-    private route: ActivatedRoute,
+    pageNum = 1
+    total = 0
+    mobile = ''
+    data = []
+    constructor(
+        private api: ApiService,
+        private route: ActivatedRoute,
 
-  ) { }
+    ) { }
 
-  ngOnInit() {
-    this.mobile=this.route.snapshot.queryParams.mobile
-    this.getData()
-  }
-  getData(){
-    // this.http.getCustomHeaders('kalanchoe-manager/v1/bank/user/cards?'
-    // +'pageNum='+this.pageNum
-    // +'&pageSize=10'
-    // +'&mobile='+this.mobile).subscribe(e => {
-    //   this.total=e.data.list.total
-    //  this.data=e.data.list.list
-    // })
-  }
-  pageSearch($event) {
-    this.pageNum = $event;
-    this.getData()
-  }
+    ngOnInit() {
+        this.mobile = this.route.snapshot.queryParams.mobile
+        this.getData()
+    }
+    async getData() {
+        let res = await this.api.getUserCards({
+            mobile:this.mobile,
+            pageNum: this.pageNum,
+            pageSize: 10
+        });
+        if (res.code == '200') {
+            this.total = res.data.list.total
+            this.data = res.data.list.list
+        }
+    }
+    pageSearch($event) {
+        this.pageNum = $event;
+        this.getData()
+    }
 }

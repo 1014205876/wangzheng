@@ -14,15 +14,15 @@ import { SharedModule } from '../../../shared/shared.module';
 import { ComponentModule } from '../../../shared/component/component.module';
 
 // 引入页面
-import { MakergroupComponent } from './makergroup.component';
+import { SettlementComponent } from './settlement.component';
 
 const routes: Routes = [
-    { path: '', component: MakergroupComponent }
+    { path: '', component: SettlementComponent }
 ];
 
 @NgModule({
     declarations: [
-        MakergroupComponent
+        SettlementComponent
     ],
     imports: [
         CommonModule,
@@ -32,14 +32,14 @@ const routes: Routes = [
         NgZorroAntdModule,
         LayoutModule,
         SharedModule,
-        ComponentModule,
+        ComponentModule
     ],
     providers: [
         {
-            provide: NZ_I18N,
+            provide: NZ_I18N, 
             useValue: zh_CN
         },
     ],
     exports: [RouterModule]
 })
-export class MakergroupRoutingModule { }
+export class SettlementRoutingModule { }
