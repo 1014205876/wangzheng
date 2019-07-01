@@ -21,6 +21,7 @@ import { AppComponent } from './app.component';
 
 // 引入页面
 import { AdminComponent } from './layout/admin/admin.component';
+import { ErrorComponent } from './pages/error/error.component';
 
 const routes: Routes = [
     {
@@ -144,6 +145,10 @@ const routes: Routes = [
                     },
                 ]
             },
+            {
+              path: '**',
+              component: ErrorComponent
+            }
         ]
     }
 ];
@@ -151,6 +156,7 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
+        ErrorComponent
     ],
     imports: [
         BrowserModule,

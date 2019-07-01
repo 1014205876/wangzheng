@@ -1,7 +1,7 @@
 <div class="container" style="width:100%;">
     <app-breadcrumbs [breadcrumbs]="['创客管理 ','人员管理','详情']"></app-breadcrumbs>
     <nz-card class="shadow">
-        <nz-table class="table_keyvalue" [nzData]='[1]' [nzShowPagination]='false' [nzBordered]='true'>
+        <nz-table class="table_keyvalue" [nzSize]="'small'" [nzData]='[1]' [nzShowPagination]='false' [nzBordered]='true'>
             <tbody>
                 <tr>
                     <td>手机号码</td>
@@ -32,7 +32,7 @@
         <button nz-button nzType="primary" [ngClass]="{'default':!selectedLogin}" (click)="showLogin()">登录信息</button>
     </div>
     <nz-card class="shadow" *ngIf="showBasicInm">
-        <nz-table class="table_keyvalue" [nzData]='[1]' [nzShowPagination]='false' [nzBordered]='true'>
+        <nz-table class="table_keyvalue" [nzSize]="'small'" [nzData]='[1]' [nzShowPagination]='false' [nzBordered]='true'>
             <tbody>
                 <tr>
                     <td>最高学历</td>
@@ -65,7 +65,7 @@
             <img [src]="oppositeUrl" alt="身份证背面">
         </div>
         <nz-card class="shadow">
-            <nz-table class="table_keyvalue" [nzData]='[1]' [nzShowPagination]='false' [nzBordered]='true'>
+            <nz-table class="table_keyvalue" [nzSize]="'small'" [nzData]='[1]' [nzShowPagination]='false' [nzBordered]='true'>
                 <tbody>
                     <tr>
                         <td>姓名</td>
@@ -99,7 +99,7 @@
         用户未进行信息认证
     </div>
     <nz-card *ngIf="showLoginInm">
-        <nz-table #rowSelectionTable [nzData]="data" [nzShowPagination]="false">
+        <nz-table #rowSelectionTable [nzSize]="'small'" [nzData]="data" [nzShowPagination]="false">
             <thead>
                 <tr>
                     <th>序号</th>

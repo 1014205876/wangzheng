@@ -1,7 +1,7 @@
 <div class="container">
     <app-breadcrumbs [breadcrumbs]="['财务管理','资金管理','银行卡']"></app-breadcrumbs>
     <nz-card class="shadow" [nzTitle]="cardTitle">
-        <nz-table #rowSelectionTable [nzData]="data" nzShowPagination=false>
+        <nz-table #rowSelectionTable [nzSize]="'small'" [nzData]="data" nzShowPagination=false>
             <thead>
                 <tr>
                     <th>所属银行</th>

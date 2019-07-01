@@ -209,12 +209,26 @@ a {
 }
 
 /* 表格文字对齐方式 */
-.ant-table-tbody > tr > td.text_to_right,.ant-table-thead > tr > th.text_to_right{
+.ant-table-tbody>tr>td.text_to_right,
+.ant-table-thead>tr>th.text_to_right {
     text-align: right;
 }
 
-.ant-table-tbody > tr > td.text_to_left,.ant-table-thead > tr > th.text_to_left{
+.ant-table-tbody>tr>td.text_to_left,
+.ant-table-thead>tr>th.text_to_left {
     text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
 }
 
 /* 盒模型 */
@@ -272,10 +286,11 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin:0 -5px;
+    margin: 0 -5px;
 }
-.cardExtra>*{
-    margin:0 5px;
+
+.cardExtra>* {
+    margin: 0 5px;
 }
 
 /* 错误提示 弹出框 */

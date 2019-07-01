@@ -4,33 +4,33 @@
     <nz-table [nzData]='[1]' [nzShowPagination]='false' [nzBordered]='true'>
         <tbody>
             <tr>
-                <td>用户姓名</td>
+                <td class="text-right">用户姓名</td>
                 <td>{{baseInfo.realName}}</td>
-                <td>手机号码</td>
+                <td class="text-right">手机号码</td>
                 <td>{{baseInfo.mobile}}</td>
             </tr>
             <tr>
-                <td>常住地区</td>
+                <td class="text-right">常住地区</td>
                 <td>{{baseInfo.live}}</td>
-                <td>申请时间</td>
+                <td class="text-right">申请时间</td>
                 <td>{{applyInfo.applyTime}}</td>
             </tr>
             <tr>
-                <td>直属客户</td>
+                <td class="text-right">直属客户</td>
                 <td>{{statisticsInfo.directCustomer}}</td>
-                <td>一度客户</td>
+                <td class="text-right">一度客户</td>
                 <td>{{statisticsInfo.primaryCustomer}}</td>
             </tr>
             <tr>
-                <td>二度客户</td>
+                <td class="text-right">二度客户</td>
                 <td>{{statisticsInfo.secondaryCustomer}}</td>
-                <td>直属客户订单/金额</td>
+                <td class="text-right">直属客户订单/金额</td>
                 <td>{{statisticsInfo.directCustomerOrderCount}} / {{statisticsInfo.directCustomerOrderSum}}</td>
             </tr>
             <tr>
-                <td>一度客户订单/金额</td>
+                <td class="text-right">一度客户订单/金额</td>
                 <td>{{statisticsInfo.primaryCustomerOrderCount}} / {{statisticsInfo.primaryCustomerOrderSum}}</td>
-                <td>二度客户订单/金额</td>
+                <td class="text-right">二度客户订单/金额</td>
                 <td>{{statisticsInfo.secondaryCustomerOrderCount}} / {{statisticsInfo.secondaryCustomerOrderSum}}</td>
             </tr>
         </tbody>

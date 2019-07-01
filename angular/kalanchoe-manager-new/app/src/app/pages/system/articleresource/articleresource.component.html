@@ -36,7 +36,7 @@
         </div>
     </nz-card>
     <nz-card class="shadow mt20" [nzTitle]="cardTitle" [nzExtra]="cardExtra">
-        <nz-table #rowSelectionTable [nzLoading]="loading" [nzData]="data" nzShowPagination=false>
+        <nz-table #rowSelectionTable [nzSize]="'small'" [nzLoading]="loading" [nzData]="data" nzShowPagination=false>
             <thead>
                 <tr>
                     <th nzShowCheckbox [nzDisabled]="true"></th>
