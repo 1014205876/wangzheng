@@ -6,6 +6,18 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Repeat",
+            "request": "launch",
+            "mainClass": "Repeat"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Cope",
+            "request": "launch",
+            "mainClass": "Cope"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - GetDate",
             "request": "launch",
             "mainClass": "GetDate"
