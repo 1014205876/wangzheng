@@ -6,6 +6,24 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Alert",
+            "request": "launch",
+            "mainClass": "Alert"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - EXample",
+            "request": "launch",
+            "mainClass": "EXample"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - EXample1",
+            "request": "launch",
+            "mainClass": "EXample1"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Repeat",
             "request": "launch",
             "mainClass": "Repeat"
