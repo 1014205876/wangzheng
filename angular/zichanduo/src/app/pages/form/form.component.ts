@@ -65,7 +65,7 @@ export class FormComponent implements OnInit {
         this.http.delete(
             'api/form',
             {
-                id:id
+                id: id
             }
         ).then((res) => {
             if (res.code == 200) {
@@ -120,9 +120,22 @@ export class FormComponent implements OnInit {
             console.log(err)
         })
     }
-
-    ngOnInit() {
-        this.getTable();
+    a = [[1, 2],[3], [3, 4, [5, 6, [7, 8]]]];
+    arr = [];
+    chaifen(arr) {
+        arr.forEach((item) => {
+            // if (typeof (item) == 'object') {
+            if (item.length) {
+                this.chaifen(item);
+            } else {
+                this.arr.push(item);
+            }
+        })
     }
 
+    ngOnInit() {
+        // this.getTable();
+        this.chaifen(this.a);
+        console.log(this.arr)
+    }
 }

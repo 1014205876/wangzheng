@@ -99,7 +99,7 @@ find xxx -name "yyy" -exec wc -l {} \;      查找所有文件并显示行数
     -exec
     wc -l   计算行数
     {}
-    \;      反斜杠;用于转义;本来的含义
+    \;      反斜杠";"用于转义";"本来的含义
 }
 find xxx -name "yyy" -exec cp {} yyy \;     查找所有文件并且复制
 find xxx -name "yyy" >> yyy                 将查找结果写入文件yyy（没有则会新建一个文件）
