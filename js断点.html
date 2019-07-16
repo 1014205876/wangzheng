@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <title>js断点</title>
+    <style>
+    </style>
+</head>
+
+
+<body>
+</body>
+<script>
+
+     var b = 10;
+     a()
+function a(){
+    // b=123
+}
+function b(){
+    // b=123
+}
+
+    (
+        function ab() {
+            console.log(ab)
+            console.log(a)
+        }, function a() {
+            // console.log(ab)
+            console.log(a)
+            console.log(this)
+        }
+    )()
+    console.log(a)
+    console.log(b)
+    // let a=0;
+    // let b=3;
+    // if(b>a){
+    //     console.log(a,b)
+    // }
+</script>
+
+</html>
