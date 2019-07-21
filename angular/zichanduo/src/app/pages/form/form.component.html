@@ -9,6 +9,28 @@
             <option value="1">启用</option>
         </select>
     </li>
+    <li class="banner">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="../../../assets/image/banner.png" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="../../../assets/image/banner.png" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="../../../assets/image/banner.png" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="../../../assets/image/banner.png" alt="">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </li>
+    <li class="code">
+        <app-code #appCode (click)="changeAbc()"></app-code>
+    </li>
     <li>
         电话：<input type="text" [(ngModel)]="find.tel">
     </li>

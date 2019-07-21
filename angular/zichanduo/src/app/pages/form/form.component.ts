@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpServe } from 'src/app/shared/service/http-serve.service'
+
+import Swiper from 'swiper'
 
 @Component({
     selector: 'app-form',
@@ -7,6 +9,7 @@ import { HttpServe } from 'src/app/shared/service/http-serve.service'
     styleUrls: ['./form.component.less']
 })
 export class FormComponent implements OnInit {
+    @ViewChild("appCode") changeCode;
 
     constructor(
         private http: HttpServe
@@ -30,6 +33,16 @@ export class FormComponent implements OnInit {
     }
 
     table = [];
+
+    abc;
+
+    changeAbc() {
+        setTimeout(() => {
+            this.abc = Math.floor(Math.random() * (4 - 666) + 300) + '';
+            console.log(this.abc);
+            this.changeCode.drawPic(this.abc)
+        }, 200)
+    }
 
     showAlert(type, item) {
         this.alert = true;
@@ -120,7 +133,7 @@ export class FormComponent implements OnInit {
             console.log(err)
         })
     }
-    a = [[1, 2],[3], [3, 4, [5, 6, [7, 8]]]];
+    a = [[1, 2], [3], [3, 4, [5, 6, [7, 8]]]];
     arr = [];
     chaifen(arr) {
         arr.forEach((item) => {
@@ -136,6 +149,21 @@ export class FormComponent implements OnInit {
     ngOnInit() {
         // this.getTable();
         this.chaifen(this.a);
-        console.log(this.arr)
+        this.changeAbc();
+        console.log(this.arr);
+let that=this
+        var mySwiper = new Swiper('.swiper-container', {
+            autoplay: true,//可选选项，自动滑动
+            pagination: {
+                el: '.swiper-pagination',
+            // bulletClass : 'my-bullet',//需设置.my-bullet样式
+              },
+            on: {
+                touchStart (event) {
+                    console.log(that.find)
+                    console.log(this)
+                },
+            },
+        })
     }
 }
