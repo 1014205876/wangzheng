@@ -34,13 +34,10 @@ export class FormComponent implements OnInit {
 
     table = [];
 
-    abc;
-
     changeAbc() {
         setTimeout(() => {
-            this.abc = Math.floor(Math.random() * (4 - 666) + 300) + '';
-            console.log(this.abc);
-            this.changeCode.drawPic(this.abc)
+            // this.changeCode.drawPic(this.getCode())
+            this.changeCode.drawPic('拉开绝对是')
         }, 200)
     }
 
@@ -146,20 +143,36 @@ export class FormComponent implements OnInit {
         })
     }
 
+    getCode() {
+        var letters = [
+            'A', 'B', 'C', 'D',
+            'E', 'F', 'G', 'H',
+            'I', 'J', 'K', 'L',
+            'M', 'N', 'O', 'P',
+            'Q', 'R', 'S', 'T',
+            'U', 'V', 'W', 'X',
+            'Y', 'Z'
+        ];
+        var str = "";
+        for (var i = 0; i < 4; i++) {
+            str += letters.splice(parseInt(Math.random() * (letters.length) + ''), 1);
+        }
+        return str;
+
+    }
+
     ngOnInit() {
-        // this.getTable();
         this.chaifen(this.a);
         this.changeAbc();
-        console.log(this.arr);
-let that=this
+        let that = this
         var mySwiper = new Swiper('.swiper-container', {
             autoplay: true,//可选选项，自动滑动
             pagination: {
                 el: '.swiper-pagination',
-            // bulletClass : 'my-bullet',//需设置.my-bullet样式
-              },
+                // bulletClass : 'my-bullet',//需设置.my-bullet样式
+            },
             on: {
-                touchStart (event) {
+                touchStart(event) {
                     console.log(that.find)
                     console.log(this)
                 },
