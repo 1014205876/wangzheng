@@ -169,22 +169,22 @@ export class IndexComponent implements OnInit {
         e.stopPropagation()
     }
     ngOnInit() {
-        document.onscroll = () => {//滚动监听，控制nav栏的显示隐藏
-            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-            if (!!document.getElementById('msg')) {
-                if (scrollTop > document.getElementById('msg').offsetTop) {
-                    this.toTop = true
-                } else {
-                    this.toTop = false
-                }
-            }
-        }
+        // document.onscroll = () => {//滚动监听，控制nav栏的显示隐藏
+        //     let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+        //     if (!!document.getElementById('msg')) {
+        //         if (scrollTop > document.getElementById('msg').offsetTop) {
+        //             this.toTop = true
+        //         } else {
+        //             this.toTop = false
+        //         }
+        //     }
+        // }
     }
 
     ngOnDestroy() {
 
-        document.onscroll = null;
-        clearInterval(this.time1);
+        // document.onscroll = null;
+        // clearInterval(this.time1);
     }
 
 }
