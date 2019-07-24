@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpServe } from 'src/app/shared/service/http-serve.service'
+import { HttpServe } from '../../../../src/app/shared/service/http-serve.service'
 
 @Component({
     selector: 'app-index',
