@@ -11,7 +11,7 @@ public class Compound {
                 System.out.println(b);
             }
         }
-        String word = "hello java";
+        String word = "了坚实的联发科 java";
         System.out.println(word);
     }
 }

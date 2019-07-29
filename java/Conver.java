@@ -15,5 +15,6 @@ public class Conver {
         System.out.println("float+char=" + (myfloat + mychar));
         System.out.println("float+double=" + (myfloat + mydouble));
         System.out.println("char+double=" + (mychar + mydouble));
+        System.out.println("电费看就换个");
     }
 }
