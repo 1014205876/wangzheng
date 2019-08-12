@@ -30,9 +30,9 @@ const tableName = "table01";
 
 app.use('/api',
     router.get('/form', (req, res) => {
-        // var data = url.parse(req.url, true).query;
+        var data = url.parse(req.url, true).query;
         var form = new formidable.IncomingForm(req.url);
-        form.parse(req, function (err, data, files) {
+        form.parse(req, function (err, files) {
             if (err) {
                 res.send({
                     code: 400,
@@ -40,12 +40,12 @@ app.use('/api',
                     reason: err
                 })
             } else {
-
                 let sql = "select * from " + tableName +
                     ((data.name || data.status || data.tel) ? " where " : "") +
-                    ((data.name) ? ("name='" + data.name + "'") : ("")) +
+                    "value like '%'"+
+                    ((data.name) ? (" and name like '%" + data.name + "%'") : ("")) +
                     ((data.status) ? (" and status=" + data.status) : ("")) +
-                    ((data.tel) ? (" and tel=" + data.tel) : (""));
+                    ((data.tel) ? (" and tel like '%" + data.tel + "%'") : (""));
                 connection.query(
                     sql,
                     ((err, result) => {
