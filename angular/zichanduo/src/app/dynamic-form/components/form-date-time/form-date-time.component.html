@@ -1,0 +1,14 @@
+<nz-form-item class="col dateTime" [hidden]="config.placeholder=='hidden'" nzSpan="6">
+  <nz-form-label class="label" nzSpan="8" [nzRequired]="config.required" nzFor="{{config.id}}">{{config.name}}</nz-form-label>
+  <nz-form-control class="control" nzSpan="14">
+    <div style="width: calc(100% - 140px);float: left; margin-right: 20px;">
+      <nz-date-picker [nzAllowClear]="'false'" [nzStyle]="{'width': '100%'}" [nzDisabledDate]="disabledDate" [(ngModel)]="date" nzFormat="yyyy-MM-dd" (ngModelChange)="getDay($event)" [nzShowToday]="false"></nz-date-picker>
+    </div>
+    <div style="width: 120px; float: left; height: 32px;">
+      <nz-select [(ngModel)]="time" (ngModelChange)="getTime($event)" style="width: 100%;">
+        <nz-option nzValue="08:00:00" nzLabel="AM"></nz-option>
+        <nz-option nzValue="14:00:00" nzLabel="PM"></nz-option>
+      </nz-select>
+    </div>
+  </nz-form-control>
+</nz-form-item>

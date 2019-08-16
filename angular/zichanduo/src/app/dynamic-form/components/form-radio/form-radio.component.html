@@ -1,0 +1,8 @@
+<nz-form-item class="col dateTime" [formGroup]="group" [hidden]="config.placeholder=='hidden'" nzSpan="6">
+  <nz-form-label class="label" nzSpan="8" [nzRequired]="config.required" nzFor="{{config.id}}">1{{config.name}}</nz-form-label>
+  <nz-form-control class="control" nzSpan="14">
+    <nz-radio-group [formControlName]="config.id" [(ngModel)]="config.value">
+      <label nz-radio *ngFor="let option of config.options" title='{{option.value}}' [nzValue]="option.key">{{option.value}}</label>
+    </nz-radio-group>
+  </nz-form-control>
+</nz-form-item>

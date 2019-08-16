@@ -1,0 +1,6 @@
+<nz-form-item class="col" [formGroup]="group" [hidden]="config.placeholder=='hidden'" nzSpan="12">
+  <nz-form-label class="label" nzSpan="8" [nzRequired]="config.required" nzFor="{{config.id}}">{{config.name}}</nz-form-label>
+  <nz-form-control class="control" nzSpan="14">
+    <input nz-input formControlName="{{config.id}}" [(ngModel)]="config.value" placeholder="{{config.placeholder}}" maxlength="{{maxLength||50}}">
+  </nz-form-control>
+</nz-form-item>
