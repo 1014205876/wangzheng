@@ -11,7 +11,7 @@ import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 registerLocaleData(zh);
 
-import { TransformService } from './../shared/service/transform.service';
+// import { TransformService } from './../shared/service/transform.service';
 
 import { DynamicFormComponent } from './containers/dynamic-form/dynamic-form.component';
 import { FormInputComponent } from './components/form-input/form-input.component';
@@ -51,7 +51,7 @@ import { DynamicFieldDirective } from './dynamic-field/dynamic-field.directive';
     DynamicFormComponent,
   ],
   providers: [
-    TransformService,
+    // TransformService,
     { provide: NZ_I18N, useValue: zh_CN }
   ]
 })

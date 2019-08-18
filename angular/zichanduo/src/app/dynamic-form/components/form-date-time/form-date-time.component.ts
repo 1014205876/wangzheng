@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { TransformService } from './../../../shared/service/transform.service';
+// import { TransformService } from './../../../shared/service/transform.service';
 
 @Component({
   selector: 'app-form-date-time',
@@ -18,7 +18,7 @@ export class FormDateTimeComponent implements OnInit {
   
 
   constructor(
-    private transform: TransformService
+    // private transform: TransformService
   ) {}
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class FormDateTimeComponent implements OnInit {
 
   getDay(e){
     if(e){
-      this.date=this.transform.dateTransform(e);
+      // this.date=this.transform.dateTransform(e);
       this.getTime(e);
     }else{
       this.group.controls[this.config.id].setValue("");

@@ -5,14 +5,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { EchartComponent } from './pages/echart/echart.component';
 import { FormComponent } from './pages/form/form.component';
-import { ThreeComponent } from './pages/three/three.component';
+// import { ThreeComponent } from './pages/three/three.component';
+import { SwiperComponent } from './pages/swiper/swiper.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },//默认首页
   { path: 'home', component: HomeComponent },//首页
   { path: 'module/echart', component: EchartComponent },//规则分组
   { path: 'module/form', component: FormComponent },//规则管理
-  { path: 'three', component: ThreeComponent },//规则管理
+  { path: 'swiper', component: SwiperComponent },//规则管理
 ];
 
 @NgModule({

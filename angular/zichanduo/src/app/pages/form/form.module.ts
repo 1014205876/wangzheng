@@ -21,9 +21,9 @@ const routes: Routes = [
     declarations: [
         FormComponent,
         CodeComponent
-        ],
+    ],
     imports: [
-        CommonModule,FormsModule,
+        CommonModule, FormsModule,
         RouterModule.forChild(routes),
     ],
     providers: [

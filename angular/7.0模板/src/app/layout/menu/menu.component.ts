@@ -39,7 +39,7 @@ export class MenuComponent implements OnInit {
                         name: "switch",
                         state: "curFlow",
                         type: "link",
-                        url: "/module/switch",
+                        url: "/swiper",
                     },
                 ]
             },

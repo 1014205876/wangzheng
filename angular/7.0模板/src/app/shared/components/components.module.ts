@@ -14,12 +14,14 @@ import { InputComponent } from './form-component/input/input.component';
 registerLocaleData(zh);
 
 // 引入组件
+import { ViewPictureComponent } from './view-picture/view-picture.component';
 
 @NgModule({
     declarations: [
         RowComponent,
         TableComponent,
-        InputComponent
+        InputComponent,
+        ViewPictureComponent
     ],
     imports: [
         CommonModule,
@@ -35,7 +37,10 @@ registerLocaleData(zh);
         }
     ],
     exports: [
-        RowComponent
+        RowComponent,
+        TableComponent,
+        InputComponent,
+        ViewPictureComponent
     ]
 })
 export class ComponentsModule { }
