@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-keywords:
-author: John Doe
-language: en
+title: 网站标题
+subtitle: 网站副标题
+description: 网站描述
+keywords: 网站的关键词。使用半角逗号 , 分隔多个关键词。
+author: 您的名字
+language: zh
 timezone:
 
 # URL
