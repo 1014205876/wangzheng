@@ -23,7 +23,7 @@ function padLeftZero(str) {
 }
 export function getMap(echarts, type) {
     const WindowWidth = $(window).width();
-    
+
     let proMap = document.getElementById("myEchartsDiv");
 
     if (type == 2) {
