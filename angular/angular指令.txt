@@ -4,7 +4,7 @@ ng g c test --skip-import跳过在module中引入
 ng g module hero --routing生成名为hero的组件routing
 *ngFor="let hero of heroes" 循环
 *ngIf="item.picurl" if指令（不可与for混用）
-<ng-container></ng-container>帮助混用
+<ng-container></ng-container>
 (click)="onSelect(hero)" 点击事件
 [class.class名字]="hero === selectedHero" 
 [ngClass]="{'class名字': person.country === 'CN'}"绑定class名
