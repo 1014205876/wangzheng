@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: 'head',
+        name: 'appHeader',
         components: {
         }
     }

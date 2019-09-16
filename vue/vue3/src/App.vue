@@ -6,7 +6,7 @@
     </el-aside>
     <el-container>
       <el-header>
-        <heade></heade>
+        <appHeader />
       </el-header>
       <el-main>
         <router-view />
@@ -18,11 +18,11 @@
 
 <script>
 
-  import heade from "./layout/head";
+  import appHeader from "./layout/header";
   export default {
     name: "App",
     components: {
-      heade
+      appHeader
     }
   }
 </script>
