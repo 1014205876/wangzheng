@@ -44,8 +44,6 @@
                         <nz-form-control [nzSm]="14" [nzXs]="24">
                             <input nz-input type="password" id="oldPassword" formControlName="oldPassword"
                                 placeholder="请输入原始密码" maxlength="16" autocomplete='password'>
-                            <!-- <input nz-input type="password" formControlName="oldPassword" placeholder="请输入原始密码" maxlength="16"
-                  autocomplete='password' [(ngModel)]="passwordForm.oldPassword"> -->
                             <nz-form-explain
                                 *ngIf="passwordForm.get('oldPassword').dirty && passwordForm.get('oldPassword').errors">
                                 请输入原始密码!</nz-form-explain>

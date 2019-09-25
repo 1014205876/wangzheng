@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { selfHttp } from '../../shared/service/http-service';
+import { HttpService } from '../../shared/service/http-service';
 
 @Component({
     selector: 'app-menu',
@@ -41,22 +41,29 @@ export class MenuComponent implements OnInit {
                         type: "link",
                         url: "/swiper",
                     },
+                    {
+                        name: "three",
+                        state: "curFlow",
+                        type: "link",
+                        url: "/three",
+                    },
+                    {
+                        name: "upload",
+                        state: "curFlow",
+                        type: "link",
+                        url: "/module/upload",
+                    },
                 ]
             },
         ]
     };
     nowindex: number;
     constructor(
-        private http: selfHttp,
+        private http: HttpService,
     ) { }
     openChange(index: number) {
         this.nowindex = index;
     }
     ngOnInit() {
-        //左导航栏导航
-        this.http.get('peak-resource/api/resource/user/permission', res => {
-            console.log(res);
-            // this.nav.menu = res.result.menu;
-        });
     }
 }

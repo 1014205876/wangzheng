@@ -1,0 +1,23 @@
+<!-- <div class="form" *ngFor="let item of formArr"> -->
+<nz-form-item *ngFor="let list of formArr.sysProductApplyForms">
+    <nz-form-label [nzSpan]="6" [nzRequired]="list.require==1">{{list.controlName}}</nz-form-label>
+    <nz-form-control [nzSpan]="18">
+        <app-form-check *ngIf="list.type=='multipleSelect'" [form]="list"></app-form-check>
+        <app-form-input *ngIf="list.type=='text'" [form]="list"></app-form-input>
+        <app-form-input *ngIf="list.type=='tel'" [form]="list"></app-form-input>
+        <app-form-input *ngIf="list.type=='email'" [form]="list"></app-form-input>
+        <app-form-input *ngIf="list.type=='internet'" [form]="list"></app-form-input>
+        <app-form-input *ngIf="list.type=='number'" [form]="list"></app-form-input>
+        <app-form-input *ngIf="list.type=='textarea'" [form]="list"></app-form-input>
+        <app-form-input *ngIf="list.type=='cardNo'" [form]="list"></app-form-input>
+        <app-form-input *ngIf="list.type=='integer'" [form]="list"></app-form-input>
+        <app-form-input *ngIf="list.type=='bankCard'" [form]="list"></app-form-input>
+        <app-form-pic *ngIf="list.type=='pic'" [form]="list"></app-form-pic>
+        <app-form-pic *ngIf="list.type=='multiplePic'" [form]="list"></app-form-pic>
+        <app-form-select *ngIf="list.type=='select'" [form]="list"></app-form-select>
+        <app-form-time *ngIf="list.type=='time'" [form]="list"></app-form-time>
+        <app-form-date *ngIf="list.type=='date'" [form]="list"></app-form-date>
+        <app-form-time *ngIf="list.type=='dateTime'" [form]="list"></app-form-time>
+    </nz-form-control>
+</nz-form-item>
+<!-- </div> -->

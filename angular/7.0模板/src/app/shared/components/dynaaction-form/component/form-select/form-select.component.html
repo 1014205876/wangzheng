@@ -1,0 +1,3 @@
+<nz-select style="width: 100%" [(ngModel)]="form.value" [nzPlaceHolder]="form.placeInfo">
+    <nz-option *ngFor="let list of form.option" [nzValue]="list.name" [nzLabel]="list.name"></nz-option>
+</nz-select>

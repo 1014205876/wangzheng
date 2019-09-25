@@ -1,51 +1,10 @@
-// .model {
-//     width: 100%;
-//     height: 100%;
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     z-index: 100;
-//     background: rgba(0, 0, 0, 0.7);
-
-//     .banner {
-//         background: #fff;
-//         width: 1000px;
-//         height: 800px;
-//         margin: 0 auto;
-
-//         .banner_img {
-//             position: absolute;
-//             z-index: -10;
-//             max-width: 700px;
-//             max-height: 700px;
-//             display: block;
-//             margin: 0 auto;
-//             opacity: 0; //定义一张图片掩藏用于计算canvas内图片的相关宽高
-//         }
-
-//         // .rotate {
-//         //     img {
-//         //         cursor: pointer;
-//         //         width: 32px;
-//         //         margin: 10px auto;
-//         //         display: block;
-//         //     }
-
-//         //     p {
-//         //         text-align: center;
-//         //         color: #666666;
-//         //     }
-//         // }
-//     }
-// }
-
 .model {
     width: 100%;
     height: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: 2000;
     background: rgba(0, 0, 0, 0.65);
     transition: all 0.2s;
     -webkit-transition: all 0.2s;
@@ -67,7 +26,7 @@
         width: 800px;
         background: #fff;
         position: absolute;
-        top: 40px;
+        top: 80px;
         left: 0;
         right: 0;
         margin: 0 auto;
@@ -89,6 +48,11 @@
                     position: absolute;
                     z-index: -10;
                     opacity: 0; //定义一张图片掩藏用于计算canvas内图片的相关宽高
+                }
+
+                .thumbs .swiper-slide {
+                    cursor: pointer;
+                    opacity: 0.5;
                 }
 
                 .rotate {
@@ -132,4 +96,13 @@
 
 .model.active {
     transform: scale3d(1, 1, 1);
+}
+::ng-deep,
+:host ::ng-deep,
+:root,
+:host /deep/ {
+
+    #thumbs .my-slide-thumb-active{
+        opacity: 1;
+    }
 }
