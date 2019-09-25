@@ -7,18 +7,22 @@ import { HttpService } from './http-service';
 export class ApiService {
 
     public baseUrl = '/api/';
-    // public baseUrl = '/api/jinritb-provider/';
+    public nodeUrl = '/node/';
     constructor(
         private http: HttpService
     ) { }
 
-    // 登录条，头部和底部
-    public getSystemSetting(params) {//根据key获取系统设置对应信息
-        let url = this.baseUrl + 'systemSetting';
-        return this.http.get(url, params);
+    public ports(num?) {//根据key获取系统设置对应信息
+        let url = this.baseUrl + '/users' + (num ? ('/' + num) : '');
+        return this.http.get(url, {}, true);
     }
-    public getDictionaryItemKey(key) {//根据key获取字典项对应信息
-        let url = this.baseUrl + 'dictionary/item/' + key
-        return this.http.get(url);
+    public users() {//根据key获取系统设置对应信息
+        let url = this.nodeUrl + '/users';
+        return this.http.get(url, {}, true);
+    }
+
+    public register(data) {//根据key获取系统设置对应信息
+        let url = this.nodeUrl + '/register';
+        return this.http.post(url, data, true);
     }
 }

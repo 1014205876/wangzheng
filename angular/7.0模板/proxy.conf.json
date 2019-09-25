@@ -8,5 +8,10 @@
     "target": "http://localhost:3300",
     "secure": false,
     "changeOrigin": true
+  },
+  "/node": {
+    "target": "http://localhost:3300",
+    "secure": false,
+    "changeOrigin": true
   }
 }
