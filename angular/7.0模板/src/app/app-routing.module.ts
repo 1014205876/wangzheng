@@ -7,13 +7,16 @@ import { EchartComponent } from './pages/echart/echart.component';
 import { FormComponent } from './pages/form/form.component';
 // import { ThreeComponent } from './pages/three/three.component';
 import { SwiperComponent } from './pages/swiper/swiper.component';
+import { UploadComponent } from './pages/upload/upload.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },//默认首页
-  { path: 'home', component: HomeComponent },//首页
-  { path: 'module/echart', component: EchartComponent },//规则分组
-  { path: 'module/form', component: FormComponent },//规则管理
-  { path: 'swiper', component: SwiperComponent },//规则管理
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'module/echart', component: EchartComponent },
+  { path: 'module/form', component: FormComponent },
+//   { path: 'three', component: ThreeComponent },
+  { path: 'swiper', component: SwiperComponent },
+  { path: 'module/upload', component: UploadComponent },
 ];
 
 @NgModule({

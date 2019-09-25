@@ -17,17 +17,16 @@ registerLocaleData(zh);
 // 引入模块
 import { LayoutModule } from './layout/layout.module';
 import { ComponentsModule } from './shared/components/components.module';
-import { selfHttp } from './shared/service/http-service';
-// import { BaseInterceptor } from './shared/service/base-interceptor';
-import { httpInterceptorProviders } from './shared/service/index';
+import { HttpService } from './shared/service/http-service';
 
 // 引入页面
 import { HomeComponent } from './pages/home/home.component';
 import { EchartComponent } from './pages/echart/echart.component';
 import { FormComponent } from './pages/form/form.component';
 import { AnimateComponent } from './pages/animate/animate.component';
-import { ThreeComponent } from './pages/three/three.component';
+// import { ThreeComponent } from './pages/three/three.component';
 import { SwiperComponent } from './pages/swiper/swiper.component';
+import { UploadComponent } from './pages/upload/upload.component';
 
 
 @NgModule({
@@ -37,8 +36,9 @@ import { SwiperComponent } from './pages/swiper/swiper.component';
         EchartComponent,
         FormComponent,
         AnimateComponent,
-        ThreeComponent,
+        // ThreeComponent,
         SwiperComponent,
+        UploadComponent,
     ],
     imports: [
         BrowserModule,
@@ -52,8 +52,7 @@ import { SwiperComponent } from './pages/swiper/swiper.component';
         ComponentsModule
     ],
     providers: [
-        selfHttp,
-        httpInterceptorProviders,
+        HttpService,
         {
             provide: NZ_I18N,
             useValue: zh_CN

@@ -8,7 +8,7 @@ const path = require('path');
 const app = express();
 const server = app.listen(3300);
 
-var fileUtils = require('./fileUtils');
+var fileUtils = require('./upload/fileUtils');
 
 var proxyConfig = proxy({
     target: 'http://192.168.111.217:8040',
@@ -18,6 +18,7 @@ var proxyConfig = proxy({
         '^/api': '' // remove base path
     },
     onProxyReq: function onProxyReq(proxyReq, req, res) {
+        console.log(123)
         proxyReq.setHeader('AUTH_ID', '3316dc67-2517-46f5-958d-1cd46d4eab58');//217获客平台
         proxyReq.setHeader('AUTH_USER', encodeURI('admin'));
     }
@@ -26,6 +27,7 @@ app.use('/api', proxyConfig)
 let uploadSingle = multer({ dest: 'upload/' });
 
 app.post('/upload', uploadSingle.single('file'), function (req, res) {
+    console.log(456)
     // 文件信息
     if (!req.file) {
         res.send(req.error);

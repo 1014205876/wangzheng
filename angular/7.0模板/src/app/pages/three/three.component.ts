@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { selfHttp } from '../../shared/service/http-service';
+import { HttpService } from '../../shared/service/http-service';
 import { Level } from './level'
 
 @Component({
@@ -10,7 +10,7 @@ import { Level } from './level'
 export class ThreeComponent implements OnInit {
 
     constructor(
-        private http: selfHttp,
+        private http: HttpService,
     ) {
     }
 

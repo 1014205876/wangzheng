@@ -1,0 +1,5 @@
+<nz-upload nzAccept="" [nzAction]="'/upload'" [(nzFileList)]="fileList"
+    [nzPreview]="handlePreview" nzListType="picture-card" (nzChange)="fileChange($event)">
+    <i nz-icon nzType="plus"></i>
+    <div class="ant-upload-text">上传</div>
+</nz-upload>
