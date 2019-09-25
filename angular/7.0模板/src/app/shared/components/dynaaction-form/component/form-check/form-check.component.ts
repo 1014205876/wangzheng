@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { ApiService } from '../../../../service/http-serve/api.service';
-
 @Component({
     selector: 'app-form-check',
     templateUrl: './form-check.component.html',
@@ -13,21 +11,9 @@ export class FormCheckComponent implements OnInit {
     option = [];
 
     constructor(
-        private api: ApiService
     ) { }
 
     ngOnInit() {
-        this.getOption();
-    }
-
-    async getOption() {
-        let res = await this.api.getDictionaryItemKey(this.form.dataSource);
-        this.form.option=res
-        this.option = res.map((item) => {
-            return {
-                label: item.name, value: item.name, checked: false
-            }
-        });
     }
 
     log() {

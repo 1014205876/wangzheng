@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { ApiService } from '../../../../service/http-serve/api.service';
 
 @Component({
     selector: 'app-form-select',
@@ -13,16 +12,9 @@ export class FormSelectComponent implements OnInit {
     option=[];
 
     constructor(
-        private api: ApiService
     ) { }
 
     ngOnInit() {
-        this.getOption();
-    }
-
-    async getOption() {
-        let res = await this.api.getDictionaryItemKey(this.form.dataSource);
-        this.form.option=res
     }
 
 }

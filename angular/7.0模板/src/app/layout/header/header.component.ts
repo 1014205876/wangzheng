@@ -50,19 +50,22 @@ export class HeaderComponent implements OnInit {
             surePassword: [null, [Validators.required, this.surePasswordOption]],
         });
         this.getUser();
-        this.login();
+        // this.login();
     }
 
     async getUser() {
-        let res = await this.api.users();
-        console.log(res);
+        let res = await this.api.user({
+            userName:'13767060145'
+        });
     }
 
     async login() {
         let res = await this.api.register({
-            name:123
+            "name": "王政",
+            "userName": "13767060145",
+            "password": "123456",
+            "headImg": "http://1014wang.oss-cn-beijing.aliyuncs.com/f2032e8adf547bb7ed81e2a9622458b3_1.jpg"
         });
-        console.log(res);
     }
 
     logout() {//退出登录
@@ -92,7 +95,7 @@ export class HeaderComponent implements OnInit {
     paddr() {
     }
 
-    choiceOk(){
+    choiceOk() {
     }
 
     choiceCancel(): void {//点击修改密码取消

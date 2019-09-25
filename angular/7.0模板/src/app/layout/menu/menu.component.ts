@@ -10,42 +10,22 @@ export class MenuComponent implements OnInit {
     nav: any = {
         menu: [
             {
-                icon: "icon iconfont icon-itemManage",
                 name: "首页",
                 state: "project",
                 type: "link",
                 url: "/home",
             },
             {
-                icon: "icon iconfont icon-itemManage",
                 name: "模块",
                 state: "",
                 type: "sub",
                 url: "",
                 children: [
                     {
-                        name: "图表",
-                        state: "curFlow",
-                        type: "link",
-                        url: "/module/echart",
-                    },
-                    {
                         name: "form",
                         state: "curFlow",
                         type: "link",
                         url: "/module/form",
-                    },
-                    {
-                        name: "switch",
-                        state: "curFlow",
-                        type: "link",
-                        url: "/swiper",
-                    },
-                    {
-                        name: "three",
-                        state: "curFlow",
-                        type: "link",
-                        url: "/three",
                     },
                     {
                         name: "upload",
@@ -54,6 +34,12 @@ export class MenuComponent implements OnInit {
                         url: "/module/upload",
                     },
                 ]
+            },
+            {
+                name: "个人中心",
+                state: "curFlow",
+                type: "link",
+                url: "/user-center",
             },
         ]
     };

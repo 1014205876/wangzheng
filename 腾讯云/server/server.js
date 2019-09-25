@@ -1,4 +1,5 @@
-let express = require('express')
+let express = require('express');
+const url = require('url');
 let proxy = require('http-proxy-middleware');
 let multer = require('multer');
 const ConnectCas = require('connect-cas2');
@@ -56,7 +57,7 @@ app.use('/node',
                         }
                     }
                 });
-                if(has){
+                if (has) {
                     res.send({
                         code: 404,
                         data: '',
@@ -67,18 +68,12 @@ app.use('/node',
         })
     }),
     router.get('/user', (req, res) => {//查询所有已注册的用户
-        var form = new formidable.IncomingForm(req.url);
-        form.parse(req, function (err, data, files) {
-            if (err) {
-                res.send({
-                    code: 400,
-                    data: '',
-                    reason: err
-                })
-            } else {
+        var data = url.parse(req.url, true).query;
+        userArr.forEach((item) => {
+            if (data.userName == item.userName) {
                 res.send({
                     code: 200,
-                    data: userArr,
+                    data: item,
                 })
             }
         })

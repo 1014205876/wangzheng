@@ -21,24 +21,18 @@ import { HttpService } from './shared/service/http-service';
 
 // 引入页面
 import { HomeComponent } from './pages/home/home.component';
-import { EchartComponent } from './pages/echart/echart.component';
 import { FormComponent } from './pages/form/form.component';
-import { AnimateComponent } from './pages/animate/animate.component';
-// import { ThreeComponent } from './pages/three/three.component';
-import { SwiperComponent } from './pages/swiper/swiper.component';
 import { UploadComponent } from './pages/upload/upload.component';
+import { UserCenterComponent } from './pages/user-center/user-center.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
-        EchartComponent,
         FormComponent,
-        AnimateComponent,
-        // ThreeComponent,
-        SwiperComponent,
         UploadComponent,
+        UserCenterComponent,
     ],
     imports: [
         BrowserModule,
