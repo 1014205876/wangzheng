@@ -1,0 +1,20 @@
+{
+  "name": "Node_Hello",
+  "description": "nodejs hello world app",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "ali-oss": "^6.1.1",
+    "connect-cas2": "^1.2.5",
+    "cos-nodejs-sdk-v5": "^2.4.16",
+    "express": "4.x",
+    "express-session": "^1.15.6",
+    "formidable": "^1.2.1",
+    "fx": "^0.0.1-security",
+    "http-proxy-middleware": "^0.19.1",
+    "multer": "^1.4.1",
+    "nodemon": "^1.18.3",
+    "session-memory-store": "^0.2.2",
+    "uuid": "^3.3.2"
+  }
+}
