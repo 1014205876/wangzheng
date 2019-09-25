@@ -8,17 +8,19 @@ import Swiper from 'swiper';
     styleUrls: ['./view-picture.component.less']
 })
 export class ViewPictureComponent implements OnInit {
-    @Input() public isVisible = false;//装载swiper图片的数组
     @Input() public formArr = [];//装载swiper图片的数组
 
-    swiperInit;
+    modelShow = false;//装载swiper图片的数组
+
+    swiperInit;//swiper对象
 
     swiperArr = [];//装载swiper图片的数组
     swiperIndex = 0;//当前选中的swiper的下标
 
     canvasArr = [];//canvas标签
-    imgArr = [];//隐藏起来的img标签（用于确定画布中图片的宽高）
     cxtArr = [];//canvas画布
+    imgArr = [];//隐藏起来的img标签（用于确定画布中图片的宽高）
+
     constructor(
         private el: ElementRef,
     ) { }
@@ -26,8 +28,18 @@ export class ViewPictureComponent implements OnInit {
     ngOnInit() {
     }
 
+    mousewheel(e) {
+        if (e.deltaY > 0) {//缩小
+            // this.swiperInit.zoom.out();
+        } else {//放大
+            // this.swiperInit.zoom.in();
+        }
+        e.stopPropagation();
+        e.preventDefault();
+    }
+
     getBanner() {
-        this.isVisible = true;
+        this.modelShow = true;
         this.swiperArr = this.formArr;
         let that = this;
         setTimeout(() => {//确保生成swiper标签且图片宽高已经获取
@@ -35,6 +47,16 @@ export class ViewPictureComponent implements OnInit {
                 zoom: {
                     maxRatio: 3,
                     toggle: true
+                },
+                thumbs: {
+                    swiper: {
+                        el: '#thumbs',
+                        spaceBetween: 10,
+                        slidesPerView: this.swiperArr.length>12?this.swiperArr.length:12,
+                        centerInsufficientSlides: true,
+                        watchSlidesVisibility: true,/*避免出现bug*/
+                    },
+                    slideThumbActiveClass: 'my-slide-thumb-active',
                 },
                 navigation: {
                     nextEl: '.swiper-button-next',
@@ -45,12 +67,10 @@ export class ViewPictureComponent implements OnInit {
                         that.swiperIndex = that.swiperInit.snapIndex
                     },
                 },
-            })
+            });
             setTimeout(() => {//确保生成swiper标签且图片宽高已经获取
                 this.canvasArr = this.el.nativeElement.querySelectorAll(".canvas");
                 this.imgArr = this.el.nativeElement.querySelectorAll(".banner_img");
-                console.log(this.canvasArr)
-                console.log(this.imgArr)
                 for (let i = 0; i < this.imgArr.length; i++) {
                     this.cxtArr[i] = this.canvasArr[i].getContext("2d");
                     this.cxtArr[i].rotate(0 * Math.PI / 180);
@@ -69,12 +89,10 @@ export class ViewPictureComponent implements OnInit {
                         this.imgArr[i].height
                     );
                 }
-            }, 0)
+            }, 200)
         }, 0)
     }
-    close() {
-        this.isVisible = false;//装载swiper图片的数组
-    }
+
     rotate(status) {//修改swiper内canvas的旋转
         let index = this.swiperIndex;
         this.cxtArr[index].clearRect(0, 0, this.canvasArr[index].width, this.canvasArr[index].height);
@@ -94,7 +112,7 @@ export class ViewPictureComponent implements OnInit {
         )
     }
 
-    stopPropagation(e) {
-        e.stopPropagation()
+    close() {
+        this.modelShow = false;//装载swiper图片的数组
     }
 }

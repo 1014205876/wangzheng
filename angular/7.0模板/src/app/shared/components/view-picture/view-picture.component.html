@@ -1,22 +1,31 @@
-<div class="model" [ngClass]="{active:isVisible}">
+<div class="model" [ngClass]="{active:modelShow}">
     <div class="black" (click)="close()"></div>
     <div class="alert">
         <!-- <div class="model_header">
             图片查看
         </div> -->
         <div class="model_main">
-            <div class="banner" *ngIf="isVisible">
+            <div class="banner" *ngIf="modelShow">
                 <div class="swiper-container" id="viewPicture">
                     <div class="swiper-wrapper">
                         <div *ngFor="let item of swiperArr" class="swiper-slide">
-                            <div class="swiper-zoom-container">
+                            <div class="swiper-zoom-container" (mousewheel)="mousewheel($event)">
                                 <canvas class="canvas" width="600px" height="600px"></canvas>
-                                <img class="banner_img" [src]="item.mediaUrl">
+                                <img class="banner_img" [src]="item.url">
                             </div>
                         </div>
                     </div>
                     <div class="swiper-button-prev swiper-button-black"></div>
                     <div class="swiper-button-next swiper-button-black"></div>
+                </div>
+                <div class="swiper-container thumbs" id="thumbs">
+                    <div class="swiper-wrapper">
+                        <div *ngFor="let item of swiperArr" class="swiper-slide">
+                            <div class="swiper-zoom-container">
+                                <img class="navImg" [src]="item.url">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="rotate">
                     <button nz-button nzType="primary" (click)="rotate('left')">逆时针</button>
@@ -25,7 +34,7 @@
             </div>
         </div>
         <!-- <div class="model_footer">
-            <button class="radius" (click)="isVisible=false">关闭</button>
+            <button class="radius" (click)="modelShow=false">关闭</button>
         </div> -->
     </div>
 </div>

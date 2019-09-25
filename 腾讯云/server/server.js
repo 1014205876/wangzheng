@@ -28,7 +28,45 @@ var proxyConfig = proxy({//node代理转接
 app.use('/api', proxyConfig);
 
 app.use('/node',
-    router.get('/users', (req, res) => {
+    router.post('/login', (req, res) => {//修改用户信息
+        var form = new formidable.IncomingForm(req.url);
+        form.parse(req, function (err, data, files) {
+            if (err) {
+                res.send({
+                    code: 400,
+                    data: '',
+                    reason: err
+                })
+            } else {
+                let has = false;
+                userArr.forEach((item) => {
+                    if (item.userName == data.userName) {
+                        has = true;
+                        if (item.password == data.password) {
+                            res.send({
+                                code: 200,
+                                data: item,
+                            })
+                        } else {
+                            res.send({
+                                code: 404,
+                                data: '',
+                                reason: '密码错误'
+                            })
+                        }
+                    }
+                });
+                if(has){
+                    res.send({
+                        code: 404,
+                        data: '',
+                        reason: '查无此人'
+                    })
+                }
+            }
+        })
+    }),
+    router.get('/user', (req, res) => {//查询所有已注册的用户
         var form = new formidable.IncomingForm(req.url);
         form.parse(req, function (err, data, files) {
             if (err) {
@@ -45,7 +83,25 @@ app.use('/node',
             }
         })
     }),
-    router.post('/register', (req, res) => {
+    router.post('/user', (req, res) => {//修改用户信息
+        var form = new formidable.IncomingForm(req.url);
+        form.parse(req, function (err, data, files) {
+            userArr[0] = data;
+            if (err) {
+                res.send({
+                    code: 400,
+                    data: '',
+                    reason: err
+                })
+            } else {
+                res.send({
+                    code: 200,
+                    data: userArr,
+                })
+            }
+        })
+    }),
+    router.post('/register', (req, res) => {//注册接口
         var form = new formidable.IncomingForm(req.url);
         form.parse(req, function (err, data, files) {
             userArr.push(data);
@@ -62,7 +118,7 @@ app.use('/node',
                 })
             }
         })
-    }),
+    })
 )
 
 let uploadSingle = multer({ dest: 'upload/' });
@@ -103,8 +159,6 @@ app.post('/upload', uploadSingle.single('file'), function (req, res) {
 
 //静态页面的入口文件夹
 app.use(express.static(path.join(__dirname, 'dist')));
-//登出cas
-// app.get('/logout', casClient.logout());
 
 //把路由交给angular管理
 app.get('*', function (req, res) {
