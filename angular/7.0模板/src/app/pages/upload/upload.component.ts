@@ -11,6 +11,7 @@ export class UploadComponent implements OnInit {
     form;//表单对象
     fileList = [];//上传组件数组
     imgArr = [];
+    src='';
     constructor() { }
 
     ngOnInit() {
@@ -24,7 +25,7 @@ export class UploadComponent implements OnInit {
 
     fileChange(e) {
         if (e.type == 'success') {
-            this.form.value = this.getImgUrl(this.fileList)
+            this.imgArr = this.getImgUrl(this.fileList);
         }
     }
 
@@ -33,6 +34,7 @@ export class UploadComponent implements OnInit {
             return item.response.location
         }).join(',');
         console.log(url)
+        this.src=url
         return url
     }
 
