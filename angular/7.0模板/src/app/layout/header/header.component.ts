@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { NzMessageService } from 'ng-zorro-antd';
 
 import { ApiService } from '../../shared/service/api.service';
+import resource from '../../shared/resource';
 
 
 @Component({
@@ -23,9 +24,9 @@ export class HeaderComponent implements OnInit {
         },
     ];
 
-    public userInfor: any = {//用户信息
-        name: '未登录',
-        account: 'no'
+    public userInfo: any = {//用户信息
+        name: resource.userInfo.name,
+        account: resource.userInfo.userName,
     };//用户信息
     public password: any = {//修改密码弹窗
         popoverShow: false,
@@ -49,27 +50,16 @@ export class HeaderComponent implements OnInit {
             newPassword: [null, [Validators.required, this.newPasswordOption]],
             surePassword: [null, [Validators.required, this.surePasswordOption]],
         });
-        this.getUser();
-        // this.login();
     }
 
-    async getUser() {
-        let res = await this.api.user({
-            userName:'13767060145'
-        });
-    }
-
-    async login() {
-        let res = await this.api.register({
-            "name": "王政",
-            "userName": "13767060145",
-            "password": "123456",
-            "headImg": "http://1014wang.oss-cn-beijing.aliyuncs.com/f2032e8adf547bb7ed81e2a9622458b3_1.jpg"
-        });
-    }
-
-    logout() {//退出登录
-        window.location.href = window.location.protocol + '//' + window.location.host + '/logout';
+    async logout() {//退出登录
+        let res = await this.api.postLogOut();
+        if (res.code == 200) {
+            this.userInfo.name = '未登录';
+            resource.userInfo.name = '未登录';
+            this.userInfo.userName = '';
+            resource.userInfo.userName = '';
+        }
     }
 
     changePassword(): void {//新密码修改时调用。保证2次输入密码相同

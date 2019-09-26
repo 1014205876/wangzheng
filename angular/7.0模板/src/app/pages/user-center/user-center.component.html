@@ -1,3 +1,24 @@
-<p>
-  user-center works!
-</p>
+<nz-card nzTitle="个人信息">
+    <div class="form">
+        <div nz-col nzSpan="6">
+            <nz-form-item class="gutter-box">
+                <nz-form-label nzRequired>名字</nz-form-label>
+                <nz-form-control>
+                    <input nz-input placeholder="请选择名字" [(ngModel)]="agencyInfo.account.bank">
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col nzSpan="6">
+            <nz-form-item class="gutter-box">
+                <nz-form-label nzRequired>头像</nz-form-label>
+                <nz-form-control>
+                    <nz-upload nzAccept="" [nzAction]="'/upload'" [(nzFileList)]="avatarList"
+                        [nzShowButton]="avatarList.length < 2" [nzPreview]="avatarPreview" nzListType="picture-card" (nzChange)="change($event)">
+                        <i nz-icon nzType="plus"></i>
+                        <div class="ant-upload-text">上传</div>
+                    </nz-upload>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+</nz-card>

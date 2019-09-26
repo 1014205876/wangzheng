@@ -6,23 +6,35 @@ import { HttpService } from './http-service';
 })
 export class ApiService {
 
-    public baseUrl = '/api/';
+    public apiUrl = '/api/';
     public nodeUrl = '/node/';
     constructor(
         private http: HttpService
     ) { }
 
-    public ports(num?) {//根据key获取系统设置对应信息
-        let url = this.baseUrl + 'user' + (num ? ('/' + num) : '');
-        return this.http.get(url, {}, true);
+    public getCookie() {//查询登录状态
+        let url = this.nodeUrl + 'cookie'
+        return this.http.get(url)
     }
-    public user(data) {//根据key获取系统设置对应信息
+    public postLogOut() {//退出登录
+        let url = this.nodeUrl + 'loginOut'
+        return this.http.post(url)
+    }
+    public ports(num?) {//
+        let url = this.apiUrl + 'user' + (num ? ('/' + num) : '');
+        return this.http.get(url);
+    }
+    public user(data) {//获取用户信息
         let url = this.nodeUrl + 'user';
-        return this.http.get(url, data, true);
+        return this.http.get(url, data);
+    }
+    public users(data) {//获取所有用户信息
+        let url = this.nodeUrl + 'users';
+        return this.http.get(url, data);
     }
 
-    public register(data) {//根据key获取系统设置对应信息
+    public register(data) {//注册接口
         let url = this.nodeUrl + 'register';
-        return this.http.post(url, data, true);
+        return this.http.post(url, data);
     }
 }

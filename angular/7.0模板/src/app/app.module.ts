@@ -18,6 +18,7 @@ registerLocaleData(zh);
 import { LayoutModule } from './layout/layout.module';
 import { ComponentsModule } from './shared/components/components.module';
 import { HttpService } from './shared/service/http-service';
+import { AppLoadModule } from './shared/service/app-load/app-load.module';
 
 // 引入页面
 import { HomeComponent } from './pages/home/home.component';
@@ -43,7 +44,8 @@ import { UserCenterComponent } from './pages/user-center/user-center.component';
         HttpClientModule,
         BrowserAnimationsModule,
         LayoutModule,
-        ComponentsModule
+        ComponentsModule,
+        AppLoadModule
     ],
     providers: [
         HttpService,

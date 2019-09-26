@@ -1,9 +1,9 @@
 <div class="header">
     <!-- logo -->
     <div class="logo">
-        <img src="../../../assets/images/logo.png" alt="">
+        后台管理系统
     </div>
-    <!-- 巅峰导航 -->
+    <!-- 其他导航 -->
     <ul class='nav-right'>
         <li *ngFor='let list of nav'>
             <a [href]='list.appAddress'>{{list.appName}}</a>
@@ -16,7 +16,7 @@
             <nz-popover [(nzVisible)]="password.popoverShow" [nzTrigger]="'click'" [nzPlacement]="'bottomRight'">
                 <div nz-popover>
                     <i class="anticon anticon-user" style='font-size:18px;'></i>
-                    {{userInfor.name}}
+                    {{userInfo.name}}
                     <i class="anticon anticon-down" style='font-size:18px'></i>
                 </div>
                 <ng-template #nzTemplate
