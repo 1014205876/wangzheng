@@ -4,15 +4,17 @@ let proxy = require('http-proxy-middleware');
 let multer = require('multer');
 const ConnectCas = require('connect-cas2');
 const session = require('express-session');
-let userArr = require('./json/user.json');
-const MemoryStore = require('session-memory-store')(session);
 const formidable = require('formidable');
 const path = require('path');
+
+let userArr = require('./json/user.json');
+let fileUtils = require('./fileUtils');
+
+const MemoryStore = require('session-memory-store')(session);
 const app = express();
 const router = express.Router();
 const server = app.listen(3300);
 
-var fileUtils = require('./fileUtils');
 
 var proxyConfig = proxy({//node代理转接
     target: 'http://jsonplaceholder.typicode.com',
@@ -125,15 +127,15 @@ app.post('/upload', uploadSingle.single('file'), function (req, res) {
     }
     var file = req.file;
     // 腾讯云
-    // fileUtils.putObject(file.path, file.originalname, file.size, function (err, result) {
-    //     if (err) {
-    //         res.send(500, 'upload fail!');
-    //     }
-    //     else {
-    //         res.send({ location: 'http://' + result.Location, name: file.originalname });
-    //     }
-    // });
-    // 阿里云
+    fileUtils.putObject(file.path, file.originalname, file.size, function (err, result) {
+        if (err) {
+            res.send(500, 'upload fail!');
+        }
+        else {
+            res.send({ location: 'http://' + result.Location, name: file.originalname });
+        }
+    });
+    阿里云
     fileUtils(file.originalname, file.path, function (code, result) {
         if (code == 200) {
             res.send({
@@ -149,7 +151,6 @@ app.post('/upload', uploadSingle.single('file'), function (req, res) {
             });
         }
     });
-
 });
 
 //静态页面的入口文件夹
