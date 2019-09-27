@@ -38,9 +38,9 @@ app.use('/api', proxyConfig);
 app.use('/node',
     router.get('/cookie', (req, res) => {//查询浏览器记住的登录信息
         //禁止该接口返回304缓存
-        res.header('expires', '0');
-        res.header('cache-control', 'no-store');
-        res.header('pragma', 'no-cache');
+        // res.header('expires', '0');
+        // res.header('cache-control', 'no-store');
+        // res.header('pragma', 'no-cache');
         //调取接口判断当前用户是否登录
         let token = req.cookies.token
         if (token) {
@@ -78,10 +78,10 @@ app.use('/node',
                     reason: err
                 })
             } else {
-                let has = false;
+                let has = true;
                 userArr.forEach((item) => {
                     if (item.userName == data.userName) {
-                        has = true;
+                        has = false;
                         if (item.password == data.password) {
                             var token = jwt.sign({ name: item.userName }, 'wangzheng', {
                                 expiresIn: 60 * 60 * 24 * 30// 授权时效24小时
@@ -191,15 +191,15 @@ app.post('/upload', uploadSingle.single('file'), function (req, res) {
     }
     var file = req.file;
     // 腾讯云
-    fileUtils.putObject(file.path, file.originalname, file.size, function (err, result) {
-        if (err) {
-            res.send(500, 'upload fail!');
-        }
-        else {
-            res.send({ location: 'http://' + result.Location, name: file.originalname });
-        }
-    });
-    阿里云
+    // fileUtils.putObject(file.path, file.originalname, file.size, function (err, result) {
+    //     if (err) {
+    //         res.send(500, 'upload fail!');
+    //     }
+    //     else {
+    //         res.send({ location: 'http://' + result.Location, name: file.originalname });
+    //     }
+    // });
+    // 阿里云
     fileUtils(file.originalname, file.path, function (code, result) {
         if (code == 200) {
             res.send({

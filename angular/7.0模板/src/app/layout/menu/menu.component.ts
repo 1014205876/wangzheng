@@ -16,7 +16,13 @@ export class MenuComponent implements OnInit {
                 url: "/home",
             },
             {
-                name: "模块",
+                name: "登录",
+                state: "project",
+                type: "link",
+                url: "/login",
+            },
+            {
+                name: "练习",
                 state: "",
                 type: "sub",
                 url: "",

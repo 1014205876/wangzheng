@@ -25,11 +25,13 @@ import { HomeComponent } from './pages/home/home.component';
 import { FormComponent } from './pages/form/form.component';
 import { UploadComponent } from './pages/upload/upload.component';
 import { UserCenterComponent } from './pages/user-center/user-center.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
+        LoginComponent,
         HomeComponent,
         FormComponent,
         UploadComponent,

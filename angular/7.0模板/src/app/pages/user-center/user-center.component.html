@@ -1,24 +1,28 @@
 <nz-card nzTitle="个人信息">
-    <div class="form">
+    <div nz-row nzGutter="16">
         <div nz-col nzSpan="6">
-            <nz-form-item class="gutter-box">
+            <nz-form-item>
                 <nz-form-label nzRequired>名字</nz-form-label>
                 <nz-form-control>
-                    <input nz-input placeholder="请选择名字" [(ngModel)]="agencyInfo.account.bank">
+                    <input nz-input placeholder="请选择名字" [(ngModel)]="userInfo.name">
                 </nz-form-control>
             </nz-form-item>
         </div>
-        <div nz-col nzSpan="6">
-            <nz-form-item class="gutter-box">
+        <div nz-col nzSpan="18">
+            <nz-form-item>
                 <nz-form-label nzRequired>头像</nz-form-label>
                 <nz-form-control>
-                    <nz-upload nzAccept="" [nzAction]="'/upload'" [(nzFileList)]="avatarList"
-                        [nzShowButton]="avatarList.length < 2" [nzPreview]="avatarPreview" nzListType="picture-card" (nzChange)="change($event)">
+                    <nz-upload nzAccept="" [nzAction]="'/upload'" [(nzFileList)]="headImgList"
+                        [nzShowButton]="headImgList.length < 2" [nzPreview]="headImgPreview" nzListType="picture-card" (nzChange)="headImgChange($event)">
                         <i nz-icon nzType="plus"></i>
                         <div class="ant-upload-text">上传</div>
                     </nz-upload>
                 </nz-form-control>
             </nz-form-item>
         </div>
+        <div nz-col nzSpan="24">
+            <button nz-button nzType="primary" (click)="changeUserInfo()">保存提交</button>
+        </div>
     </div>
 </nz-card>
+<app-view-picture #viewPicture [formArr]="bannerImgArr"></app-view-picture>

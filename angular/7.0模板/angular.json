@@ -32,8 +32,10 @@
                             }
                         ],
                         "styles": [
+                            "src/assets/css/swiper.min.css",
                             "src/assets/css/theme.less",
-                            "src/assets/css/swiper.min.css"
+                            "src/assets/css/common.css",
+                            "src/styles.less"
                         ],
                         "scripts": [
                             "src/assets/js/swiper.min.js",
@@ -95,7 +97,10 @@
                         "tsConfig": "src/tsconfig.spec.json",
                         "karmaConfig": "src/karma.conf.js",
                         "styles": [
-                            "src/assets/css/swiper.min.css"
+                            "src/assets/css/swiper.min.css",
+                            "src/assets/css/theme.less",
+                            "src/assets/css/common.css",
+                            "src/styles.less"
                         ],
                         "scripts": [
                             "src/assets/js/swiper.min.js",

@@ -4,14 +4,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class HttpService {
 
+
+    header = {
+        'Content-Type': 'application/json',
+        'expires': '0',
+        'cache-control': 'no-store',
+        'pragma': 'no-cache',
+    }
+
     constructor(
         private http: HttpClient
     ) {
 
     }
 
-    public get(url: string, paramObj: any = {}, contentType = 'application/json') {
-        let headers = new HttpHeaders({ 'Content-Type': contentType });
+    public get(url: string, paramObj: any = {}) {
+        let headers = new HttpHeaders(this.header);
         return this.http
             .get(url + this.toQueryString(paramObj), { headers: headers })
             .toPromise()
@@ -19,8 +27,8 @@ export class HttpService {
             .catch((err) => { return err });
     }
 
-    public post(url: string, body: any = {}, ContentType = 'application/json') {
-        let headers = new HttpHeaders({ 'Content-Type': ContentType });
+    public post(url: string, body: any = {}) {
+        let headers = new HttpHeaders(this.header);
         return this.http
             .post(url, body, { headers })
             .toPromise()
@@ -29,7 +37,7 @@ export class HttpService {
     }
 
     public delete(url, body: any = {}) {
-        let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        let headers = new HttpHeaders(this.header);
         return this.http
             .delete(url, { headers, params: body })
             .toPromise()
@@ -37,8 +45,8 @@ export class HttpService {
             .catch((err) => { return err });
     }
 
-    public patch(url: string, body: any = {}, ContentType = 'application/json') {
-        let headers = new HttpHeaders({ 'Content-Type': ContentType });
+    public patch(url: string, body: any = {}) {
+        let headers = new HttpHeaders(this.header);
         return this.http
             .patch(url, body, { headers })
             .toPromise()
@@ -46,8 +54,8 @@ export class HttpService {
             .catch((err) => { return err });
     }
 
-    public put(url: string, body: any = {}, ContentType = 'application/json') {
-        let headers = new HttpHeaders({ 'Content-Type': ContentType });
+    public put(url: string, body: any = {}) {
+        let headers = new HttpHeaders(this.header);
         return this.http
             .put(url, body, { headers })
             .toPromise()

@@ -14,7 +14,7 @@ export class AppLoadService {
     async appLoad() {
         let cookie = await this.api.getCookie();
         if (cookie.code == 200) {
-            let userInfo = await this.api.user({ userName: cookie.data.userName });
+            let userInfo = await this.api.getUser({ userName: cookie.data.userName });
             if (userInfo.code == 200) {
                 resource.userInfo = userInfo.data;
             }
