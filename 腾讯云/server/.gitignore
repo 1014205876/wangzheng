@@ -7,6 +7,7 @@
 # dependencies
 /node_modules
 /dist
+/upload/*
 
 # IDEs and editors
 /.idea
