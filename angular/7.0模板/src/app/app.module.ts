@@ -26,6 +26,7 @@ import { FormComponent } from './pages/form/form.component';
 import { UploadComponent } from './pages/upload/upload.component';
 import { UserCenterComponent } from './pages/user-center/user-center.component';
 import { LoginComponent } from './pages/login/login.component';
+import { CalendarComponent } from './pages/calendar/calendar.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { LoginComponent } from './pages/login/login.component';
         FormComponent,
         UploadComponent,
         UserCenterComponent,
+        CalendarComponent,
     ],
     imports: [
         BrowserModule,

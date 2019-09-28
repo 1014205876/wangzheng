@@ -28,13 +28,19 @@ export class MenuComponent implements OnInit {
                 url: "",
                 children: [
                     {
-                        name: "form",
+                        name: "表单",
                         state: "curFlow",
                         type: "link",
                         url: "/module/form",
                     },
                     {
-                        name: "upload",
+                        name: "日历",
+                        state: "curFlow",
+                        type: "link",
+                        url: "/module/calendar",
+                    },
+                    {
+                        name: "上传",
                         state: "curFlow",
                         type: "link",
                         url: "/module/upload",

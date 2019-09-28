@@ -1,25 +1,22 @@
 <ul class="menu" nz-menu [nzMode]="'inline'" [nzTheme]="'dark'">
   <ng-container *ngFor='let list of nav.menu;let index=index'>
-    <li nz-menu-item *ngIf="list.type === 'link'" [routerLink]='list.url' [routerLinkActive]="['active']"
+    <li nz-menu-item *ngIf="list.type == 'link'" [routerLink]='list.url' [routerLinkActive]="['active']"
       [routerLinkActiveOptions]="{exact:true}">
-      <span hidden>
-        <i class="anticon anticon-file-text"></i>
-        <i class="anticon anticon-area-chart"></i>
-      </span>
       <span title>
+          <i nz-icon type="mail"></i>
         {{list.name}}
       </span>
     </li>
     <li nz-submenu *ngIf="list.type === 'sub'" [(nzOpen)]="index==nowindex" (nzOpenChange)="openChange(index)">
       <span title>
-        <i class="{{list.icon}}"></i>
+        <!-- <i nz-icon nzType="mail"></i> -->
         {{list.name}}
       </span>
       <ul>
         <li nz-menu-item *ngFor='let item of list.children' [routerLink]='item.url' [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{exact:false}">
           <span class='title'>
-            <i class="anticon anticon-minus"></i>
+              <!-- <i nz-icon nzType="mail"></i> -->
             {{item.name}}
           </span>
         </li>

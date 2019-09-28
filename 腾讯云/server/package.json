@@ -4,7 +4,7 @@
     "version": "0.0.1",
     "scripts": {
         "start": "nodemon server.js",
-        "build": "forever server.js"
+        "build": "forever start server.js"
     },
     "private": true,
     "dependencies": {

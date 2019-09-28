@@ -8,6 +8,7 @@ import { FormComponent } from './pages/form/form.component';
 import { UploadComponent } from './pages/upload/upload.component';
 import { UserCenterComponent } from './pages/user-center/user-center.component';
 import { LoginComponent } from './pages/login/login.component';
+import { CalendarComponent } from './pages/calendar/calendar.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -19,7 +20,8 @@ const routes: Routes = [
             { path: 'home', component: HomeComponent },
             { path: 'module/form', component: FormComponent },
             { path: 'module/upload', component: UploadComponent },
-            { path: 'user-center', component: UserCenterComponent }
+            { path: 'user-center', component: UserCenterComponent },
+            { path: 'module/calendar', component: CalendarComponent }
         ]
     },
 ];

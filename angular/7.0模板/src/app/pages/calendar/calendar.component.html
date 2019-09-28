@@ -1,0 +1,37 @@
+<ul class="calenda">
+  <div class="header">
+    <button nz-button nzType="primary" (click)="toOtherMonth(-1)">上月</button>
+    <p>{{calendarYear}}年{{calendarMonth}}月</p>
+    <button nz-button nzType="primary" (click)="toOtherMonth(1)">下月</button>
+  </div>
+  <li *ngFor="let item of weakArr">
+    <div class="classStyle">{{item}}</div>
+  </li>
+  <li *ngFor="let item of calendaArr">
+    <div class="classStyle" [ngClass]="{
+      'lastMonth':item.year<calendarYear||(item.year==calendarYear&&item.month<calendarMonth),
+      'nowMonth':item.year==calendarYear&&item.month==calendarMonth,
+      'nextMonth':item.year>calendarYear||(item.year==calendarYear&&item.month>calendarMonth),
+      'timeInterval':item.time>=startTime&&item.time<=endTime,
+      'saturday':item.weak==6,
+      'sunday':item.weak==0
+    }" (click)="getThisDay(item)">
+      <div class="border" [ngClass]="{
+        'otherMonthToday':item.year==calendarYear&&item.month==calendarMonth&&item.day==nowDay,
+        'today':item.year==nowYear&&item.month==nowMonth&&item.day==nowDay
+      }">
+        <!-- <p>年：{{item.year}}</p>
+        <p>月：{{item.month}}</p>
+        <p>日：{{item.day}}</p> -->
+        <p>{{item.day}}</p>
+      </div>
+    </div>
+  </li>
+</ul>
+<p>去哪年：<input nz-input placeholder="请选择年份" type="number" [(ngModel)]="toYearNum"></p>
+<p>去哪月：<input nz-input placeholder="请选择月份" type="number" [(ngModel)]="toMonthNum"></p>
+<button nz-button nzType="primary"
+  (click)="toOtherMonth((toYearNum-calendarYear)*12+toMonthNum-calendarMonth)">跳转</button>
+<p>开始时间：<input nz-input placeholder="请选择开始时间" type="date" [(ngModel)]="startDate"></p>
+<p>结束时间：<input nz-input placeholder="请选择结束时间" type="date" [(ngModel)]="endDate"></p>
+<button nz-button nzType="primary" (click)="useInterval()">使用</button>
