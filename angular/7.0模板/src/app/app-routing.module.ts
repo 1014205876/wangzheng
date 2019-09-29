@@ -9,6 +9,7 @@ import { UploadComponent } from './pages/upload/upload.component';
 import { UserCenterComponent } from './pages/user-center/user-center.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
+import { SaoleiComponent } from './pages/saolei/saolei.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,7 +22,8 @@ const routes: Routes = [
             { path: 'module/form', component: FormComponent },
             { path: 'module/upload', component: UploadComponent },
             { path: 'user-center', component: UserCenterComponent },
-            { path: 'module/calendar', component: CalendarComponent }
+            { path: 'module/calendar', component: CalendarComponent },
+            { path: 'module/saolei', component: SaoleiComponent }
         ]
     },
 ];

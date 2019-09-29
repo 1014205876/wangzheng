@@ -1,16 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.less']
+    selector: 'app-table',
+    templateUrl: './table.component.html',
+    styleUrls: ['./table.component.less']
 })
 export class TableComponent implements OnInit {
 
-  @Input() private formData: any;
-  constructor() { }
+    @Input() public formData: any;
+    
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

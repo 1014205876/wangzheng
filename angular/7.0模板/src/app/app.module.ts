@@ -27,6 +27,7 @@ import { UploadComponent } from './pages/upload/upload.component';
 import { UserCenterComponent } from './pages/user-center/user-center.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
+import { SaoleiComponent } from './pages/saolei/saolei.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { CalendarComponent } from './pages/calendar/calendar.component';
         UploadComponent,
         UserCenterComponent,
         CalendarComponent,
+        SaoleiComponent,
     ],
     imports: [
         BrowserModule,

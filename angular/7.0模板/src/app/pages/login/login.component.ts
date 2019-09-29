@@ -30,6 +30,9 @@ export class LoginComponent implements OnInit {
         imageCode: '',//图形二维码，（前端校验正确才可登录，同时发给后端做二次校验）
         smsCode: '',//短信验证码
     };
+
+    public copyright = '版本声明';
+
     public submitLoading = false;
     public inputChange = new InputChange();
 
@@ -63,7 +66,7 @@ export class LoginComponent implements OnInit {
             'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
             'u', 'v', 'w', 'x', 'y', 'z'
         ];
-        
+
         setTimeout(() => {
             this.imageCode = 'abcd'
             this.appCode.drawPic('abcd')

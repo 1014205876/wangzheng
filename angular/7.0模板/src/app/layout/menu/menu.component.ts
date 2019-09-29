@@ -40,6 +40,12 @@ export class MenuComponent implements OnInit {
                         url: "/module/calendar",
                     },
                     {
+                        name: "扫雷",
+                        state: "curFlow",
+                        type: "link",
+                        url: "/module/saolei",
+                    },
+                    {
                         name: "上传",
                         state: "curFlow",
                         type: "link",
