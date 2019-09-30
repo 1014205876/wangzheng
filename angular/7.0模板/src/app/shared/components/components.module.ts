@@ -14,10 +14,12 @@ registerLocaleData(zh);
 import { DynaactionFormModule } from './dynaaction-form/dynaaction-form.module';
 import { FormComponentModule } from './form-component/form-component.module';
 import { GvcodeComponent } from './gvcode/gvcode.component';
+import { PageNavComponent } from './page-nav/page-nav.component';
 
 @NgModule({
     declarations: [
         GvcodeComponent,
+        PageNavComponent
     ],
     imports: [
         CommonModule,
@@ -37,7 +39,8 @@ import { GvcodeComponent } from './gvcode/gvcode.component';
     exports: [
         GvcodeComponent,
         DynaactionFormModule,
-        FormComponentModule
+        FormComponentModule,
+        PageNavComponent
     ]
 })
 export class ComponentsModule { }

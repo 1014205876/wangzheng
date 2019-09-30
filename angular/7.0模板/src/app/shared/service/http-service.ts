@@ -78,6 +78,7 @@ export class HttpService {
             } else {
                 ret.push(this.toQueryPair(key, values));
             }
+
         }
         return ret.length > 0 ? '?' + ret.join('&') : '';
     }

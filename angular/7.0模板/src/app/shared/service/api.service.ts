@@ -20,9 +20,9 @@ export class ApiService {
         let url = this.nodeUrl + 'loginOut'
         return this.http.post(url)
     }
-    public getPorts(num?) {//查询分页
-        let url = this.apiUrl + 'user' + (num ? ('/' + num) : '');
-        return this.http.get(url);
+    public getComments(params) {//查询分页
+        let url = this.apiUrl + 'comments';
+        return this.http.get(url,params);
     }
     public getUser(data) {//获取用户信息
         let url = this.nodeUrl + 'user';

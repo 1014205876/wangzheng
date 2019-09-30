@@ -9,13 +9,20 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: () => import('./views/home.vue')
+      name: 'admin',
+      component: () => import('./layout/admin.vue'),
+      children:[
+        {
+            path: '/',
+            name: 'home',
+            component: () => import('./views/home.vue')
+          },
+          {
+            path: '/about',
+            name: 'about',
+            component: () => import('./views/about.vue')
+          }
+      ]
     },
-    {
-      path: '/about',
-      name: 'about',
-      component: () => import('./views/about.vue')
-    }
   ]
 })
