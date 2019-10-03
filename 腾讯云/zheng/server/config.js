@@ -1,8 +1,9 @@
 var config = {
-    SecretId: 'AKIDPfAYmp5OuNgolWvVq35wd9TdcQ2THurd',
-    SecretKey: 'kM1Vo6KSVSJ3iGk9RcfXFoDYiiXB7uVu',
-    Bucket: 'image-1255853614',
-    Region: 'ap-shanghai',
+    SecretId: 'AKIDSluoSj3fGfx314qSt4Bi6F7k9RUTMlnp',
+    SecretKey: 'rVv99uTmzyiFWZNo0KVTDl36nEahdKrJ',
+    Bucket: '1014-1259043953',
+    Region: 'ap-beijing',
+
     // 阿里云
     region: 'oss-cn-beijing',
     // accessKeyId: 'LTAI4FjoMARJQYRKcTUxVYr9',
