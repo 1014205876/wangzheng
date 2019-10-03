@@ -42,13 +42,17 @@
         [nzFrontPagination]="false">
         <thead>
             <tr>
-                <th>评论员</th>
+                    <th>postId</th>
+                    <th>id</th>
+                    <th>评论员</th>
                 <th>评论内容</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let item of nzTable.data">
-                <td>{{item.name}}</td>
+                    <td>{{item.postId}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
                 <td>{{item.body}}</td>
             </tr>
         </tbody>
