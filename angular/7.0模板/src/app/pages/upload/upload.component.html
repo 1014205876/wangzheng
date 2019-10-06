@@ -6,3 +6,6 @@
 <a *ngFor="let item of src" [href]="item.response.location" download>
     <img [src]="item.response.location" alt="图片">
 </a>
+
+
+<button (click)="sendSocket()">点击</button>

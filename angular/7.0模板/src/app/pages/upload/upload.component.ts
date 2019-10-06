@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UploadFile } from 'ng-zorro-antd/upload';
+import { WebSocketService } from '../../shared/service/webSocket/websocket.service';
 
 @Component({
     selector: 'app-upload',
@@ -12,9 +13,13 @@ export class UploadComponent implements OnInit {
     fileList = [];//上传组件数组
     imgArr = [];
     src = '';
-    constructor() { }
+    str='localhost:3301'
+    constructor(
+        public wsService: WebSocketService
+    ) { }
 
     ngOnInit() {
+        this.initSocket()
     }
 
     handlePreview(file: UploadFile) {
@@ -37,4 +42,27 @@ export class UploadComponent implements OnInit {
         return url
     }
 
+    initSocket() {
+        this.wsService.createObservableSocket("ws://" + this.str + "/ws").subscribe(
+            (data) => {
+                console.log('成功', data)
+            },
+            (err) => {
+                console.log('失败', err)
+            },
+            () => {
+                console.log("流已经结束")
+            } //  最后结束后，会执行到这的
+        );
+    }
+
+
+    // click事件后执行发送消息：
+    sendSocket() {
+        this.wsService.sendMessage({
+            key1: "key111", // 参数
+            key2: "key222",
+        });
+
+    }
 }

@@ -1,22 +1,24 @@
-let express = require('express');
-const url = require('url');
-let proxy = require('http-proxy-middleware');
-let multer = require('multer');
-const ConnectCas = require('connect-cas2');
-const session = require('express-session');
-const formidable = require('formidable');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-var compression = require('compression');
-const jwt = require('jsonwebtoken'); // 使用jwt签名
+const express = require('express'),
+    WebSocket = require('ws'),
+    url = require('url'),
+    proxy = require('http-proxy-middleware'),
+    multer = require('multer'),
+    session = require('express-session'),
+    formidable = require('formidable'),
+    path = require('path'),
+    cookieParser = require('cookie-parser'),
+    compression = require('compression'),
+    jwt = require('jsonwebtoken'); // 使用jwt签名
 
-let userArr = require('./json/user.json');
-let fileUtils = require('./fileUtils');
+let userArr = require('./json/user.json'),
+    fileUtils = require('./fileUtils'),
+    port = 3300;
 
-const MemoryStore = require('session-memory-store')(session);
-const app = express();
-const router = express.Router();
-const server = app.listen(3300);
+const MemoryStore = require('session-memory-store')(session),
+    app = express(),
+    router = express.Router(),
+    server = app.listen(port),
+    wss = new WebSocket.Server({ port: port + 1 });
 
 app.use(compression());
 app.use(cookieParser());
@@ -34,6 +36,14 @@ var proxyConfig = proxy({//node代理转接
     }
 });
 app.use('/api', proxyConfig);
+
+
+wss.on('connection', (ws) => {
+    ws.on('message', (message) => {
+        ws.send(message);
+    });
+    ws.send('something');
+});
 
 app.use('/node',
     router.get('/cookie', (req, res) => {//查询浏览器记住的登录信息
@@ -200,7 +210,7 @@ app.post('/upload', uploadSingle.single('file'), function (req, res) {
 
             res.send({
                 code: 200,
-                location:'http://' +  result.Location,
+                location: 'http://' + result.Location,
                 name: file.originalname,
                 data: result
             });

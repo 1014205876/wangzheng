@@ -19,7 +19,7 @@ import { LayoutModule } from './layout/layout.module';
 import { ComponentsModule } from './shared/components/components.module';
 import { HttpService } from './shared/service/http-service';
 import { AppLoadModule } from './shared/service/app-load/app-load.module';
-
+import { WebSocketService } from './shared/service/webSocket/websocket.service';
 // 引入页面
 import { HomeComponent } from './pages/home/home.component';
 import { FormComponent } from './pages/form/form.component';
@@ -55,6 +55,7 @@ import { SaoleiComponent } from './pages/saolei/saolei.component';
     ],
     providers: [
         HttpService,
+        WebSocketService,
         {
             provide: NZ_I18N,
             useValue: zh_CN
