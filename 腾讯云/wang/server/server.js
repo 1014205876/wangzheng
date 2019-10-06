@@ -36,13 +36,20 @@ var proxyConfig = proxy({//node代理转接
     }
 });
 app.use('/api', proxyConfig);
-
-
-wss.on('connection', (ws) => {
+let Temp;
+let AllUserData = [];
+wss.on('connection', (ws, req) => {
+    ws.send(JSON.stringify({ msg: '连接开始'}));
     ws.on('message', (message) => {
-        ws.send(message);
+        console.log(req.connection.remoteAddress)
+        ws.send(JSON.stringify(req.connection.remoteAddress));
+        // Temp = JSON.parse(message);
+        // AllUserData.push({
+        //     'id': Temp.ID,
+        //     'ws': ws
+        // });
+        // console.log(49, AllUserData);
     });
-    ws.send('something');
 });
 
 app.use('/node',
