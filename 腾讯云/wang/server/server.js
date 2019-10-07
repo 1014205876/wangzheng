@@ -208,39 +208,39 @@ app.post('/upload', uploadSingle.single('file'), function (req, res) {
     }
     var file = req.file;
     // 腾讯云
-    fileUtils.putObject(file.path, file.originalname, file.size, function (err, result) {
-        if (err) {
-            res.send(500, 'upload fail!');
-        }
-        else {
+    // fileUtils.putObject(file.path, file.originalname, file.size, function (err, result) {
+    //     if (err) {
+    //         res.send(500, 'upload fail!');
+    //     }
+    //     else {
 
 
-            res.send({
-                code: 200,
-                location: 'http://' + result.Location,
-                name: file.originalname,
-                data: result
-            });
-
-            // res.send({ location: 'http://' + result.Location, name: file.originalname });
-        }
-    });
-    // 阿里云
-    // fileUtils(file.originalname, file.path, function (code, result) {
-    //     if (code == 200) {
     //         res.send({
     //             code: 200,
-    //             location: result.url,
-    //             name: result.name,
+    //             location: 'http://' + result.Location,
+    //             name: file.originalname,
     //             data: result
     //         });
-    //     } else {
-    //         res.send({
-    //             code: 500,
-    //             reason: result
-    //         });
+
+    //         // res.send({ location: 'http://' + result.Location, name: file.originalname });
     //     }
     // });
+    // 阿里云
+    fileUtils(file.originalname, file.path, function (code, result) {
+        if (code == 200) {
+            res.send({
+                code: 200,
+                location: result.url,
+                name: result.name,
+                data: result
+            });
+        } else {
+            res.send({
+                code: 500,
+                reason: result
+            });
+        }
+    });
 });
 
 //静态页面的入口文件夹

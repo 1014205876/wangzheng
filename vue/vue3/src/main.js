@@ -5,6 +5,8 @@ import '../theme/index.css'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
+import axios from 'axios';
+Vue.prototype.$axios = axios;
 // 引入页面
 import App from './App.vue';
 

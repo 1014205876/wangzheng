@@ -9,9 +9,9 @@ export class WebSocketService {
     this.ws = new WebSocket(url);
     return new Observable(
       observer => {
-        this.ws.onmessage = (event) => observer.next(event.data);  // 成功，返回数据
-        this.ws.onerror = (event) => observer.error(event); // 失败
-        this.ws.onclose = (event) => observer.complete(); // 完成后，要结束
+        this.ws.onmessage = (res) => observer.next(res.data);  // 成功，返回数据
+        this.ws.onerror = (err) => observer.error(err); // 失败
+        this.ws.onclose = (over) => observer.complete(); // 完成后，要结束
       })
   }
   // 向服务器端发送消息
