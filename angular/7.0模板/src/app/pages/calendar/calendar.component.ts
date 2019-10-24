@@ -16,6 +16,21 @@ export class CalendarComponent implements OnInit {
     nowDay;//今天的日期
     nowTime;//今天的时间戳
 
+    monthObj = {//月份英文对象
+        Jan: 0,
+        Feb: 1,
+        Mar: 2,
+        Apr: 3,
+        May: 4,
+        Jun: 5,
+        Jul: 6,
+        Aug: 7,
+        Sep: 8,
+        Oct: 9,
+        Nov: 10,
+        Dec: 11,
+    }
+
     weakArr = ['日', '一', '二', '三', '四', '五', '六']
     calendaArr = [];//日历数组
     calendarYear;//日历展示的的年份

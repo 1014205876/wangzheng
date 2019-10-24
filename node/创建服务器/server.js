@@ -42,13 +42,12 @@ app.use('/api',
             } else {
                 let sql = "select * from " + tableName +
                     ((data.name || data.status || data.tel) ? " where " : "") +
-                    "value like '%'"+
+                    "value like '%'" +
                     ((data.name) ? (" and name like '%" + data.name + "%'") : ("")) +
                     ((data.status) ? (" and status=" + data.status) : ("")) +
                     ((data.tel) ? (" and tel like '%" + data.tel + "%'") : (""));
                 connection.query(
-                    sql,
-                    ((err, result) => {
+                    sql,((err, result) => {
                         if (err) {
                             res.send({
                                 code: 400,
@@ -67,8 +66,6 @@ app.use('/api',
                 )
             }
         })
-
-
     }),
     router.post('/form', (req, res) => {
         var form = new formidable.IncomingForm(req.url);
@@ -154,8 +151,7 @@ app.use('/api',
         var data = url.parse(req.url, true).query;
         let sql = "DELETE FROM " + tableName + " WHERE id=" + data.id;
         connection.query(
-            sql,
-            ((err, result) => {
+            sql, ((err, result) => {
                 if (err) {
                     res.send({
                         code: 400,
@@ -172,7 +168,6 @@ app.use('/api',
                 }
             })
         )
-
     })
 )
 
