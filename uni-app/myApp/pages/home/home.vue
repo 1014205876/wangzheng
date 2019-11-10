@@ -21,4 +21,7 @@
 </script>
 
 <style>
+	.header{
+		background:red;
+	}
 </style>
