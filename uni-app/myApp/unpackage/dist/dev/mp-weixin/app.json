@@ -9,7 +9,7 @@
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "transparent"
+    "navigationBarBackgroundColor": "#fff"
   },
   "tabBar": {
     "color": "res",
@@ -37,6 +37,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }
