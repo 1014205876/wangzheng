@@ -3,7 +3,8 @@
     <el-container>
         <el-aside>
             <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
+            <router-link to="/about">About</router-link> |
+            <router-link to="/drag">drag</router-link>
         </el-aside>
         <el-container>
             <el-header>

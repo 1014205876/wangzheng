@@ -13,7 +13,7 @@ export class UploadComponent implements OnInit {
     fileList = [];//上传组件数组
     imgArr = [];
     src = '';
-    str='localhost:3301'
+    str = 'localhost:3301'
     constructor(
         public wsService: WebSocketService
     ) { }
@@ -45,23 +45,20 @@ export class UploadComponent implements OnInit {
     initSocket() {
         this.wsService.createObservableSocket("ws://" + this.str + "/ws").subscribe(
             (data) => {
-                console.log('成功', data)
-            },
-            (err) => {
-                console.log('失败', err)
-            },
-            () => {
-                console.log("流已经结束")
-            } //  最后结束后，会执行到这的
+                console.log('成功', JSON.parse(data));
+            }, (err) => {
+                console.log('失败', err);
+            }, () => {
+                console.log("流已经结束");
+            }
         );
     }
-
 
     // click事件后执行发送消息：
     sendSocket() {
         this.wsService.sendMessage({
-            key1: "key111", // 参数
-            key2: "key222",
+            ID: "key111", // 参数
+            Data: "key222",
         });
 
     }

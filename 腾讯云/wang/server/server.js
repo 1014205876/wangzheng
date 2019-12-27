@@ -36,13 +36,20 @@ var proxyConfig = proxy({//node代理转接
     }
 });
 app.use('/api', proxyConfig);
-
-
-wss.on('connection', (ws) => {
+let Temp;
+let AllUserData = [];
+wss.on('connection', (ws, req) => {
+    ws.send(JSON.stringify({ msg: '连接开始'}));
     ws.on('message', (message) => {
-        ws.send(message);
+        console.log(req.connection.remoteAddress)
+        ws.send(JSON.stringify(req.connection.remoteAddress));
+        // Temp = JSON.parse(message);
+        // AllUserData.push({
+        //     'id': Temp.ID,
+        //     'ws': ws
+        // });
+        // console.log(49, AllUserData);
     });
-    ws.send('something');
 });
 
 app.use('/node',
@@ -201,39 +208,39 @@ app.post('/upload', uploadSingle.single('file'), function (req, res) {
     }
     var file = req.file;
     // 腾讯云
-    fileUtils.putObject(file.path, file.originalname, file.size, function (err, result) {
-        if (err) {
-            res.send(500, 'upload fail!');
-        }
-        else {
+    // fileUtils.putObject(file.path, file.originalname, file.size, function (err, result) {
+    //     if (err) {
+    //         res.send(500, 'upload fail!');
+    //     }
+    //     else {
 
 
-            res.send({
-                code: 200,
-                location: 'http://' + result.Location,
-                name: file.originalname,
-                data: result
-            });
-
-            // res.send({ location: 'http://' + result.Location, name: file.originalname });
-        }
-    });
-    // 阿里云
-    // fileUtils(file.originalname, file.path, function (code, result) {
-    //     if (code == 200) {
     //         res.send({
     //             code: 200,
-    //             location: result.url,
-    //             name: result.name,
+    //             location: 'http://' + result.Location,
+    //             name: file.originalname,
     //             data: result
     //         });
-    //     } else {
-    //         res.send({
-    //             code: 500,
-    //             reason: result
-    //         });
+
+    //         // res.send({ location: 'http://' + result.Location, name: file.originalname });
     //     }
     // });
+    // 阿里云
+    fileUtils(file.originalname, file.path, function (code, result) {
+        if (code == 200) {
+            res.send({
+                code: 200,
+                location: result.url,
+                name: result.name,
+                data: result
+            });
+        } else {
+            res.send({
+                code: 500,
+                reason: result
+            });
+        }
+    });
 });
 
 //静态页面的入口文件夹

@@ -12,7 +12,7 @@ const express = require('express'),
 
 let userArr = require('./json/user.json'),
     fileUtils = require('./fileUtils'),
-    port = 3300;
+    port = 3200;
 
 const MemoryStore = require('session-memory-store')(session),
     app = express(),

@@ -41,3 +41,8 @@ forever stop [id]
 // 1. 启动所有 
 forever restartall
  
+npm install rimraf -g
+然后：
+rimraf node_modules
+
+systemctl restart nginx

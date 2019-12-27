@@ -1,0 +1,12 @@
+{
+  "@class" : "org.apereo.cas.support.oauth.services.OAuthRegisteredService",
+  "clientId": "peak",
+  "clientSecret": "e65fa828bedf4a0392cf1e005921dab6",
+  "bypassApprovalPrompt": false,
+  "serviceId" : "^(http|https|imaps)://.*",
+  "name" : "Peak",
+  "id" : 10000003,
+  "attributeReleasePolicy": {
+    "@class": "org.apereo.cas.services.ReturnAllAttributeReleasePolicy"
+  }
+}

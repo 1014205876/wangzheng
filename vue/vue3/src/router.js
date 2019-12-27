@@ -11,18 +11,27 @@ export default new Router({
       path: '/',
       name: 'admin',
       component: () => import('./layout/admin.vue'),
-      children:[
+      children: [
         {
-            path: '/',
-            name: 'home',
-            component: () => import('./views/home.vue')
-          },
-          {
-            path: '/about',
-            name: 'about',
-            component: () => import('./views/about.vue')
-          }
+          path: '/',
+          name: 'home',
+          component: () => import('./views/home.vue')
+        },
+        {
+          path: '/about',
+          name: 'about',
+          component: () => import('./views/about.vue')
+        }
       ]
+    },
+    {
+      path: '/drag',
+      component: () => import('./views/drag.vue'),
+      meta: {
+        index: 14,
+        auth: true,
+        title: '拖拽页面'
+      },
     },
   ]
 })

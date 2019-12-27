@@ -13,13 +13,23 @@
 </template>
 
 <script>
-
+  import axios from 'axios'
   export default {
     name: 'home',
     data: () => ({
       show: true
     }),
     components: {
+    },
+    methods:{
+      getCookie(){
+        axios.get('/node/cookie').then((res) => {
+        console.log(res)
+      });
+      }
+    },
+    mounted() {
+      this.getCookie()
     }
   }
 </script>
