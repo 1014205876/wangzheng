@@ -17,3 +17,6 @@ npm install less --save-dev
         "styleext": "less"
     }
 }
+json字符串相互转化：
+JSON.parse(str);//字符串转对象
+JSON.stringify(obj);//对象转字符串

@@ -1,0 +1,38 @@
+version: "3"
+services:
+  # angular
+  angular:
+    build: angular
+    image: ccr.ccs.tencentyun.com/wangzheng/angular:1.0.0.dev
+    ports:
+      - "8100:8080"
+    environment:
+      - CAS_SERVER=http://192.168.4.216:8080
+      - API_SERVER=http://zuul:8040
+      - AUTH_ID=97a78cc5-2e92-42b8-9a7a-de4a6ad5a3b8
+      - NODE_PORT=8080
+      - NODE_ENV=pro
+      - NODE_SERVER=http://192.168.4.216:8100
+    networks:
+      - springcloud-overlay
+      
+  # vue
+  vue:
+    build: vue
+    image: ccr.ccs.tencentyun.com/wangzheng/vue:1.0.0.dev
+    ports:
+      - "8200:8080"
+    environment:
+      - CAS_SERVER=http://192.168.4.216:8080
+      - API_SERVER=http://zuul:8040
+      - AUTH_ID=97a78cc5-2e92-42b8-9a7a-de4a6ad5a3b8
+      - NODE_PORT=8080
+      - NODE_ENV=pro
+      - NODE_SERVER=http://192.168.4.216:8100
+    networks:
+      - springcloud-overlay
+      
+networks:
+  springcloud-overlay:
+    external:
+      name: springcloud-overlay

@@ -23,6 +23,5 @@ export class CartChangeService {
 
     getOrder() {
         this.orderArr.length = 0;
-        return res
     }
 }
