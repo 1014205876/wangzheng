@@ -13,8 +13,6 @@ services:
       - NODE_PORT=8080
       - NODE_ENV=pro
       - NODE_SERVER=http://192.168.4.216:8100
-    networks:
-      - springcloud-overlay
       
   # vue
   vue:
@@ -29,10 +27,5 @@ services:
       - NODE_PORT=8080
       - NODE_ENV=pro
       - NODE_SERVER=http://192.168.4.216:8100
-    networks:
-      - springcloud-overlay
+   
       
-networks:
-  springcloud-overlay:
-    external:
-      name: springcloud-overlay
