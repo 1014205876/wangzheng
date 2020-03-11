@@ -361,8 +361,6 @@
                     that.absolute.top = e.clientY - 10 + "px";
                     that.absolute.left = e.clientX - 30 + "px";
                     let topY = e.pageY;
-                    console.log(topY)
-                    console.log($(e.path[0]).closest(".component").offset().top)
                     that.find($(e.path[0]).closest(".component"), topY, that);
                 }
             },
