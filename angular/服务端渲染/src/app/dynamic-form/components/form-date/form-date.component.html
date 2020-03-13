@@ -1,6 +1,0 @@
-<nz-form-item class="col dateTime" [hidden]="config.placeholder=='hidden'" nzSpan="6">
-  <nz-form-label class="label" nzSpan="8" [nzRequired]="config.required" nzFor="{{config.id}}">{{config.name}}</nz-form-label>
-  <nz-form-control class="control" nzSpan="14">
-    <nz-date-picker [(ngModel)]="value" [nzDisabledDate]="disabledDate" [nzStyle]="{'width': '100%'}" nzFormat="yyyy-MM-dd" (ngModelChange)="getDay($event)" [nzShowToday]="false"></nz-date-picker>
-  </nz-form-control>
-</nz-form-item>

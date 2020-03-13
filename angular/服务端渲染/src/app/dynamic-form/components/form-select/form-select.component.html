@@ -1,9 +1,0 @@
-<nz-form-item class="col dateTime" [formGroup]="group" [hidden]="config.placeholder=='hidden'" nzSpan="6">
-  <nz-form-label class="label" nzSpan="8" [nzRequired]="config.required" nzFor="{{config.id}}">{{config.name}}</nz-form-label>
-  <nz-form-control class="control" nzSpan="14">
-    <nz-select style="width: 100%;" [formControlName]="config.id" [(ngModel)]="config.value">
-      <nz-option [nzValue]="" [nzLabel]="config.placeholder" [nzDisabled]="true"></nz-option>
-      <nz-option *ngFor="let option of config.options" [nzValue]="option.value" [nzLabel]="option.name"></nz-option>
-    </nz-select>
-  </nz-form-control>
-</nz-form-item>

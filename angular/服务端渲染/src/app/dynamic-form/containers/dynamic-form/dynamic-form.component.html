@@ -1,9 +1,0 @@
-<form nz-form [formGroup]="form" [nzLayout]="'inline'" class="form">
-  <ng-container *ngFor="let field of config;" dynamicField [config]="field" [group]="form"></ng-container>
-  <div class="buttonGroup">
-    <button nz-button nzType="danger" *ngIf="hidden&&btn.length>=3" (click)="submitted.emit({form:form,operate:btn[2].key});">{{btn[2].value}}</button>
-    <button nz-button nzType="danger" *ngIf="hidden&&btn.length>=2" (click)="submitted.emit({form:form,operate:btn[1].key});">{{btn[1].value}}</button>
-    <button nz-button nzType="primary" (click)="submitted.emit({form:form,operate:btn[0].key});">{{btn[0].value}}</button>
-    <button nz-button nzType="default" (click)="cal()">返回</button>
-  </div>
-</form>

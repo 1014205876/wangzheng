@@ -1,9 +1,0 @@
-<ul>
-  <ng-container *ngFor='let list of data.class; let index=index'>
-    <li *ngIf='list.name!="class4"'>
-      <div [class.red]="list.name=='class1'">{{list.name}}{{index}}</div>
-      <div [ngClass]="{'red':list.name=='class3'}">{{list.name}}{{index}}</div>
-    </li>
-  </ng-container>
-</ul>
-<input type="text" [(ngModel)]='input'>{{input}}
