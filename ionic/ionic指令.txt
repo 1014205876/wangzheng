@@ -1,3 +1,0 @@
-npm install -g ionic    全局安装
-ionic start myApp tabs  创建项目
-ionic serve             启动项目
