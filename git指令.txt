@@ -23,3 +23,5 @@ git checkout -b 分支名
 git push origin 分支名
 
 8.合并分支
+
+太大无法clone时
