@@ -1,7 +1,7 @@
 可用 get命令查看registry
 
 1
-npm congfig get registry
+npm config get registry
 原版结果为
 
 1
